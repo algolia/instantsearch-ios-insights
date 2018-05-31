@@ -21,6 +21,7 @@
 		1D958B0B20BEE9820058230A /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0A20BEE9820058230A /* WebService.swift */; };
 		1D958B0D20BEECD40058230A /* EventsSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0C20BEECD40058230A /* EventsSync.swift */; };
 		1D958B0F20BEEDA60058230A /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0E20BEEDA60058230A /* Events.swift */; };
+		1DD0A0C420BFE487005FDDDD /* EitherHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C320BFE487005FDDDD /* EitherHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		1D958B0A20BEE9820058230A /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		1D958B0C20BEECD40058230A /* EventsSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSync.swift; sourceTree = "<group>"; };
 		1D958B0E20BEEDA60058230A /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		1DD0A0C320BFE487005FDDDD /* EitherHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EitherHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				1D958AF420BD819B0058230A /* Either.swift */,
+				1DD0A0C320BFE487005FDDDD /* EitherHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				1D958AF520BD819B0058230A /* Either.swift in Sources */,
 				1D958B0620BEE8F60058230A /* NSMutableURLRequest+Resource.swift in Sources */,
 				1D958B0B20BEE9820058230A /* WebService.swift in Sources */,
+				1DD0A0C420BFE487005FDDDD /* EitherHelpers.swift in Sources */,
 				1D958B0020BEC7970058230A /* Request.swift in Sources */,
 				1D958B0F20BEEDA60058230A /* Events.swift in Sources */,
 				1D958B0420BEE8D40058230A /* HttpMethod.swift in Sources */,

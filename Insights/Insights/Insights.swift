@@ -43,8 +43,8 @@ import UIKit
     super.init()
   }
   
-  public func click(queryId: String, objectId: String, position: UInt) {
-    let event = ClickEvent(name: "t", timestamp: Date.timeIntervalBetween1970AndReferenceDate, userID: "s", queryID: queryId)
+  public func click(name: String, timestamp: TimeInterval, userID: String?, indexNameOrQuery: IndexOrQuery, objectIDsOrFilterValue: ObjectIDsOrFilterValue) {
+    let event = ClickEvent(name: name, timestamp: timestamp, userID: userID, indexNameOrQuery: indexNameOrQuery, objectIDsOrFilterValue: objectIDsOrFilterValue)
     process(event: event)
   }
   

@@ -40,17 +40,18 @@ class InsightsTests: XCTestCase {
     } catch _ {}
   }
   
-  func testViewEvent() {
+  func testClickEvent() {
     let expectation = self.expectation(description: "Fuck me")
     
     let indexName = "testIndex"
     let insightsRegister = Insights.register(appId: "SPH6CBEPLC", apiKey: "064f4f03e7c37d8d7cfb40cdbf852f3d", indexName: indexName)
-    
-//    insightsRegister.view(eventName: "My super event",
-//                          timestamp: Date.timeIntervalBetween1970AndReferenceDate,
-//                          userId: "user1",
-//                          filterValue: "filterValue")
-    insightsRegister.click(queryId: "q1", objectId: "a", position: 1)
+        
+    insightsRegister.click(name: "My super event",
+                           timestamp: Date.timeIntervalBetween1970AndReferenceDate,
+                           userID: "user1",
+                           indexNameOrQuery: IndexOrQuery(queryID: "a48a30e835094323b4cc101156f530bd",
+                                                          position: 1),
+                           objectIDsOrFilterValue: ObjectIDsOrFilterValue(filterValue: "filter"))
     DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
       expectation.fulfill()
     })

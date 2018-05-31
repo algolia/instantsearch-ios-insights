@@ -58,16 +58,29 @@ struct ClickEvent: Event, EventSync, Codable {
   var eventName: String
   var timestamp: TimeInterval
   var userID: String?
-  var queryID: String
   
+  // Either indexName or queryID with position
+  var indexName: String?
+  
+  var queryID: String?
+  var position: Int?
+  
+  // Either objectIDs or filterValue
+  var objectIDs: [String]?
+  var filterValue: String?
   
   static let EVENT_NAME = "Click"
-  public init(name: String, timestamp: TimeInterval, userID: String?, queryID: String) {
+  public init(name: String, timestamp: TimeInterval, userID: String?, indexNameOrQuery: IndexOrQuery, objectIDsOrFilterValue: ObjectIDsOrFilterValue) {
     self.eventType = ViewEvent.EVENT_NAME
     self.eventName = name
     self.timestamp = timestamp
     self.userID = userID
-    self.queryID = queryID
+    indexNameOrQuery.indexOrQuery.either(ifLeft: { indexName in
+      self.indexName = indexName
+    }, ifRight: { queryPosition in
+      self.queryID = queryPosition.0
+      self.position = queryPosition.1
+    })
   }
   
   func sync() -> Resource<Void, String> {
@@ -85,15 +98,18 @@ struct ClickEvent: Event, EventSync, Codable {
   }
 }
 
-struct ConversionEvent: Event, EventSync {
+struct ConversionEvent: EventSync {
+  static let EVENT_NAME = "Click"
+  static let EVENT_NAME_KEY = "eventType"
+  var params: [String: Any]
   
-  var eventType: String
-  var eventName: String
-  var timestamp: TimeInterval
-  var userID: String?
+  init(params: [String: Any]) {
+    self.params = params
+    self.params[ConversionEvent.EVENT_NAME_KEY] = ConversionEvent.EVENT_NAME
+  }
+  
   
   func sync() -> Resource<Void, String> {
-    let params = ["a": "a"]
     return Resource<Void, String>(url: API.url(route: API.Endpoint.conversion),
                                   method: .post([], params as AnyObject),
                                   parseJSON: { (json) -> Void in
