@@ -45,13 +45,15 @@ class InsightsTests: XCTestCase {
     
     let indexName = "testIndex"
     let insightsRegister = Insights.register(appId: "SPH6CBEPLC", apiKey: "064f4f03e7c37d8d7cfb40cdbf852f3d", indexName: indexName)
-        
-    insightsRegister.click(name: "My super event",
-                           timestamp: Date.timeIntervalBetween1970AndReferenceDate,
-                           userID: "user1",
-                           indexNameOrQuery: IndexOrQuery(queryID: "a48a30e835094323b4cc101156f530bd",
-                                                          position: 1),
-                           objectIDsOrFilterValue: ObjectIDsOrFilterValue(filterValue: "filter"))
+    
+    let data: [String : Any] = [
+      "eventName": "My super event",
+      "queryID": "a48a30e835094323b4cc101156f530bd",
+      "position": 1,
+//      "objectID": "123"
+      ]
+    insightsRegister.click(params: data)
+    
     DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
       expectation.fulfill()
     })

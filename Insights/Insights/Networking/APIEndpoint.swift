@@ -40,7 +40,7 @@ extension APIEndpoint{
 }
 
 struct API {
-  enum Endpoint{
+  enum Event {
     case click
     case view
     case conversion
@@ -61,7 +61,7 @@ extension API: APIEndpoint {
 }
 
 extension APIEndpoint {
-  static func url(route: API.Endpoint) -> URL{
+  static func url(route: API.Event) -> URL{
     switch route {
     case .click:
       return url(path: "click")
@@ -69,6 +69,23 @@ extension APIEndpoint {
       return url(path: "view")
     case .conversion:
       return url(path: "conversion")
+    }
+  }
+}
+
+protocol EventTypes {
+  static func eventType(event: API.Event) -> String
+}
+
+extension API.Event: EventTypes {
+  static func eventType(event: API.Event) -> String {
+    switch event {
+    case .click:
+      return "Click"
+    case .view:
+      return "View"
+    case .conversion:
+      return "Conversion"
     }
   }
 }

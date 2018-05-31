@@ -6,7 +6,7 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class EventsSync {
   let webservice: WebService
@@ -15,9 +15,16 @@ class EventsSync {
     self.webservice = webservice
   }
   
-  public func syncEvent(event: EventSync) {
+  public func syncEvent(event: EventSync, completionHandler: @escaping (Bool) -> ()) {
     webservice.load(resource: event.sync(),
-                    completion: { (_) in
-                      })
+                    completion: { (res) in
+                      switch res {
+                      case .success(_):
+                        completionHandler(true)
+                      case .fail(let err):
+                        print(err)
+                        completionHandler(false)
+                      }
+    })
   }
 }

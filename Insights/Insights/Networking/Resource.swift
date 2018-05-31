@@ -8,24 +8,20 @@
 
 import Foundation
 
-enum StatusCode:Int{
-  case Ok200 = 200
-  case badRequest400 = 400
-  case unauthorized401 = 401
-}
-
-struct Resource<A,E> { //where E:Error {
+struct Resource<A,E> where E: Error {
   let url: URL
   let method: HttpMethod<Data>
   let contentType: String
   let parse: (Data) -> A?
-  let errorParse: (StatusCode, Data) -> E?
+  let allowEmptyResponse: Bool
+  let errorParse: (Int, Data) -> E?
   let aditionalHeaders:[String : String]
 }
 
 extension Resource {
   
-  init(url: URL,  method: HttpMethod<AnyObject> = .get([]), contentType: String = "application/json", parseJSON: @escaping (Any) -> A?, errorParseJSON: @escaping (StatusCode, Any) -> E? = {_,_ in return nil}, aditionalHeaders: [String:String] = [:]) {
+  init(url: URL,  method: HttpMethod<AnyObject> = .get([]), contentType: String = "application/json", parseJSON: @escaping (Any) -> A? = {_ in return nil}, allowEmptyResponse: Bool = false, errorParseJSON: @escaping (Int, Any) -> E? = {_,_ in return nil}, aditionalHeaders: [String:String] = [:]) {
+    self.allowEmptyResponse = allowEmptyResponse
     self.url = url
     self.method =  method.map(f: { (json) in
       if json is [String:AnyObject] {

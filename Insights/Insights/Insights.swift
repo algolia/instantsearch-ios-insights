@@ -5,7 +5,7 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 
 /// Main class used for interacting with the InstantSearch Insights library.
@@ -43,33 +43,23 @@ import UIKit
     super.init()
   }
   
-  public func click(name: String, timestamp: TimeInterval, userID: String?, indexNameOrQuery: IndexOrQuery, objectIDsOrFilterValue: ObjectIDsOrFilterValue) {
-    let event = ClickEvent(name: name, timestamp: timestamp, userID: userID, indexNameOrQuery: indexNameOrQuery, objectIDsOrFilterValue: objectIDsOrFilterValue)
-    process(event: event)
+  public func click(params: [String: Any]) {
+    process(event: Event(params: params, event: API.Event.click))
   }
   
-  public func conversion(queryId: String, objectId: String) {
-    
+  public func conversion(params: [String: Any]) {
+    process(event: Event(params: params, event: API.Event.conversion))
   }
   
-  public func view(eventName: String, timestamp: TimeInterval, userId: String?, objectIds: [String]) {
-    let event = ViewEvent(name: eventName, timestamp: timestamp, userID: userId, objIdsOrFilter: Either<[String], String>.left(objectIds))
-    process(event: event)
+  public func view(params: [String: Any]) {
+    process(event: Event(params: params, event: API.Event.view))
   }
-  
-  public func view(eventName: String, timestamp: TimeInterval, userId: String?, filterValue: String) {
-    let event = ViewEvent(name: eventName, timestamp: timestamp, userID: userId, objIdsOrFilter: Either<[String], String>.right(filterValue))
-    process(event: event)
-  }
-  
-  
-  /// helper method, we try to link the objectId to the queryId
-  private func conversion(objectId: String) {}
-  
   
   private func process(event: Event) {
     events.append(event)
-    eventsSync.syncEvent(event: event)
+    eventsSync.syncEvent(event: event) { success in
+      print(success)
+    }
     serialize()
   }
   

@@ -11,9 +11,7 @@
 		1D4531D1209C870C00B26CF9 /* InsightsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4531D0209C870C00B26CF9 /* InsightsTests.swift */; };
 		1D4531D3209C870C00B26CF9 /* Insights.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D4531C5209C870C00B26CF9 /* Insights.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D958AF220BD71ED0058230A /* Insights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AF120BD71ED0058230A /* Insights.swift */; };
-		1D958AF520BD819B0058230A /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AF420BD819B0058230A /* Either.swift */; };
 		1D958AF820BD8A6E0058230A /* InsightsTestObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AF720BD8A6E0058230A /* InsightsTestObjC.m */; };
-		1D958B0020BEC7970058230A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AFF20BEC7970058230A /* Request.swift */; };
 		1D958B0220BEE2BA0058230A /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0120BEE2BA0058230A /* APIEndpoint.swift */; };
 		1D958B0420BEE8D40058230A /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0320BEE8D40058230A /* HttpMethod.swift */; };
 		1D958B0620BEE8F60058230A /* NSMutableURLRequest+Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0520BEE8F60058230A /* NSMutableURLRequest+Resource.swift */; };
@@ -21,7 +19,7 @@
 		1D958B0B20BEE9820058230A /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0A20BEE9820058230A /* WebService.swift */; };
 		1D958B0D20BEECD40058230A /* EventsSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0C20BEECD40058230A /* EventsSync.swift */; };
 		1D958B0F20BEEDA60058230A /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0E20BEEDA60058230A /* Events.swift */; };
-		1DD0A0C420BFE487005FDDDD /* EitherHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C320BFE487005FDDDD /* EitherHelpers.swift */; };
+		1DD0A0C620BFF43C005FDDDD /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C520BFF43C005FDDDD /* Result.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,9 +40,7 @@
 		1D4531D0209C870C00B26CF9 /* InsightsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsTests.swift; sourceTree = "<group>"; };
 		1D4531D2209C870C00B26CF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D958AF120BD71ED0058230A /* Insights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insights.swift; sourceTree = "<group>"; };
-		1D958AF420BD819B0058230A /* Either.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Either.swift; sourceTree = "<group>"; };
 		1D958AF720BD8A6E0058230A /* InsightsTestObjC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InsightsTestObjC.m; sourceTree = "<group>"; };
-		1D958AFF20BEC7970058230A /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		1D958B0120BEE2BA0058230A /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 		1D958B0320BEE8D40058230A /* HttpMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
 		1D958B0520BEE8F60058230A /* NSMutableURLRequest+Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableURLRequest+Resource.swift"; sourceTree = "<group>"; };
@@ -52,7 +48,7 @@
 		1D958B0A20BEE9820058230A /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		1D958B0C20BEECD40058230A /* EventsSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSync.swift; sourceTree = "<group>"; };
 		1D958B0E20BEEDA60058230A /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
-		1DD0A0C320BFE487005FDDDD /* EitherHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EitherHelpers.swift; sourceTree = "<group>"; };
+		1DD0A0C520BFF43C005FDDDD /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				1D958B0920BEE9190058230A /* Networking */,
-				1D958AF320BD818C0058230A /* Helpers */,
 				1D4531C5209C870C00B26CF9 /* Insights.h */,
 				1D958AF120BD71ED0058230A /* Insights.swift */,
 				1D4531C6209C870C00B26CF9 /* Info.plist */,
@@ -116,24 +111,15 @@
 			path = InsightsTests;
 			sourceTree = "<group>";
 		};
-		1D958AF320BD818C0058230A /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				1D958AF420BD819B0058230A /* Either.swift */,
-				1DD0A0C320BFE487005FDDDD /* EitherHelpers.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		1D958B0920BEE9190058230A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				1D958AFF20BEC7970058230A /* Request.swift */,
 				1D958B0120BEE2BA0058230A /* APIEndpoint.swift */,
 				1D958B0320BEE8D40058230A /* HttpMethod.swift */,
 				1D958B0520BEE8F60058230A /* NSMutableURLRequest+Resource.swift */,
 				1D958B0720BEE9140058230A /* Resource.swift */,
 				1D958B0A20BEE9820058230A /* WebService.swift */,
+				1DD0A0C520BFF43C005FDDDD /* Result.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -248,11 +234,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D958AF520BD819B0058230A /* Either.swift in Sources */,
+				1DD0A0C620BFF43C005FDDDD /* Result.swift in Sources */,
 				1D958B0620BEE8F60058230A /* NSMutableURLRequest+Resource.swift in Sources */,
 				1D958B0B20BEE9820058230A /* WebService.swift in Sources */,
-				1DD0A0C420BFE487005FDDDD /* EitherHelpers.swift in Sources */,
-				1D958B0020BEC7970058230A /* Request.swift in Sources */,
 				1D958B0F20BEEDA60058230A /* Events.swift in Sources */,
 				1D958B0420BEE8D40058230A /* HttpMethod.swift in Sources */,
 				1D958AF220BD71ED0058230A /* Insights.swift in Sources */,
