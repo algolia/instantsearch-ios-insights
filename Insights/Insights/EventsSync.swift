@@ -8,23 +8,17 @@
 
 import Foundation
 
-class EventsSync {
-  let webservice: WebService
-  
-  init(webservice: WebService) {
-    self.webservice = webservice
-  }
-  
+extension WebService {
   public func syncEvent(event: EventSync, completionHandler: @escaping (Bool) -> ()) {
-    webservice.load(resource: event.sync(),
-                    completion: { (res) in
-                      switch res {
-                      case .success(_):
-                        completionHandler(true)
-                      case .fail(let err):
-                        print(err)
-                        completionHandler(false)
-                      }
+    load(resource: event.sync(),
+         completion: { (res) in
+          switch res {
+          case .success(_):
+            completionHandler(true)
+          case .fail(let err):
+            print(err)
+            completionHandler(false)
+          }
     })
   }
 }

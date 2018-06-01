@@ -15,10 +15,12 @@ class WebService {
   let urlSession: URLSession
   let credentials: Credentials
   
+  // TODO: the SessionConfig should be injected instead of the credentials
   init(credentials: Credentials) {
     let config = URLSessionConfiguration.default
     config.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
     config.urlCache = nil
+    config.isDiscretionary = true
     config.httpAdditionalHeaders = [
       WebService.X_APPLICATION_ID: credentials.appId,
       WebService.X_API_KEY: credentials.apiKey

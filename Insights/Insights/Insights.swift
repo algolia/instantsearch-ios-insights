@@ -35,11 +35,11 @@ import Foundation
   
   private let credentials: Credentials
   var events: [Event] = []
-  let eventsSync: EventsSync
+  let webservice: WebService
   
   private init(credentials: Credentials) {
     self.credentials = credentials
-    self.eventsSync = EventsSync(webservice: WebService(credentials: credentials))
+    self.webservice = WebService(credentials: credentials)
     super.init()
     deserialize()
   }
@@ -58,7 +58,7 @@ import Foundation
   
   private func process(event: Event) {
     events.append(event)
-    eventsSync.syncEvent(event: event) {[weak self] success in
+    webservice.syncEvent(event: event) {[weak self] success in
       if success {
         self?.remove(event: event)
       }
