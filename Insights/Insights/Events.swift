@@ -9,12 +9,14 @@
 import Foundation
 
 
-protocol EventSync {
+protocol Syncable {
   func sync() -> Resource<Bool, WebserviceError>
 }
 
-struct Event: EventSync, Codable {
-  static let EVENT_TYPE_KEY = "eventType"
+struct EventKeys {
+  static let type: String = "eventType"
+}
+struct Event: Syncable, Codable {
   let event: API.Event
   var params: [String: Any]
   
@@ -26,7 +28,7 @@ struct Event: EventSync, Codable {
   init(params: [String: Any], event: API.Event) {
     self.params = params
     self.event = event
-    self.params[Event.EVENT_TYPE_KEY] = API.Event.eventType(event: event)
+    self.params[EventKeys.type] = event.description
   }
   
   init(from decoder: Decoder) throws {
@@ -42,17 +44,20 @@ struct Event: EventSync, Codable {
   }
   
   func sync() -> Resource<Bool, WebserviceError> {
+    
+    let errorParse:(Int, Any) -> WebserviceError? = { (code, data) -> WebserviceError? in
+      if let data = data as? [String: Any],
+        let message = data["message"] as? String {
+        let error = WebserviceError(code: code, message: message)
+        return error
+      }
+      return nil
+    }
+    
     return Resource<Bool, WebserviceError>(url: API.url(route: self.event),
                                              method: .post([], params as AnyObject),
                                              allowEmptyResponse: true,
-                                             errorParseJSON: { (code, data) -> WebserviceError? in
-                                              if let data = data as? [String: Any],
-                                                let message = data["message"] as? String{
-                                                let error = WebserviceError(code: code, message: message)
-                                                return error
-                                              }
-                                              return nil
-                                            })
+                                             errorParseJSON: errorParse)
   }
 }
 

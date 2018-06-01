@@ -18,7 +18,7 @@ class InsightsTests: XCTestCase {
     super.tearDown()
   }
   
-  func testInitShouldFails() {
+  func testInitShouldFail() {
     do {
       _ = try Insights.shared(index: "test")
     } catch let e {
@@ -69,5 +69,4 @@ class InsightsTests: XCTestCase {
       // Put the code you want to measure the time of here.
     }
   }
-  
 }

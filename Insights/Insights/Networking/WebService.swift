@@ -9,8 +9,12 @@
 import Foundation
 
 class WebService {
-  static let X_APPLICATION_ID = "X-Algolia-Application-Id"
-  static let X_API_KEY = "X-Algolia-API-Key"
+  struct Algolia {
+    struct HTTPHeaders {
+      static let applicationKey = "X-Algolia-Application-Id"
+      static let apiKey = "X-Algolia-API-Key"
+    }
+  }
   
   let urlSession: URLSession
   let credentials: Credentials
@@ -22,8 +26,8 @@ class WebService {
     config.urlCache = nil
     config.isDiscretionary = true
     config.httpAdditionalHeaders = [
-      WebService.X_APPLICATION_ID: credentials.appId,
-      WebService.X_API_KEY: credentials.apiKey
+      Algolia.HTTPHeaders.applicationKey: credentials.appId,
+      Algolia.HTTPHeaders.apiKey: credentials.apiKey
     ]
     self.credentials = credentials
     urlSession = URLSession(configuration: config)

@@ -12,12 +12,12 @@ import Foundation
 /// TODO: Add explination on how to register credentials
 @objcMembers public class Insights: NSObject {
   
-  private static var insightsMapping: [String: Insights] = [:]
+  private static var insightsMap: [String: Insights] = [:]
   
   /// The singleton reference of Insights.
   /// Use this only after you registered your credentials for the index
   public static func shared(index: String) throws -> Insights {
-    if let insights = insightsMapping[index] {
+    if let insights = insightsMap[index] {
       return insights
     }
     
@@ -28,14 +28,14 @@ import Foundation
   @discardableResult public static func register(appId: String, apiKey: String, indexName: String) -> Insights {
     let credentials = Credentials(appId: appId, apiKey: apiKey, indexName: indexName)
     let insights = Insights(credentials: credentials)
-    Insights.insightsMapping[indexName] = insights
+    Insights.insightsMap[indexName] = insights
     return insights
   }
   
   
   private let credentials: Credentials
-  var events: [Event] = []
-  let webservice: WebService
+  private var events: [Event] = []
+  private let webservice: WebService
   
   private init(credentials: Credentials) {
     self.credentials = credentials
@@ -58,7 +58,7 @@ import Foundation
   
   private func process(event: Event) {
     events.append(event)
-    webservice.syncEvent(event: event) {[weak self] success in
+    webservice.sync(event: event) {[weak self] success in
       if success {
         self?.remove(event: event)
       }

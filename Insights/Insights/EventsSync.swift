@@ -9,7 +9,7 @@
 import Foundation
 
 extension WebService {
-  public func syncEvent(event: EventSync, completionHandler: @escaping (Bool) -> ()) {
+  public func sync(event: Syncable, completionHandler: @escaping (Bool) -> ()) {
     load(resource: event.sync(),
          completion: { (res) in
           switch res {

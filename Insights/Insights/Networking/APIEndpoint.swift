@@ -73,13 +73,9 @@ extension APIEndpoint {
   }
 }
 
-protocol EventTypes {
-  static func eventType(event: API.Event) -> String
-}
-
-extension API.Event: EventTypes {
-  static func eventType(event: API.Event) -> String {
-    switch event {
+extension API.Event {
+  var description: String {
+    switch self {
     case .click:
       return "Click"
     case .view:
