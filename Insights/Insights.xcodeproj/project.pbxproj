@@ -20,6 +20,8 @@
 		1D958B0D20BEECD40058230A /* EventsSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0C20BEECD40058230A /* EventsSync.swift */; };
 		1D958B0F20BEEDA60058230A /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0E20BEEDA60058230A /* Events.swift */; };
 		1DD0A0C620BFF43C005FDDDD /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C520BFF43C005FDDDD /* Result.swift */; };
+		1DD0A0C920C140B8005FDDDD /* JSONCodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */; };
+		1DD0A0CB20C1421E005FDDDD /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		1D958B0C20BEECD40058230A /* EventsSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSync.swift; sourceTree = "<group>"; };
 		1D958B0E20BEEDA60058230A /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		1DD0A0C520BFF43C005FDDDD /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONCodingKeys.swift; sourceTree = "<group>"; };
+		1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,7 @@
 		1D4531C4209C870C00B26CF9 /* Insights */ = {
 			isa = PBXGroup;
 			children = (
+				1DD0A0C720C14085005FDDDD /* Helpers */,
 				1D958B0920BEE9190058230A /* Networking */,
 				1D4531C5209C870C00B26CF9 /* Insights.h */,
 				1D958AF120BD71ED0058230A /* Insights.swift */,
@@ -122,6 +127,15 @@
 				1DD0A0C520BFF43C005FDDDD /* Result.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		1DD0A0C720C14085005FDDDD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */,
+				1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,10 +248,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DD0A0CB20C1421E005FDDDD /* LocalStorage.swift in Sources */,
 				1DD0A0C620BFF43C005FDDDD /* Result.swift in Sources */,
 				1D958B0620BEE8F60058230A /* NSMutableURLRequest+Resource.swift in Sources */,
 				1D958B0B20BEE9820058230A /* WebService.swift in Sources */,
 				1D958B0F20BEEDA60058230A /* Events.swift in Sources */,
+				1DD0A0C920C140B8005FDDDD /* JSONCodingKeys.swift in Sources */,
 				1D958B0420BEE8D40058230A /* HttpMethod.swift in Sources */,
 				1D958AF220BD71ED0058230A /* Insights.swift in Sources */,
 				1D958B0D20BEECD40058230A /* EventsSync.swift in Sources */,

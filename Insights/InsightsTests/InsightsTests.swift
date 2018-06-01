@@ -48,9 +48,11 @@ class InsightsTests: XCTestCase {
     
     let data: [String : Any] = [
       "eventName": "My super event",
-      "queryID": "a48a30e835094323b4cc101156f530bd",
+      "queryID": "6de2f7eaa537fa93d8f8f05b927953b1",
       "position": 1,
-//      "objectID": "123"
+      "objectID": "54675051",
+      "indexName": "support_rmogos",
+      "timestamp": Date.timeIntervalBetween1970AndReferenceDate
       ]
     insightsRegister.click(params: data)
     

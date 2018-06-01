@@ -41,6 +41,7 @@ import Foundation
     self.credentials = credentials
     self.eventsSync = EventsSync(webservice: WebService(credentials: credentials))
     super.init()
+    deserialize()
   }
   
   public func click(params: [String: Any]) {
@@ -57,18 +58,44 @@ import Foundation
   
   private func process(event: Event) {
     events.append(event)
-    eventsSync.syncEvent(event: event) { success in
-      print(success)
+    eventsSync.syncEvent(event: event) {[weak self] success in
+      if success {
+        self?.remove(event: event)
+      }
     }
     serialize()
   }
   
+  private func remove(event: Event) {
+    events = events.filter{ $0 != event }
+    serialize()
+  }
+  
   private func serialize() {
-    
+    do {
+      let data = try PropertyListEncoder().encode(events)
+      if let filePath = filePathFor(credentials.indexName) {
+        let success = NSKeyedArchiver.archiveRootObject(data, toFile: filePath)
+        print(success ? "Successful save" : "Save Failed")
+      }
+    } catch {
+      print("Save Failed")
+    }
   }
   
   private func deserialize() {
-    
+    guard let filePath = filePathFor(credentials.indexName) else {
+      return
+    }
+    guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? Data else {
+      return
+    }
+    do {
+      let events = try PropertyListDecoder().decode([Event].self, from: data)
+      self.events = events
+    } catch {
+      print("Retrieve Failed")
+    }
   }
 }
 

@@ -40,7 +40,7 @@ extension APIEndpoint{
 }
 
 struct API {
-  enum Event {
+  enum Event: Int {
     case click
     case view
     case conversion
