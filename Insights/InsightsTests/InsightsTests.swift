@@ -41,7 +41,7 @@ class InsightsTests: XCTestCase {
   }
   
   func testClickEvent() {
-    let expectation = self.expectation(description: "Fuck me")
+    let expectation = self.expectation(description: "Wait for nothing")
     
     let indexName = "testIndex"
     let insightsRegister = Insights.register(appId: "SPH6CBEPLC", apiKey: "064f4f03e7c37d8d7cfb40cdbf852f3d", indexName: indexName)

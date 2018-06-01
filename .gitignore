@@ -73,3 +73,5 @@ fastlane/screenshots
 fastlane/test_output
 fastlane/README.md
 fastlane/report.xml
+
+Insights/Insights.xcworkspace/xcuserdata/
