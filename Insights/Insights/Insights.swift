@@ -71,31 +71,20 @@ import Foundation
     serialize()
   }
   
-  private func serialize() {
-    do {
-      let data = try PropertyListEncoder().encode(events)
-      if let filePath = filePathFor(credentials.indexName) {
-        let success = NSKeyedArchiver.archiveRootObject(data, toFile: filePath)
-        print(success ? "Successful save" : "Save Failed")
-      }
-    } catch {
-      print("Save Failed")
+  func serialize() {
+    if let file = LocalStorage<[Event]>.filePath(for: credentials.indexName) {
+      LocalStorage<[Event]>.serialize(events, file: file)
+    } else {
+      //TODO: Log an error or something
     }
   }
   
   private func deserialize() {
-    guard let filePath = filePathFor(credentials.indexName) else {
+    guard let filePath = LocalStorage<[Event]>.filePath(for: credentials.indexName) else {
+      // TODO: Log the error
       return
     }
-    guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? Data else {
-      return
-    }
-    do {
-      let events = try PropertyListDecoder().decode([Event].self, from: data)
-      self.events = events
-    } catch {
-      print("Retrieve Failed")
-    }
+    self.events = LocalStorage<[Event]>.deserialize(filePath) ?? []
   }
 }
 
