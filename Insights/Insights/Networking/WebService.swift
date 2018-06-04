@@ -18,9 +18,10 @@ class WebService {
   
   let urlSession: URLSession
   let credentials: Credentials
+  let logger: Logger
   
   // TODO: the SessionConfig should be injected instead of the credentials
-  init(credentials: Credentials) {
+  init(credentials: Credentials, logger: Logger) {
     let config = URLSessionConfiguration.default
     config.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
     config.urlCache = nil
@@ -30,6 +31,7 @@ class WebService {
       Algolia.HTTPHeaders.apiKey: credentials.apiKey
     ]
     self.credentials = credentials
+    self.logger = logger
     urlSession = URLSession(configuration: config)
   }
   
@@ -77,9 +79,14 @@ class WebService {
 public protocol APIError: Error {
   var code: Int { get }
   var message: String { get }
+  var localizedDescription: String { get }
 }
 
 public struct WebserviceError: APIError {
   public let code: Int
   public let message: String
+  
+  public var localizedDescription: String {
+    return "\(message) (Code: \(code))"
+  }
 }

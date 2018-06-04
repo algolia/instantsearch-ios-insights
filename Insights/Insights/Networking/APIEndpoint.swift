@@ -20,7 +20,6 @@ let environment:Environment = {
   #else
   e = Environment.prod
   #endif
-  print("App environment \(e)")
   return e
 }()
 

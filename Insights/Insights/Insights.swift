@@ -32,14 +32,22 @@ import Foundation
     return insights
   }
   
+  public var loggingEnabled: Bool = false {
+    didSet {
+      logger.enabled = loggingEnabled
+    }
+  }
+  
   
   private let credentials: Credentials
   private var events: [Event] = []
   private let webservice: WebService
+  private let logger: Logger
   
   private init(credentials: Credentials) {
     self.credentials = credentials
-    self.webservice = WebService(credentials: credentials)
+    self.logger = Logger(credentials.indexName)
+    self.webservice = WebService(credentials: credentials, logger: logger)
     super.init()
     deserialize()
   }
