@@ -10,8 +10,8 @@ import UIKit
 
 import Foundation
 
-extension URLRequest{
-  init<A, E>(resource: Resource<A,E>){
+extension URLRequest {
+  init<A, E>(resource: Resource<A, E>) {
     var requestParams: [URLQueryItem]? = nil
     var requestBody: Data?  = nil
     switch resource.method {
@@ -37,8 +37,8 @@ extension URLRequest{
     httpMethod = resource.method.method
     httpBody = requestBody
     setValue(resource.contentType, forHTTPHeaderField: "Content-Type")
-    for (k,v) in resource.aditionalHeaders {
-      setValue(v, forHTTPHeaderField: k)
+    for (key, value) in resource.aditionalHeaders {
+      setValue(value, forHTTPHeaderField: key)
     }
   }
 }

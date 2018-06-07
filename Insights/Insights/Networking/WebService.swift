@@ -17,7 +17,7 @@ class WebService {
     urlSession = URLSession(configuration: sessionConfig)
   }
   
-  public func makeRequest<A,E>(for resource:Resource<A, E>) -> URLRequest{
+  public func makeRequest<A, E>(for resource: Resource<A, E>) -> URLRequest {
     return URLRequest(resource: resource)
   }
   
@@ -37,7 +37,7 @@ class WebService {
         return
       }
       if  response.statusCode == 200 || response.statusCode == 201 {
-        if let parsed:A = data.flatMap(resource.parse) {
+        if let parsed: A = data.flatMap(resource.parse) {
           DispatchQueue.main.async {
             completion(Result<A>.success(parsed))
           }
@@ -49,7 +49,7 @@ class WebService {
           }
         }
       } else {
-        let parsedApiError = data.flatMap({resource.errorParse(response.statusCode,$0)}) as? WebserviceError
+        let parsedApiError = data.flatMap({resource.errorParse(response.statusCode, $0)}) as? WebserviceError
         let error = parsedApiError ?? WebserviceError(code: -1, message: "Unknown response type")
         DispatchQueue.main.async { completion(Result<A>.fail(error)) }
 
@@ -67,7 +67,7 @@ public protocol APIError: Error {
 public struct WebserviceError: APIError {
   public let code: Int
   public let message: String
-  
+
   public var localizedDescription: String {
     return "\(message) (Code: \(code))"
   }

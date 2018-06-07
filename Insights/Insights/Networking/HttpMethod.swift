@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 enum HttpMethod<Body> {
   case get([URLQueryItem])
   case post([URLQueryItem], Body)

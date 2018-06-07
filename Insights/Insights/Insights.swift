@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 /// Main class used for interacting with the InstantSearch Insights library.
 ///
 /// Use:
@@ -43,7 +42,7 @@ import Foundation
   @discardableResult public static func register(appId: String, apiKey: String, indexName: String) -> Insights {
     let credentials = Credentials(appId: appId, apiKey: apiKey, indexName: indexName)
     let logger = Logger(credentials.indexName)
-    let webservice = WebService(sessionConfig:Algolia.SessionConfig.default(appId: appId, apiKey: apiKey),
+    let webservice = WebService(sessionConfig: Algolia.SessionConfig.default(appId: appId, apiKey: apiKey),
                                 logger: logger)
     let insights = Insights(credentials: credentials,
                             webService: webservice,
@@ -61,7 +60,7 @@ import Foundation
       return insights
     }
     
-    throw InsightsException.CredentialsNotFound("Credentials not found for index \(index)")
+    throw InsightsException.credentialsNotFound("Credentials not found for index \(index)")
   }
   
   public var loggingEnabled: Bool = false {
@@ -100,7 +99,6 @@ import Foundation
   }
   
   
-  
   /// Track a conversion
   ///
   /// For a complete list of mandatory fields, check: https://www.algolia.com/doc/rest-api/analytics/#post-conversion-event
@@ -130,7 +128,7 @@ import Foundation
     logger.debug(message: "Flushing remaing events")
     events.forEach(sync)
   }
-  
+
   private func sync(_ event: Event) {
     logger.debug(message: "Syncing \(event)")
     webservice.sync(event: event) {[weak self] success in
@@ -139,12 +137,12 @@ import Foundation
       }
     }
   }
-  
+
   private func remove(event: Event) {
-    events = events.filter{ $0 != event }
+    events = events.filter { $0 != event }
     serialize()
   }
-  
+
   func serialize() {
     if let file = LocalStorage<[Event]>.filePath(for: credentials.indexName) {
       LocalStorage<[Event]>.serialize(events, file: file)
@@ -152,7 +150,7 @@ import Foundation
       logger.debug(message: "Error creating a file for \(credentials.indexName)")
     }
   }
-  
+
   private func deserialize() {
     guard let filePath = LocalStorage<[Event]>.filePath(for: credentials.indexName) else {
       logger.debug(message: "Error reading a file for \(credentials.indexName)")
@@ -160,18 +158,18 @@ import Foundation
     }
     self.events = LocalStorage<[Event]>.deserialize(filePath) ?? []
   }
-  
+
   deinit {
     flushTimer.invalidate()
   }
 }
 
 @objcMembers public class Credentials: NSObject {
-  
+
   let appId: String
   let apiKey: String
   let indexName: String
-  
+
   init(appId: String, apiKey: String, indexName: String) {
     self.appId = appId
     self.apiKey = apiKey
@@ -181,5 +179,5 @@ import Foundation
 }
 
 public enum InsightsException: Error {
-  case CredentialsNotFound(String)
+  case credentialsNotFound(String)
 }

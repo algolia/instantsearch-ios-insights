@@ -21,8 +21,8 @@ class InsightsTests: XCTestCase {
   func testInitShouldFail() {
     do {
       _ = try Insights.shared(index: "test")
-    } catch let e {
-      XCTAssertNotNil(e)
+    } catch let err {
+      XCTAssertNotNil(err)
     }
   }
   

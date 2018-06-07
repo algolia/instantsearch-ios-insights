@@ -8,32 +8,31 @@
 
 import UIKit
 
-enum Environment{
+enum Environment {
   case prod
   case dev
 }
 
-let environment:Environment = {
-  let e:Environment
+let environment: Environment = {
+  let env: Environment
   #if DEV
-  e = Environment.dev
+  env = Environment.dev
   #else
-  e = Environment.prod
+  env = Environment.prod
   #endif
-  return e
+  return env
 }()
-
 
 protocol APIEndpoint {
   /// server baseURL
-  static var baseURL:URL {get}
+  static var baseURL: URL {get}
   /// for api calls
-  static var baseAPIURL:URL {get}
-  static func url(path:String) -> URL
+  static var baseAPIURL: URL {get}
+  static func url(path: String) -> URL
 }
 
-extension APIEndpoint{
-  static func url(path:String) -> URL{
+extension APIEndpoint {
+  static func url(path: String) -> URL {
     return URL(string:path, relativeTo:baseAPIURL)!
   }
 }
@@ -55,12 +54,12 @@ extension API: APIEndpoint {
       return URL(string: "http://localhost:8080")!
     }
   }()
-  static let baseAPIURL: URL = { return URL(string:"/1/searches/", relativeTo: baseURL)!
+  static let baseAPIURL: URL = { return URL(string: "/1/searches/", relativeTo: baseURL)!
   }()
 }
 
 extension APIEndpoint {
-  static func url(route: API.Event) -> URL{
+  static func url(route: API.Event) -> URL {
     switch route {
     case .click:
       return url(path: "click")
