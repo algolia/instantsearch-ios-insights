@@ -29,6 +29,6 @@ struct Algolia {
   }
   
   struct Insights {
-    static let flushDelay = 30.0
+    static let flushDelay: TimeInterval = 30.0
   }
 }

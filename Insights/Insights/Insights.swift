@@ -81,12 +81,15 @@ import Foundation
     self.logger = logger
     self.webservice = webService
     super.init()
+    deserialize()
     self.flushTimer = Timer.scheduledTimer(withTimeInterval: flushDelay,
                                            repeats: true,
                                            block: {[weak self] _ in
-                                            self?.flush()
+                                            if let this = self {
+                                              this.flush(this.events)
+                                            }
+                                            
     })
-    deserialize()
   }
   
   /// Track a click
@@ -120,16 +123,16 @@ import Foundation
   
   private func process(event: Event) {
     events.append(event)
-    sync(event)
+    sync(event: event)
     serialize()
   }
   
-  private func flush() {
+  private func flush(_ events: [Event]) {
     logger.debug(message: "Flushing remaing events")
     events.forEach(sync)
   }
 
-  private func sync(_ event: Event) {
+  private func sync(event: Event) {
     logger.debug(message: "Syncing \(event)")
     webservice.sync(event: event) {[weak self] success in
       if success {
