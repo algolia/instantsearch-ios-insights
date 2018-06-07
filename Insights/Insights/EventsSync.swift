@@ -14,7 +14,7 @@ extension WebService {
          completion: {[weak self] (res) in
           switch res {
           case .success(_):
-            self?.logger.debug(message: "Sync succeded")
+            self?.logger.debug(message: "Sync succeded for \(event)")
             completionHandler(true)
           case .fail(let err):
             self?.logger.debug(message: (err as? WebserviceError)?.localizedDescription ?? err.localizedDescription)

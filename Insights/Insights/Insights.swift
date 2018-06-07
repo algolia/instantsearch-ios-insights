@@ -42,9 +42,13 @@ import Foundation
   ///
   @discardableResult public static func register(appId: String, apiKey: String, indexName: String) -> Insights {
     let credentials = Credentials(appId: appId, apiKey: apiKey, indexName: indexName)
+    let logger = Logger(credentials.indexName)
+    let webservice = WebService(sessionConfig:Algolia.SessionConfig.default(appId: appId, apiKey: apiKey),
+                                logger: logger)
     let insights = Insights(credentials: credentials,
-                            sessionConfig: Algolia.SessionConfig.default(appId: appId, apiKey: apiKey),
-                            flushDelay: Algolia.Insights.flushDelay)
+                            webService: webservice,
+                            flushDelay: Algolia.Insights.flushDelay,
+                            logger: logger)
     Insights.insightsMap[indexName] = insights
     return insights
   }
@@ -73,10 +77,10 @@ import Foundation
   private let logger: Logger
   private var flushTimer: Timer!
   
-  private init(credentials: Credentials, sessionConfig: URLSessionConfiguration, flushDelay: TimeInterval) {
+  private init(credentials: Credentials, webService: WebService, flushDelay: TimeInterval, logger: Logger) {
     self.credentials = credentials
-    self.logger = Logger(credentials.indexName)
-    self.webservice = WebService(sessionConfig: sessionConfig, logger: logger)
+    self.logger = logger
+    self.webservice = webService
     super.init()
     self.flushTimer = Timer.scheduledTimer(withTimeInterval: flushDelay,
                                            repeats: true,
