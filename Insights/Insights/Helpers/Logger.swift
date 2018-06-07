@@ -18,7 +18,7 @@ class Logger {
   
   func debug(message: String) {
     if enabled {
-      print("[Algolia Insights - \(index)] (\(message))")
+      print("[Algolia Insights - \(index)] \(message)")
     }
   }
 }

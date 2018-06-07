@@ -127,10 +127,12 @@ import Foundation
   }
   
   private func flush() {
+    logger.debug(message: "Flushing remaing events")
     events.forEach(sync)
   }
   
   private func sync(_ event: Event) {
+    logger.debug(message: "Syncing \(event)")
     webservice.sync(event: event) {[weak self] success in
       if success {
         self?.remove(event: event)
