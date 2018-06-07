@@ -77,7 +77,7 @@ import Foundation
   private let logger: Logger
   private var flushTimer: Timer!
   
-  private init(credentials: Credentials, webService: WebService, flushDelay: TimeInterval, logger: Logger) {
+  internal init(credentials: Credentials, webService: WebService, flushDelay: TimeInterval, logger: Logger) {
     self.credentials = credentials
     self.logger = logger
     self.webservice = webService
