@@ -14,25 +14,20 @@
 
 @implementation InsightsTestObjC
 
-- (void)setUp {
-  [super setUp];
+- (void)testInitShouldWork {
+  NSString* indexName = @"testIndex";
+  Insights* insightsRegister = [Insights registerWithAppId:@"testApp"
+                                                    apiKey:@"testKey"
+                                                 indexName:indexName];
+  
+  XCTAssertNotNil(insightsRegister);
+  XCTAssertNotNil([Insights sharedWithIndex:indexName error:nil]);
 }
 
-- (void)tearDown {
-  // Put teardown code here. This method is called after the invocation of each test method in the class.
-  [super tearDown];
+- (void)testInitShouldFail {
+  NSError *err;
+  [Insights sharedWithIndex:@"notRegisteredIndex"
+                      error:&err];
+  XCTAssertNotNil(err);
 }
-
-- (void)testExample {
-  // This is an example of a functional test case.
-  // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
-
-- (void)testPerformanceExample {
-  // This is an example of a performance test case.
-  [self measureBlock:^{
-    // Put the code you want to measure the time of here.
-  }];
-}
-
 @end

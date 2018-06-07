@@ -8,7 +8,6 @@
 import Foundation
 
 class Logger {
-  
   var enabled = false
   let index: String
   
