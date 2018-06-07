@@ -50,14 +50,13 @@ class InsightsTests: XCTestCase {
       "eventName": "My super event",
       "queryID": "6de2f7eaa537fa93d8f8f05b927953b1",
       "position": 1,
-//      "objectID": "54675051",
+      "objectID": "54675051",
       "indexName": "support_rmogos",
       "timestamp": Date.timeIntervalBetween1970AndReferenceDate
       ]
     
     insightsRegister.loggingEnabled = true
     insightsRegister.click(params: data)
-    
     DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
       expectation.fulfill()
     })

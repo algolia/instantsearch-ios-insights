@@ -10,6 +10,7 @@
 		1D4531CC209C870C00B26CF9 /* Insights.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D4531C2209C870C00B26CF9 /* Insights.framework */; };
 		1D4531D1209C870C00B26CF9 /* InsightsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4531D0209C870C00B26CF9 /* InsightsTests.swift */; };
 		1D4531D3209C870C00B26CF9 /* Insights.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D4531C5209C870C00B26CF9 /* Insights.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D77D88120C9722B009EC531 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D77D88020C9722B009EC531 /* Config.swift */; };
 		1D958AF220BD71ED0058230A /* Insights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AF120BD71ED0058230A /* Insights.swift */; };
 		1D958AF820BD8A6E0058230A /* InsightsTestObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AF720BD8A6E0058230A /* InsightsTestObjC.m */; };
 		1D958B0220BEE2BA0058230A /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0120BEE2BA0058230A /* APIEndpoint.swift */; };
@@ -42,6 +43,7 @@
 		1D4531CB209C870C00B26CF9 /* InsightsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InsightsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D4531D0209C870C00B26CF9 /* InsightsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsTests.swift; sourceTree = "<group>"; };
 		1D4531D2209C870C00B26CF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D77D88020C9722B009EC531 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		1D958AF120BD71ED0058230A /* Insights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insights.swift; sourceTree = "<group>"; };
 		1D958AF720BD8A6E0058230A /* InsightsTestObjC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InsightsTestObjC.m; sourceTree = "<group>"; };
 		1D958B0120BEE2BA0058230A /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				1D4531C6209C870C00B26CF9 /* Info.plist */,
 				1D958B0C20BEECD40058230A /* EventsSync.swift */,
 				1D958B0E20BEEDA60058230A /* Events.swift */,
+				1D77D88020C9722B009EC531 /* Config.swift */,
 			);
 			path = Insights;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				1D958B0B20BEE9820058230A /* WebService.swift in Sources */,
 				1D958B0F20BEEDA60058230A /* Events.swift in Sources */,
 				1DD0A0C920C140B8005FDDDD /* JSONCodingKeys.swift in Sources */,
+				1D77D88120C9722B009EC531 /* Config.swift in Sources */,
 				1D958B0420BEE8D40058230A /* HttpMethod.swift in Sources */,
 				1DD0A0CD20C53B83005FDDDD /* Logger.swift in Sources */,
 				1D958AF220BD71ED0058230A /* Insights.swift in Sources */,

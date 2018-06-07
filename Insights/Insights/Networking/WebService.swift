@@ -9,30 +9,12 @@
 import Foundation
 
 class WebService {
-  struct Algolia {
-    struct HTTPHeaders {
-      static let applicationKey = "X-Algolia-Application-Id"
-      static let apiKey = "X-Algolia-API-Key"
-    }
-  }
-  
   let urlSession: URLSession
-  let credentials: Credentials
   let logger: Logger
   
-  // TODO: the SessionConfig should be injected instead of the credentials
-  init(credentials: Credentials, logger: Logger) {
-    let config = URLSessionConfiguration.default
-    config.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
-    config.urlCache = nil
-    config.isDiscretionary = true
-    config.httpAdditionalHeaders = [
-      Algolia.HTTPHeaders.applicationKey: credentials.appId,
-      Algolia.HTTPHeaders.apiKey: credentials.apiKey
-    ]
-    self.credentials = credentials
+  init(sessionConfig: URLSessionConfiguration, logger: Logger) {
     self.logger = logger
-    urlSession = URLSession(configuration: config)
+    urlSession = URLSession(configuration: sessionConfig)
   }
   
   public func makeRequest<A,E>(for resource:Resource<A, E>) -> URLRequest{
