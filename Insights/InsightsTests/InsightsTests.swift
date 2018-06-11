@@ -18,6 +18,15 @@ class InsightsTests: XCTestCase {
     super.tearDown()
   }
   
+  func getMockWS(indexName: String, _ stub: @escaping (Any) -> ()) -> WebService {
+    let logger = Logger(indexName)
+    let mockWS = MockWS(sessionConfig: Algolia.SessionConfig.default(appId: "dummyAppId",
+                                                                     apiKey: "dummyApiKey"),
+                        logger: logger,
+                        stub: stub)
+    return mockWS
+  }
+  
   func testInitShouldFail() {
     do {
       _ = try Insights.shared(index: "test")
@@ -40,34 +49,51 @@ class InsightsTests: XCTestCase {
     } catch _ {}
   }
   
-  func testClickEvent() {
+  func testEventIsSentCorrectly() {
     let expectation = self.expectation(description: "Wait for nothing")
-    
     let indexName = "testIndex"
-    let insightsRegister = Insights.register(appId: "SPH6CBEPLC", apiKey: "064f4f03e7c37d8d7cfb40cdbf852f3d", indexName: indexName)
-    
-    let data: [String : Any] = [
+    let clickData: [String : Any] = [
       "eventName": "My super event",
       "queryID": "6de2f7eaa537fa93d8f8f05b927953b1",
       "position": 1,
       "objectID": "54675051",
       "indexName": "support_rmogos",
       "timestamp": Date.timeIntervalBetween1970AndReferenceDate
-      ]
+    ]
     
-    insightsRegister.loggingEnabled = true
-    insightsRegister.click(params: data)
-    DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-      expectation.fulfill()
-    })
-    waitForExpectations(timeout: 10, handler: nil)
-    print("Done")
-  }
-  
-  func testPerformanceExample() {
-    // This is an example of a performance test case.
-    self.measure {
-      // Put the code you want to measure the time of here.
+    let mockWS = getMockWS(indexName: indexName) { resource in
+      if let res = resource as? Resource<Bool, WebserviceError> {
+        XCTAssertEqual(res.method.method, "POST")
+        res.method.map(f: { data in
+          XCTAssertNotNil(data)
+          do {
+            guard let tmpData = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] else {
+              XCTFail("Unable to convert the sent event to JSON object")
+              return
+            }
+            XCTAssertNotNil(tmpData, "The event data should not be nil")
+            var expectedData = clickData
+            expectedData[EventKeys.type] = API.Event.click.description
+            XCTAssertTrue(NSDictionary(dictionary: tmpData).isEqual(to: expectedData), "Sent event data should be the same as the expected one")
+          } catch _ {
+            XCTFail("Unable to convert the sent event to JSON")
+          }
+        })
+        expectation.fulfill()
+      } else {
+        XCTFail("Unable to cast resource")
+      }
     }
+    
+    let insightsRegister = Insights(credentials: Credentials(appId: "dummyAppId",
+                                                             apiKey: "dummyApiKey",
+                                                             indexName: indexName),
+                                    webService: mockWS,
+                                    flushDelay: 10,
+                                    logger: Logger(indexName))
+    
+    insightsRegister.click(params: clickData)
+    
+    waitForExpectations(timeout: 2, handler: nil)
   }
 }
