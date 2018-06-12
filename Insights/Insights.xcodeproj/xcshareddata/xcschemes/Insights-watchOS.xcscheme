@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1DA006DC20CFC28700A9170F"
-               BuildableName = "Insights_watchOS.framework"
+               BuildableName = "Insights.framework"
                BlueprintName = "Insights-watchOS"
                ReferencedContainer = "container:Insights.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1DA006DC20CFC28700A9170F"
-            BuildableName = "Insights_watchOS.framework"
+            BuildableName = "Insights.framework"
             BlueprintName = "Insights-watchOS"
             ReferencedContainer = "container:Insights.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1DA006DC20CFC28700A9170F"
-            BuildableName = "Insights_watchOS.framework"
+            BuildableName = "Insights.framework"
             BlueprintName = "Insights-watchOS"
             ReferencedContainer = "container:Insights.xcodeproj">
          </BuildableReference>

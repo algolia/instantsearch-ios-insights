@@ -42,9 +42,9 @@ You can find them on [your Algolia account](https://www.algolia.com/api-keys).
 ```
 
 ```objc
-	Insights* insights = [Insights registerWithAppId:@"testApp"
-                                              apiKey:@"testKey"
-                                           indexName:@"indexName"];
+	[Insights registerWithAppId:@"testApp"
+						 apiKey:@"testKey"
+					  indexName:@"indexName"];
 ```
 
 ### Sending metrics

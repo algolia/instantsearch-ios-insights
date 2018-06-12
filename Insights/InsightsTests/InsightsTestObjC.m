@@ -29,7 +29,7 @@
 }
 
 - (void)testInitShouldFail {
-  XCTAssertNotNil([Insights sharedWithIndex:@"notRegisteredIndex"]);
+  XCTAssertNil([Insights sharedWithIndex:@"notRegisteredIndex"]);
 }
 
 - (void) testClickEvent {
