@@ -10,17 +10,10 @@ import XCTest
 
 class InsightsTests: XCTestCase {
   
-  override func setUp() {
-    super.setUp()
-  }
-  
-  override func tearDown() {
-    super.tearDown()
-  }
-  
   func testInitShouldFail() {
     do {
-      _ = try Insights.shared(index: "test")
+      let insightsRegister = try Insights.shared(index: "test")
+      XCTAssertNil(insightsRegister)
     } catch let err {
       XCTAssertNotNil(err)
     }
@@ -43,7 +36,7 @@ class InsightsTests: XCTestCase {
   func testEventIsSentCorrectly() {
     let expectation = self.expectation(description: "Wait for nothing")
     let indexName = "testIndex"
-    let clickData: [String : Any] = [
+    var expectedData: [String : Any] = [
       "eventName": "My super event",
       "queryID": "6de2f7eaa537fa93d8f8f05b927953b1",
       "position": 1,
@@ -52,20 +45,19 @@ class InsightsTests: XCTestCase {
       "timestamp": Date.timeIntervalBetween1970AndReferenceDate
     ]
     
-    let mockWS = MockWSHelper.getMockWS(indexName: indexName) { resource in
+    let mockWS = MockWebServiceHelper.getMockWebService(indexName: indexName) { resource in
       if let res = resource as? Resource<Bool, WebserviceError> {
         XCTAssertEqual(res.method.method, "POST")
         res.method.map(f: { data in
           XCTAssertNotNil(data)
           do {
-            guard let tmpData = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] else {
+            guard let actualData = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] else {
               XCTFail("Unable to convert the sent event to JSON object")
               return
             }
-            XCTAssertNotNil(tmpData, "The event data should not be nil")
-            var expectedData = clickData
+            XCTAssertNotNil(actualData, "The event data should not be nil")
             expectedData[EventKeys.type] = API.Event.click.description
-            XCTAssertTrue(NSDictionary(dictionary: tmpData).isEqual(to: expectedData), "Sent event data should be the same as the expected one")
+            XCTAssertTrue(NSDictionary(dictionary: actualData).isEqual(to: expectedData), "Sent event data should be the same as the expected one")
           } catch _ {
             XCTFail("Unable to convert the sent event to JSON")
           }
@@ -83,7 +75,7 @@ class InsightsTests: XCTestCase {
                                     flushDelay: 10,
                                     logger: Logger(indexName))
     
-    insightsRegister.click(params: clickData)
+    insightsRegister.click(params: expectedData)
     
     waitForExpectations(timeout: 2, handler: nil)
   }

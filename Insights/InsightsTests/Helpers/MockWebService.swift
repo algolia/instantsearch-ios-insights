@@ -9,7 +9,7 @@
 import Foundation
 @testable import Insights
 
-class MockWS: WebService {
+class MockWebService: WebService {
   let stub: (Any) -> ()
   
   init(sessionConfig: URLSessionConfiguration, logger: Logger, stub: @escaping (Any) -> ()) {

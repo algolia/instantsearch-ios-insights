@@ -37,7 +37,7 @@
 
 - (void) testClickEvent {
   XCTestExpectation* expectation = [self expectationWithDescription:@"waitForCompletion"];
-  Insights *stubInsights = [MockWSHelper getMockInsightsWithIndexName:@"indexName" :^(id res) {
+  Insights *stubInsights = [MockWebServiceHelper getMockInsightsWithIndexName:@"indexName" :^(id res) {
     XCTAssertNotNil(res);
     [expectation fulfill];
   }];
@@ -49,7 +49,7 @@
 
 - (void) testConversionEvent {
   XCTestExpectation* expectation = [self expectationWithDescription:@"waitForCompletion"];
-  Insights *stubInsights = [MockWSHelper getMockInsightsWithIndexName:@"indexName" :^(id res) {
+  Insights *stubInsights = [MockWebServiceHelper getMockInsightsWithIndexName:@"indexName" :^(id res) {
     XCTAssertNotNil(res);
     [expectation fulfill];
   }];
@@ -61,7 +61,7 @@
 
 - (void) testViewEvent {
   XCTestExpectation* expectation = [self expectationWithDescription:@"waitForCompletion"];
-  Insights *stubInsights = [MockWSHelper getMockInsightsWithIndexName:@"indexName" :^(id res) {
+  Insights *stubInsights = [MockWebServiceHelper getMockInsightsWithIndexName:@"indexName" :^(id res) {
     XCTAssertNotNil(res);
     [expectation fulfill];
   }];

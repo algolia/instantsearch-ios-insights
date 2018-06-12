@@ -9,10 +9,10 @@
 import Foundation
 @testable import Insights
 
-@objc public class MockWSHelper: NSObject {
-  static public func getMockWS(indexName: String, _ stub: @escaping (Any) -> ()) -> WebService {
+@objc public class MockWebServiceHelper: NSObject {
+  static public func getMockWebService(indexName: String, _ stub: @escaping (Any) -> ()) -> WebService {
     let logger = Logger(indexName)
-    let mockWS = MockWS(sessionConfig: Algolia.SessionConfig.default(appId: "dummyAppId",
+    let mockWS = MockWebService(sessionConfig: Algolia.SessionConfig.default(appId: "dummyAppId",
                                                                      apiKey: "dummyApiKey"),
                         logger: logger,
                         stub: stub)
@@ -23,7 +23,7 @@ import Foundation
     let insightsRegister = Insights(credentials: Credentials(appId: "dummyAppId",
                                                              apiKey: "dummyApiKey",
                                                              indexName: indexName),
-                                    webService: getMockWS(indexName: indexName, stub),
+                                    webService: getMockWebService(indexName: indexName, stub),
                                     flushDelay: 10,
                                     logger: Logger(indexName))
     return insightsRegister

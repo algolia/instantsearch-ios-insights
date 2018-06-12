@@ -10,7 +10,7 @@
 		1D4531CC209C870C00B26CF9 /* Insights.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D4531C2209C870C00B26CF9 /* Insights.framework */; };
 		1D4531D1209C870C00B26CF9 /* InsightsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4531D0209C870C00B26CF9 /* InsightsTests.swift */; };
 		1D4531D3209C870C00B26CF9 /* Insights.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D4531C5209C870C00B26CF9 /* Insights.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1D575DE020C98BFA00D20E33 /* MockWS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D575DDF20C98BFA00D20E33 /* MockWS.swift */; };
+		1D575DE020C98BFA00D20E33 /* MockWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D575DDF20C98BFA00D20E33 /* MockWebService.swift */; };
 		1D77D88120C9722B009EC531 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D77D88020C9722B009EC531 /* Config.swift */; };
 		1D958AF220BD71ED0058230A /* Insights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AF120BD71ED0058230A /* Insights.swift */; };
 		1D958AF820BD8A6E0058230A /* InsightsTestObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AF720BD8A6E0058230A /* InsightsTestObjC.m */; };
@@ -21,7 +21,7 @@
 		1D958B0B20BEE9820058230A /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0A20BEE9820058230A /* WebService.swift */; };
 		1D958B0D20BEECD40058230A /* EventsSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0C20BEECD40058230A /* EventsSync.swift */; };
 		1D958B0F20BEEDA60058230A /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0E20BEEDA60058230A /* Events.swift */; };
-		1DA0065F20CFB71500A9170F /* MockWSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA0065E20CFB71500A9170F /* MockWSHelper.swift */; };
+		1DA0065F20CFB71500A9170F /* MockWebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA0065E20CFB71500A9170F /* MockWebServiceHelper.swift */; };
 		1DA0067B20CFBD8D00A9170F /* Insights.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DA0067220CFBD8D00A9170F /* Insights.framework */; };
 		1DA0068920CFBDCC00A9170F /* JSONCodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */; };
 		1DA0068A20CFBDCC00A9170F /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */; };
@@ -37,8 +37,8 @@
 		1DA0069520CFBDD800A9170F /* EventsSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0C20BEECD40058230A /* EventsSync.swift */; };
 		1DA0069620CFBDD800A9170F /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0E20BEEDA60058230A /* Events.swift */; };
 		1DA0069720CFBDD800A9170F /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D77D88020C9722B009EC531 /* Config.swift */; };
-		1DA0069820CFBDFF00A9170F /* MockWS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D575DDF20C98BFA00D20E33 /* MockWS.swift */; };
-		1DA0069920CFBE0100A9170F /* MockWSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA0065E20CFB71500A9170F /* MockWSHelper.swift */; };
+		1DA0069820CFBDFF00A9170F /* MockWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D575DDF20C98BFA00D20E33 /* MockWebService.swift */; };
+		1DA0069920CFBE0100A9170F /* MockWebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA0065E20CFB71500A9170F /* MockWebServiceHelper.swift */; };
 		1DA0069A20CFBE0400A9170F /* InsightsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4531D0209C870C00B26CF9 /* InsightsTests.swift */; };
 		1DA0069B20CFBE0700A9170F /* InsightsTestObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AF720BD8A6E0058230A /* InsightsTestObjC.m */; };
 		1DA006CA20CFC26000A9170F /* Insights.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DA006C120CFC26000A9170F /* Insights.framework */; };
@@ -70,8 +70,8 @@
 		1DA006FE20CFC2BA00A9170F /* EventsSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0C20BEECD40058230A /* EventsSync.swift */; };
 		1DA006FF20CFC2BA00A9170F /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0E20BEEDA60058230A /* Events.swift */; };
 		1DA0070020CFC2BA00A9170F /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D77D88020C9722B009EC531 /* Config.swift */; };
-		1DA0070120CFCAA500A9170F /* MockWS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D575DDF20C98BFA00D20E33 /* MockWS.swift */; };
-		1DA0070220CFCAA800A9170F /* MockWSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA0065E20CFB71500A9170F /* MockWSHelper.swift */; };
+		1DA0070120CFCAA500A9170F /* MockWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D575DDF20C98BFA00D20E33 /* MockWebService.swift */; };
+		1DA0070220CFCAA800A9170F /* MockWebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA0065E20CFB71500A9170F /* MockWebServiceHelper.swift */; };
 		1DA0070320CFCAAC00A9170F /* InsightsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4531D0209C870C00B26CF9 /* InsightsTests.swift */; };
 		1DA0070420CFCAAF00A9170F /* InsightsTestObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AF720BD8A6E0058230A /* InsightsTestObjC.m */; };
 		1DD0A0C620BFF43C005FDDDD /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C520BFF43C005FDDDD /* Result.swift */; };
@@ -111,7 +111,7 @@
 		1D4531CB209C870C00B26CF9 /* InsightsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InsightsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D4531D0209C870C00B26CF9 /* InsightsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsTests.swift; sourceTree = "<group>"; };
 		1D4531D2209C870C00B26CF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1D575DDF20C98BFA00D20E33 /* MockWS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWS.swift; sourceTree = "<group>"; };
+		1D575DDF20C98BFA00D20E33 /* MockWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWebService.swift; sourceTree = "<group>"; };
 		1D77D88020C9722B009EC531 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		1D958AF120BD71ED0058230A /* Insights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insights.swift; sourceTree = "<group>"; };
 		1D958AF720BD8A6E0058230A /* InsightsTestObjC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InsightsTestObjC.m; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 		1D958B0A20BEE9820058230A /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		1D958B0C20BEECD40058230A /* EventsSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSync.swift; sourceTree = "<group>"; };
 		1D958B0E20BEEDA60058230A /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
-		1DA0065E20CFB71500A9170F /* MockWSHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWSHelper.swift; sourceTree = "<group>"; };
+		1DA0065E20CFB71500A9170F /* MockWebServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWebServiceHelper.swift; sourceTree = "<group>"; };
 		1DA0067220CFBD8D00A9170F /* Insights.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Insights.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DA0067A20CFBD8D00A9170F /* Insights-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Insights-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DA006C120CFC26000A9170F /* Insights.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Insights.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -242,8 +242,8 @@
 		1D575DDE20C98BED00D20E33 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				1D575DDF20C98BFA00D20E33 /* MockWS.swift */,
-				1DA0065E20CFB71500A9170F /* MockWSHelper.swift */,
+				1D575DDF20C98BFA00D20E33 /* MockWebService.swift */,
+				1DA0065E20CFB71500A9170F /* MockWebServiceHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -571,9 +571,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D958AF820BD8A6E0058230A /* InsightsTestObjC.m in Sources */,
-				1DA0065F20CFB71500A9170F /* MockWSHelper.swift in Sources */,
+				1DA0065F20CFB71500A9170F /* MockWebServiceHelper.swift in Sources */,
 				1D4531D1209C870C00B26CF9 /* InsightsTests.swift in Sources */,
-				1D575DE020C98BFA00D20E33 /* MockWS.swift in Sources */,
+				1D575DE020C98BFA00D20E33 /* MockWebService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,9 +602,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DA0069B20CFBE0700A9170F /* InsightsTestObjC.m in Sources */,
-				1DA0069820CFBDFF00A9170F /* MockWS.swift in Sources */,
+				1DA0069820CFBDFF00A9170F /* MockWebService.swift in Sources */,
 				1DA0069A20CFBE0400A9170F /* InsightsTests.swift in Sources */,
-				1DA0069920CFBE0100A9170F /* MockWSHelper.swift in Sources */,
+				1DA0069920CFBE0100A9170F /* MockWebServiceHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,9 +633,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DA0070420CFCAAF00A9170F /* InsightsTestObjC.m in Sources */,
-				1DA0070120CFCAA500A9170F /* MockWS.swift in Sources */,
+				1DA0070120CFCAA500A9170F /* MockWebService.swift in Sources */,
 				1DA0070320CFCAAC00A9170F /* InsightsTests.swift in Sources */,
-				1DA0070220CFCAA800A9170F /* MockWSHelper.swift in Sources */,
+				1DA0070220CFCAA800A9170F /* MockWebServiceHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
