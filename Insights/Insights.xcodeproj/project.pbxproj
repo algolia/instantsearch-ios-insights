@@ -22,6 +22,25 @@
 		1D958B0D20BEECD40058230A /* EventsSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0C20BEECD40058230A /* EventsSync.swift */; };
 		1D958B0F20BEEDA60058230A /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0E20BEEDA60058230A /* Events.swift */; };
 		1DA0065F20CFB71500A9170F /* MockWSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA0065E20CFB71500A9170F /* MockWSHelper.swift */; };
+		1DA0067B20CFBD8D00A9170F /* Insights.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DA0067220CFBD8D00A9170F /* Insights.framework */; };
+		1DA0068920CFBDCC00A9170F /* JSONCodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */; };
+		1DA0068A20CFBDCC00A9170F /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */; };
+		1DA0068B20CFBDCC00A9170F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CC20C53B83005FDDDD /* Logger.swift */; };
+		1DA0068C20CFBDD100A9170F /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0120BEE2BA0058230A /* APIEndpoint.swift */; };
+		1DA0068D20CFBDD100A9170F /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0320BEE8D40058230A /* HttpMethod.swift */; };
+		1DA0068E20CFBDD100A9170F /* NSMutableURLRequest+Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0520BEE8F60058230A /* NSMutableURLRequest+Resource.swift */; };
+		1DA0068F20CFBDD100A9170F /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0720BEE9140058230A /* Resource.swift */; };
+		1DA0069020CFBDD100A9170F /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0A20BEE9820058230A /* WebService.swift */; };
+		1DA0069120CFBDD100A9170F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C520BFF43C005FDDDD /* Result.swift */; };
+		1DA0069220CFBDD800A9170F /* Insights.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D4531C5209C870C00B26CF9 /* Insights.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1DA0069320CFBDD800A9170F /* Insights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AF120BD71ED0058230A /* Insights.swift */; };
+		1DA0069520CFBDD800A9170F /* EventsSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0C20BEECD40058230A /* EventsSync.swift */; };
+		1DA0069620CFBDD800A9170F /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0E20BEEDA60058230A /* Events.swift */; };
+		1DA0069720CFBDD800A9170F /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D77D88020C9722B009EC531 /* Config.swift */; };
+		1DA0069820CFBDFF00A9170F /* MockWS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D575DDF20C98BFA00D20E33 /* MockWS.swift */; };
+		1DA0069920CFBE0100A9170F /* MockWSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA0065E20CFB71500A9170F /* MockWSHelper.swift */; };
+		1DA0069A20CFBE0400A9170F /* InsightsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4531D0209C870C00B26CF9 /* InsightsTests.swift */; };
+		1DA0069B20CFBE0700A9170F /* InsightsTestObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AF720BD8A6E0058230A /* InsightsTestObjC.m */; };
 		1DD0A0C620BFF43C005FDDDD /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C520BFF43C005FDDDD /* Result.swift */; };
 		1DD0A0C920C140B8005FDDDD /* JSONCodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */; };
 		1DD0A0CB20C1421E005FDDDD /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */; };
@@ -35,6 +54,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1D4531C1209C870C00B26CF9;
 			remoteInfo = Insights;
+		};
+		1DA0067C20CFBD8D00A9170F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1D4531B9209C870C00B26CF9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1DA0067120CFBD8D00A9170F;
+			remoteInfo = "Insights-macOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -57,6 +83,8 @@
 		1D958B0C20BEECD40058230A /* EventsSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSync.swift; sourceTree = "<group>"; };
 		1D958B0E20BEEDA60058230A /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		1DA0065E20CFB71500A9170F /* MockWSHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWSHelper.swift; sourceTree = "<group>"; };
+		1DA0067220CFBD8D00A9170F /* Insights.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Insights.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DA0067A20CFBD8D00A9170F /* Insights-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Insights-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DD0A0C520BFF43C005FDDDD /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONCodingKeys.swift; sourceTree = "<group>"; };
 		1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
@@ -79,6 +107,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1DA0066E20CFBD8D00A9170F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1DA0067720CFBD8D00A9170F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DA0067B20CFBD8D00A9170F /* Insights.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -96,6 +139,8 @@
 			children = (
 				1D4531C2209C870C00B26CF9 /* Insights.framework */,
 				1D4531CB209C870C00B26CF9 /* InsightsTests.xctest */,
+				1DA0067220CFBD8D00A9170F /* Insights.framework */,
+				1DA0067A20CFBD8D00A9170F /* Insights-macOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,6 +214,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1DA0066F20CFBD8D00A9170F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DA0069220CFBDD800A9170F /* Insights.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -208,13 +261,49 @@
 			productReference = 1D4531CB209C870C00B26CF9 /* InsightsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		1DA0067120CFBD8D00A9170F /* Insights-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DA0068720CFBD8D00A9170F /* Build configuration list for PBXNativeTarget "Insights-macOS" */;
+			buildPhases = (
+				1DA0066D20CFBD8D00A9170F /* Sources */,
+				1DA0066E20CFBD8D00A9170F /* Frameworks */,
+				1DA0066F20CFBD8D00A9170F /* Headers */,
+				1DA0067020CFBD8D00A9170F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Insights-macOS";
+			productName = "Insights-macOS";
+			productReference = 1DA0067220CFBD8D00A9170F /* Insights.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		1DA0067920CFBD8D00A9170F /* Insights-macOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DA0068820CFBD8D00A9170F /* Build configuration list for PBXNativeTarget "Insights-macOSTests" */;
+			buildPhases = (
+				1DA0067620CFBD8D00A9170F /* Sources */,
+				1DA0067720CFBD8D00A9170F /* Frameworks */,
+				1DA0067820CFBD8D00A9170F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1DA0067D20CFBD8D00A9170F /* PBXTargetDependency */,
+			);
+			name = "Insights-macOSTests";
+			productName = "Insights-macOSTests";
+			productReference = 1DA0067A20CFBD8D00A9170F /* Insights-macOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1D4531B9209C870C00B26CF9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = Algolia;
 				TargetAttributes = {
@@ -225,6 +314,12 @@
 					1D4531CA209C870C00B26CF9 = {
 						CreatedOnToolsVersion = 9.3;
 						LastSwiftMigration = 0930;
+					};
+					1DA0067120CFBD8D00A9170F = {
+						CreatedOnToolsVersion = 9.4;
+					};
+					1DA0067920CFBD8D00A9170F = {
+						CreatedOnToolsVersion = 9.4;
 					};
 				};
 			};
@@ -242,6 +337,8 @@
 			targets = (
 				1D4531C1209C870C00B26CF9 /* Insights */,
 				1D4531CA209C870C00B26CF9 /* InsightsTests */,
+				1DA0067120CFBD8D00A9170F /* Insights-macOS */,
+				1DA0067920CFBD8D00A9170F /* Insights-macOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -255,6 +352,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1D4531C9209C870C00B26CF9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1DA0067020CFBD8D00A9170F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1DA0067820CFBD8D00A9170F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -295,6 +406,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1DA0066D20CFBD8D00A9170F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DA0069620CFBDD800A9170F /* Events.swift in Sources */,
+				1DA0069120CFBDD100A9170F /* Result.swift in Sources */,
+				1DA0068920CFBDCC00A9170F /* JSONCodingKeys.swift in Sources */,
+				1DA0069320CFBDD800A9170F /* Insights.swift in Sources */,
+				1DA0069520CFBDD800A9170F /* EventsSync.swift in Sources */,
+				1DA0068E20CFBDD100A9170F /* NSMutableURLRequest+Resource.swift in Sources */,
+				1DA0069720CFBDD800A9170F /* Config.swift in Sources */,
+				1DA0069020CFBDD100A9170F /* WebService.swift in Sources */,
+				1DA0068B20CFBDCC00A9170F /* Logger.swift in Sources */,
+				1DA0068D20CFBDD100A9170F /* HttpMethod.swift in Sources */,
+				1DA0068A20CFBDCC00A9170F /* LocalStorage.swift in Sources */,
+				1DA0068C20CFBDD100A9170F /* APIEndpoint.swift in Sources */,
+				1DA0068F20CFBDD100A9170F /* Resource.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1DA0067620CFBD8D00A9170F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DA0069B20CFBE0700A9170F /* InsightsTestObjC.m in Sources */,
+				1DA0069820CFBDFF00A9170F /* MockWS.swift in Sources */,
+				1DA0069A20CFBE0400A9170F /* InsightsTests.swift in Sources */,
+				1DA0069920CFBE0100A9170F /* MockWSHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -302,6 +444,11 @@
 			isa = PBXTargetDependency;
 			target = 1D4531C1209C870C00B26CF9 /* Insights */;
 			targetProxy = 1D4531CD209C870C00B26CF9 /* PBXContainerItemProxy */;
+		};
+		1DA0067D20CFBD8D00A9170F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1DA0067120CFBD8D00A9170F /* Insights-macOS */;
+			targetProxy = 1DA0067C20CFBD8D00A9170F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -520,6 +667,108 @@
 			};
 			name = Release;
 		};
+		1DA0068320CFBD8D00A9170F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Insights/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.algolia.InstantSearch.Insights-macOS";
+				PRODUCT_NAME = Insights;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		1DA0068420CFBD8D00A9170F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Insights/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.algolia.InstantSearch.Insights-macOS";
+				PRODUCT_NAME = Insights;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		1DA0068520CFBD8D00A9170F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				INFOPLIST_FILE = InsightsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.algolia.InstantSearch.Insights-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "InsightsTests-Swift.h";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		1DA0068620CFBD8D00A9170F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 5RDFJYUV23;
+				INFOPLIST_FILE = InsightsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.algolia.InstantSearch.Insights-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "InsightsTests-Swift.h";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -546,6 +795,24 @@
 			buildConfigurations = (
 				1D4531DA209C870C00B26CF9 /* Debug */,
 				1D4531DB209C870C00B26CF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DA0068720CFBD8D00A9170F /* Build configuration list for PBXNativeTarget "Insights-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DA0068320CFBD8D00A9170F /* Debug */,
+				1DA0068420CFBD8D00A9170F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DA0068820CFBD8D00A9170F /* Build configuration list for PBXNativeTarget "Insights-macOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DA0068520CFBD8D00A9170F /* Debug */,
+				1DA0068620CFBD8D00A9170F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

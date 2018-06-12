@@ -6,6 +6,8 @@
 //
 
 #import <XCTest/XCTest.h>
+@import Foundation;
+
 #import "InsightsTests-Swift.h"
 
 @import Insights;

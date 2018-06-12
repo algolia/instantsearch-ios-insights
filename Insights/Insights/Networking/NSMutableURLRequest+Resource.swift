@@ -6,8 +6,6 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
-import UIKit
-
 import Foundation
 
 extension URLRequest {

@@ -5,7 +5,7 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for Insights.
 FOUNDATION_EXPORT double InsightsVersionNumber;
