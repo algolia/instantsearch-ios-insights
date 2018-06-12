@@ -52,15 +52,11 @@ import Foundation
     return insights
   }
   
-  /// Access an already registered `Insights` without having to pass the `apiKey` and `appId`
+  /// Access an already registered `Insights` without having to pass the `apiKey` and `appId`. If the index was not register before, it will return a nil value
   /// - parameter  index: The index that is being tracked
   ///
-  public static func shared(index: String) throws -> Insights {
-    if let insights = insightsMap[index] {
-      return insights
-    }
-    
-    throw InsightsException.credentialsNotFound("Credentials not found for index \(index)")
+  public static func shared(index: String) -> Insights? {
+    return insightsMap[index]
   }
   
   public var loggingEnabled: Bool = false {
@@ -117,7 +113,8 @@ import Foundation
   /// For a complete list of mandatory fields, check: https://www.algolia.com/doc/rest-api/analytics/#post-view-event
   /// - parameter params: a list of data points that you want to track
   ///
-  public func view(params: [String: Any]) {
+  /// TODO: For this version, the view event is not supported
+  private func view(params: [String: Any]) {
     process(event: Event(params: params, event: API.Event.view))
   }
   

@@ -11,26 +11,23 @@ import XCTest
 class InsightsTests: XCTestCase {
   
   func testInitShouldFail() {
-    do {
-      let insightsRegister = try Insights.shared(index: "test")
-      XCTAssertNil(insightsRegister)
-    } catch let err {
-      XCTAssertNotNil(err)
-    }
+    let insightsRegister = Insights.shared(index: "test")
+    XCTAssertNil(insightsRegister)
+    
   }
   
   func testInitShouldWork() {
-    do {
-      let indexName = "testIndex"
-      
-      let insightsRegister = Insights.register(appId: "testApp", apiKey: "testKey", indexName: indexName)
-      XCTAssertNotNil(insightsRegister)
-      
-      let insightsShared = try Insights.shared(index: indexName)
-      XCTAssertNotNil(insightsShared)
-      
-      XCTAssertEqual(insightsRegister, insightsShared, "Getting the Insights instance from register and shared should be the same")
-    } catch _ {}
+    
+    let indexName = "testIndex"
+    
+    let insightsRegister = Insights.register(appId: "testApp", apiKey: "testKey", indexName: indexName)
+    XCTAssertNotNil(insightsRegister)
+    
+    let insightsShared = Insights.shared(index: indexName)
+    XCTAssertNotNil(insightsShared)
+    
+    XCTAssertEqual(insightsRegister, insightsShared, "Getting the Insights instance from register and shared should be the same")
+    
   }
   
   func testEventIsSentCorrectly() {
