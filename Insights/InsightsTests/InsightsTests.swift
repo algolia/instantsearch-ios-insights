@@ -18,15 +18,6 @@ class InsightsTests: XCTestCase {
     super.tearDown()
   }
   
-  func getMockWS(indexName: String, _ stub: @escaping (Any) -> ()) -> WebService {
-    let logger = Logger(indexName)
-    let mockWS = MockWS(sessionConfig: Algolia.SessionConfig.default(appId: "dummyAppId",
-                                                                     apiKey: "dummyApiKey"),
-                        logger: logger,
-                        stub: stub)
-    return mockWS
-  }
-  
   func testInitShouldFail() {
     do {
       _ = try Insights.shared(index: "test")
@@ -61,7 +52,7 @@ class InsightsTests: XCTestCase {
       "timestamp": Date.timeIntervalBetween1970AndReferenceDate
     ]
     
-    let mockWS = getMockWS(indexName: indexName) { resource in
+    let mockWS = MockWSHelper.getMockWS(indexName: indexName) { resource in
       if let res = resource as? Resource<Bool, WebserviceError> {
         XCTAssertEqual(res.method.method, "POST")
         res.method.map(f: { data in

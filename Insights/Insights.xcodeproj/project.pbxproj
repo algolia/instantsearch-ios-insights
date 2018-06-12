@@ -21,6 +21,7 @@
 		1D958B0B20BEE9820058230A /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0A20BEE9820058230A /* WebService.swift */; };
 		1D958B0D20BEECD40058230A /* EventsSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0C20BEECD40058230A /* EventsSync.swift */; };
 		1D958B0F20BEEDA60058230A /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0E20BEEDA60058230A /* Events.swift */; };
+		1DA0065F20CFB71500A9170F /* MockWSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA0065E20CFB71500A9170F /* MockWSHelper.swift */; };
 		1DD0A0C620BFF43C005FDDDD /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C520BFF43C005FDDDD /* Result.swift */; };
 		1DD0A0C920C140B8005FDDDD /* JSONCodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */; };
 		1DD0A0CB20C1421E005FDDDD /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */; };
@@ -55,6 +56,7 @@
 		1D958B0A20BEE9820058230A /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		1D958B0C20BEECD40058230A /* EventsSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSync.swift; sourceTree = "<group>"; };
 		1D958B0E20BEEDA60058230A /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		1DA0065E20CFB71500A9170F /* MockWSHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWSHelper.swift; sourceTree = "<group>"; };
 		1DD0A0C520BFF43C005FDDDD /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONCodingKeys.swift; sourceTree = "<group>"; };
 		1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				1D575DDF20C98BFA00D20E33 /* MockWS.swift */,
+				1DA0065E20CFB71500A9170F /* MockWSHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D958AF820BD8A6E0058230A /* InsightsTestObjC.m in Sources */,
+				1DA0065F20CFB71500A9170F /* MockWSHelper.swift in Sources */,
 				1D4531D1209C870C00B26CF9 /* InsightsTests.swift in Sources */,
 				1D575DE020C98BFA00D20E33 /* MockWS.swift in Sources */,
 			);

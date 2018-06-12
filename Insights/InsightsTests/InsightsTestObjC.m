@@ -6,6 +6,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "InsightsTests-Swift.h"
+
 @import Insights;
 
 @interface InsightsTestObjC : XCTestCase
@@ -30,4 +32,41 @@
                       error:&err];
   XCTAssertNotNil(err);
 }
+
+- (void) testClickEvent {
+  XCTestExpectation* expectation = [self expectationWithDescription:@"waitForCompletion"];
+  Insights *stubInsights = [MockWSHelper getMockInsightsWithIndexName:@"indexName" :^(id res) {
+    XCTAssertNotNil(res);
+    [expectation fulfill];
+  }];
+  [stubInsights clickWithParams:@{
+                                  @"a": @"b"
+                                  }];
+  [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
+- (void) testConversionEvent {
+  XCTestExpectation* expectation = [self expectationWithDescription:@"waitForCompletion"];
+  Insights *stubInsights = [MockWSHelper getMockInsightsWithIndexName:@"indexName" :^(id res) {
+    XCTAssertNotNil(res);
+    [expectation fulfill];
+  }];
+  [stubInsights conversionWithParams:@{
+                                  @"a": @"b"
+                                  }];
+  [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
+- (void) testViewEvent {
+  XCTestExpectation* expectation = [self expectationWithDescription:@"waitForCompletion"];
+  Insights *stubInsights = [MockWSHelper getMockInsightsWithIndexName:@"indexName" :^(id res) {
+    XCTAssertNotNil(res);
+    [expectation fulfill];
+  }];
+  [stubInsights viewWithParams:@{
+                                       @"a": @"b"
+                                       }];
+  [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
 @end
