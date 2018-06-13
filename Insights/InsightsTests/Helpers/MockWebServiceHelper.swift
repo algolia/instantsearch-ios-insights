@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import Insights
+@testable import InstantSearchInsights
 
 @objc public class MockWebServiceHelper: NSObject {
   static public func getMockWebService(indexName: String, _ stub: @escaping (Any) -> ()) -> WebService {

@@ -8,7 +8,7 @@
 #import <XCTest/XCTest.h>
 #import "InsightsTests-Swift.h"
 @import Foundation;
-@import Insights;
+@import InstantSearchInsights;
 
 @interface InsightsTestObjC : XCTestCase
 

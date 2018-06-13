@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import Insights
+@testable import InstantSearchInsights
 
 class MockWebService: WebService {
   let stub: (Any) -> ()

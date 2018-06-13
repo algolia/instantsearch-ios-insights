@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Insights
+@testable import InstantSearchInsights
 
 class InsightsTests: XCTestCase {
   
