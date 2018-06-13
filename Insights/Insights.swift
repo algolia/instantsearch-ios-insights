@@ -78,14 +78,7 @@ import Foundation
     self.webservice = webService
     super.init()
     deserialize()
-    self.flushTimer = Timer.scheduledTimer(withTimeInterval: flushDelay,
-                                           repeats: true,
-                                           block: {[weak self] _ in
-                                            if let this = self {
-                                              this.flush(this.events)
-                                            }
-                                            
-    })
+    self.flushTimer =  Timer.scheduledTimer(timeInterval: flushDelay, target: self, selector: #selector(flushEvents), userInfo: nil, repeats: true)
   }
   
   /// Track a click
@@ -122,6 +115,10 @@ import Foundation
     events.append(event)
     sync(event: event)
     serialize()
+  }
+  
+  @objc func flushEvents() {
+      flush(self.events)
   }
   
   private func flush(_ events: [Event]) {
