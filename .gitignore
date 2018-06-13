@@ -76,3 +76,5 @@ fastlane/report.xml
 
 Insights/Insights.xcworkspace/xcuserdata/
 Insights/Insights.xcodeproj/project.xcworkspace/xcuserdata/
+.bundle/
+bitrise.yml
