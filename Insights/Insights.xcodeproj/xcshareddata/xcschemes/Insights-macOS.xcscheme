@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1DA0067120CFBD8D00A9170F"
-               BuildableName = "Insights.framework"
+               BuildableName = "InstantSearchInsights.framework"
                BlueprintName = "Insights-macOS"
                ReferencedContainer = "container:Insights.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1DA0067120CFBD8D00A9170F"
-            BuildableName = "Insights.framework"
+            BuildableName = "InstantSearchInsights.framework"
             BlueprintName = "Insights-macOS"
             ReferencedContainer = "container:Insights.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1DA0067120CFBD8D00A9170F"
-            BuildableName = "Insights.framework"
+            BuildableName = "InstantSearchInsights.framework"
             BlueprintName = "Insights-macOS"
             ReferencedContainer = "container:Insights.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1DA0067120CFBD8D00A9170F"
-            BuildableName = "Insights.framework"
+            BuildableName = "InstantSearchInsights.framework"
             BlueprintName = "Insights-macOS"
             ReferencedContainer = "container:Insights.xcodeproj">
          </BuildableReference>
