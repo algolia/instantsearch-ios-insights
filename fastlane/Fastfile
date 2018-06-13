@@ -1,0 +1,97 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+	lane :test do
+		scan(
+			scheme: "Insights-iOS",
+			configuration: "Release",
+			clean: true
+		)
+	end
+end
+
+platform :mac do
+	lane :test do
+		scan(
+			scheme: "Insights-macOS",
+			configuration: "Release",
+			clean: true
+		)
+	end
+end
+
+platform :tv do
+	lane :test do
+		scan(
+			scheme: "Insights-tvOS",
+			configuration: "Release",
+			clean: true
+		)
+	end
+end
+
+desc "Available options: type:major|minor|patch branch:master"
+lane :deploy do |options|
+
+	branch = options[:branch] || "master"
+	prepare_git(branch)
+	pod_lib_lint(verbose: true)
+	increment_version_number(
+  		bump_type: options[:type]
+	)
+	new_build_number = version_bump_podspec(
+		bump_type: options[:type],
+		path: "InstantSearchInsights.podspec"
+	)
+
+	#puts changelog_from_git_commits
+	git_commit(
+		path: ["InstantSearchInsights.podspec", "Insights/Info.plist"], 
+		message: "Version #{new_build_number}"
+	)
+	add_git_tag(
+		build_number: new_build_number,
+		tag: new_build_number
+	)
+	push_to_git_remote(remote: "origin")
+	pod_push(
+		path: "InstantSearchInsights.podspec"
+	)
+end
+
+desc "Upgrade Swift Version in .swift-version"
+# Force cocoapods to compile with 'swift-version'
+lane :upgrade_swift do |options|
+    version = options[:version]
+    sh("echo #{version} > ../.swift-version")
+    puts "\e[31m\e[5mDon't forget to update the swift version in the dependecies: .podspecs & cartfile'\e[0m"
+end
+
+def prepare_git(branch)
+	ensure_git_status_clean
+
+	# ensure_git_branch(branch:branch)
+	masterHash = sh("git rev-parse origin/#{branch}")
+	headHash = sh("git rev-parse HEAD")
+	
+	if masterHash != headHash 
+		raise "Error: Master and Head Hashes do not match, meaning that we are probably not on Master and therefore can't deploy"
+	end
+
+	# checkout master to be able to push tag there.
+	sh("git checkout #{branch}")
+	
+	# We already pull in bitrise before doing anything, so no need for this step anymore.
+	# git_pull
+end
