@@ -25,7 +25,7 @@ and is usable from both **Swift** and **Objective-C**.
 ## Install
 
 1. Add a dependency on InstantSearchInsights:
-   - CocoaPods: add `pod 'InstantSearch/Insights', '~> 1.0'` to your `Podfile`.
+   - CocoaPods: add `pod 'InstantSearchInsights', '~> 1.0'` to your `Podfile`.
    - Carthage: add `github "algolia/instantsearch-ios-insights"` to your `Cartfile`.
 
 2. Add `import InstantSearchInsights` to your source files.
