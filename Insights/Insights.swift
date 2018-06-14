@@ -122,7 +122,7 @@ import Foundation
   }
   
   private func flush(_ events: [Event]) {
-    logger.debug(message: "Flushing remaing events")
+    logger.debug(message: "Flushing remaining events")
     events.forEach(sync)
   }
 
