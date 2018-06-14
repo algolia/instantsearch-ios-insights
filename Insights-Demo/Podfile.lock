@@ -1,0 +1,16 @@
+PODS:
+  - InstantSearchInsights (1.0.1)
+
+DEPENDENCIES:
+  - InstantSearchInsights (~> 1.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - InstantSearchInsights
+
+SPEC CHECKSUMS:
+  InstantSearchInsights: 31dbd032b1bfb4c4f6074c4c5ebbed7e3fb9c477
+
+PODFILE CHECKSUM: abb96538ba40794ac14afd89c8c13c2ea15bdb24
+
+COCOAPODS: 1.5.3
