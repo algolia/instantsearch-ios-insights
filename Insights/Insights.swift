@@ -128,8 +128,11 @@ import Foundation
 
   private func sync(event: Event) {
     logger.debug(message: "Syncing \(event)")
-    webservice.sync(event: event) {[weak self] success in
-      if success {
+    webservice.sync(event: event) {[weak self] err in
+
+      // If there is no error or the error is from the Analytics we should remove it. In case of a WebserviceError the event was wronlgy constructed
+      let webServiceError = err as? WebserviceError
+      if err == nil || webServiceError != nil {
         self?.remove(event: event)
       }
     }

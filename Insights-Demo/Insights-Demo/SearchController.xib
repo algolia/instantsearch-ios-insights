@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchController" customModule="Insights_Demo" customModuleProvider="target">
             <connections>
+                <outlet property="searchBar" destination="qyT-To-Cje" id="MKv-T8-VXN"/>
+                <outlet property="tableView" destination="Yw0-BF-URp" id="7jb-i3-lqe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,25 +22,34 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uOp-Wy-z16">
-                    <rect key="frame" x="131" y="174" width="113" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Send click event"/>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="qyT-To-Cje">
+                    <rect key="frame" x="0.0" y="20" width="375" height="56"/>
+                    <textInputTraits key="textInputTraits"/>
                     <connections>
-                        <action selector="sendView:" destination="-1" eventType="touchUpInside" id="7zE-n8-aWk"/>
+                        <outlet property="delegate" destination="-1" id="cL8-FD-PPO"/>
                     </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khN-mS-vn7">
-                    <rect key="frame" x="110" y="268" width="156" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Send conversion event"/>
+                </searchBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yw0-BF-URp">
+                    <rect key="frame" x="0.0" y="76" width="375" height="591"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
-                        <action selector="sendClick:" destination="-1" eventType="touchUpInside" id="8zX-qY-9fZ"/>
+                        <outlet property="dataSource" destination="-1" id="ehh-ad-23Z"/>
+                        <outlet property="delegate" destination="-1" id="PBr-wW-6OK"/>
                     </connections>
-                </button>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Yw0-BF-URp" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="0oG-Y9-TSz"/>
+                <constraint firstItem="Yw0-BF-URp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="1rg-vf-rgv"/>
+                <constraint firstItem="qyT-To-Cje" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="FWz-TO-CKc"/>
+                <constraint firstItem="qyT-To-Cje" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="IWL-cs-Kef"/>
+                <constraint firstItem="Yw0-BF-URp" firstAttribute="top" secondItem="qyT-To-Cje" secondAttribute="bottom" id="kLb-Kh-fQF"/>
+                <constraint firstItem="Yw0-BF-URp" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="q3M-CL-F33"/>
+                <constraint firstItem="qyT-To-Cje" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="qf1-DU-OHG"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
         </view>
     </objects>
 </document>

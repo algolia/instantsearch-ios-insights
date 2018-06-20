@@ -17,13 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
-    // Registering the app for Insights
-    Insights.register(appId: "APP_ID",
-                      apiKey: "API_KEY",
-                      indexName: "rmogos")
-    
-    Insights.shared(index: "rmogos")?.loggingEnabled = true
-    
     let navController = UINavigationController(rootViewController: SearchController())
     
     window = UIWindow(frame: UIScreen.main.bounds)

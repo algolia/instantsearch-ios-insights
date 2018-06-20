@@ -1,16 +1,31 @@
 PODS:
+  - CFNotify (1.0.2)
+  - InstantSearchClient (5.2.0)
   - InstantSearchInsights (1.0.1)
+  - Nuke (7.2)
 
 DEPENDENCIES:
-  - InstantSearchInsights (~> 1.0)
+  - CFNotify
+  - InstantSearchClient (~> 5.0)
+  - InstantSearchInsights (from `../`)
+  - Nuke
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - InstantSearchInsights
+    - CFNotify
+    - InstantSearchClient
+    - Nuke
+
+EXTERNAL SOURCES:
+  InstantSearchInsights:
+    :path: "../"
 
 SPEC CHECKSUMS:
-  InstantSearchInsights: 31dbd032b1bfb4c4f6074c4c5ebbed7e3fb9c477
+  CFNotify: e32996ad9034b4d64b30d685e456ea4b83fecb49
+  InstantSearchClient: 0a40c5dc9d77d069e3164481202c793b5750b87c
+  InstantSearchInsights: d4b40bab1be7a079dfcfb131f0f6f7fc034ed0c4
+  Nuke: 0cfa0c680b21e06d2f77a188bcaceec969e2ec79
 
-PODFILE CHECKSUM: abb96538ba40794ac14afd89c8c13c2ea15bdb24
+PODFILE CHECKSUM: 3b433ca21b3d31c38de4331578ad0c20aea7088a
 
 COCOAPODS: 1.5.3

@@ -6,5 +6,9 @@ target 'Insights-Demo' do
   use_frameworks!
 
   # Pods for Insights-Demo
-  pod 'InstantSearchInsights', '~> 1.0'
+#  pod 'InstantSearchInsights', '~> 1.0'
+  pod 'InstantSearchInsights', :path => '../'
+  pod 'InstantSearchClient', '~> 5.0'
+  pod 'Nuke'
+  pod 'CFNotify'
 end
