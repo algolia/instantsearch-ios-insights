@@ -38,10 +38,12 @@ You first need to initialize the Insights client. For that you need your **Appli
 You can find them on [your Algolia account](https://www.algolia.com/api-keys).
 
 ```swift
+	// Swift
 	Insights.register(appId: "testApp", apiKey: "testKey", indexName: "indexName")
 ```
 
 ```objc
+	// ObjC
 	[Insights registerWithAppId:@"testApp"
 						 apiKey:@"testKey"
 					  indexName:@"indexName"];
@@ -52,6 +54,7 @@ You can find them on [your Algolia account](https://www.algolia.com/api-keys).
 Once that you registered your **index** with the **Application ID** and the **API Key** you can easily start sending metrics
 
 ```swift
+	// Swift
 	Insights.shared(index: "indexName")?.click(params: [
 		"queryID": "74e382ecaf889f9f2a3df0d4a9742dfb",
 		"objectID": "85725102",
@@ -65,6 +68,7 @@ Once that you registered your **index** with the **Application ID** and the **AP
 ```
 
 ```objc
+	// ObjC
 	[[Insights sharedWithIndex:@"indexName"] clickWithParams:
 		@{
 			@"queryID": @"74e382ecaf889f9f2a3df0d4a9742dfb",
@@ -84,6 +88,7 @@ Once that you registered your **index** with the **Application ID** and the **AP
 In case you want to check if the metric was sent correctly, you need to enable the logging first
 
 ```swift
+	// Swift
 	Insights.shared(index: "indexName")?.loggingEnabled = true
 ```
 
