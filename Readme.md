@@ -38,15 +38,15 @@ You first need to initialize the Insights client. For that you need your **Appli
 You can find them on [your Algolia account](https://www.algolia.com/api-keys).
 
 ```swift
-	// Swift
-	Insights.register(appId: "testApp", apiKey: "testKey", indexName: "indexName")
+// Swift
+Insights.register(appId: "testApp", apiKey: "testKey", indexName: "indexName")
 ```
 
 ```objc
-	// ObjC
-	[Insights registerWithAppId:@"testApp"
-						 apiKey:@"testKey"
-					  indexName:@"indexName"];
+// ObjC
+[Insights registerWithAppId:@"testApp"
+          apiKey:@"testKey"
+          indexName:@"indexName"];
 ```
 
 ### Sending metrics
@@ -54,42 +54,42 @@ You can find them on [your Algolia account](https://www.algolia.com/api-keys).
 Once that you registered your **index** with the **Application ID** and the **API Key** you can easily start sending metrics
 
 ```swift
-	// Swift
-	Insights.shared(index: "indexName")?.click(params: [
-		"queryID": "74e382ecaf889f9f2a3df0d4a9742dfb",
-		"objectID": "85725102",
-		"position": 2
-	])
+// Swift
+Insights.shared(index: "indexName")?.click(params: [
+  "queryID": "74e382ecaf889f9f2a3df0d4a9742dfb",
+  "objectID": "85725102",
+  "position": 2
+])
 
-	Insights.shared(index: "indexName")?.conversion(params: [
-		"queryID": "74e382ecaf889f9f2a3df0d4a9742dfb",
-		"objectID": "85725102"
-	])
+Insights.shared(index: "indexName")?.conversion(params: [
+  "queryID": "74e382ecaf889f9f2a3df0d4a9742dfb",
+  "objectID": "85725102"
+])
 ```
 
 ```objc
-	// ObjC
-	[[Insights sharedWithIndex:@"indexName"] clickWithParams:
-		@{
-			@"queryID": @"74e382ecaf889f9f2a3df0d4a9742dfb",
-			@"objectID": @"85725102",
-			@"position": @2
-		}];
+// ObjC
+[[Insights sharedWithIndex:@"indexName"] clickWithParams:
+  @{
+    @"queryID": @"74e382ecaf889f9f2a3df0d4a9742dfb",
+    @"objectID": @"85725102",
+    @"position": @2
+  }];
 
-	[[Insights sharedWithIndex:@"indexName"] conversionkWithParams:
-		@{
-			@"queryID": @"74e382ecaf889f9f2a3df0d4a9742dfb",
-			@"objectID": @"85725102"
-		}
-	];
+[[Insights sharedWithIndex:@"indexName"] conversionkWithParams:
+  @{
+    @"queryID": @"74e382ecaf889f9f2a3df0d4a9742dfb",
+    @"objectID": @"85725102"
+  }
+];
 ```
 ### Logging and debuging
 
 In case you want to check if the metric was sent correctly, you need to enable the logging first
 
 ```swift
-	// Swift
-	Insights.shared(index: "indexName")?.loggingEnabled = true
+// Swift
+Insights.shared(index: "indexName")?.loggingEnabled = true
 ```
 
 After you enabled it, you can check the output for success messages or errors
