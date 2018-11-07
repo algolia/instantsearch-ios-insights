@@ -15,21 +15,6 @@ extension Encodable {
         return try JSONSerialization.jsonObject(with: data, options: .allowFragments)
     }
 
-    func asDictionary() throws -> [String: Any] {
-        let data = try JSONEncoder().encode(self)
-        guard let dictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] else {
-            throw NSError()
-        }
-        return dictionary
-    }
-    
-    func asArray() throws -> [Any] {
-        let data = try JSONEncoder().encode(self)
-        guard let array = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [Any] else {
-            throw NSError()
-        }
-        return array
-    }
 }
 
 extension Dictionary where Key == String, Value == Any {
@@ -40,6 +25,18 @@ extension Dictionary where Key == String, Value == Any {
             return nil
         }
         self = dictionary
+    }
+    
+}
+
+extension Array where Element == Any {
+    
+    init?<T: Encodable>(_ encodable: T) {
+        guard let data = try? JSONEncoder().encode(encodable) else { return nil }
+        guard let array = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [Any] else {
+            return nil
+        }
+        self = array
     }
     
 }

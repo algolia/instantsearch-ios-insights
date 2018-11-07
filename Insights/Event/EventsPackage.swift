@@ -116,7 +116,7 @@ extension EventsPackage: Syncable {
             return nil
         }
         
-        let serializedSelf = try? self.asDictionary()
+        let serializedSelf = Dictionary(self)!
 
         return Resource<Bool, WebserviceError>(url: API.baseAPIURL,
                                                method: .post([], serializedSelf as AnyObject),

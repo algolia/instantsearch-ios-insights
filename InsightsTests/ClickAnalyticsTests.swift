@@ -11,17 +11,22 @@ import XCTest
 
 class ClickAnalyticsTests: XCTestCase {
     
+    let indexName = "index name"
+    let eventProcessor = TestEventProcessor()
+    let clickAnalytics = ClickAnalytics(indexName: "index name")
+    
+    override func setUp() {
+        clickAnalytics.eventProcessor = eventProcessor
+    }
+    
     func testClick() {
         
-        let expectedIndexName = "index name"
+        let expectedIndexName = indexName
         let expectedUserToken = "user token"
         let expectedTimestamp = Date().timeIntervalSince1970
         let expectedQueryID = "query id"
         let expectedObjectIDsWithPositions = [("o1", 1), ("o2", 2)]
         
-        let eventProcessor = TestEventProcessor()
-        let clickAnalytics = ClickAnalytics(indexName: expectedIndexName)
-        clickAnalytics.eventProcessor = eventProcessor
         let exp = expectation(description: "Wait for event processor callback")
         
         eventProcessor.didProcess = { e in
@@ -49,15 +54,12 @@ class ClickAnalyticsTests: XCTestCase {
     
     func testConversion() {
         
-        let expectedIndexName = "index name"
+        let expectedIndexName = indexName
         let expectedUserToken = "user token"
         let expectedTimestamp = Date().timeIntervalSince1970
         let expectedQueryID = "query id"
         let expectedObjectIDs = ["o1", "o2"]
         
-        let eventProcessor = TestEventProcessor()
-        let clickAnalytics = ClickAnalytics(indexName: expectedIndexName)
-        clickAnalytics.eventProcessor = eventProcessor
         let exp = expectation(description: "Wait for event processor callback")
         
         eventProcessor.didProcess = { e in

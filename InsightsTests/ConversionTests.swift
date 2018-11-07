@@ -29,7 +29,7 @@ class ConversionTests: XCTestCase {
                                     queryID: expectedQueryID,
                                     objectIDsOrFilters: expectedWrappedFilter)
         
-        let eventDictionary = try! event.asDictionary()
+        let eventDictionary = Dictionary(event)!
         
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.type.rawValue] as? String, expectedEventType.rawValue)
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.name.rawValue] as? String, expectedEventName)

@@ -17,33 +17,81 @@ import Foundation
         self.indexName = indexName
     }
     
-    func view(eventName: String, userToken: String, timestamp: TimeInterval = Date().timeIntervalSince1970, objectIDs: [String]) throws {
-        let event = try View(name: eventName, index: indexName, userToken: userToken, timestamp: timestamp, queryID: .none, objectIDsOrFilters: .objectIDs(objectIDs))
+    func view(eventName: String,
+              userToken: String,
+              timestamp: TimeInterval = Date().timeIntervalSince1970,
+              objectIDs: [String]) throws {
+        let event = try View(name: eventName,
+                             index: indexName,
+                             userToken: userToken,
+                             timestamp: timestamp,
+                             queryID: .none,
+                             objectIDsOrFilters: .objectIDs(objectIDs))
         eventProcessor?.process(event)
     }
     
-    func view(eventName: String, userToken: String, timestamp: TimeInterval = Date().timeIntervalSince1970, filters: [Filter]) throws {
-        let event = try View(name: eventName, index: indexName, userToken: userToken, timestamp: timestamp, queryID: .none, objectIDsOrFilters: .filters(filters))
+    func view(eventName: String,
+              userToken: String,
+              timestamp: TimeInterval = Date().timeIntervalSince1970,
+              filters: [Filter]) throws {
+        let event = try View(name: eventName,
+                             index: indexName,
+                             userToken: userToken,
+                             timestamp: timestamp,
+                             queryID: .none,
+                             objectIDsOrFilters: .filters(filters))
         eventProcessor?.process(event)
     }
     
-    func click(eventName: String, userToken: String, timestamp: TimeInterval = Date().timeIntervalSince1970, objectIDs: [String]) throws {
-        let event = try Click(name: eventName, index: indexName, userToken: userToken, timestamp: timestamp, objectIDsOrFilters: .objectIDs(objectIDs), positions: .none)
+    func click(eventName: String,
+               userToken: String,
+               timestamp: TimeInterval = Date().timeIntervalSince1970,
+               objectIDs: [String]) throws {
+        let event = try Click(name: eventName,
+                              index: indexName,
+                              userToken: userToken,
+                              timestamp: timestamp,
+                              objectIDsOrFilters: .objectIDs(objectIDs),
+                              positions: .none)
         eventProcessor?.process(event)
     }
     
-    func click(eventName: String, userToken: String, timestamp: TimeInterval = Date().timeIntervalSince1970, filters: [Filter]) throws {
-        let event = try Click(name: eventName, index: indexName, userToken: userToken, timestamp: timestamp, objectIDsOrFilters: .filters(filters), positions: .none)
+    func click(eventName: String,
+               userToken: String,
+               timestamp: TimeInterval = Date().timeIntervalSince1970,
+               filters: [Filter]) throws {
+        let event = try Click(name: eventName,
+                              index: indexName,
+                              userToken: userToken,
+                              timestamp: timestamp,
+                              objectIDsOrFilters: .filters(filters),
+                              positions: .none)
         eventProcessor?.process(event)
     }
     
-    func conversion(eventName: String, userToken: String, timestamp: TimeInterval, objectIDs: [String]) throws {
-        let event = try Conversion(name: eventName, index: indexName, userToken: userToken, timestamp: timestamp, queryID: .none, objectIDsOrFilters: .objectIDs(objectIDs))
+    func conversion(eventName: String,
+                    userToken: String,
+                    timestamp: TimeInterval,
+                    objectIDs: [String]) throws {
+        let event = try Conversion(name: eventName,
+                                   index: indexName,
+                                   userToken: userToken,
+                                   timestamp: timestamp,
+                                   queryID: .none,
+                                   objectIDsOrFilters: .objectIDs(objectIDs))
         eventProcessor?.process(event)
     }
     
-    func conversion(eventName: String, userToken: String, timestamp: TimeInterval, filters: [Filter]) throws {
-        let event = try Conversion(name: eventName, index: indexName, userToken: userToken, timestamp: timestamp, queryID: .none, objectIDsOrFilters: .filters(filters))
+    func conversion(eventName: String,
+                    userToken: String,
+                    timestamp: TimeInterval,
+                    filters: [Filter]) throws {
+        let event = try Conversion(name: eventName,
+                                   index: indexName,
+                                   userToken: userToken,
+                                   timestamp: timestamp,
+                                   queryID: .none,
+                                   objectIDsOrFilters: .filters(filters))
         eventProcessor?.process(event)
     }
 

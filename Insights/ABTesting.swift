@@ -34,7 +34,12 @@ import Foundation
                     timestamp: TimeInterval = Date().timeIntervalSince1970,
                     queryID: String,
                     objectIDs: [String]) throws {
-        let event = try Conversion(name: "", index: indexName, userToken: userToken, timestamp: timestamp, queryID: queryID, objectIDsOrFilters: .objectIDs(objectIDs))
+        let event = try Conversion(name: "",
+                                   index: indexName,
+                                   userToken: userToken,
+                                   timestamp: timestamp,
+                                   queryID: queryID,
+                                   objectIDsOrFilters: .objectIDs(objectIDs))
         eventProcessor?.process(event)
     }
     

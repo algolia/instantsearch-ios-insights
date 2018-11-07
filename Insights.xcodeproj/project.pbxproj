@@ -22,7 +22,6 @@
 		1D958B0D20BEECD40058230A /* EventsSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0C20BEECD40058230A /* EventsSync.swift */; };
 		1DA0065F20CFB71500A9170F /* MockWebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA0065E20CFB71500A9170F /* MockWebServiceHelper.swift */; };
 		1DA0067B20CFBD8D00A9170F /* InstantSearchInsights.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DA0067220CFBD8D00A9170F /* InstantSearchInsights.framework */; };
-		1DA0068920CFBDCC00A9170F /* JSONCodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */; };
 		1DA0068A20CFBDCC00A9170F /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */; };
 		1DA0068B20CFBDCC00A9170F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CC20C53B83005FDDDD /* Logger.swift */; };
 		1DA0068C20CFBDD100A9170F /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0120BEE2BA0058230A /* APIEndpoint.swift */; };
@@ -40,10 +39,8 @@
 		1DA0069A20CFBE0400A9170F /* InsightsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4531D0209C870C00B26CF9 /* InsightsTests.swift */; };
 		1DA0069B20CFBE0700A9170F /* InsightsTestObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AF720BD8A6E0058230A /* InsightsTestObjC.m */; };
 		1DA006CA20CFC26000A9170F /* InstantSearchInsights.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DA006C120CFC26000A9170F /* InstantSearchInsights.framework */; };
-		1DA006E520CFC2A400A9170F /* JSONCodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */; };
 		1DA006E620CFC2A400A9170F /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */; };
 		1DA006E720CFC2A400A9170F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CC20C53B83005FDDDD /* Logger.swift */; };
-		1DA006E820CFC2A400A9170F /* JSONCodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */; };
 		1DA006E920CFC2A400A9170F /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */; };
 		1DA006EA20CFC2A400A9170F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CC20C53B83005FDDDD /* Logger.swift */; };
 		1DA006EB20CFC2A900A9170F /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0120BEE2BA0058230A /* APIEndpoint.swift */; };
@@ -71,7 +68,6 @@
 		1DA0070320CFCAAC00A9170F /* InsightsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4531D0209C870C00B26CF9 /* InsightsTests.swift */; };
 		1DA0070420CFCAAF00A9170F /* InsightsTestObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AF720BD8A6E0058230A /* InsightsTestObjC.m */; };
 		1DD0A0C620BFF43C005FDDDD /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C520BFF43C005FDDDD /* Result.swift */; };
-		1DD0A0C920C140B8005FDDDD /* JSONCodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */; };
 		1DD0A0CB20C1421E005FDDDD /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */; };
 		1DD0A0CD20C53B83005FDDDD /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CC20C53B83005FDDDD /* Logger.swift */; };
 		AF332822219343250040BE0A /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF332821219343250040BE0A /* Credentials.swift */; };
@@ -671,7 +667,6 @@
 				AF49562A218CA72C006B2F0B /* EventsPackage.swift in Sources */,
 				AF4956352190A90C006B2F0B /* EventType.swift in Sources */,
 				AFC30C112191F87A00AA72B0 /* Personalization.swift in Sources */,
-				1DD0A0C920C140B8005FDDDD /* JSONCodingKeys.swift in Sources */,
 				AF49564021919D59006B2F0B /* AnyEncodable.swift in Sources */,
 				AFC30C152191F98F00AA72B0 /* EventsSynchronizer.swift in Sources */,
 				AF49562F2190A8AC006B2F0B /* EventWrapper.swift in Sources */,
@@ -719,7 +714,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DA0069120CFBDD100A9170F /* Result.swift in Sources */,
-				1DA0068920CFBDCC00A9170F /* JSONCodingKeys.swift in Sources */,
 				1DA0069320CFBDD800A9170F /* Insights.swift in Sources */,
 				1DA0069520CFBDD800A9170F /* EventsSync.swift in Sources */,
 				1DA0068E20CFBDD100A9170F /* NSMutableURLRequest+Resource.swift in Sources */,
@@ -749,7 +743,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DA006F020CFC2A900A9170F /* Result.swift in Sources */,
-				1DA006E520CFC2A400A9170F /* JSONCodingKeys.swift in Sources */,
 				1DA006F920CFC2B900A9170F /* Insights.swift in Sources */,
 				1DA006FA20CFC2B900A9170F /* EventsSync.swift in Sources */,
 				1DA006ED20CFC2A900A9170F /* NSMutableURLRequest+Resource.swift in Sources */,
@@ -779,7 +772,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DA006F620CFC2AA00A9170F /* Result.swift in Sources */,
-				1DA006E820CFC2A400A9170F /* JSONCodingKeys.swift in Sources */,
 				1DA006FD20CFC2BA00A9170F /* Insights.swift in Sources */,
 				1DA006FE20CFC2BA00A9170F /* EventsSync.swift in Sources */,
 				1DA006F320CFC2AA00A9170F /* NSMutableURLRequest+Resource.swift in Sources */,

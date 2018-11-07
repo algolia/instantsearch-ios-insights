@@ -25,7 +25,7 @@ class EventsPackageTests: XCTestCase {
         
         do {
             let package = try EventsPackage(events: [.conversion(event1), .view(event2)])
-            let dictionary = try package.asDictionary()
+            let dictionary = Dictionary(package)!
             
             guard let events = dictionary["events"] as? [[String: Any]], events.count == 2 else {
                 XCTFail("Incorrect events count in package")
@@ -150,6 +150,33 @@ class EventsPackageTests: XCTestCase {
         let anotherUpdatedPackage = try! eventsPackage.appending(events)
         
         XCTAssertEqual(anotherUpdatedPackage.events.count, events.count * 2)
+    }
+    
+    func testSync() {
+        
+        let eventsPackage = EventsPackage(event: .custom(TestEvent.template))
+        
+        let resource = eventsPackage.sync()
+        
+        switch resource.method {
+        case .post([], let body):
+            let jsonDecoder = JSONDecoder()
+            let package = try! jsonDecoder.decode(EventsPackage.self, from: body)
+            XCTAssertEqual(package, eventsPackage)
+            
+        default:
+            XCTFail("Unexpected method")
+        }
+        
+        let errorData = try! JSONSerialization.data(withJSONObject: ["message": "test error"], options: [])
+        guard let error = resource.errorParse(100, errorData) else {
+            XCTFail("Error construction failed")
+            return
+        }
+        
+        XCTAssertEqual(error.code, 100)
+        XCTAssertEqual(error.message, "test error")
+        
     }
     
 }
