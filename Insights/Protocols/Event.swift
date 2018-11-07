@@ -12,7 +12,7 @@ public protocol Event {
     
     var type: EventType { get }
     var name: String { get }
-    var index: String { get }
+    var indexName: String { get }
     var userToken: String { get }
     var timestamp: TimeInterval { get }
     var queryID: String? { get }

@@ -10,6 +10,8 @@ import Foundation
 
 public struct View: Event {
     
+    internal let coreEvent: CoreEvent
+    
     public var type: EventType {
         return coreEvent.type
     }
@@ -18,8 +20,8 @@ public struct View: Event {
         return coreEvent.name
     }
     
-    public var index: String {
-        return coreEvent.index
+    public var indexName: String {
+        return coreEvent.indexName
     }
     
     public var userToken: String {
@@ -38,13 +40,11 @@ public struct View: Event {
         return coreEvent.objectIDsOrFilters
     }
     
-    internal let coreEvent: CoreEvent
-    
     init(name: String,
          index: String,
          userToken: String,
-         timestamp: TimeInterval = Date().timeIntervalSince1970,
-         queryID: String? = .none,
+         timestamp: TimeInterval,
+         queryID: String?,
          objectIDsOrFilters: ObjectsIDsOrFilters) throws {
         coreEvent = try CoreEvent(type: .view,
                                   name: name,

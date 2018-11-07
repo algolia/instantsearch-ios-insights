@@ -49,7 +49,7 @@ class EventsPackageTests: XCTestCase {
         let eventDictionary1: [String: Any] = [
             CoreEvent.CodingKeys.type.rawValue: EventType.conversion.rawValue,
             CoreEvent.CodingKeys.name.rawValue: "test conversion event",
-            CoreEvent.CodingKeys.index.rawValue: expectedIndexName,
+            CoreEvent.CodingKeys.indexName.rawValue: expectedIndexName,
             CoreEvent.CodingKeys.userToken.rawValue: expectedUserToken,
             CoreEvent.CodingKeys.queryID.rawValue: expectedQueryID,
             CoreEvent.CodingKeys.timestamp.rawValue: expectedTimeStamp,
@@ -59,7 +59,7 @@ class EventsPackageTests: XCTestCase {
         let eventDictionary2: [String: Any] = [
             CoreEvent.CodingKeys.type.rawValue: EventType.view.rawValue,
             CoreEvent.CodingKeys.name.rawValue: "test view event",
-            CoreEvent.CodingKeys.index.rawValue: expectedIndexName,
+            CoreEvent.CodingKeys.indexName.rawValue: expectedIndexName,
             CoreEvent.CodingKeys.userToken.rawValue: expectedUserToken,
             CoreEvent.CodingKeys.queryID.rawValue: expectedQueryID,
             CoreEvent.CodingKeys.timestamp.rawValue: expectedTimeStamp,
@@ -83,6 +83,73 @@ class EventsPackageTests: XCTestCase {
             XCTFail("\(error)")
         }
         
+    }
+    
+    func testDefaultConstructor() {
+        
+        let package = EventsPackage()
+        
+        XCTAssertTrue(package.events.isEmpty)
+        
+    }
+    
+    func testConstrutionWithEvent() {
+        
+        let package = EventsPackage(event: .custom(TestEvent.template))
+        
+        XCTAssertEqual(package.events.count, 1)
+        
+    }
+    
+    func testConstructionWithMultipleEvents() {
+        
+        let eventsCount = 10
+        let events = [EventWrapper](repeating: .custom(TestEvent.template), count: eventsCount)
+        let package = try! EventsPackage(events: events)
+        
+        XCTAssertEqual(package.events.count, eventsCount)
+        
+    }
+    
+    func testPackageOverflow() {
+        
+        let exp = expectation(description: "error callback expectation")
+        let eventsCount = EventsPackage.maxEventCountInPackage + 1
+        let events = [EventWrapper](repeating: .custom(TestEvent.template), count: eventsCount)
+        
+        XCTAssertThrowsError(try EventsPackage(events: events), "constructor must throw an error due to events count overflow") { error in
+            exp.fulfill()
+            XCTAssertEqual(error as? EventsPackage.Error, EventsPackage.Error.packageOverflow)
+            XCTAssertEqual(error.localizedDescription, "Max events count in package is \(EventsPackage.maxEventCountInPackage)")
+        }
+        
+        wait(for: [exp], timeout: 1)
+        
+    }
+    
+    func testIsFull() {
+        
+        let eventsCount = EventsPackage.maxEventCountInPackage
+        let events = [EventWrapper](repeating: .custom(TestEvent.template), count: eventsCount)
+        let eventsPackage = try! EventsPackage(events: events)
+        
+        XCTAssertTrue(eventsPackage.isFull)
+        XCTAssertFalse(EventsPackage().isFull)
+        
+    }
+    
+    func testAppend() {
+        
+        let eventsCount = 100
+        let events = [EventWrapper](repeating: .custom(TestEvent.template), count: eventsCount)
+        let eventsPackage = try! EventsPackage(events: events)
+        let updatedPackage = try!eventsPackage.appending(.custom(TestEvent.template))
+        
+        XCTAssertEqual(updatedPackage.events.count, eventsCount + 1)
+
+        let anotherUpdatedPackage = try! eventsPackage.appending(events)
+        
+        XCTAssertEqual(anotherUpdatedPackage.events.count, events.count * 2)
     }
     
 }

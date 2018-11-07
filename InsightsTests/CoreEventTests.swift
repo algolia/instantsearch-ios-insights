@@ -13,16 +13,32 @@ class CoreEventTests: XCTestCase {
 
     func testEventEncoding() {
         
+        let expectedType = EventType.click
+        let expectedName = "test event name"
+        let expectedIndexName = "test index name"
+        let expectedUserToken = "test user token"
+        let expectedTimestamp = Date().timeIntervalSince1970
+        let expectedQueryID = "test query id"
         let filter = Filter(rawValue: "category:toys")!
-        let event = try! CoreEvent(type: .click, name: "Test event name", index: "Test index name", userToken: "Test user token", queryID: "Test query id", objectIDsOrFilters: .filters([filter]))
+        let expectedWrappedFilter = ObjectsIDsOrFilters.filters([filter])
+        
+        
+        let event = try! CoreEvent(type: expectedType,
+                                   name: expectedName,
+                                   index: expectedIndexName,
+                                   userToken: expectedUserToken,
+                                   timestamp: expectedTimestamp,
+                                   queryID: expectedQueryID,
+                                   objectIDsOrFilters: expectedWrappedFilter)
         
         let eventDictionary = try! event.asDictionary()
         
-        XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.type.rawValue] as? String, EventType.click.rawValue)
-        XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.name.rawValue] as? String, "Test event name")
-        XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.index.rawValue] as? String, "Test index name")
-        XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.userToken.rawValue] as? String, "Test user token")
-        XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.queryID.rawValue] as? String, "Test query id")
+        XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.type.rawValue] as? String, expectedType.rawValue)
+        XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.name.rawValue] as? String, expectedName)
+        XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.indexName.rawValue] as? String, expectedIndexName)
+        XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.userToken.rawValue] as? String, expectedUserToken)
+        XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.queryID.rawValue] as? String, expectedQueryID)
+        XCTAssertEqual(eventDictionary[ObjectsIDsOrFilters.CodingKeys.filters.rawValue] as? [String], [filter.rawValue])
         
     }
     
@@ -40,7 +56,7 @@ class CoreEventTests: XCTestCase {
         let eventDictionary: [String: Any] = [
             CoreEvent.CodingKeys.type.rawValue: expectedEventType.rawValue,
             CoreEvent.CodingKeys.name.rawValue: expectedEventName,
-            CoreEvent.CodingKeys.index.rawValue: expectedIndexName,
+            CoreEvent.CodingKeys.indexName.rawValue: expectedIndexName,
             CoreEvent.CodingKeys.userToken.rawValue: expectedUserToken,
             CoreEvent.CodingKeys.queryID.rawValue: expectedQueryID,
             CoreEvent.CodingKeys.timestamp.rawValue: expectedTimeStamp,
@@ -56,7 +72,7 @@ class CoreEventTests: XCTestCase {
             
             XCTAssertEqual(event.type, expectedEventType)
             XCTAssertEqual(event.name, expectedEventName)
-            XCTAssertEqual(event.index, expectedIndexName)
+            XCTAssertEqual(event.indexName, expectedIndexName)
             XCTAssertEqual(event.userToken, expectedUserToken)
             XCTAssertEqual(event.queryID, expectedQueryID)
             XCTAssertEqual(event.timestamp, expectedTimeStamp)
@@ -67,5 +83,89 @@ class CoreEventTests: XCTestCase {
         }
         
     }
+    
+    func testInitWithAbstractEvent() {
+        
+        let expectedType = EventType.conversion
+        let expectedName = "test event name"
+        let expectedIndexName = "test index name"
+        let expectedUserToken = "test user token"
+        let expectedTimestamp = Date().timeIntervalSince1970
+        let expectedQueryID = "test query id"
+        let expectedObjectIDs = ["o1", "o2"]
+        
+        let testEvent = TestEvent(
+            type: expectedType,
+            name: expectedName,
+            indexName: expectedIndexName,
+            userToken: expectedUserToken,
+            timestamp: expectedTimestamp,
+            queryID: expectedQueryID,
+            objectIDsOrFilters: .objectIDs(expectedObjectIDs))
+        
+        let coreEvent = CoreEvent(event: testEvent)
+        
+        XCTAssertEqual(coreEvent.type, expectedType)
+        XCTAssertEqual(coreEvent.name, expectedName)
+        XCTAssertEqual(coreEvent.indexName, expectedIndexName)
+        XCTAssertEqual(coreEvent.userToken, expectedUserToken)
+        XCTAssertEqual(coreEvent.timestamp, expectedTimestamp)
+        XCTAssertEqual(coreEvent.queryID, expectedQueryID)
+        XCTAssertEqual(coreEvent.objectIDsOrFilters, .objectIDs(expectedObjectIDs))
+        
+    }
+    
+    func testObjectsOverflow() {
+        
+        let exp = expectation(description: "error callback expectation")
+        let objectIDs = [String](repeating: "o", count: CoreEvent.maxObjectIDsCount + 1)
+        
+        XCTAssertThrowsError(try CoreEvent(type: .click, name: "", index: "", userToken: "", timestamp: 0, queryID: .none, objectIDsOrFilters: .objectIDs(objectIDs))
+        , "constructor must throw an error due to objects IDs overflow") { error in
+            exp.fulfill()
+            XCTAssertEqual(error as? CoreEvent.Error, CoreEvent.Error.objectIDsCountOverflow)
+            XCTAssertEqual(error.localizedDescription, "Max objects IDs count in event is \(CoreEvent.maxObjectIDsCount)")
+        }
+        
+        wait(for: [exp], timeout: 1)
+        
+    }
+    
+    func testFiltersOverflow() {
+        
+        let exp = expectation(description: "error callback expectation")
+        let filters = [Filter](repeating: Filter(rawValue: "brand:apple")!, count: CoreEvent.maxFiltersCount + 1)
+        
+        XCTAssertThrowsError(try CoreEvent(type: .click, name: "", index: "", userToken: "", timestamp: 0, queryID: .none, objectIDsOrFilters: .filters(filters))
+        , "constructor must throw an error due to filters count overflow") { error in
+            exp.fulfill()
+            XCTAssertEqual(error as? CoreEvent.Error, CoreEvent.Error.filtersCountOverflow)
+            XCTAssertEqual(error.localizedDescription, "Max filters count in event is \(CoreEvent.maxFiltersCount)")
+        }
+        
+        wait(for: [exp], timeout: 1)
+
+        
+    }
+    
+}
+
+struct TestEvent: Event {
+    
+    let type: EventType
+    let name: String
+    let indexName: String
+    let userToken: String
+    let timestamp: TimeInterval
+    let queryID: String?
+    let objectIDsOrFilters: ObjectsIDsOrFilters
+    
+    static let template = TestEvent(type: .conversion,
+                                    name: "test name",
+                                    indexName: "test index",
+                                    userToken: "test user token",
+                                    timestamp: Date().timeIntervalSince1970,
+                                    queryID: "test query id",
+                                    objectIDsOrFilters: .objectIDs(["o1", "o2"]))
     
 }

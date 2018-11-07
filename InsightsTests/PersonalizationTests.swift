@@ -6,4 +6,12 @@
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
-import Foundation
+import XCTest
+@testable import InstantSearchInsights
+
+class PersonalizationTests: XCTestCase {
+    
+    
+    
+}
+

@@ -65,29 +65,27 @@ import Foundation
         }
     }
     
-    public lazy var personalization: Personalization = {
-        return Personalization(eventProcessor: self)
-    }()
-    
-    public lazy var abTesting: ABTesting = {
-       return ABTesting(eventProcessor: self)
-    }()
-    
-    public lazy var clickAnalytics: ClickAnalytics = {
-        return ClickAnalytics(eventProcessor: self)
-    }()
-    
+    public let personalization: Personalization
+    public let abTesting: ABTesting
+    public let clickAnalytics: ClickAnalytics
     private let credentials: Credentials
-    private var eventsPackages: [EventsPackage] = []
+    private var eventsPackages: [EventsPackage]
     private let webservice: WebService
     private let logger: Logger
     private var flushTimer: Timer!
     
     internal init(credentials: Credentials, webService: WebService, flushDelay: TimeInterval, logger: Logger) {
         self.credentials = credentials
+        self.eventsPackages = []
         self.logger = logger
         self.webservice = webService
+        self.personalization = Personalization(indexName: credentials.indexName)
+        self.abTesting = ABTesting(indexName: credentials.indexName)
+        self.clickAnalytics = ClickAnalytics(indexName: credentials.indexName)
         super.init()
+        personalization.eventProcessor = self
+        abTesting.eventProcessor = self
+        clickAnalytics.eventProcessor = self
         deserialize()
         self.flushTimer = Timer.scheduledTimer(timeInterval: flushDelay, target: self, selector: #selector(flushEvents), userInfo: nil, repeats: true)
     }
@@ -165,20 +163,6 @@ extension Insights: EventProcessor {
         process(event: eventWrapper)
     }
     
-}
-
-@objcMembers public class Credentials: NSObject {
-    
-    let appId: String
-    let apiKey: String
-    let indexName: String
-    
-    init(appId: String, apiKey: String, indexName: String) {
-        self.appId = appId
-        self.apiKey = apiKey
-        self.indexName = indexName
-        super.init()
-    }
 }
 
 public enum InsightsException: Error {

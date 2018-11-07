@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol EventProcessor {
+protocol EventProcessor: class {
     
     func process(_ event: Event)
     

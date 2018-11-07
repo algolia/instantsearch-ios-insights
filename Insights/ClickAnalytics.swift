@@ -10,33 +10,37 @@ import Foundation
 
 @objcMembers public class ClickAnalytics: AnalyticsUsecase {
     
-    var eventProcessor: EventProcessor
+    let indexName: String
+    weak var eventProcessor: EventProcessor?
     
-    init(eventProcessor: EventProcessor) {
-        self.eventProcessor = eventProcessor
+    init(indexName: String) {
+        self.indexName = indexName
     }
     
-    func click(index: String,
-               userToken: String,
+    func click(userToken: String,
                timestamp: TimeInterval = Date().timeIntervalSince1970,
                queryID: String,
                objectIDsWithPositions: [(String, Int)]) throws {
         let event = try Click(name: "",
-                              index: index,
+                              index: indexName,
                               userToken: userToken,
                               timestamp: timestamp,
                               queryID: queryID,
                               objectIDsWithPositions: objectIDsWithPositions)
-        eventProcessor.process(event)
+        eventProcessor?.process(event)
     }
     
-    func conversion(index: String,
-                    userToken: String,
+    func conversion(userToken: String,
                     timestamp: TimeInterval = Date().timeIntervalSince1970,
                     queryID: String,
                     objectIDs: [String]) throws {
-        let event = try Conversion(name: "", index: index, userToken: userToken, timestamp: timestamp, queryID: queryID, objectIDsOrFilters: .objectIDs(objectIDs))
-        eventProcessor.process(event)
+        let event = try Conversion(name: "",
+                                   index: indexName,
+                                   userToken: userToken,
+                                   timestamp: timestamp,
+                                   queryID: queryID,
+                                   objectIDsOrFilters: .objectIDs(objectIDs))
+        eventProcessor?.process(event)
     }
     
 }

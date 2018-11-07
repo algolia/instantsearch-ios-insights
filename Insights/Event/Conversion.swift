@@ -20,8 +20,8 @@ public struct Conversion: Event {
         return coreEvent.name
     }
     
-    public var index: String {
-        return coreEvent.index
+    public var indexName: String {
+        return coreEvent.indexName
     }
     
     public var userToken: String {
@@ -43,8 +43,8 @@ public struct Conversion: Event {
     init(name: String,
          index: String,
          userToken: String,
-         timestamp: TimeInterval = Date().timeIntervalSince1970,
-         queryID: String? = .none,
+         timestamp: TimeInterval,
+         queryID: String?,
          objectIDsOrFilters: ObjectsIDsOrFilters) throws {
         coreEvent = try CoreEvent(type: .conversion,
                                   name: name,

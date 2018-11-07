@@ -10,9 +10,11 @@ import XCTest
 
 class InsightsTests: XCTestCase {
     
+    let indexName = "test index"
+    
     override func setUp() {
         // Remove locally stored events packages for test index
-        guard let filePath = LocalStorage<[EventsPackage]>.filePath(for: "testIndex") else { return }
+        guard let filePath = LocalStorage<[EventsPackage]>.filePath(for: indexName) else { return }
         LocalStorage<[EventsPackage]>.serialize([], file: filePath)
     }
   
@@ -38,9 +40,9 @@ class InsightsTests: XCTestCase {
 
     func testEventIsSentCorrectly() {
         let expectation = self.expectation(description: "Wait for nothing")
-        let indexName = "testIndex"
-        
-        let expectedEventName = "My super event"
+        let expectedUserToken = "test user token"
+        let expectedQueryID = "6de2f7eaa537fa93d8f8f05b927953b1"
+        let expectedObjectIDsWithPositions = [("o1", 1)]
         
         let mockWS = MockWebServiceHelper.getMockWebService(indexName: indexName) { resource in
             if let res = resource as? Resource<Bool, WebserviceError> {
@@ -68,9 +70,10 @@ class InsightsTests: XCTestCase {
                                         flushDelay: 10,
                                         logger: Logger(indexName))
      
-        let clickEvent = try! Click(name: expectedEventName, index: indexName, userToken: "Test user token", queryID: "6de2f7eaa537fa93d8f8f05b927953b1", objectIDsWithPositions: [("ObjectID", 1)])
         
-        insightsRegister.process(clickEvent)
+        try? insightsRegister.clickAnalytics.click(userToken: expectedUserToken,
+                                                   queryID: expectedQueryID,
+                                                   objectIDsWithPositions: expectedObjectIDsWithPositions)
         
         waitForExpectations(timeout: 2, handler: nil)
     }

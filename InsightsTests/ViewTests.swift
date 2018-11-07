@@ -33,7 +33,7 @@ class ViewTests: XCTestCase {
         
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.type.rawValue] as? String, expectedEventType.rawValue)
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.name.rawValue] as? String, expectedEventName)
-        XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.index.rawValue] as? String, expectedIndexName)
+        XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.indexName.rawValue] as? String, expectedIndexName)
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.userToken.rawValue] as? String, expectedUserToken)
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.timestamp.rawValue] as? TimeInterval, expectedTimeStamp)
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.queryID.rawValue] as? String, expectedQueryID)
@@ -55,7 +55,7 @@ class ViewTests: XCTestCase {
         let eventDictionary: [String: Any] = [
             CoreEvent.CodingKeys.type.rawValue: expectedEventType.rawValue,
             CoreEvent.CodingKeys.name.rawValue: expectedEventName,
-            CoreEvent.CodingKeys.index.rawValue: expectedIndexName,
+            CoreEvent.CodingKeys.indexName.rawValue: expectedIndexName,
             CoreEvent.CodingKeys.userToken.rawValue: expectedUserToken,
             CoreEvent.CodingKeys.queryID.rawValue: expectedQueryID,
             CoreEvent.CodingKeys.timestamp.rawValue: expectedTimeStamp,
@@ -71,7 +71,7 @@ class ViewTests: XCTestCase {
             
             XCTAssertEqual(event.type, expectedEventType)
             XCTAssertEqual(event.name, expectedEventName)
-            XCTAssertEqual(event.index, expectedIndexName)
+            XCTAssertEqual(event.indexName, expectedIndexName)
             XCTAssertEqual(event.userToken, expectedUserToken)
             XCTAssertEqual(event.queryID, expectedQueryID)
             XCTAssertEqual(event.timestamp, expectedTimeStamp)

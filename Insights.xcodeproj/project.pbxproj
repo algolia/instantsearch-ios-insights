@@ -74,6 +74,7 @@
 		1DD0A0C920C140B8005FDDDD /* JSONCodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */; };
 		1DD0A0CB20C1421E005FDDDD /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */; };
 		1DD0A0CD20C53B83005FDDDD /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CC20C53B83005FDDDD /* Logger.swift */; };
+		AF332822219343250040BE0A /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF332821219343250040BE0A /* Credentials.swift */; };
 		AF495628218CA1FF006B2F0B /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF495627218CA1FF006B2F0B /* Encodable.swift */; };
 		AF49562A218CA72C006B2F0B /* EventsPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF495629218CA72C006B2F0B /* EventsPackage.swift */; };
 		AF49562C218CA7E3006B2F0B /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49562B218CA7E3006B2F0B /* Filter.swift */; };
@@ -102,6 +103,7 @@
 		AFD431E2219322E200A94D5E /* ABTestingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD431E1219322E200A94D5E /* ABTestingTests.swift */; };
 		AFD431E4219322EF00A94D5E /* PersonalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD431E3219322EF00A94D5E /* PersonalizationTests.swift */; };
 		AFD431E6219322F900A94D5E /* ClickAnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD431E5219322F900A94D5E /* ClickAnalyticsTests.swift */; };
+		AFD431E8219329D700A94D5E /* TestEventProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD431E7219329D700A94D5E /* TestEventProcessor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +157,7 @@
 		1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONCodingKeys.swift; sourceTree = "<group>"; };
 		1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		1DD0A0CC20C53B83005FDDDD /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		AF332821219343250040BE0A /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		AF495627218CA1FF006B2F0B /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		AF495629218CA72C006B2F0B /* EventsPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPackage.swift; sourceTree = "<group>"; };
 		AF49562B218CA7E3006B2F0B /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
@@ -183,6 +186,7 @@
 		AFD431E1219322E200A94D5E /* ABTestingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABTestingTests.swift; sourceTree = "<group>"; };
 		AFD431E3219322EF00A94D5E /* PersonalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalizationTests.swift; sourceTree = "<group>"; };
 		AFD431E5219322F900A94D5E /* ClickAnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickAnalyticsTests.swift; sourceTree = "<group>"; };
+		AFD431E7219329D700A94D5E /* TestEventProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEventProcessor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +278,7 @@
 				1D958B0920BEE9190058230A /* Networking */,
 				1D4531C5209C870C00B26CF9 /* InstantSearchInsights.h */,
 				1D958AF120BD71ED0058230A /* Insights.swift */,
+				AF332821219343250040BE0A /* Credentials.swift */,
 				AFC30C142191F98F00AA72B0 /* EventsSynchronizer.swift */,
 				AFC30C122191F8CB00AA72B0 /* EventProcessor.swift */,
 				AFC30C162191FB6000AA72B0 /* AnalyticsUsecase.swift */,
@@ -312,6 +317,7 @@
 			children = (
 				1D575DDF20C98BFA00D20E33 /* MockWebService.swift */,
 				1DA0065E20CFB71500A9170F /* MockWebServiceHelper.swift */,
+				AFD431E7219329D700A94D5E /* TestEventProcessor.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -655,6 +661,7 @@
 				1DD0A0CB20C1421E005FDDDD /* LocalStorage.swift in Sources */,
 				AF49563B2190A926006B2F0B /* Conversion.swift in Sources */,
 				AFC30C172191FB6000AA72B0 /* AnalyticsUsecase.swift in Sources */,
+				AF332822219343250040BE0A /* Credentials.swift in Sources */,
 				AF49563E2190A954006B2F0B /* Syncable.swift in Sources */,
 				AF495628218CA1FF006B2F0B /* Encodable.swift in Sources */,
 				1DD0A0C620BFF43C005FDDDD /* Result.swift in Sources */,
@@ -700,6 +707,7 @@
 				AFC30BFF2191C1A300AA72B0 /* EventsPackageTests.swift in Sources */,
 				AFC30C012191C1AB00AA72B0 /* ClickTests.swift in Sources */,
 				AFD431E2219322E200A94D5E /* ABTestingTests.swift in Sources */,
+				AFD431E8219329D700A94D5E /* TestEventProcessor.swift in Sources */,
 				AFD431E4219322EF00A94D5E /* PersonalizationTests.swift in Sources */,
 				1D575DE020C98BFA00D20E33 /* MockWebService.swift in Sources */,
 				AFC30C032191C1B900AA72B0 /* ViewTests.swift in Sources */,

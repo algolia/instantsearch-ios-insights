@@ -19,23 +19,45 @@ class ClickTests: XCTestCase {
         let expectedUserToken = "test token"
         let expectedQueryID = "test query id"
         let expectedTimeStamp = Date().timeIntervalSince1970
-        
+        let expectedObjectIDsWithPositions = [("o1", 1), ("o2", 2)]
+        let expectedFilter =  Filter(rawValue: "brand:apple")!
+        let expectedWrappedFilter = ObjectsIDsOrFilters.filters([expectedFilter])
+
         let event = try! Click(name: expectedEventName,
                                index: expectedIndexName,
                                userToken: expectedUserToken,
                                timestamp: expectedTimeStamp,
                                queryID: expectedQueryID,
-                               objectIDsWithPositions: [])
+                               objectIDsWithPositions: expectedObjectIDsWithPositions)
         
-        let eventDictionary = try! event.asDictionary()
+        let eventDictionary = Dictionary<String, Any>(event)!
         
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.type.rawValue] as? String, expectedEventType.rawValue)
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.name.rawValue] as? String, expectedEventName)
-        XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.index.rawValue] as? String, expectedIndexName)
+        XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.indexName.rawValue] as? String, expectedIndexName)
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.userToken.rawValue] as? String, expectedUserToken)
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.timestamp.rawValue] as? TimeInterval, expectedTimeStamp)
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.queryID.rawValue] as? String, expectedQueryID)
+        XCTAssertEqual(eventDictionary[ObjectsIDsOrFilters.CodingKeys.objectIDs.rawValue] as? [String], expectedObjectIDsWithPositions.map { $0.0 })
+        XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.positions.rawValue] as? [Int], expectedObjectIDsWithPositions.map { $0.1 })
         
+        let eventWithFilters = try! Click(name: expectedEventName,
+                                          index: expectedIndexName,
+                                          userToken: expectedUserToken,
+                                          timestamp: expectedTimeStamp,
+                                          objectIDsOrFilters: expectedWrappedFilter,
+                                          positions: .none)
+        
+        let eventWithFiltersDictionary = Dictionary<String, Any>(eventWithFilters)!
+        
+        XCTAssertEqual(eventWithFiltersDictionary[CoreEvent.CodingKeys.type.rawValue] as? String, expectedEventType.rawValue)
+        XCTAssertEqual(eventWithFiltersDictionary[CoreEvent.CodingKeys.name.rawValue] as? String, expectedEventName)
+        XCTAssertEqual(eventWithFiltersDictionary[CoreEvent.CodingKeys.indexName.rawValue] as? String, expectedIndexName)
+        XCTAssertEqual(eventWithFiltersDictionary[CoreEvent.CodingKeys.userToken.rawValue] as? String, expectedUserToken)
+        XCTAssertEqual(eventWithFiltersDictionary[CoreEvent.CodingKeys.timestamp.rawValue] as? TimeInterval, expectedTimeStamp)
+        XCTAssertEqual(eventWithFiltersDictionary[ObjectsIDsOrFilters.CodingKeys.filters.rawValue] as? [String], [expectedFilter.rawValue])
+        XCTAssertNil(eventWithFiltersDictionary[CoreEvent.CodingKeys.queryID.rawValue] as? String)
+        XCTAssertNil(eventWithFiltersDictionary[CoreEvent.CodingKeys.positions.rawValue] as? [Int])
     }
     
     func testClickDecoding() {
@@ -52,7 +74,7 @@ class ClickTests: XCTestCase {
         let eventDictionary: [String: Any] = [
             CoreEvent.CodingKeys.type.rawValue: expectedEventType.rawValue,
             CoreEvent.CodingKeys.name.rawValue: expectedEventName,
-            CoreEvent.CodingKeys.index.rawValue: expectedIndexName,
+            CoreEvent.CodingKeys.indexName.rawValue: expectedIndexName,
             CoreEvent.CodingKeys.userToken.rawValue: expectedUserToken,
             CoreEvent.CodingKeys.queryID.rawValue: expectedQueryID,
             CoreEvent.CodingKeys.timestamp.rawValue: expectedTimeStamp,
@@ -68,7 +90,7 @@ class ClickTests: XCTestCase {
             
             XCTAssertEqual(event.type, expectedEventType)
             XCTAssertEqual(event.name, expectedEventName)
-            XCTAssertEqual(event.index, expectedIndexName)
+            XCTAssertEqual(event.indexName, expectedIndexName)
             XCTAssertEqual(event.userToken, expectedUserToken)
             XCTAssertEqual(event.queryID, expectedQueryID)
             XCTAssertEqual(event.timestamp, expectedTimeStamp)

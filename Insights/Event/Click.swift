@@ -10,10 +10,6 @@ import Foundation
 
 public struct Click: Event {
     
-    enum CodingKeys: String, CodingKey {
-        case positions
-    }
-    
     internal let coreEvent: CoreEvent
     public let positions: [Int]?
 
@@ -25,8 +21,8 @@ public struct Click: Event {
         return coreEvent.name
     }
     
-    public var index: String {
-        return coreEvent.index
+    public var indexName: String {
+        return coreEvent.indexName
     }
     
     public var userToken: String {
@@ -48,7 +44,7 @@ public struct Click: Event {
     init(name: String,
          index: String,
          userToken: String,
-         timestamp: TimeInterval = Date().timeIntervalSince1970,
+         timestamp: TimeInterval,
          queryID: String,
          objectIDsWithPositions: [(String, Int)]) throws {
         
@@ -66,7 +62,7 @@ public struct Click: Event {
     init(name: String,
          index: String,
          userToken: String,
-         timestamp: TimeInterval = Date().timeIntervalSince1970,
+         timestamp: TimeInterval,
          objectIDsOrFilters: ObjectsIDsOrFilters,
          positions: [Int]?) throws {
         coreEvent = try CoreEvent(type: .click,
@@ -74,6 +70,7 @@ public struct Click: Event {
                                   index: index,
                                   userToken: userToken,
                                   timestamp: timestamp,
+                                  queryID: .none,
                                   objectIDsOrFilters: objectIDsOrFilters)
         self.positions = positions
     }
@@ -81,6 +78,10 @@ public struct Click: Event {
 }
 
 extension Click: Codable {
+    
+    enum CodingKeys: String, CodingKey {
+        case positions
+    }
     
     public init(from decoder: Decoder) throws {
         coreEvent = try CoreEvent(from: decoder)

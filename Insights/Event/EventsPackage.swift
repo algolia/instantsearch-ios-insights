@@ -8,25 +8,7 @@
 
 import Foundation
 
-internal struct EventsPackage {
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case events
-    }
-        
-    enum Error: Swift.Error {
-        
-        case packageOverflow
-        
-        var localizedDescription: String {
-            switch self {
-            case .packageOverflow:
-                return "Max events count in package is \(EventsPackage.maxEventCountInPackage)"
-            }
-        }
-        
-    }
+struct EventsPackage {
     
     static let maxEventCountInPackage = 1000
     static let empty = EventsPackage()
@@ -49,7 +31,7 @@ internal struct EventsPackage {
     }
     
     init(events: [EventWrapper]) throws {
-        guard events.count < EventsPackage.maxEventCountInPackage else {
+        guard events.count <= EventsPackage.maxEventCountInPackage else {
             throw Error.packageOverflow
         }
         self.id = UUID().uuidString
@@ -69,7 +51,31 @@ internal struct EventsPackage {
     
 }
 
+extension EventsPackage {
+    
+    enum Error: Swift.Error {
+        case packageOverflow
+    }
+    
+}
+
+extension EventsPackage.Error: LocalizedError {
+    
+    var errorDescription: String? {
+        switch self {
+        case .packageOverflow:
+            return "Max events count in package is \(EventsPackage.maxEventCountInPackage)"
+        }
+    }
+    
+}
+
 extension EventsPackage: Codable {
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case events
+    }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
