@@ -38,11 +38,6 @@ extension APIEndpoint {
 }
 
 struct API {
-  enum Event: Int {
-    case click
-    case view
-    case conversion
-  }
 }
 
 extension API: APIEndpoint {
@@ -54,32 +49,6 @@ extension API: APIEndpoint {
       return URL(string: "http://localhost:8080")!
     }
   }()
-  static let baseAPIURL: URL = { return URL(string: "/1/searches/", relativeTo: baseURL)!
+  static let baseAPIURL: URL = { return URL(string: "/1/events/", relativeTo: baseURL)!
   }()
-}
-
-extension APIEndpoint {
-  static func url(route: API.Event) -> URL {
-    switch route {
-    case .click:
-      return url(path: "click")
-    case .view:
-      return url(path: "view")
-    case .conversion:
-      return url(path: "conversion")
-    }
-  }
-}
-
-extension API.Event {
-  var description: String {
-    switch self {
-    case .click:
-      return "Click"
-    case .view:
-      return "View"
-    case .conversion:
-      return "Conversion"
-    }
-  }
 }

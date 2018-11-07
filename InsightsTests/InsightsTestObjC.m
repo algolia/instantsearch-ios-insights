@@ -29,6 +29,8 @@
 - (void)testInitShouldFail {
   XCTAssertNil([Insights sharedWithIndex:@"notRegisteredIndex"]);
 }
+/* Out of scope for now
+
 
 - (void) testClickEvent {
   XCTestExpectation* expectation = [self expectationWithDescription:@"waitForCompletion"];
@@ -54,7 +56,6 @@
   [self waitForExpectationsWithTimeout:2 handler:nil];
 }
 
-/* Out of scope for now
 - (void) testViewEvent {
   XCTestExpectation* expectation = [self expectationWithDescription:@"waitForCompletion"];
   Insights *stubInsights = [MockWebServiceHelper getMockInsightsWithIndexName:@"indexName" :^(id res) {

@@ -20,7 +20,6 @@
 		1D958B0820BEE9140058230A /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0720BEE9140058230A /* Resource.swift */; };
 		1D958B0B20BEE9820058230A /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0A20BEE9820058230A /* WebService.swift */; };
 		1D958B0D20BEECD40058230A /* EventsSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0C20BEECD40058230A /* EventsSync.swift */; };
-		1D958B0F20BEEDA60058230A /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0E20BEEDA60058230A /* Events.swift */; };
 		1DA0065F20CFB71500A9170F /* MockWebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA0065E20CFB71500A9170F /* MockWebServiceHelper.swift */; };
 		1DA0067B20CFBD8D00A9170F /* InstantSearchInsights.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DA0067220CFBD8D00A9170F /* InstantSearchInsights.framework */; };
 		1DA0068920CFBDCC00A9170F /* JSONCodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */; };
@@ -35,7 +34,6 @@
 		1DA0069220CFBDD800A9170F /* InstantSearchInsights.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D4531C5209C870C00B26CF9 /* InstantSearchInsights.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1DA0069320CFBDD800A9170F /* Insights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AF120BD71ED0058230A /* Insights.swift */; };
 		1DA0069520CFBDD800A9170F /* EventsSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0C20BEECD40058230A /* EventsSync.swift */; };
-		1DA0069620CFBDD800A9170F /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0E20BEEDA60058230A /* Events.swift */; };
 		1DA0069720CFBDD800A9170F /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D77D88020C9722B009EC531 /* Config.swift */; };
 		1DA0069820CFBDFF00A9170F /* MockWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D575DDF20C98BFA00D20E33 /* MockWebService.swift */; };
 		1DA0069920CFBE0100A9170F /* MockWebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA0065E20CFB71500A9170F /* MockWebServiceHelper.swift */; };
@@ -64,11 +62,9 @@
 		1DA006F820CFC2B000A9170F /* InstantSearchInsights.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D4531C5209C870C00B26CF9 /* InstantSearchInsights.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1DA006F920CFC2B900A9170F /* Insights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AF120BD71ED0058230A /* Insights.swift */; };
 		1DA006FA20CFC2B900A9170F /* EventsSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0C20BEECD40058230A /* EventsSync.swift */; };
-		1DA006FB20CFC2B900A9170F /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0E20BEEDA60058230A /* Events.swift */; };
 		1DA006FC20CFC2B900A9170F /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D77D88020C9722B009EC531 /* Config.swift */; };
 		1DA006FD20CFC2BA00A9170F /* Insights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AF120BD71ED0058230A /* Insights.swift */; };
 		1DA006FE20CFC2BA00A9170F /* EventsSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0C20BEECD40058230A /* EventsSync.swift */; };
-		1DA006FF20CFC2BA00A9170F /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0E20BEEDA60058230A /* Events.swift */; };
 		1DA0070020CFC2BA00A9170F /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D77D88020C9722B009EC531 /* Config.swift */; };
 		1DA0070120CFCAA500A9170F /* MockWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D575DDF20C98BFA00D20E33 /* MockWebService.swift */; };
 		1DA0070220CFCAA800A9170F /* MockWebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA0065E20CFB71500A9170F /* MockWebServiceHelper.swift */; };
@@ -78,6 +74,34 @@
 		1DD0A0C920C140B8005FDDDD /* JSONCodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */; };
 		1DD0A0CB20C1421E005FDDDD /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */; };
 		1DD0A0CD20C53B83005FDDDD /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CC20C53B83005FDDDD /* Logger.swift */; };
+		AF495628218CA1FF006B2F0B /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF495627218CA1FF006B2F0B /* Encodable.swift */; };
+		AF49562A218CA72C006B2F0B /* EventsPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF495629218CA72C006B2F0B /* EventsPackage.swift */; };
+		AF49562C218CA7E3006B2F0B /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49562B218CA7E3006B2F0B /* Filter.swift */; };
+		AF49562F2190A8AC006B2F0B /* EventWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49562E2190A8AC006B2F0B /* EventWrapper.swift */; };
+		AF4956312190A8B2006B2F0B /* CoreEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956302190A8B2006B2F0B /* CoreEvent.swift */; };
+		AF4956332190A8F5006B2F0B /* ObjectIDsOrFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956322190A8F5006B2F0B /* ObjectIDsOrFilters.swift */; };
+		AF4956352190A90C006B2F0B /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956342190A90C006B2F0B /* EventType.swift */; };
+		AF4956372190A919006B2F0B /* Click.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956362190A919006B2F0B /* Click.swift */; };
+		AF4956392190A91E006B2F0B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956382190A91E006B2F0B /* View.swift */; };
+		AF49563B2190A926006B2F0B /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49563A2190A926006B2F0B /* Conversion.swift */; };
+		AF49563E2190A954006B2F0B /* Syncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49563D2190A954006B2F0B /* Syncable.swift */; };
+		AF49564021919D59006B2F0B /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49563F21919D59006B2F0B /* AnyEncodable.swift */; };
+		AFC30BFF2191C1A300AA72B0 /* EventsPackageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30BFE2191C1A300AA72B0 /* EventsPackageTests.swift */; };
+		AFC30C012191C1AB00AA72B0 /* ClickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C002191C1AB00AA72B0 /* ClickTests.swift */; };
+		AFC30C032191C1B900AA72B0 /* ViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C022191C1B900AA72B0 /* ViewTests.swift */; };
+		AFC30C052191C1C100AA72B0 /* ConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C042191C1C100AA72B0 /* ConversionTests.swift */; };
+		AFC30C072191C24500AA72B0 /* CoreEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C062191C24500AA72B0 /* CoreEventTests.swift */; };
+		AFC30C092191C58F00AA72B0 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C082191C58F00AA72B0 /* Event.swift */; };
+		AFC30C0B2191D0F100AA72B0 /* Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C0A2191D0F100AA72B0 /* Decodable.swift */; };
+		AFC30C0D2191F86600AA72B0 /* ABTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C0C2191F86600AA72B0 /* ABTesting.swift */; };
+		AFC30C0F2191F87000AA72B0 /* ClickAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C0E2191F87000AA72B0 /* ClickAnalytics.swift */; };
+		AFC30C112191F87A00AA72B0 /* Personalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C102191F87A00AA72B0 /* Personalization.swift */; };
+		AFC30C132191F8CB00AA72B0 /* EventProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C122191F8CB00AA72B0 /* EventProcessor.swift */; };
+		AFC30C152191F98F00AA72B0 /* EventsSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C142191F98F00AA72B0 /* EventsSynchronizer.swift */; };
+		AFC30C172191FB6000AA72B0 /* AnalyticsUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C162191FB6000AA72B0 /* AnalyticsUsecase.swift */; };
+		AFD431E2219322E200A94D5E /* ABTestingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD431E1219322E200A94D5E /* ABTestingTests.swift */; };
+		AFD431E4219322EF00A94D5E /* PersonalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD431E3219322EF00A94D5E /* PersonalizationTests.swift */; };
+		AFD431E6219322F900A94D5E /* ClickAnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD431E5219322F900A94D5E /* ClickAnalyticsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,7 +145,6 @@
 		1D958B0720BEE9140058230A /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		1D958B0A20BEE9820058230A /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		1D958B0C20BEECD40058230A /* EventsSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSync.swift; sourceTree = "<group>"; };
-		1D958B0E20BEEDA60058230A /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		1DA0065E20CFB71500A9170F /* MockWebServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWebServiceHelper.swift; sourceTree = "<group>"; };
 		1DA0067220CFBD8D00A9170F /* InstantSearchInsights.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InstantSearchInsights.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DA0067A20CFBD8D00A9170F /* Insights-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Insights-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +155,34 @@
 		1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONCodingKeys.swift; sourceTree = "<group>"; };
 		1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		1DD0A0CC20C53B83005FDDDD /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		AF495627218CA1FF006B2F0B /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
+		AF495629218CA72C006B2F0B /* EventsPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPackage.swift; sourceTree = "<group>"; };
+		AF49562B218CA7E3006B2F0B /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		AF49562E2190A8AC006B2F0B /* EventWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventWrapper.swift; sourceTree = "<group>"; };
+		AF4956302190A8B2006B2F0B /* CoreEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreEvent.swift; sourceTree = "<group>"; };
+		AF4956322190A8F5006B2F0B /* ObjectIDsOrFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectIDsOrFilters.swift; sourceTree = "<group>"; };
+		AF4956342190A90C006B2F0B /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
+		AF4956362190A919006B2F0B /* Click.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Click.swift; sourceTree = "<group>"; };
+		AF4956382190A91E006B2F0B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		AF49563A2190A926006B2F0B /* Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversion.swift; sourceTree = "<group>"; };
+		AF49563D2190A954006B2F0B /* Syncable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syncable.swift; sourceTree = "<group>"; };
+		AF49563F21919D59006B2F0B /* AnyEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
+		AFC30BFE2191C1A300AA72B0 /* EventsPackageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPackageTests.swift; sourceTree = "<group>"; };
+		AFC30C002191C1AB00AA72B0 /* ClickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickTests.swift; sourceTree = "<group>"; };
+		AFC30C022191C1B900AA72B0 /* ViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTests.swift; sourceTree = "<group>"; };
+		AFC30C042191C1C100AA72B0 /* ConversionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionTests.swift; sourceTree = "<group>"; };
+		AFC30C062191C24500AA72B0 /* CoreEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreEventTests.swift; sourceTree = "<group>"; };
+		AFC30C082191C58F00AA72B0 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		AFC30C0A2191D0F100AA72B0 /* Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decodable.swift; sourceTree = "<group>"; };
+		AFC30C0C2191F86600AA72B0 /* ABTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABTesting.swift; sourceTree = "<group>"; };
+		AFC30C0E2191F87000AA72B0 /* ClickAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickAnalytics.swift; sourceTree = "<group>"; };
+		AFC30C102191F87A00AA72B0 /* Personalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personalization.swift; sourceTree = "<group>"; };
+		AFC30C122191F8CB00AA72B0 /* EventProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventProcessor.swift; sourceTree = "<group>"; };
+		AFC30C142191F98F00AA72B0 /* EventsSynchronizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSynchronizer.swift; sourceTree = "<group>"; };
+		AFC30C162191FB6000AA72B0 /* AnalyticsUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsUsecase.swift; sourceTree = "<group>"; };
+		AFD431E1219322E200A94D5E /* ABTestingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABTestingTests.swift; sourceTree = "<group>"; };
+		AFD431E3219322EF00A94D5E /* PersonalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalizationTests.swift; sourceTree = "<group>"; };
+		AFD431E5219322F900A94D5E /* ClickAnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickAnalyticsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,13 +267,22 @@
 		1D4531C4209C870C00B26CF9 /* Insights */ = {
 			isa = PBXGroup;
 			children = (
+				AF49563C2190A94A006B2F0B /* Protocols */,
+				AF49562D2190A89C006B2F0B /* Event */,
+				AF495626218CA1EC006B2F0B /* Extensions */,
 				1DD0A0C720C14085005FDDDD /* Helpers */,
 				1D958B0920BEE9190058230A /* Networking */,
 				1D4531C5209C870C00B26CF9 /* InstantSearchInsights.h */,
 				1D958AF120BD71ED0058230A /* Insights.swift */,
+				AFC30C142191F98F00AA72B0 /* EventsSynchronizer.swift */,
+				AFC30C122191F8CB00AA72B0 /* EventProcessor.swift */,
+				AFC30C162191FB6000AA72B0 /* AnalyticsUsecase.swift */,
+				AFC30C0C2191F86600AA72B0 /* ABTesting.swift */,
+				AFC30C0E2191F87000AA72B0 /* ClickAnalytics.swift */,
+				AFC30C102191F87A00AA72B0 /* Personalization.swift */,
 				1D4531C6209C870C00B26CF9 /* Info.plist */,
 				1D958B0C20BEECD40058230A /* EventsSync.swift */,
-				1D958B0E20BEEDA60058230A /* Events.swift */,
+				AF49562B218CA7E3006B2F0B /* Filter.swift */,
 				1D77D88020C9722B009EC531 /* Config.swift */,
 			);
 			path = Insights;
@@ -233,6 +293,14 @@
 			children = (
 				1D575DDE20C98BED00D20E33 /* Helpers */,
 				1D4531D0209C870C00B26CF9 /* InsightsTests.swift */,
+				AFC30C062191C24500AA72B0 /* CoreEventTests.swift */,
+				AFC30BFE2191C1A300AA72B0 /* EventsPackageTests.swift */,
+				AFC30C002191C1AB00AA72B0 /* ClickTests.swift */,
+				AFC30C022191C1B900AA72B0 /* ViewTests.swift */,
+				AFC30C042191C1C100AA72B0 /* ConversionTests.swift */,
+				AFD431E1219322E200A94D5E /* ABTestingTests.swift */,
+				AFD431E3219322EF00A94D5E /* PersonalizationTests.swift */,
+				AFD431E5219322F900A94D5E /* ClickAnalyticsTests.swift */,
 				1D958AF720BD8A6E0058230A /* InsightsTestObjC.m */,
 				1D4531D2209C870C00B26CF9 /* Info.plist */,
 			);
@@ -267,8 +335,42 @@
 				1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */,
 				1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */,
 				1DD0A0CC20C53B83005FDDDD /* Logger.swift */,
+				AF49563F21919D59006B2F0B /* AnyEncodable.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		AF495626218CA1EC006B2F0B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AF495627218CA1FF006B2F0B /* Encodable.swift */,
+				AFC30C0A2191D0F100AA72B0 /* Decodable.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AF49562D2190A89C006B2F0B /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				AF495629218CA72C006B2F0B /* EventsPackage.swift */,
+				AF49562E2190A8AC006B2F0B /* EventWrapper.swift */,
+				AF4956302190A8B2006B2F0B /* CoreEvent.swift */,
+				AF4956322190A8F5006B2F0B /* ObjectIDsOrFilters.swift */,
+				AF4956342190A90C006B2F0B /* EventType.swift */,
+				AF4956362190A919006B2F0B /* Click.swift */,
+				AF4956382190A91E006B2F0B /* View.swift */,
+				AF49563A2190A926006B2F0B /* Conversion.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		AF49563C2190A94A006B2F0B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				AF49563D2190A954006B2F0B /* Syncable.swift */,
+				AFC30C082191C58F00AA72B0 /* Event.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -551,18 +653,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DD0A0CB20C1421E005FDDDD /* LocalStorage.swift in Sources */,
+				AF49563B2190A926006B2F0B /* Conversion.swift in Sources */,
+				AFC30C172191FB6000AA72B0 /* AnalyticsUsecase.swift in Sources */,
+				AF49563E2190A954006B2F0B /* Syncable.swift in Sources */,
+				AF495628218CA1FF006B2F0B /* Encodable.swift in Sources */,
 				1DD0A0C620BFF43C005FDDDD /* Result.swift in Sources */,
+				AFC30C0B2191D0F100AA72B0 /* Decodable.swift in Sources */,
 				1D958B0620BEE8F60058230A /* NSMutableURLRequest+Resource.swift in Sources */,
 				1D958B0B20BEE9820058230A /* WebService.swift in Sources */,
-				1D958B0F20BEEDA60058230A /* Events.swift in Sources */,
+				AF49562A218CA72C006B2F0B /* EventsPackage.swift in Sources */,
+				AF4956352190A90C006B2F0B /* EventType.swift in Sources */,
+				AFC30C112191F87A00AA72B0 /* Personalization.swift in Sources */,
 				1DD0A0C920C140B8005FDDDD /* JSONCodingKeys.swift in Sources */,
+				AF49564021919D59006B2F0B /* AnyEncodable.swift in Sources */,
+				AFC30C152191F98F00AA72B0 /* EventsSynchronizer.swift in Sources */,
+				AF49562F2190A8AC006B2F0B /* EventWrapper.swift in Sources */,
+				AF4956312190A8B2006B2F0B /* CoreEvent.swift in Sources */,
+				AFC30C092191C58F00AA72B0 /* Event.swift in Sources */,
 				1D77D88120C9722B009EC531 /* Config.swift in Sources */,
 				1D958B0420BEE8D40058230A /* HttpMethod.swift in Sources */,
+				AF4956332190A8F5006B2F0B /* ObjectIDsOrFilters.swift in Sources */,
 				1DD0A0CD20C53B83005FDDDD /* Logger.swift in Sources */,
 				1D958AF220BD71ED0058230A /* Insights.swift in Sources */,
 				1D958B0D20BEECD40058230A /* EventsSync.swift in Sources */,
+				AF49562C218CA7E3006B2F0B /* Filter.swift in Sources */,
+				AFC30C0D2191F86600AA72B0 /* ABTesting.swift in Sources */,
 				1D958B0220BEE2BA0058230A /* APIEndpoint.swift in Sources */,
 				1D958B0820BEE9140058230A /* Resource.swift in Sources */,
+				AFC30C0F2191F87000AA72B0 /* ClickAnalytics.swift in Sources */,
+				AF4956392190A91E006B2F0B /* View.swift in Sources */,
+				AFC30C132191F8CB00AA72B0 /* EventProcessor.swift in Sources */,
+				AF4956372190A919006B2F0B /* Click.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,9 +692,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D958AF820BD8A6E0058230A /* InsightsTestObjC.m in Sources */,
+				AFC30C072191C24500AA72B0 /* CoreEventTests.swift in Sources */,
+				AFC30C052191C1C100AA72B0 /* ConversionTests.swift in Sources */,
 				1DA0065F20CFB71500A9170F /* MockWebServiceHelper.swift in Sources */,
 				1D4531D1209C870C00B26CF9 /* InsightsTests.swift in Sources */,
+				AFD431E6219322F900A94D5E /* ClickAnalyticsTests.swift in Sources */,
+				AFC30BFF2191C1A300AA72B0 /* EventsPackageTests.swift in Sources */,
+				AFC30C012191C1AB00AA72B0 /* ClickTests.swift in Sources */,
+				AFD431E2219322E200A94D5E /* ABTestingTests.swift in Sources */,
+				AFD431E4219322EF00A94D5E /* PersonalizationTests.swift in Sources */,
 				1D575DE020C98BFA00D20E33 /* MockWebService.swift in Sources */,
+				AFC30C032191C1B900AA72B0 /* ViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,7 +710,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DA0069620CFBDD800A9170F /* Events.swift in Sources */,
 				1DA0069120CFBDD100A9170F /* Result.swift in Sources */,
 				1DA0068920CFBDCC00A9170F /* JSONCodingKeys.swift in Sources */,
 				1DA0069320CFBDD800A9170F /* Insights.swift in Sources */,
@@ -612,7 +740,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DA006FB20CFC2B900A9170F /* Events.swift in Sources */,
 				1DA006F020CFC2A900A9170F /* Result.swift in Sources */,
 				1DA006E520CFC2A400A9170F /* JSONCodingKeys.swift in Sources */,
 				1DA006F920CFC2B900A9170F /* Insights.swift in Sources */,
@@ -643,7 +770,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DA006FF20CFC2BA00A9170F /* Events.swift in Sources */,
 				1DA006F620CFC2AA00A9170F /* Result.swift in Sources */,
 				1DA006E820CFC2A400A9170F /* JSONCodingKeys.swift in Sources */,
 				1DA006FD20CFC2BA00A9170F /* Insights.swift in Sources */,
