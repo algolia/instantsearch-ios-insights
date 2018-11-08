@@ -29,17 +29,16 @@ Insights *stubInsights;
 }
 
 - (void)testInitShouldWork {
-  NSString* indexName = @"testIndex";
-  Insights* insightsRegister = [Insights registerWithAppId:@"testApp"
-                                                    apiKey:@"testKey"
-                                                 indexName:indexName];
+  NSString* appId = @"testApp";
+  Insights* insightsRegister = [Insights registerWithAppId:appId
+                                                    apiKey:@"testKey"];
   
   XCTAssertNotNil(insightsRegister);
-  XCTAssertNotNil([Insights sharedWithIndex:indexName]);
+  XCTAssertNotNil([Insights sharedWithAppId:appId]);
 }
 
 - (void)testInitShouldFail {
-  XCTAssertNil([Insights sharedWithIndex:@"notRegisteredIndex"]);
+  XCTAssertNil([Insights sharedWithAppId:@"notRegisteredIndex"]);
 }
 
 - (void) testClickAnalyticsClick {

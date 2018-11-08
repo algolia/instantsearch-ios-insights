@@ -19,19 +19,19 @@ class InsightsTests: XCTestCase {
     }
   
     func testInitShouldFail() {
-        let insightsRegister = Insights.shared(index: "test")
+        let insightsRegister = Insights.shared(appId: "test")
         XCTAssertNil(insightsRegister)
         
     }
     
     func testInitShouldWork() {
         
-        let indexName = "testIndex"
+        let appId = "testApp"
         
-        let insightsRegister = Insights.register(appId: "testApp", apiKey: "testKey", indexName: indexName)
+        let insightsRegister = Insights.register(appId: appId, apiKey: "testKey")
         XCTAssertNotNil(insightsRegister)
         
-        let insightsShared = Insights.shared(index: indexName)
+        let insightsShared = Insights.shared(appId: appId)
         XCTAssertNotNil(insightsShared)
         
         XCTAssertEqual(insightsRegister, insightsShared, "Getting the Insights instance from register and shared should be the same")

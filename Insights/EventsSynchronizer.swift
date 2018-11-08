@@ -15,6 +15,8 @@ class EventsSynchronizer: EventProcessor {
     let webservice: WebService
     let logger: Logger
     private var flushTimer: Timer!
+    private let operationQueue: OperationQueue
+    private let localStorageFileName: String
     
     init(credentials: Credentials,
          webService: WebService,
@@ -24,30 +26,36 @@ class EventsSynchronizer: EventProcessor {
         self.credentials = credentials
         self.logger = logger
         self.webservice = webService
-        self.flushTimer = Timer.scheduledTimer(timeInterval: flushDelay, target: self, selector: #selector(flushEvents), userInfo: nil, repeats: true)
+        let operationQueue = OperationQueue()
+        operationQueue.qualityOfService = .utility
+        self.operationQueue = operationQueue
+        self.localStorageFileName = "\(credentials.appId).events"
+        self.flushTimer = .scheduledTimer(timeInterval: flushDelay, target: self, selector: #selector(flushEvents), userInfo: nil, repeats: true)
         deserialize()
     }
     
     func process(_ event: Event) {
         
-        let wrappedEvent = EventWrapper(event)
-        
-        let eventsPackage: EventsPackage
-        
-        if let lastEventsPackage = eventsPackages.last, !lastEventsPackage.isFull {
-            // We are sure that try! will not crash, as where is "not full" check
-            eventsPackage = try! eventsPackages.removeLast().appending(wrappedEvent)
-        } else {
-            eventsPackage = EventsPackage(event: wrappedEvent)
+        operationQueue.addOperation { [weak self] in
+            guard let strongSelf = self else { return }
+            
+            let wrappedEvent = EventWrapper(event)
+            let eventsPackage: EventsPackage
+            
+            if let lastEventsPackage = strongSelf.eventsPackages.last, !lastEventsPackage.isFull {
+                // We are sure that try! will not crash, as where is "not full" check
+                eventsPackage = try! strongSelf.eventsPackages.removeLast().appending(wrappedEvent)
+            } else {
+                eventsPackage = EventsPackage(event: wrappedEvent)
+            }
+            
+            strongSelf.eventsPackages.append(eventsPackage)
+            strongSelf.serialize()
         }
-        
-        eventsPackages.append(eventsPackage)
-        
-        serialize()
         
     }
     
-    @objc func flushEvents() {
+    @objc private func flushEvents() {
         flush(eventsPackages)
     }
     
@@ -58,12 +66,14 @@ class EventsSynchronizer: EventProcessor {
     
     private func sync(eventsPackage: EventsPackage) {
         logger.debug(message: "Syncing \(eventsPackage)")
-        webservice.sync(event: eventsPackage) {[weak self] err in
+        webservice.sync(event: eventsPackage) { [weak self] err in
             
-            // If there is no error or the error is from the Analytics we should remove it. In case of a WebserviceError the event was wronlgy constructed
+            // If there is no error or the error is from the Analytics we should remove it.
+            // In case of a WebserviceError the package was wronlgy constructed
             if err == nil || err is WebserviceError {
                 self?.remove(eventsPackage: eventsPackage)
             }
+            
         }
     }
     
@@ -71,8 +81,6 @@ class EventsSynchronizer: EventProcessor {
         eventsPackages.removeAll(where: { $0.id == eventsPackage.id })
         serialize()
     }
-    
-    let localStorageFileName = "events.com.agolia.insights"
     
     private func serialize() {
         if let file = LocalStorage<[EventsPackage]>.filePath(for: localStorageFileName) {

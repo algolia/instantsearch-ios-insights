@@ -18,4 +18,12 @@ import Foundation
         self.apiKey = apiKey
         super.init()
     }
+    
+    public override var hash: Int {
+        var hasher = Hasher()
+        hasher.combine(appId.hash)
+        hasher.combine(apiKey.hash)
+        return hasher.finalize()
+    }
+    
 }

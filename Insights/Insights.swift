@@ -10,25 +10,19 @@ import Foundation
 /// Main class used for interacting with the InstantSearch Insights library.
 ///
 /// Use:
-/// In order to send insights, you first need to register an APP ID and API key for a given Index
+/// In order to send insights, you first need to register an APP ID and API key
 ///
-/// Once registered, you can simply call `Insights.shared(index: String)` to send your events
+/// Once registered, you can simply call `Insights.shared(appID: String)` to send your events
 ///
 /// Example:
+/// ````
+/// try? Insights.shared(appId: "APPID")?.clickAnalytics.click(userToken: "user101",
+///                                                            indexName: "myAwesomeIndex",
+///                                                            queryID: "6de2f7eaa537fa93d8f8f05b927953b1",
+///                                                            objectIDsWithPositions: [("54675051", 1)])
+/// ````
 ///
-///     let indexName = "myAwesomeIndex"
-///     Insights.register(appId: "APPID", apiKey: "APIKEY", indexName: indexName)
-///
-///     let clickData: [String : Any] = [
-///       "eventName": "My super event",
-///       "queryID": "6de2f7eaa537fa93d8f8f05b927953b1",
-///       "position": 1,
-///       "objectID": "54675051",
-///       "indexName": indexName,
-///       "timestamp": Date.timeIntervalBetween1970AndReferenceDate
-///      ]
-///
-///     Insights.shared(index: indexName).click(params: data)
+
 @objcMembers public class Insights: NSObject {
     
     private static var insightsMap: [String: Insights] = [:]
@@ -37,26 +31,34 @@ import Foundation
     ///
     /// - parameter  appId:   The given app id for which you want to track the events
     /// - parameter  apiKey: The API Key for your `appId`
-    /// - parameter  indexName: The index that is being tracked
     ///
-    @discardableResult public static func register(appId: String, apiKey: String, indexName: String) -> Insights {
+    @discardableResult public static func register(appId: String, apiKey: String) -> Insights {
         let credentials = Credentials(appId: appId, apiKey: apiKey)
-        let logger = Logger(indexName)
-        let webservice = WebService(sessionConfig: Algolia.SessionConfig.default(appId: appId, apiKey: apiKey),
+        let logger = Logger(appId)
+        let sessionConfig =  Algolia.SessionConfig.default(appId: appId, apiKey: apiKey)
+        let webservice = WebService(sessionConfig: sessionConfig,
                                     logger: logger)
         let insights = Insights(credentials: credentials,
                                 webService: webservice,
                                 flushDelay: Algolia.Insights.flushDelay,
                                 logger: logger)
-        Insights.insightsMap[indexName] = insights
+        Insights.insightsMap[appId] = insights
         return insights
     }
     
-    /// Access an already registered `Insights` without having to pass the `apiKey` and `appId`. If the index was not register before, it will return a nil value
-    /// - parameter  index: The index that is being tracked
+    /// Access an already registered `Insights` without having to pass the `apiKey` and `appId`. If the application was not register before, it will return a nil value.
+    /// If more than one application has been registered, return an undetermined instance of `Insights`.
     ///
-    public static func shared(index: String) -> Insights? {
-        return insightsMap[index]
+    
+    public static var shared: Insights? {
+        return insightsMap.first?.value
+    }
+    
+    /// Access an already registered `Insights` without having to pass the `apiKey` and `appId`. If the application was not register before, it will return a nil value.
+    /// - parameter  appId: The index that is being tracked
+    ///
+    public static func shared(appId: String) -> Insights? {
+        return insightsMap[appId]
     }
     
     public var loggingEnabled: Bool = false {
@@ -66,12 +68,14 @@ import Foundation
     }
     
     private let eventSynchornizer: EventsSynchronizer
-    
     public let personalization: Personalization
     public let abTesting: ABTesting
     public let clickAnalytics: ClickAnalytics
     
-    internal init(credentials: Credentials, webService: WebService, flushDelay: TimeInterval, logger: Logger) {
+    internal init(credentials: Credentials,
+                  webService: WebService,
+                  flushDelay: TimeInterval,
+                  logger: Logger) {
         let eventSynchornizer = EventsSynchronizer(
             credentials: credentials,
             webService: webService,
@@ -84,8 +88,4 @@ import Foundation
         super.init()
     }
     
-}
-
-public enum InsightsException: Error {
-    case credentialsNotFound(String)
 }
