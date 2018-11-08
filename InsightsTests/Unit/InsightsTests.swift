@@ -64,14 +64,14 @@ class InsightsTests: XCTestCase {
         }
         
         let insightsRegister = Insights(credentials: Credentials(appId: "dummyAppId",
-                                                                 apiKey: "dummyApiKey",
-                                                                 indexName: indexName),
+                                                                 apiKey: "dummyApiKey"),
                                         webService: mockWS,
-                                        flushDelay: 10,
+                                        flushDelay: 1,
                                         logger: Logger(indexName))
      
         
         try? insightsRegister.clickAnalytics.click(userToken: expectedUserToken,
+                                                   indexName: indexName,
                                                    queryID: expectedQueryID,
                                                    objectIDsWithPositions: expectedObjectIDsWithPositions)
         

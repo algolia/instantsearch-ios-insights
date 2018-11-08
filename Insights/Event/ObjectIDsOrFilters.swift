@@ -20,7 +20,7 @@ public enum ObjectsIDsOrFilters: Codable, Equatable {
     }
     
     case objectIDs([String])
-    case filters([Filter])
+    case filters([String])
     
     public init(from decoder: Decoder) throws {
         
@@ -28,7 +28,7 @@ public enum ObjectsIDsOrFilters: Codable, Equatable {
         
         if let objectIDs = try? container.decode([String].self, forKey: .objectIDs) {
             self = .objectIDs(objectIDs)
-        } else if let filters = try? container.decode([Filter].self, forKey: .filters) {
+        } else if let filters = try? container.decode([String].self, forKey: .filters) {
             self = .filters(filters)
         } else {
             throw Error.decodingFailure

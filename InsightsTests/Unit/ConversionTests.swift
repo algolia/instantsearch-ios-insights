@@ -19,15 +19,14 @@ class ConversionTests: XCTestCase {
         let expectedUserToken = "test token"
         let expectedQueryID = "test query id"
         let expectedTimeStamp = Date().timeIntervalSince1970
-        let expectedFilter =  Filter(rawValue: "brand:apple")!
-        let expectedWrappedFilter = ObjectsIDsOrFilters.filters([expectedFilter])
+        let expectedFilter =  "brand:apple"
         
         let event = try! Conversion(name: expectedEventName,
-                                    index: expectedIndexName,
+                                    indexName: expectedIndexName,
                                     userToken: expectedUserToken,
                                     timestamp: expectedTimeStamp,
                                     queryID: expectedQueryID,
-                                    objectIDsOrFilters: expectedWrappedFilter)
+                                    objectIDsOrFilters: .filters([expectedFilter]))
         
         let eventDictionary = Dictionary(event)!
         
@@ -37,7 +36,7 @@ class ConversionTests: XCTestCase {
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.userToken.rawValue] as? String, expectedUserToken)
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.timestamp.rawValue] as? TimeInterval, expectedTimeStamp)
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.queryID.rawValue] as? String, expectedQueryID)
-        XCTAssertEqual(eventDictionary[ObjectsIDsOrFilters.CodingKeys.filters.rawValue] as? [String], [expectedFilter.rawValue])
+        XCTAssertEqual(eventDictionary[ObjectsIDsOrFilters.CodingKeys.filters.rawValue] as? [String], [expectedFilter])
         
     }
     
@@ -49,8 +48,7 @@ class ConversionTests: XCTestCase {
         let expectedUserToken = "test token"
         let expectedQueryID = "test query id"
         let expectedTimeStamp = Date().timeIntervalSince1970
-        let expectedFilter =  Filter(rawValue: "brand:apple")!
-        let expectedWrappedFilter = ObjectsIDsOrFilters.filters([expectedFilter])
+        let expectedFilter =  "brand:apple"
         
         let eventDictionary: [String: Any] = [
             CoreEvent.CodingKeys.type.rawValue: expectedEventType.rawValue,
@@ -59,7 +57,7 @@ class ConversionTests: XCTestCase {
             CoreEvent.CodingKeys.userToken.rawValue: expectedUserToken,
             CoreEvent.CodingKeys.queryID.rawValue: expectedQueryID,
             CoreEvent.CodingKeys.timestamp.rawValue: expectedTimeStamp,
-            ObjectsIDsOrFilters.CodingKeys.filters.rawValue: [expectedFilter.rawValue],
+            ObjectsIDsOrFilters.CodingKeys.filters.rawValue: [expectedFilter],
             ]
         
         let data = try! JSONSerialization.data(withJSONObject: eventDictionary, options: [])
@@ -75,7 +73,7 @@ class ConversionTests: XCTestCase {
             XCTAssertEqual(event.userToken, expectedUserToken)
             XCTAssertEqual(event.queryID, expectedQueryID)
             XCTAssertEqual(event.timestamp, expectedTimeStamp)
-            XCTAssertEqual(event.objectIDsOrFilters, expectedWrappedFilter)
+            XCTAssertEqual(event.objectIDsOrFilters, .filters([expectedFilter]))
             
         } catch let error {
             XCTFail("\(error)")

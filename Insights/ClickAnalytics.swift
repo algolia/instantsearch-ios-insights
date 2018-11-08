@@ -10,49 +10,52 @@ import Foundation
 
 @objcMembers public class ClickAnalytics: NSObject, AnalyticsUsecase {
     
-    let indexName: String
-    weak var eventProcessor: EventProcessor?
+    var eventProcessor: EventProcessor
     
-    init(indexName: String) {
-        self.indexName = indexName
+    init(eventProcessor: EventProcessor) {
+        self.eventProcessor = eventProcessor
     }
     
     @available(swift, obsoleted: 3.1)
     public func click(userToken: String,
-                     timestamp: TimeInterval = Date().timeIntervalSince1970,
-                     queryID: String,
-                     objectIDs: [String],
-                     positions: [Int]) throws {
+                      indexName: String,
+                      timestamp: TimeInterval = Date().timeIntervalSince1970,
+                      queryID: String,
+                      objectIDs: [String],
+                      positions: [Int]) throws {
         let objectIDsWithPositions = zip(objectIDs, positions).map { $0 }
         try click(userToken: userToken,
+                  indexName: indexName,
                   queryID: queryID,
                   objectIDsWithPositions: objectIDsWithPositions)
     }
     
     public func click(userToken: String,
-               timestamp: TimeInterval = Date().timeIntervalSince1970,
-               queryID: String,
-               objectIDsWithPositions: [(String, Int)]) throws {
+                      indexName: String,
+                      timestamp: TimeInterval = Date().timeIntervalSince1970,
+                      queryID: String,
+                      objectIDsWithPositions: [(String, Int)]) throws {
         let event = try Click(name: "",
-                              index: indexName,
+                              indexName: indexName,
                               userToken: userToken,
                               timestamp: timestamp,
                               queryID: queryID,
                               objectIDsWithPositions: objectIDsWithPositions)
-        eventProcessor?.process(event)
+        eventProcessor.process(event)
     }
     
     public func conversion(userToken: String,
-                    timestamp: TimeInterval = Date().timeIntervalSince1970,
-                    queryID: String,
-                    objectIDs: [String]) throws {
+                           indexName: String,
+                           timestamp: TimeInterval = Date().timeIntervalSince1970,
+                           queryID: String,
+                           objectIDs: [String]) throws {
         let event = try Conversion(name: "",
-                                   index: indexName,
+                                   indexName: indexName,
                                    userToken: userToken,
                                    timestamp: timestamp,
                                    queryID: queryID,
                                    objectIDsOrFilters: .objectIDs(objectIDs))
-        eventProcessor?.process(event)
+        eventProcessor.process(event)
     }
     
 }

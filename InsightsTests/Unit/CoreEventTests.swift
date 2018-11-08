@@ -19,7 +19,7 @@ class CoreEventTests: XCTestCase {
         let expectedUserToken = "test user token"
         let expectedTimestamp = Date().timeIntervalSince1970
         let expectedQueryID = "test query id"
-        let filter = Filter(rawValue: "category:toys")!
+        let filter = "category:toys"
         let expectedWrappedFilter = ObjectsIDsOrFilters.filters([filter])
         
         
@@ -38,7 +38,7 @@ class CoreEventTests: XCTestCase {
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.indexName.rawValue] as? String, expectedIndexName)
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.userToken.rawValue] as? String, expectedUserToken)
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.queryID.rawValue] as? String, expectedQueryID)
-        XCTAssertEqual(eventDictionary[ObjectsIDsOrFilters.CodingKeys.filters.rawValue] as? [String], [filter.rawValue])
+        XCTAssertEqual(eventDictionary[ObjectsIDsOrFilters.CodingKeys.filters.rawValue] as? [String], [filter])
         
     }
     
@@ -50,7 +50,7 @@ class CoreEventTests: XCTestCase {
         let expectedUserToken = "Test user token"
         let expectedQueryID = "Test query id"
         let expectedTimeStamp = Date().timeIntervalSince1970
-        let expectedFilter =  Filter(rawValue: "brand:apple")!
+        let expectedFilter = "brand:apple"
         let expectedWrappedFilter = ObjectsIDsOrFilters.filters([expectedFilter])
         
         let eventDictionary: [String: Any] = [
@@ -60,7 +60,7 @@ class CoreEventTests: XCTestCase {
             CoreEvent.CodingKeys.userToken.rawValue: expectedUserToken,
             CoreEvent.CodingKeys.queryID.rawValue: expectedQueryID,
             CoreEvent.CodingKeys.timestamp.rawValue: expectedTimeStamp,
-            ObjectsIDsOrFilters.CodingKeys.filters.rawValue: [expectedFilter.rawValue],
+            ObjectsIDsOrFilters.CodingKeys.filters.rawValue: [expectedFilter],
             ]
         
         let data = try! JSONSerialization.data(withJSONObject: eventDictionary, options: [])
@@ -134,7 +134,7 @@ class CoreEventTests: XCTestCase {
     func testFiltersOverflow() {
         
         let exp = expectation(description: "error callback expectation")
-        let filters = [Filter](repeating: Filter(rawValue: "brand:apple")!, count: CoreEvent.maxFiltersCount + 1)
+        let filters = [String](repeating: "brand:apple", count: CoreEvent.maxFiltersCount + 1)
         
         XCTAssertThrowsError(try CoreEvent(type: .click, name: "", index: "", userToken: "", timestamp: 0, queryID: .none, objectIDsOrFilters: .filters(filters))
         , "constructor must throw an error due to filters count overflow") { error in

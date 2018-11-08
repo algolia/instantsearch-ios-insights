@@ -12,12 +12,10 @@ import Foundation
     
     let appId: String
     let apiKey: String
-    let indexName: String
     
-    init(appId: String, apiKey: String, indexName: String) {
+    init(appId: String, apiKey: String) {
         self.appId = appId
         self.apiKey = apiKey
-        self.indexName = indexName
         super.init()
     }
 }

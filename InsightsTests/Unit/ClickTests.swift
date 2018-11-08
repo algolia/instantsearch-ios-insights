@@ -20,11 +20,10 @@ class ClickTests: XCTestCase {
         let expectedQueryID = "test query id"
         let expectedTimeStamp = Date().timeIntervalSince1970
         let expectedObjectIDsWithPositions = [("o1", 1), ("o2", 2)]
-        let expectedFilter =  Filter(rawValue: "brand:apple")!
-        let expectedWrappedFilter = ObjectsIDsOrFilters.filters([expectedFilter])
+        let expectedFilter = "brand:apple"
 
         let event = try! Click(name: expectedEventName,
-                               index: expectedIndexName,
+                               indexName: expectedIndexName,
                                userToken: expectedUserToken,
                                timestamp: expectedTimeStamp,
                                queryID: expectedQueryID,
@@ -42,10 +41,10 @@ class ClickTests: XCTestCase {
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.positions.rawValue] as? [Int], expectedObjectIDsWithPositions.map { $0.1 })
         
         let eventWithFilters = try! Click(name: expectedEventName,
-                                          index: expectedIndexName,
+                                          indexName: expectedIndexName,
                                           userToken: expectedUserToken,
                                           timestamp: expectedTimeStamp,
-                                          objectIDsOrFilters: expectedWrappedFilter,
+                                          objectIDsOrFilters: .filters([expectedFilter]),
                                           positions: .none)
         
         let eventWithFiltersDictionary = Dictionary<String, Any>(eventWithFilters)!
@@ -55,7 +54,7 @@ class ClickTests: XCTestCase {
         XCTAssertEqual(eventWithFiltersDictionary[CoreEvent.CodingKeys.indexName.rawValue] as? String, expectedIndexName)
         XCTAssertEqual(eventWithFiltersDictionary[CoreEvent.CodingKeys.userToken.rawValue] as? String, expectedUserToken)
         XCTAssertEqual(eventWithFiltersDictionary[CoreEvent.CodingKeys.timestamp.rawValue] as? TimeInterval, expectedTimeStamp)
-        XCTAssertEqual(eventWithFiltersDictionary[ObjectsIDsOrFilters.CodingKeys.filters.rawValue] as? [String], [expectedFilter.rawValue])
+        XCTAssertEqual(eventWithFiltersDictionary[ObjectsIDsOrFilters.CodingKeys.filters.rawValue] as? [String], [expectedFilter])
         XCTAssertNil(eventWithFiltersDictionary[CoreEvent.CodingKeys.queryID.rawValue] as? String)
         XCTAssertNil(eventWithFiltersDictionary[CoreEvent.CodingKeys.positions.rawValue] as? [Int])
     }
@@ -68,7 +67,7 @@ class ClickTests: XCTestCase {
         let expectedUserToken = "test token"
         let expectedQueryID = "test query id"
         let expectedTimeStamp = Date().timeIntervalSince1970
-        let expectedFilter =  Filter(rawValue: "brand:apple")!
+        let expectedFilter =  "brand:apple"
         let expectedWrappedFilter = ObjectsIDsOrFilters.filters([expectedFilter])
         
         let eventDictionary: [String: Any] = [
@@ -78,7 +77,7 @@ class ClickTests: XCTestCase {
             CoreEvent.CodingKeys.userToken.rawValue: expectedUserToken,
             CoreEvent.CodingKeys.queryID.rawValue: expectedQueryID,
             CoreEvent.CodingKeys.timestamp.rawValue: expectedTimeStamp,
-            ObjectsIDsOrFilters.CodingKeys.filters.rawValue: [expectedFilter.rawValue],
+            ObjectsIDsOrFilters.CodingKeys.filters.rawValue: [expectedFilter],
             ]
         
         let data = try! JSONSerialization.data(withJSONObject: eventDictionary, options: [])

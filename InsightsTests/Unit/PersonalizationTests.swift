@@ -11,17 +11,16 @@ import XCTest
 
 class PersonalizationTests: XCTestCase {
     
-    let indexName = "index name"
     let eventProcessor = TestEventProcessor()
-    let personalization = Personalization(indexName: "index name")
+    var personalization: Personalization!
     
     override func setUp() {
-        personalization.eventProcessor = eventProcessor
+        personalization = Personalization(eventProcessor: eventProcessor)
     }
     
     func testViewEventWithObjects() {
         
-        let expectedIndexName = indexName
+        let expectedIndexName = "index name"
         let expectedEventName = "event name"
         let expectedUserToken = "user token"
         let expectedTimestamp = Date().timeIntervalSince1970
@@ -45,6 +44,7 @@ class PersonalizationTests: XCTestCase {
         }
 
         try! personalization.view(eventName: expectedEventName,
+                                  indexName: expectedIndexName,
                                   userToken: expectedUserToken,
                                   timestamp: expectedTimestamp,
                                   objectIDs: expectedObjectIDs)
@@ -55,11 +55,11 @@ class PersonalizationTests: XCTestCase {
     
     func testViewEventWithFilters() {
         
-        let expectedIndexName = indexName
+        let expectedIndexName = "index name"
         let expectedEventName = "event name"
         let expectedUserToken = "user token"
         let expectedTimestamp = Date().timeIntervalSince1970
-        let expectedFilters = [Filter(rawValue: "brand:apple")!, Filter(rawValue: "color:red")!]
+        let expectedFilters = ["brand:apple", "color:red"]
         
         let exp = expectation(description: "Wait for event processor callback")
         
@@ -79,6 +79,7 @@ class PersonalizationTests: XCTestCase {
         }
         
         try! personalization.view(eventName: expectedEventName,
+                                  indexName: expectedIndexName,
                                   userToken: expectedUserToken,
                                   timestamp: expectedTimestamp,
                                   filters: expectedFilters)
@@ -90,7 +91,7 @@ class PersonalizationTests: XCTestCase {
     
     func testClickEventWithObjects() {
         
-        let expectedIndexName = indexName
+        let expectedIndexName = "index name"
         let expectedEventName = "event name"
         let expectedUserToken = "user token"
         let expectedTimestamp = Date().timeIntervalSince1970
@@ -114,9 +115,10 @@ class PersonalizationTests: XCTestCase {
         }
         
         try! personalization.click(eventName: expectedEventName,
-                                  userToken: expectedUserToken,
-                                  timestamp: expectedTimestamp,
-                                  objectIDs: expectedObjectIDs)
+                                   indexName: expectedIndexName,
+                                   userToken: expectedUserToken,
+                                   timestamp: expectedTimestamp,
+                                   objectIDs: expectedObjectIDs)
         
         wait(for: [exp], timeout: 1)
 
@@ -125,11 +127,11 @@ class PersonalizationTests: XCTestCase {
     
     func testClickEventWithFilters() {
         
-        let expectedIndexName = indexName
+        let expectedIndexName = "index name"
         let expectedEventName = "event name"
         let expectedUserToken = "user token"
         let expectedTimestamp = Date().timeIntervalSince1970
-        let expectedFilters = [Filter(rawValue: "brand:apple")!, Filter(rawValue: "color:red")!]
+        let expectedFilters = ["brand:apple", "color:red"]
         
         let exp = expectation(description: "Wait for event processor callback")
         
@@ -149,9 +151,10 @@ class PersonalizationTests: XCTestCase {
         }
         
         try! personalization.click(eventName: expectedEventName,
-                                  userToken: expectedUserToken,
-                                  timestamp: expectedTimestamp,
-                                  filters: expectedFilters)
+                                   indexName: expectedIndexName,
+                                   userToken: expectedUserToken,
+                                   timestamp: expectedTimestamp,
+                                   filters: expectedFilters)
         
         wait(for: [exp], timeout: 1)
 
@@ -160,7 +163,7 @@ class PersonalizationTests: XCTestCase {
     
     func testConversionEventWithObjects() {
         
-        let expectedIndexName = indexName
+        let expectedIndexName = "index name"
         let expectedEventName = "event name"
         let expectedUserToken = "user token"
         let expectedTimestamp = Date().timeIntervalSince1970
@@ -184,6 +187,7 @@ class PersonalizationTests: XCTestCase {
         }
         
         try! personalization.conversion(eventName: expectedEventName,
+                                        indexName: expectedIndexName,
                                         userToken: expectedUserToken,
                                         timestamp: expectedTimestamp,
                                         objectIDs: expectedObjectIDs)
@@ -195,12 +199,12 @@ class PersonalizationTests: XCTestCase {
     
     func testConversionEventWithFilters() {
         
-        let expectedIndexName = indexName
+        let expectedIndexName = "index name"
         let expectedEventName = "event name"
         let expectedUserToken = "user token"
         let expectedTimestamp = Date().timeIntervalSince1970
-        let expectedFilters = [Filter(rawValue: "brand:apple")!, Filter(rawValue: "color:red")!]
-        
+        let expectedFilters = ["brand:apple", "color:red"]
+
         let exp = expectation(description: "Wait for event processor callback")
         
         eventProcessor.didProcess = { e in
@@ -219,6 +223,7 @@ class PersonalizationTests: XCTestCase {
         }
         
         try! personalization.conversion(eventName: expectedEventName,
+                                        indexName: expectedIndexName,
                                         userToken: expectedUserToken,
                                         timestamp: expectedTimestamp,
                                         filters: expectedFilters)

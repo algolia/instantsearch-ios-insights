@@ -41,14 +41,14 @@ public struct Conversion: Event {
     }
     
     init(name: String,
-         index: String,
+         indexName: String,
          userToken: String,
          timestamp: TimeInterval,
          queryID: String?,
          objectIDsOrFilters: ObjectsIDsOrFilters) throws {
         coreEvent = try CoreEvent(type: .conversion,
                                   name: name,
-                                  index: index,
+                                  index: indexName,
                                   userToken: userToken,
                                   timestamp: timestamp,
                                   queryID: queryID,

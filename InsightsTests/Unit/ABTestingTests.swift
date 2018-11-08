@@ -11,17 +11,16 @@ import XCTest
 
 class ABTestingTests: XCTestCase {
     
-    let indexName = "index name"
-    let abTesting = ABTesting(indexName: "index name")
+    var abTesting: ABTesting!
     let eventProcessor = TestEventProcessor()
     
     override func setUp() {
-        abTesting.eventProcessor = eventProcessor
+        abTesting = ABTesting(eventProcessor: eventProcessor)
     }
     
     func testClick() {
         
-        let expectedIndexName = indexName
+        let expectedIndexName = "index name"
         let expectedUserToken = "user token"
         let expectedTimestamp = Date().timeIntervalSince1970
         let expectedQueryID = "query id"
@@ -44,6 +43,7 @@ class ABTestingTests: XCTestCase {
         }
         
         try! abTesting.click(userToken: expectedUserToken,
+                             indexName: expectedIndexName,
                              timestamp: expectedTimestamp,
                              queryID: expectedQueryID,
                              objectIDsWithPositions: expectedObjectIDsWithPositions)
@@ -54,7 +54,7 @@ class ABTestingTests: XCTestCase {
     
     func testConversion() {
         
-        let expectedIndexName = indexName
+        let expectedIndexName = "index name"
         let expectedUserToken = "user token"
         let expectedTimestamp = Date().timeIntervalSince1970
         let expectedQueryID = "query id"
@@ -76,6 +76,7 @@ class ABTestingTests: XCTestCase {
         }
         
         try! abTesting.conversion(userToken: expectedUserToken,
+                                  indexName: expectedIndexName,
                                   timestamp: expectedTimestamp,
                                   queryID: expectedQueryID,
                                   objectIDs: expectedObjectIDs)

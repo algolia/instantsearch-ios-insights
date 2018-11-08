@@ -11,17 +11,16 @@ import XCTest
 
 class ClickAnalyticsTests: XCTestCase {
     
-    let indexName = "index name"
     let eventProcessor = TestEventProcessor()
-    let clickAnalytics = ClickAnalytics(indexName: "index name")
+    var clickAnalytics: ClickAnalytics!
     
     override func setUp() {
-        clickAnalytics.eventProcessor = eventProcessor
+        clickAnalytics = ClickAnalytics(eventProcessor: eventProcessor)
     }
     
     func testClick() {
         
-        let expectedIndexName = indexName
+        let expectedIndexName = "index name"
         let expectedUserToken = "user token"
         let expectedTimestamp = Date().timeIntervalSince1970
         let expectedQueryID = "query id"
@@ -44,6 +43,7 @@ class ClickAnalyticsTests: XCTestCase {
         }
         
         try! clickAnalytics.click(userToken: expectedUserToken,
+                                  indexName: expectedIndexName,
                                   timestamp: expectedTimestamp,
                                   queryID: expectedQueryID,
                                   objectIDsWithPositions: expectedObjectIDsWithPositions)
@@ -54,7 +54,7 @@ class ClickAnalyticsTests: XCTestCase {
     
     func testConversion() {
         
-        let expectedIndexName = indexName
+        let expectedIndexName = "index name"
         let expectedUserToken = "user token"
         let expectedTimestamp = Date().timeIntervalSince1970
         let expectedQueryID = "query id"
@@ -76,6 +76,7 @@ class ClickAnalyticsTests: XCTestCase {
         }
         
         try! clickAnalytics.conversion(userToken: expectedUserToken,
+                                       indexName: expectedIndexName,
                                        timestamp: expectedTimestamp,
                                        queryID: expectedQueryID,
                                        objectIDs: expectedObjectIDs)

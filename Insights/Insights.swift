@@ -40,8 +40,8 @@ import Foundation
     /// - parameter  indexName: The index that is being tracked
     ///
     @discardableResult public static func register(appId: String, apiKey: String, indexName: String) -> Insights {
-        let credentials = Credentials(appId: appId, apiKey: apiKey, indexName: indexName)
-        let logger = Logger(credentials.indexName)
+        let credentials = Credentials(appId: appId, apiKey: apiKey)
+        let logger = Logger(indexName)
         let webservice = WebService(sessionConfig: Algolia.SessionConfig.default(appId: appId, apiKey: apiKey),
                                     logger: logger)
         let insights = Insights(credentials: credentials,
@@ -61,106 +61,27 @@ import Foundation
     
     public var loggingEnabled: Bool = false {
         didSet {
-            logger.enabled = loggingEnabled
+            eventSynchornizer.logger.enabled = loggingEnabled
         }
     }
+    
+    private let eventSynchornizer: EventsSynchronizer
     
     public let personalization: Personalization
     public let abTesting: ABTesting
     public let clickAnalytics: ClickAnalytics
-    private let credentials: Credentials
-    private var eventsPackages: [EventsPackage]
-    private let webservice: WebService
-    private let logger: Logger
-    private var flushTimer: Timer!
     
     internal init(credentials: Credentials, webService: WebService, flushDelay: TimeInterval, logger: Logger) {
-        self.credentials = credentials
-        self.eventsPackages = []
-        self.logger = logger
-        self.webservice = webService
-        self.personalization = Personalization(indexName: credentials.indexName)
-        self.abTesting = ABTesting(indexName: credentials.indexName)
-        self.clickAnalytics = ClickAnalytics(indexName: credentials.indexName)
+        let eventSynchornizer = EventsSynchronizer(
+            credentials: credentials,
+            webService: webService,
+            flushDelay: flushDelay,
+            logger: logger)
+        self.eventSynchornizer = eventSynchornizer
+        self.personalization = Personalization(eventProcessor: eventSynchornizer)
+        self.abTesting = ABTesting(eventProcessor: eventSynchornizer)
+        self.clickAnalytics = ClickAnalytics(eventProcessor: eventSynchornizer)
         super.init()
-        personalization.eventProcessor = self
-        abTesting.eventProcessor = self
-        clickAnalytics.eventProcessor = self
-        deserialize()
-        self.flushTimer = Timer.scheduledTimer(timeInterval: flushDelay, target: self, selector: #selector(flushEvents), userInfo: nil, repeats: true)
-    }
-    
-    private func process(event: EventWrapper) {
-        
-        let eventsPackage: EventsPackage
-        
-        if let lastEventsPackage = eventsPackages.last, !lastEventsPackage.isFull {
-            // We are sure that try! will not crash, as where is "not full" check
-            eventsPackage = try! eventsPackages.removeLast().appending(event)
-        } else {
-            eventsPackage = EventsPackage(event: event)
-        }
-        
-        eventsPackages.append(eventsPackage)
-        
-        sync(eventsPackage: eventsPackage)
-        
-        serialize()
-        
-    }
-    
-    @objc func flushEvents() {
-        flush(eventsPackages)
-    }
-    
-    private func flush(_ eventsPackages: [EventsPackage]) {
-        logger.debug(message: "Flushing remaining events")
-        eventsPackages.forEach(sync)
-    }
-    
-    private func sync(eventsPackage: EventsPackage) {
-        logger.debug(message: "Syncing \(eventsPackage)")
-        webservice.sync(event: eventsPackage) {[weak self] err in
-            
-            // If there is no error or the error is from the Analytics we should remove it. In case of a WebserviceError the event was wronlgy constructed
-            if err == nil || err is WebserviceError {
-                self?.remove(eventsPackage: eventsPackage)
-            }
-        }
-    }
-    
-    private func remove(eventsPackage: EventsPackage) {
-        eventsPackages.removeAll(where: { $0.id == eventsPackage.id })
-        serialize()
-    }
-    
-    private func serialize() {
-        if let file = LocalStorage<[EventsPackage]>.filePath(for: credentials.indexName) {
-            LocalStorage<[EventsPackage]>.serialize(eventsPackages, file: file)
-        } else {
-            logger.debug(message: "Error creating a file for \(credentials.indexName)")
-        }
-    }
-    
-    private func deserialize() {
-        guard let filePath = LocalStorage<[EventsPackage]>.filePath(for: credentials.indexName) else {
-            logger.debug(message: "Error reading a file for \(credentials.indexName)")
-            return
-        }
-        self.eventsPackages = LocalStorage<[EventsPackage]>.deserialize(filePath) ?? []
-    }
-    
-    deinit {
-        flushTimer.invalidate()
-    }
-    
-}
-
-extension Insights: EventProcessor {
-    
-    func process(_ event: Event) {
-        let eventWrapper = EventWrapper(event)
-        process(event: eventWrapper)
     }
     
 }

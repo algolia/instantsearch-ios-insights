@@ -42,7 +42,7 @@ public struct Click: Event {
     }
     
     init(name: String,
-         index: String,
+         indexName: String,
          userToken: String,
          timestamp: TimeInterval,
          queryID: String,
@@ -51,7 +51,7 @@ public struct Click: Event {
         let objectIDs = objectIDsWithPositions.map { $0.0 }
         coreEvent = try CoreEvent(type: .click,
                                   name: name,
-                                  index: index,
+                                  index: indexName,
                                   userToken: userToken,
                                   timestamp: timestamp,
                                   queryID: queryID,
@@ -60,14 +60,14 @@ public struct Click: Event {
     }
     
     init(name: String,
-         index: String,
+         indexName: String,
          userToken: String,
          timestamp: TimeInterval,
          objectIDsOrFilters: ObjectsIDsOrFilters,
          positions: [Int]?) throws {
         coreEvent = try CoreEvent(type: .click,
                                   name: name,
-                                  index: index,
+                                  index: indexName,
                                   userToken: userToken,
                                   timestamp: timestamp,
                                   queryID: .none,

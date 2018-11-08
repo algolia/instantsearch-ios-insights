@@ -17,11 +17,10 @@ class EventsPackageTests: XCTestCase {
         let expectedUserToken = "test token"
         let expectedQueryID = "test query id"
         let expectedTimeStamp = Date().timeIntervalSince1970
-        let expectedFilter =  Filter(rawValue: "brand:apple")!
-        let expectedWrappedFilter = ObjectsIDsOrFilters.filters([expectedFilter])
+        let expectedFilter =  "brand:apple"
         
-        let event1 = try! Conversion(name: "test conversion event", index: expectedIndexName, userToken: expectedUserToken, timestamp: expectedTimeStamp, queryID: expectedQueryID, objectIDsOrFilters: expectedWrappedFilter)
-        let event2 = try! View(name: "test view event", index: expectedIndexName, userToken: expectedUserToken, timestamp: expectedTimeStamp, queryID: expectedQueryID, objectIDsOrFilters: expectedWrappedFilter)
+        let event1 = try! Conversion(name: "test conversion event", indexName: expectedIndexName, userToken: expectedUserToken, timestamp: expectedTimeStamp, queryID: expectedQueryID, objectIDsOrFilters: .filters([expectedFilter]))
+        let event2 = try! View(name: "test view event", indexName: expectedIndexName, userToken: expectedUserToken, timestamp: expectedTimeStamp, queryID: expectedQueryID, objectIDsOrFilters: .filters([expectedFilter]))
         
         do {
             let package = try EventsPackage(events: [.conversion(event1), .view(event2)])
@@ -44,7 +43,7 @@ class EventsPackageTests: XCTestCase {
         let expectedUserToken = "test token"
         let expectedQueryID = "test query id"
         let expectedTimeStamp = Date().timeIntervalSince1970
-        let expectedFilter =  Filter(rawValue: "brand:apple")!
+        let expectedFilter = "brand:apple"
         
         let eventDictionary1: [String: Any] = [
             CoreEvent.CodingKeys.type.rawValue: EventType.conversion.rawValue,
@@ -53,7 +52,7 @@ class EventsPackageTests: XCTestCase {
             CoreEvent.CodingKeys.userToken.rawValue: expectedUserToken,
             CoreEvent.CodingKeys.queryID.rawValue: expectedQueryID,
             CoreEvent.CodingKeys.timestamp.rawValue: expectedTimeStamp,
-            ObjectsIDsOrFilters.CodingKeys.filters.rawValue: [expectedFilter.rawValue],
+            ObjectsIDsOrFilters.CodingKeys.filters.rawValue: [expectedFilter],
             ]
         
         let eventDictionary2: [String: Any] = [
@@ -63,7 +62,7 @@ class EventsPackageTests: XCTestCase {
             CoreEvent.CodingKeys.userToken.rawValue: expectedUserToken,
             CoreEvent.CodingKeys.queryID.rawValue: expectedQueryID,
             CoreEvent.CodingKeys.timestamp.rawValue: expectedTimeStamp,
-            ObjectsIDsOrFilters.CodingKeys.filters.rawValue: [expectedFilter.rawValue],
+            ObjectsIDsOrFilters.CodingKeys.filters.rawValue: [expectedFilter],
             ]
         
         let packageDictionary: [String: Any] = [

@@ -10,7 +10,6 @@ import Foundation
 
 protocol AnalyticsUsecase {
     
-    var eventProcessor: EventProcessor? { get }
-    var indexName: String { get }
+    var eventProcessor: EventProcessor { get }
     
 }
