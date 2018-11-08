@@ -16,16 +16,7 @@ public enum ObjectsIDsOrFilters: Codable, Equatable {
     }
     
     enum Error: Swift.Error {
-        
         case decodingFailure
-        
-        var localizedDescription: String {
-            switch self {
-            case .decodingFailure:
-                return "Neither \(CodingKeys.filters.rawValue), nor \(CodingKeys.objectIDs.rawValue) key found on decoder"
-            }
-        }
-        
     }
     
     case objectIDs([String])
@@ -57,6 +48,17 @@ public enum ObjectsIDsOrFilters: Codable, Equatable {
             try container.encode(objectsIDs, forKey: .objectIDs)
         }
         
+    }
+    
+}
+
+extension ObjectsIDsOrFilters.Error: LocalizedError {
+    
+    var errorDescription: String? {
+        switch self {
+        case .decodingFailure:
+            return "Neither \(ObjectsIDsOrFilters.CodingKeys.filters.rawValue), nor \(ObjectsIDsOrFilters.CodingKeys.objectIDs.rawValue) key found on decoder"
+        }
     }
     
 }

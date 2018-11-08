@@ -1,5 +1,5 @@
 //
-//  IntegrationTests.swift
+//  ABTestingIntegrationTests.swift
 //  InsightsTests
 //
 //  Created by Vladislav Fitc on 08/11/2018.
@@ -9,8 +9,14 @@
 import XCTest
 @testable import InstantSearchInsights
 
-class IntegrationTests: XCTestCase {
+class ABTestingIntegrationTests: XCTestCase {
     
+    func testClickEvent() {
+        
+    }
     
+    func testConversionEvent() {
+        
+    }
     
 }
