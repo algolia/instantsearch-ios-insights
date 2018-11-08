@@ -48,7 +48,7 @@ public struct Conversion: Event {
          objectIDsOrFilters: ObjectsIDsOrFilters) throws {
         coreEvent = try CoreEvent(type: .conversion,
                                   name: name,
-                                  index: indexName,
+                                  indexName: indexName,
                                   userToken: userToken,
                                   timestamp: timestamp,
                                   queryID: queryID,

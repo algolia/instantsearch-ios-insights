@@ -21,11 +21,11 @@ class CoreEventTests: XCTestCase {
         let expectedQueryID = "test query id"
         let filter = "category:toys"
         let expectedWrappedFilter = ObjectsIDsOrFilters.filters([filter])
-        
+
         
         let event = try! CoreEvent(type: expectedType,
                                    name: expectedName,
-                                   index: expectedIndexName,
+                                   indexName: expectedIndexName,
                                    userToken: expectedUserToken,
                                    timestamp: expectedTimestamp,
                                    queryID: expectedQueryID,
@@ -120,7 +120,7 @@ class CoreEventTests: XCTestCase {
         let exp = expectation(description: "error callback expectation")
         let objectIDs = [String](repeating: "o", count: CoreEvent.maxObjectIDsCount + 1)
         
-        XCTAssertThrowsError(try CoreEvent(type: .click, name: "", index: "", userToken: "", timestamp: 0, queryID: .none, objectIDsOrFilters: .objectIDs(objectIDs))
+        XCTAssertThrowsError(try CoreEvent(type: .click, name: "", indexName: "", userToken: "", timestamp: 0, queryID: .none, objectIDsOrFilters: .objectIDs(objectIDs))
         , "constructor must throw an error due to objects IDs overflow") { error in
             exp.fulfill()
             XCTAssertEqual(error as? CoreEvent.Error, CoreEvent.Error.objectIDsCountOverflow)
@@ -136,7 +136,7 @@ class CoreEventTests: XCTestCase {
         let exp = expectation(description: "error callback expectation")
         let filters = [String](repeating: "brand:apple", count: CoreEvent.maxFiltersCount + 1)
         
-        XCTAssertThrowsError(try CoreEvent(type: .click, name: "", index: "", userToken: "", timestamp: 0, queryID: .none, objectIDsOrFilters: .filters(filters))
+        XCTAssertThrowsError(try CoreEvent(type: .click, name: "", indexName: "", userToken: "", timestamp: 0, queryID: .none, objectIDsOrFilters: .filters(filters))
         , "constructor must throw an error due to filters count overflow") { error in
             exp.fulfill()
             XCTAssertEqual(error as? CoreEvent.Error, CoreEvent.Error.filtersCountOverflow)

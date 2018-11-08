@@ -48,7 +48,7 @@ public struct View: Event {
          objectIDsOrFilters: ObjectsIDsOrFilters) throws {
         coreEvent = try CoreEvent(type: .view,
                                   name: name,
-                                  index: indexName,
+                                  indexName: indexName,
                                   userToken: userToken,
                                   timestamp: timestamp,
                                   queryID: queryID,

@@ -51,7 +51,7 @@ public struct Click: Event {
         let objectIDs = objectIDsWithPositions.map { $0.0 }
         coreEvent = try CoreEvent(type: .click,
                                   name: name,
-                                  index: indexName,
+                                  indexName: indexName,
                                   userToken: userToken,
                                   timestamp: timestamp,
                                   queryID: queryID,
@@ -67,7 +67,7 @@ public struct Click: Event {
          positions: [Int]?) throws {
         coreEvent = try CoreEvent(type: .click,
                                   name: name,
-                                  index: indexName,
+                                  indexName: indexName,
                                   userToken: userToken,
                                   timestamp: timestamp,
                                   queryID: .none,

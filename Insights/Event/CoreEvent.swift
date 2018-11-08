@@ -38,7 +38,7 @@ internal struct CoreEvent: Event, Equatable {
     
     init(type: EventType,
          name: String,
-         index: String,
+         indexName: String,
          userToken: String,
          timestamp: TimeInterval,
          queryID: String?,
@@ -57,7 +57,7 @@ internal struct CoreEvent: Event, Equatable {
         
         self.type = type
         self.name = name
-        self.indexName = index
+        self.indexName = indexName
         self.userToken = userToken
         self.timestamp = timestamp
         self.queryID = queryID
