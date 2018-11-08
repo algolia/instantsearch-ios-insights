@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objcMembers public class ABTesting: AnalyticsUsecase {
+@objcMembers public class ABTesting: NSObject, AnalyticsUsecase {
     
     let indexName: String
     weak var eventProcessor: EventProcessor?
@@ -17,7 +17,16 @@ import Foundation
         self.indexName = indexName
     }
     
-    func click(userToken: String,
+    @available(swift, obsoleted: 3.1)
+    public func click(userToken: String, timestamp: TimeInterval, queryID: String, objectIDs: [String], positions: [Int]) throws {
+        let objectIDsWithPositions = zip(objectIDs, positions).map { $0 }
+        try click(userToken: userToken,
+                  timestamp: timestamp,
+                  queryID: queryID,
+                  objectIDsWithPositions: objectIDsWithPositions)
+    }
+    
+    public func click(userToken: String,
                timestamp: TimeInterval = Date().timeIntervalSince1970,
                queryID: String,
         objectIDsWithPositions: [(String, Int)]) throws {
@@ -30,7 +39,7 @@ import Foundation
         eventProcessor?.process(event)
     }
     
-    func conversion(userToken: String,
+    public func conversion(userToken: String,
                     timestamp: TimeInterval = Date().timeIntervalSince1970,
                     queryID: String,
                     objectIDs: [String]) throws {

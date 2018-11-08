@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objcMembers public class Personalization: AnalyticsUsecase {
+@objcMembers public class Personalization: NSObject, AnalyticsUsecase {
     
     let indexName: String
     weak var eventProcessor: EventProcessor?
@@ -17,7 +17,7 @@ import Foundation
         self.indexName = indexName
     }
     
-    func view(eventName: String,
+    public func view(eventName: String,
               userToken: String,
               timestamp: TimeInterval = Date().timeIntervalSince1970,
               objectIDs: [String]) throws {
@@ -30,7 +30,7 @@ import Foundation
         eventProcessor?.process(event)
     }
     
-    func view(eventName: String,
+    public func view(eventName: String,
               userToken: String,
               timestamp: TimeInterval = Date().timeIntervalSince1970,
               filters: [Filter]) throws {
@@ -43,7 +43,7 @@ import Foundation
         eventProcessor?.process(event)
     }
     
-    func click(eventName: String,
+    public func click(eventName: String,
                userToken: String,
                timestamp: TimeInterval = Date().timeIntervalSince1970,
                objectIDs: [String]) throws {
@@ -56,7 +56,7 @@ import Foundation
         eventProcessor?.process(event)
     }
     
-    func click(eventName: String,
+    public func click(eventName: String,
                userToken: String,
                timestamp: TimeInterval = Date().timeIntervalSince1970,
                filters: [Filter]) throws {
@@ -69,7 +69,7 @@ import Foundation
         eventProcessor?.process(event)
     }
     
-    func conversion(eventName: String,
+    public func conversion(eventName: String,
                     userToken: String,
                     timestamp: TimeInterval,
                     objectIDs: [String]) throws {
@@ -82,7 +82,7 @@ import Foundation
         eventProcessor?.process(event)
     }
     
-    func conversion(eventName: String,
+    public func conversion(eventName: String,
                     userToken: String,
                     timestamp: TimeInterval,
                     filters: [Filter]) throws {
