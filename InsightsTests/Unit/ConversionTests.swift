@@ -34,7 +34,7 @@ class ConversionTests: XCTestCase {
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.name.rawValue] as? String, expectedEventName)
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.indexName.rawValue] as? String, expectedIndexName)
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.userToken.rawValue] as? String, expectedUserToken)
-        XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.timestamp.rawValue] as? TimeInterval, expectedTimeStamp)
+        XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.timestamp.rawValue] as? Int, Int(expectedTimeStamp))
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.queryID.rawValue] as? String, expectedQueryID)
         XCTAssertEqual(eventDictionary[ObjectsIDsOrFilters.CodingKeys.filters.rawValue] as? [String], [expectedFilter])
         

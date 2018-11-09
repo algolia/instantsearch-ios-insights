@@ -22,7 +22,7 @@ Insights *stubInsights;
 - (void)setUp {
 //    expectation = [self expectationWithDescription:@"waitForCompletion"];
 //    [expectation setExpectedFulfillmentCount:7];
-    stubInsights = [MockWebServiceHelper getMockInsightsWithIndexName:@"indexName" :^(id res) {
+    stubInsights = [MockWebServiceHelper getMockInsightsWithAppId:@"indexName" :^(id res) {
         XCTAssertNotNil(res);
 //        [expectation fulfill];
     }];

@@ -10,11 +10,11 @@ import XCTest
 
 class InsightsTests: XCTestCase {
     
-    let indexName = "test index"
+    let appId = "test app id"
     
     override func setUp() {
         // Remove locally stored events packages for test index
-        guard let filePath = LocalStorage<[EventsPackage]>.filePath(for: indexName) else { return }
+        guard let filePath = LocalStorage<[EventsPackage]>.filePath(for: appId) else { return }
         LocalStorage<[EventsPackage]>.serialize([], file: filePath)
     }
   
@@ -40,11 +40,12 @@ class InsightsTests: XCTestCase {
 
     func testEventIsSentCorrectly() {
         let expectation = self.expectation(description: "Wait for nothing")
+        let expectedIndexName = "test index name"
         let expectedUserToken = "test user token"
         let expectedQueryID = "6de2f7eaa537fa93d8f8f05b927953b1"
         let expectedObjectIDsWithPositions = [("o1", 1)]
         
-        let mockWS = MockWebServiceHelper.getMockWebService(indexName: indexName) { resource in
+        let mockWS = MockWebServiceHelper.getMockWebService(appId: appId) { resource in
             if let res = resource as? Resource<Bool, WebserviceError> {
                 XCTAssertEqual(res.method.method, "POST")
                 _ = res.method.map(f: { data in
@@ -67,11 +68,11 @@ class InsightsTests: XCTestCase {
                                                                  apiKey: "dummyApiKey"),
                                         webService: mockWS,
                                         flushDelay: 1,
-                                        logger: Logger(indexName))
+                                        logger: Logger(appId))
      
         
         try? insightsRegister.clickAnalytics.click(userToken: expectedUserToken,
-                                                   indexName: indexName,
+                                                   indexName: expectedIndexName,
                                                    queryID: expectedQueryID,
                                                    objectIDsWithPositions: expectedObjectIDsWithPositions)
         

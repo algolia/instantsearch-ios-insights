@@ -100,9 +100,8 @@
 		AFD431E6219322F900A94D5E /* ClickAnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD431E5219322F900A94D5E /* ClickAnalyticsTests.swift */; };
 		AFD431E8219329D700A94D5E /* TestEventProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD431E7219329D700A94D5E /* TestEventProcessor.swift */; };
 		AFD96DD9219464EC00E13993 /* ObjectIDsOrFiltersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD96DD8219464EC00E13993 /* ObjectIDsOrFiltersTests.swift */; };
-		AFD96DDB219466E500E13993 /* ABTestingIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD96DDA219466E500E13993 /* ABTestingIntegrationTests.swift */; };
-		AFD96DDD219466FF00E13993 /* PersonalizationIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD96DDC219466FF00E13993 /* PersonalizationIntegrationTests.swift */; };
-		AFD96DDF2194670900E13993 /* ClickAnalyticsIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD96DDE2194670900E13993 /* ClickAnalyticsIntegrationTests.swift */; };
+		AFD96DDB219466E500E13993 /* WebServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD96DDA219466E500E13993 /* WebServiceIntegrationTests.swift */; };
+		AFD96DE121949CBC00E13993 /* EventsSynchronizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD96DE021949CBC00E13993 /* EventsSynchronizerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -186,9 +185,8 @@
 		AFD431E5219322F900A94D5E /* ClickAnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickAnalyticsTests.swift; sourceTree = "<group>"; };
 		AFD431E7219329D700A94D5E /* TestEventProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEventProcessor.swift; sourceTree = "<group>"; };
 		AFD96DD8219464EC00E13993 /* ObjectIDsOrFiltersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectIDsOrFiltersTests.swift; sourceTree = "<group>"; };
-		AFD96DDA219466E500E13993 /* ABTestingIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABTestingIntegrationTests.swift; sourceTree = "<group>"; };
-		AFD96DDC219466FF00E13993 /* PersonalizationIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalizationIntegrationTests.swift; sourceTree = "<group>"; };
-		AFD96DDE2194670900E13993 /* ClickAnalyticsIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickAnalyticsIntegrationTests.swift; sourceTree = "<group>"; };
+		AFD96DDA219466E500E13993 /* WebServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceIntegrationTests.swift; sourceTree = "<group>"; };
+		AFD96DE021949CBC00E13993 /* EventsSynchronizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSynchronizerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -351,6 +349,7 @@
 				AFD431E1219322E200A94D5E /* ABTestingTests.swift */,
 				AFD431E3219322EF00A94D5E /* PersonalizationTests.swift */,
 				AFD431E5219322F900A94D5E /* ClickAnalyticsTests.swift */,
+				AFD96DE021949CBC00E13993 /* EventsSynchronizerTests.swift */,
 				1D958AF720BD8A6E0058230A /* InsightsTestObjC.m */,
 				AFD96DD8219464EC00E13993 /* ObjectIDsOrFiltersTests.swift */,
 			);
@@ -360,9 +359,7 @@
 		AF33282621942D430040BE0A /* Integration */ = {
 			isa = PBXGroup;
 			children = (
-				AFD96DDA219466E500E13993 /* ABTestingIntegrationTests.swift */,
-				AFD96DDE2194670900E13993 /* ClickAnalyticsIntegrationTests.swift */,
-				AFD96DDC219466FF00E13993 /* PersonalizationIntegrationTests.swift */,
+				AFD96DDA219466E500E13993 /* WebServiceIntegrationTests.swift */,
 			);
 			path = Integration;
 			sourceTree = "<group>";
@@ -718,11 +715,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D958AF820BD8A6E0058230A /* InsightsTestObjC.m in Sources */,
-				AFD96DDB219466E500E13993 /* ABTestingIntegrationTests.swift in Sources */,
+				AFD96DDB219466E500E13993 /* WebServiceIntegrationTests.swift in Sources */,
 				AFC30C072191C24500AA72B0 /* CoreEventTests.swift in Sources */,
 				AFC30C052191C1C100AA72B0 /* ConversionTests.swift in Sources */,
 				1DA0065F20CFB71500A9170F /* MockWebServiceHelper.swift in Sources */,
 				1D4531D1209C870C00B26CF9 /* InsightsTests.swift in Sources */,
+				AFD96DE121949CBC00E13993 /* EventsSynchronizerTests.swift in Sources */,
 				AFD431E6219322F900A94D5E /* ClickAnalyticsTests.swift in Sources */,
 				AFC30BFF2191C1A300AA72B0 /* EventsPackageTests.swift in Sources */,
 				AFD96DD9219464EC00E13993 /* ObjectIDsOrFiltersTests.swift in Sources */,
@@ -732,8 +730,6 @@
 				AFD431E4219322EF00A94D5E /* PersonalizationTests.swift in Sources */,
 				1D575DE020C98BFA00D20E33 /* MockWebService.swift in Sources */,
 				AFC30C032191C1B900AA72B0 /* ViewTests.swift in Sources */,
-				AFD96DDF2194670900E13993 /* ClickAnalyticsIntegrationTests.swift in Sources */,
-				AFD96DDD219466FF00E13993 /* PersonalizationIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
