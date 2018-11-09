@@ -10,10 +10,19 @@ import Foundation
 
 class EventsSynchronizer: EventProcessor {
     
+    typealias Storage = LocalStorage<[EventsPackage]>
+    
     let credentials: Credentials
     var eventsPackages: [EventsPackage]
     let webservice: WebService
     let logger: Logger
+    var isLocalStorageEnabled: Bool = true {
+        didSet {
+            if !isLocalStorageEnabled {
+                Storage.deleteFile(atPath: localStorageFileName)
+            }
+        }
+    }
     private var flushTimer: Timer!
     private let operationQueue: OperationQueue
     private let localStorageFileName: String
@@ -35,31 +44,33 @@ class EventsSynchronizer: EventProcessor {
     }
     
     func process(_ event: Event) {
-        
         operationQueue.addOperation { [weak self] in
-            guard let strongSelf = self else { return }
-            
-            let wrappedEvent = EventWrapper(event)
-            let eventsPackage: EventsPackage
-            
-            if let lastEventsPackage = strongSelf.eventsPackages.last, !lastEventsPackage.isFull {
-                // We are sure that try! will not crash, as where is "not full" check
-                eventsPackage = try! strongSelf.eventsPackages.removeLast().appending(wrappedEvent)
-            } else {
-                eventsPackage = EventsPackage(event: wrappedEvent)
-            }
-            
-            strongSelf.eventsPackages.append(eventsPackage)
-            strongSelf.serialize()
+            self?.syncProcess(event)
+        }
+    }
+    
+    // Synchronous version of event processing for facilitating queuing and testing
+    
+    func syncProcess(_ event: Event) {
+        let wrappedEvent = EventWrapper(event)
+        let eventsPackage: EventsPackage
+        
+        if let lastEventsPackage = eventsPackages.last, !lastEventsPackage.isFull {
+            // We are sure that try! will not crash, as where is "not full" check
+            eventsPackage = try! eventsPackages.removeLast().appending(wrappedEvent)
+        } else {
+            eventsPackage = EventsPackage(event: wrappedEvent)
         }
         
+        eventsPackages.append(eventsPackage)
+        serialize()
     }
     
     @objc private func flushEvents() {
         flush(eventsPackages)
     }
     
-    private func flush(_ eventsPackages: [EventsPackage]) {
+    func flush(_ eventsPackages: [EventsPackage]) {
         logger.debug(message: "Flushing remaining events")
         eventsPackages.forEach(sync)
     }
@@ -83,19 +94,23 @@ class EventsSynchronizer: EventProcessor {
     }
     
     private func serialize() {
-        if let file = LocalStorage<[EventsPackage]>.filePath(for: localStorageFileName) {
-            LocalStorage<[EventsPackage]>.serialize(eventsPackages, file: file)
+        guard isLocalStorageEnabled else { return }
+        
+        if let file = Storage.filePath(for: localStorageFileName) {
+            Storage.serialize(eventsPackages, file: file)
         } else {
             logger.debug(message: "Error creating a file for \(localStorageFileName)")
         }
     }
     
     private func deserialize() {
-        guard let filePath = LocalStorage<[EventsPackage]>.filePath(for: localStorageFileName) else {
+        guard isLocalStorageEnabled else { return }
+        
+        guard let filePath = Storage.filePath(for: localStorageFileName) else {
             logger.debug(message: "Error reading a file for \(localStorageFileName)")
             return
         }
-        self.eventsPackages = LocalStorage<[EventsPackage]>.deserialize(filePath) ?? []
+        self.eventsPackages = Storage.deserialize(filePath) ?? []
     }
     
     deinit {
