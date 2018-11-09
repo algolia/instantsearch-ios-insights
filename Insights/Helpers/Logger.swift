@@ -9,17 +9,17 @@ import Foundation
 
 class Logger {
   var enabled = false
-  let index: String
+  let appId: String
   let outputHandler: (String) -> ()
   
-  init(_ index: String, _ output:@escaping (String) -> () = dPrint) {
-    self.index = index
+  init(_ appId: String, _ output:@escaping (String) -> () = dPrint) {
+    self.appId = appId
     self.outputHandler = output
   }
   
   func debug(message: String) {
     if enabled {
-      outputHandler("[Algolia Insights - \(index)] \(message)")
+      outputHandler("[Algolia Insights - \(appId)] \(message)")
     }
   }
 }
