@@ -109,7 +109,7 @@ extension CoreEvent: Codable {
         try container.encode(name, forKey: .name)
         try container.encode(indexName, forKey: .indexName)
         try container.encode(userToken, forKey: .userToken)
-        try container.encode(timestamp, forKey: .timestamp)
+        try container.encode(Int(timestamp), forKey: .timestamp)
         try container.encode(queryID, forKey: .queryID)
         try objectIDsOrFilters.encode(to: encoder)
     }
