@@ -20,11 +20,6 @@ internal struct CoreEvent: Event, Equatable {
         case positions
     }
     
-    enum Error: Swift.Error {
-        case objectIDsCountOverflow
-        case filtersCountOverflow
-    }
-    
     internal static let maxObjectIDsCount = 20
     internal static let maxFiltersCount = 10
     
@@ -46,10 +41,10 @@ internal struct CoreEvent: Event, Equatable {
         
         switch objectIDsOrFilters {
         case .filters(let filters) where filters.count > CoreEvent.maxFiltersCount:
-            throw Error.filtersCountOverflow
+            throw EventConstructionError.filtersCountOverflow
             
         case .objectIDs(let objectIDs) where objectIDs.count > CoreEvent.maxObjectIDsCount:
-            throw Error.objectIDsCountOverflow
+            throw EventConstructionError.objectIDsCountOverflow
             
         default:
             break
@@ -72,20 +67,6 @@ internal struct CoreEvent: Event, Equatable {
         self.timestamp = event.timestamp
         self.queryID = event.queryID
         self.objectIDsOrFilters = event.objectIDsOrFilters
-    }
-    
-}
-
-extension CoreEvent.Error: LocalizedError {
-    
-    var errorDescription: String? {
-        switch self {
-        case .filtersCountOverflow:
-            return "Max filters count in event is \(CoreEvent.maxFiltersCount)"
-            
-        case .objectIDsCountOverflow:
-            return "Max objects IDs count in event is \(CoreEvent.maxObjectIDsCount)"
-        }
     }
     
 }

@@ -102,6 +102,7 @@
 		AFD96DD9219464EC00E13993 /* ObjectIDsOrFiltersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD96DD8219464EC00E13993 /* ObjectIDsOrFiltersTests.swift */; };
 		AFD96DDB219466E500E13993 /* WebServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD96DDA219466E500E13993 /* WebServiceIntegrationTests.swift */; };
 		AFD96DE121949CBC00E13993 /* EventsSynchronizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD96DE021949CBC00E13993 /* EventsSynchronizerTests.swift */; };
+		AFD96DE32199D14600E13993 /* EventConstructionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD96DE22199D14600E13993 /* EventConstructionError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +188,7 @@
 		AFD96DD8219464EC00E13993 /* ObjectIDsOrFiltersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectIDsOrFiltersTests.swift; sourceTree = "<group>"; };
 		AFD96DDA219466E500E13993 /* WebServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceIntegrationTests.swift; sourceTree = "<group>"; };
 		AFD96DE021949CBC00E13993 /* EventsSynchronizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSynchronizerTests.swift; sourceTree = "<group>"; };
+		AFD96DE22199D14600E13993 /* EventConstructionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventConstructionError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				AF495629218CA72C006B2F0B /* EventsPackage.swift */,
+				AFD96DE22199D14600E13993 /* EventConstructionError.swift */,
 				AF49562E2190A8AC006B2F0B /* EventWrapper.swift */,
 				AF4956302190A8B2006B2F0B /* CoreEvent.swift */,
 				AF4956322190A8F5006B2F0B /* ObjectIDsOrFilters.swift */,
@@ -690,6 +693,7 @@
 				AF4956352190A90C006B2F0B /* EventType.swift in Sources */,
 				AFC30C112191F87A00AA72B0 /* Personalization.swift in Sources */,
 				AF49564021919D59006B2F0B /* AnyEncodable.swift in Sources */,
+				AFD96DE32199D14600E13993 /* EventConstructionError.swift in Sources */,
 				AFC30C152191F98F00AA72B0 /* EventsSynchronizer.swift in Sources */,
 				AF49562F2190A8AC006B2F0B /* EventWrapper.swift in Sources */,
 				AF4956312190A8B2006B2F0B /* CoreEvent.swift in Sources */,

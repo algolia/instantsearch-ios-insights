@@ -123,7 +123,15 @@ class CoreEventTests: XCTestCase {
         XCTAssertThrowsError(try CoreEvent(type: .click, name: "", indexName: "", userToken: "", timestamp: 0, queryID: .none, objectIDsOrFilters: .objectIDs(objectIDs))
         , "constructor must throw an error due to objects IDs overflow") { error in
             exp.fulfill()
-            XCTAssertEqual(error as? CoreEvent.Error, CoreEvent.Error.objectIDsCountOverflow)
+            
+            
+            switch error {
+            case EventConstructionError.objectIDsCountOverflow:
+                break
+            default:
+                XCTFail("Unexpected error thrown")
+            }
+
             XCTAssertEqual(error.localizedDescription, "Max objects IDs count in event is \(CoreEvent.maxObjectIDsCount)")
         }
         
@@ -139,7 +147,13 @@ class CoreEventTests: XCTestCase {
         XCTAssertThrowsError(try CoreEvent(type: .click, name: "", indexName: "", userToken: "", timestamp: 0, queryID: .none, objectIDsOrFilters: .filters(filters))
         , "constructor must throw an error due to filters count overflow") { error in
             exp.fulfill()
-            XCTAssertEqual(error as? CoreEvent.Error, CoreEvent.Error.filtersCountOverflow)
+            switch error {
+            case EventConstructionError.filtersCountOverflow:
+                break
+            default:
+                XCTFail("Unexpected error thrown")
+            }
+            
             XCTAssertEqual(error.localizedDescription, "Max filters count in event is \(CoreEvent.maxFiltersCount)")
         }
         

@@ -29,7 +29,7 @@ import Foundation
     
     /// Register your index with a given appId and apiKey
     ///
-    /// - parameter  appId:   The given app id for which you want to track the events
+    /// - parameter  appId: The given app id for which you want to track the events
     /// - parameter  apiKey: The API Key for your `appId`
     ///
     @discardableResult public static func register(appId: String, apiKey: String) -> Insights {
@@ -47,15 +47,15 @@ import Foundation
     }
     
     /// Access an already registered `Insights` without having to pass the `apiKey` and `appId`. If the application was not register before, it will return a nil value.
-    /// If more than one application has been registered, return an undetermined instance of `Insights`.
+    /// If more than one application has been registered, an undetermined instance of `Insights` will be returned.
     ///
     
     public static var shared: Insights? {
         return insightsMap.first?.value
     }
     
-    /// Access an already registered `Insights` without having to pass the `apiKey` and `appId`. If the application was not register before, it will return a nil value.
-    /// - parameter  appId: The index that is being tracked
+    /// Access an already registered `Insights` via its `appId`. If the application was not register before, it will return a nil value.
+    /// - parameter  appId: The appId of application that is being tracked
     ///
     public static func shared(appId: String) -> Insights? {
         return insightsMap[appId]

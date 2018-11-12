@@ -39,7 +39,7 @@ class WebServiceIntegrationTests: XCTestCase {
         
         webService.sync(event: eventsPackage) { error in
             exp.fulfill()
-            XCTAssertNil(error)
+            XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
         }
 
         wait(for: [exp], timeout: 2)
@@ -65,7 +65,7 @@ class WebServiceIntegrationTests: XCTestCase {
         
         webService.sync(event: eventsPackage) { error in
             exp.fulfill()
-            XCTAssertNil(error)
+            XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
         }
         
         wait(for: [exp], timeout: 2)
@@ -91,12 +91,11 @@ class WebServiceIntegrationTests: XCTestCase {
         
         webService.sync(event: eventsPackage) { error in
             exp.fulfill()
-            XCTAssertNil(error)
+            XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
         }
         
         wait(for: [exp], timeout: 2)
 
-        
     }
     
     func testConversionEvent() {
@@ -118,7 +117,7 @@ class WebServiceIntegrationTests: XCTestCase {
         
         webService.sync(event: eventsPackage) { error in
             exp.fulfill()
-            XCTAssertNil(error)
+            XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
         }
         
         wait(for: [exp], timeout: 2)
@@ -159,7 +158,7 @@ class WebServiceIntegrationTests: XCTestCase {
         
         webService.sync(event: eventsPackage) { error in
             exp.fulfill()
-            XCTAssertNil(error)
+            XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
         }
         
         wait(for: [exp], timeout: 2)
