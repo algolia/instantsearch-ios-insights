@@ -24,34 +24,31 @@ class EventsSynchronizer: EventProcessor {
         }
     }
     private var flushTimer: Timer!
-    private let operationQueue: OperationQueue
+    private let dispatchQueue: DispatchQueue
     private let localStorageFileName: String
     
     init(credentials: Credentials,
          webService: WebService,
          flushDelay: TimeInterval,
-         logger: Logger) {
+         logger: Logger,
+         dispatchQueue: DispatchQueue = .init(label: "insights.events", qos: .background)) {
         self.eventsPackages = []
         self.credentials = credentials
         self.logger = logger
         self.webservice = webService
-        let operationQueue = OperationQueue()
-        operationQueue.qualityOfService = .utility
-        self.operationQueue = operationQueue
+        self.dispatchQueue = dispatchQueue
         self.localStorageFileName = "\(credentials.appId).events"
         self.flushTimer = .scheduledTimer(timeInterval: flushDelay, target: self, selector: #selector(flushEvents), userInfo: nil, repeats: true)
         deserialize()
     }
     
     func process(_ event: Event) {
-        operationQueue.addOperation { [weak self] in
+        dispatchQueue.async { [weak self] in
             self?.syncProcess(event)
         }
     }
     
-    // Synchronous version of event processing for facilitating queuing and testing
-    
-    func syncProcess(_ event: Event) {
+    private func syncProcess(_ event: Event) {
         let wrappedEvent = EventWrapper(event)
         let eventsPackage: EventsPackage
         

@@ -26,28 +26,34 @@ class EventsSynchronizerTests: XCTestCase {
         
         let mockWS = MockWebServiceHelper.getMockWebService(appId: appId) { _ in }
         
+        let queue = DispatchQueue(label: "test queue", qos: .default)
         let credentials = Credentials(appId: appId, apiKey: "APIKEY")
         let eventsSynchronizer = EventsSynchronizer(credentials: credentials,
                                                     webService: mockWS,
                                                     flushDelay: 1000,
-                                                    logger: Logger(appId))
+                                                    logger: Logger(appId),
+                                                    dispatchQueue: queue)
         
         eventsSynchronizer.isLocalStorageEnabled = false
-        eventsSynchronizer.syncProcess(TestEvent.template)
+        eventsSynchronizer.process(TestEvent.template)
         
+        queue.sync {}
         XCTAssertEqual(eventsSynchronizer.eventsPackages.count, 1)
+
+        eventsSynchronizer.process(TestEvent.template)
         
-        eventsSynchronizer.syncProcess(TestEvent.template)
+        queue.sync {}
         
         XCTAssertEqual(eventsSynchronizer.eventsPackages.count, 1)
         XCTAssertEqual(eventsSynchronizer.eventsPackages.first?.events.count, 2)
         
         let events = [Event](repeating: TestEvent.template, count: 1000)
         
-        events.forEach(eventsSynchronizer.syncProcess)
+        events.forEach(eventsSynchronizer.process)
+        
+        queue.sync {}
         
         XCTAssertEqual(eventsSynchronizer.eventsPackages.count, 2)
-        
         
     }
     
@@ -58,16 +64,18 @@ class EventsSynchronizerTests: XCTestCase {
         let mockWS = MockWebServiceHelper.getMockWebService(appId: appId) { _ in
             wsExpectation.fulfill()
         }
-
+        let queue = DispatchQueue(label: "test queue")
         let credentials = Credentials(appId: appId, apiKey: "APIKEY")
         let eventsSynchronizer = EventsSynchronizer(credentials: credentials,
                                                     webService: mockWS,
                                                     flushDelay: 1000,
-                                                    logger: Logger(appId))
+                                                    logger: Logger(appId),
+                                                    dispatchQueue: queue)
         
         eventsSynchronizer.isLocalStorageEnabled = false
 
-        eventsSynchronizer.syncProcess(TestEvent.template)
+        eventsSynchronizer.process(TestEvent.template)
+        queue.sync {}
         eventsSynchronizer.flush(eventsSynchronizer.eventsPackages)
         
         wait(for: [wsExpectation], timeout: 2)
