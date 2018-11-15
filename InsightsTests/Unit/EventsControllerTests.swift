@@ -1,5 +1,5 @@
 //
-//  EventsSynchronizerTests.swift
+//  EventsControllerTests.swift
 //  InsightsTests
 //
 //  Created by Vladislav Fitc on 08/11/2018.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import InstantSearchInsights
 
-class EventsSynchronizerTests: XCTestCase {
+class EventsControllerTests: XCTestCase {
     
     let appId = "test app id"
     
@@ -28,7 +28,7 @@ class EventsSynchronizerTests: XCTestCase {
         
         let queue = DispatchQueue(label: "test queue", qos: .default)
         let credentials = Credentials(appId: appId, apiKey: "APIKEY")
-        let eventsSynchronizer = EventsSynchronizer(credentials: credentials,
+        let eventsSynchronizer = EventsController(credentials: credentials,
                                                     webService: mockWS,
                                                     flushDelay: 1000,
                                                     logger: Logger(appId),
@@ -66,7 +66,7 @@ class EventsSynchronizerTests: XCTestCase {
         }
         let queue = DispatchQueue(label: "test queue")
         let credentials = Credentials(appId: appId, apiKey: "APIKEY")
-        let eventsSynchronizer = EventsSynchronizer(credentials: credentials,
+        let eventsSynchronizer = EventsController(credentials: credentials,
                                                     webService: mockWS,
                                                     flushDelay: 1000,
                                                     logger: Logger(appId),

@@ -1,5 +1,5 @@
 //
-//  EventsSynchronizer.swift
+//  EventsController.swift
 //  Insights
 //
 //  Created by Vladislav Fitc on 06/11/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class EventsSynchronizer: EventProcessor {
+class EventsController: EventProcessor {
     
     typealias Storage = LocalStorage<[EventsPackage]>
     
@@ -23,9 +23,9 @@ class EventsSynchronizer: EventProcessor {
             }
         }
     }
-    private var flushTimer: Timer!
     private let dispatchQueue: DispatchQueue
     private let localStorageFileName: String
+    private weak var flushTimer: Timer?
     
     init(credentials: Credentials,
          webService: WebService,
@@ -38,7 +38,14 @@ class EventsSynchronizer: EventProcessor {
         self.webservice = webService
         self.dispatchQueue = dispatchQueue
         self.localStorageFileName = "\(credentials.appId).events"
-        self.flushTimer = .scheduledTimer(timeInterval: flushDelay, target: self, selector: #selector(flushEvents), userInfo: nil, repeats: true)
+        let flushTimer = Timer.scheduledTimer(timeInterval: flushDelay,
+                                                    target: self,
+                                                  selector: #selector(flushEvents),
+                                                  userInfo: nil,
+                                                   repeats: true)
+        self.flushTimer = flushTimer
+
+        RunLoop.main.add(flushTimer, forMode: .defaultRunLoopMode)
         deserialize()
     }
     
@@ -68,7 +75,7 @@ class EventsSynchronizer: EventProcessor {
     }
     
     func flush(_ eventsPackages: [EventsPackage]) {
-        logger.debug(message: "Flushing remaining events")
+        logger.debug(message: "Flushing pending packages")
         eventsPackages.forEach(sync)
     }
     
@@ -111,7 +118,7 @@ class EventsSynchronizer: EventProcessor {
     }
     
     deinit {
-        flushTimer.invalidate()
+        flushTimer?.invalidate()
     }
     
 }

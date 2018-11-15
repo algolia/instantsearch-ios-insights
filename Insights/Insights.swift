@@ -67,7 +67,7 @@ import Foundation
         }
     }
     
-    private let eventSynchornizer: EventsSynchronizer
+    private let eventSynchornizer: EventsController
     public let personalization: Personalization
     public let abTesting: ABTesting
     public let clickAnalytics: ClickAnalytics
@@ -76,7 +76,7 @@ import Foundation
                   webService: WebService,
                   flushDelay: TimeInterval,
                   logger: Logger) {
-        let eventSynchornizer = EventsSynchronizer(
+        let eventSynchornizer = EventsController(
             credentials: credentials,
             webService: webService,
             flushDelay: flushDelay,

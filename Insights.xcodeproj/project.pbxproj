@@ -93,7 +93,7 @@
 		AFC30C0F2191F87000AA72B0 /* ClickAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C0E2191F87000AA72B0 /* ClickAnalytics.swift */; };
 		AFC30C112191F87A00AA72B0 /* Personalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C102191F87A00AA72B0 /* Personalization.swift */; };
 		AFC30C132191F8CB00AA72B0 /* EventProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C122191F8CB00AA72B0 /* EventProcessor.swift */; };
-		AFC30C152191F98F00AA72B0 /* EventsSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C142191F98F00AA72B0 /* EventsSynchronizer.swift */; };
+		AFC30C152191F98F00AA72B0 /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C142191F98F00AA72B0 /* EventsController.swift */; };
 		AFC30C172191FB6000AA72B0 /* AnalyticsUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C162191FB6000AA72B0 /* AnalyticsUsecase.swift */; };
 		AFD431E2219322E200A94D5E /* ABTestingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD431E1219322E200A94D5E /* ABTestingTests.swift */; };
 		AFD431E4219322EF00A94D5E /* PersonalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD431E3219322EF00A94D5E /* PersonalizationTests.swift */; };
@@ -101,7 +101,7 @@
 		AFD431E8219329D700A94D5E /* TestEventProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD431E7219329D700A94D5E /* TestEventProcessor.swift */; };
 		AFD96DD9219464EC00E13993 /* ObjectIDsOrFiltersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD96DD8219464EC00E13993 /* ObjectIDsOrFiltersTests.swift */; };
 		AFD96DDB219466E500E13993 /* WebServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD96DDA219466E500E13993 /* WebServiceIntegrationTests.swift */; };
-		AFD96DE121949CBC00E13993 /* EventsSynchronizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD96DE021949CBC00E13993 /* EventsSynchronizerTests.swift */; };
+		AFD96DE121949CBC00E13993 /* EventsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD96DE021949CBC00E13993 /* EventsControllerTests.swift */; };
 		AFD96DE32199D14600E13993 /* EventConstructionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD96DE22199D14600E13993 /* EventConstructionError.swift */; };
 /* End PBXBuildFile section */
 
@@ -179,7 +179,7 @@
 		AFC30C0E2191F87000AA72B0 /* ClickAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickAnalytics.swift; sourceTree = "<group>"; };
 		AFC30C102191F87A00AA72B0 /* Personalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personalization.swift; sourceTree = "<group>"; };
 		AFC30C122191F8CB00AA72B0 /* EventProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventProcessor.swift; sourceTree = "<group>"; };
-		AFC30C142191F98F00AA72B0 /* EventsSynchronizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSynchronizer.swift; sourceTree = "<group>"; };
+		AFC30C142191F98F00AA72B0 /* EventsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsController.swift; sourceTree = "<group>"; };
 		AFC30C162191FB6000AA72B0 /* AnalyticsUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsUsecase.swift; sourceTree = "<group>"; };
 		AFD431E1219322E200A94D5E /* ABTestingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABTestingTests.swift; sourceTree = "<group>"; };
 		AFD431E3219322EF00A94D5E /* PersonalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalizationTests.swift; sourceTree = "<group>"; };
@@ -187,7 +187,7 @@
 		AFD431E7219329D700A94D5E /* TestEventProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEventProcessor.swift; sourceTree = "<group>"; };
 		AFD96DD8219464EC00E13993 /* ObjectIDsOrFiltersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectIDsOrFiltersTests.swift; sourceTree = "<group>"; };
 		AFD96DDA219466E500E13993 /* WebServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceIntegrationTests.swift; sourceTree = "<group>"; };
-		AFD96DE021949CBC00E13993 /* EventsSynchronizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsSynchronizerTests.swift; sourceTree = "<group>"; };
+		AFD96DE021949CBC00E13993 /* EventsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsControllerTests.swift; sourceTree = "<group>"; };
 		AFD96DE22199D14600E13993 /* EventConstructionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventConstructionError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -281,7 +281,7 @@
 				1D4531C5209C870C00B26CF9 /* InstantSearchInsights.h */,
 				1D958AF120BD71ED0058230A /* Insights.swift */,
 				AF332821219343250040BE0A /* Credentials.swift */,
-				AFC30C142191F98F00AA72B0 /* EventsSynchronizer.swift */,
+				AFC30C142191F98F00AA72B0 /* EventsController.swift */,
 				AFC30C122191F8CB00AA72B0 /* EventProcessor.swift */,
 				AFC30C162191FB6000AA72B0 /* AnalyticsUsecase.swift */,
 				AFC30C0C2191F86600AA72B0 /* ABTesting.swift */,
@@ -351,7 +351,7 @@
 				AFD431E1219322E200A94D5E /* ABTestingTests.swift */,
 				AFD431E3219322EF00A94D5E /* PersonalizationTests.swift */,
 				AFD431E5219322F900A94D5E /* ClickAnalyticsTests.swift */,
-				AFD96DE021949CBC00E13993 /* EventsSynchronizerTests.swift */,
+				AFD96DE021949CBC00E13993 /* EventsControllerTests.swift */,
 				1D958AF720BD8A6E0058230A /* InsightsTestObjC.m */,
 				AFD96DD8219464EC00E13993 /* ObjectIDsOrFiltersTests.swift */,
 			);
@@ -694,7 +694,7 @@
 				AFC30C112191F87A00AA72B0 /* Personalization.swift in Sources */,
 				AF49564021919D59006B2F0B /* AnyEncodable.swift in Sources */,
 				AFD96DE32199D14600E13993 /* EventConstructionError.swift in Sources */,
-				AFC30C152191F98F00AA72B0 /* EventsSynchronizer.swift in Sources */,
+				AFC30C152191F98F00AA72B0 /* EventsController.swift in Sources */,
 				AF49562F2190A8AC006B2F0B /* EventWrapper.swift in Sources */,
 				AF4956312190A8B2006B2F0B /* CoreEvent.swift in Sources */,
 				AFC30C092191C58F00AA72B0 /* Event.swift in Sources */,
@@ -724,7 +724,7 @@
 				AFC30C052191C1C100AA72B0 /* ConversionTests.swift in Sources */,
 				1DA0065F20CFB71500A9170F /* MockWebServiceHelper.swift in Sources */,
 				1D4531D1209C870C00B26CF9 /* InsightsTests.swift in Sources */,
-				AFD96DE121949CBC00E13993 /* EventsSynchronizerTests.swift in Sources */,
+				AFD96DE121949CBC00E13993 /* EventsControllerTests.swift in Sources */,
 				AFD431E6219322F900A94D5E /* ClickAnalyticsTests.swift in Sources */,
 				AFC30BFF2191C1A300AA72B0 /* EventsPackageTests.swift in Sources */,
 				AFD96DD9219464EC00E13993 /* ObjectIDsOrFiltersTests.swift in Sources */,
