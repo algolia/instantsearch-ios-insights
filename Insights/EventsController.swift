@@ -45,7 +45,7 @@ class EventsController: EventProcessor {
                                                    repeats: true)
         self.flushTimer = flushTimer
 
-        RunLoop.main.add(flushTimer, forMode: .defaultRunLoopMode)
+        RunLoop.main.add(flushTimer, forMode: .default)
         deserialize()
     }
     
