@@ -10,11 +10,11 @@ import XCTest
 
 class InsightsTests: XCTestCase {
     
-    let appId = "test app id"
+    let testCredentials = Credentials(appId: "test app id", apiKey: "test key")
     
     override func setUp() {
         // Remove locally stored events packages for test index
-        guard let filePath = LocalStorage<[EventsPackage]>.filePath(for: appId) else { return }
+        guard let filePath = LocalStorage<[EventsPackage]>.filePath(for: testCredentials.appId) else { return }
         LocalStorage<[EventsPackage]>.serialize([], file: filePath)
     }
   
@@ -26,12 +26,10 @@ class InsightsTests: XCTestCase {
     
     func testInitShouldWork() {
         
-        let appId = "testApp"
-        
-        let insightsRegister = Insights.register(appId: appId, apiKey: "testKey")
+        let insightsRegister = Insights.register(appId: testCredentials.appId, apiKey: "testKey")
         XCTAssertNotNil(insightsRegister)
         
-        let insightsShared = Insights.shared(appId: appId)
+        let insightsShared = Insights.shared(appId: testCredentials.appId)
         XCTAssertNotNil(insightsShared)
         
         XCTAssertEqual(insightsRegister, insightsShared, "Getting the Insights instance from register and shared should be the same")
@@ -45,7 +43,7 @@ class InsightsTests: XCTestCase {
         let expectedQueryID = "6de2f7eaa537fa93d8f8f05b927953b1"
         let expectedObjectIDsWithPositions = [("o1", 1)]
         
-        let mockWS = MockWebServiceHelper.getMockWebService(appId: appId) { resource in
+        let mockWS = MockWebServiceHelper.getMockWebService(appId: testCredentials.appId) { resource in
             if let res = resource as? Resource<Bool, WebserviceError> {
                 XCTAssertEqual(res.method.method, "POST")
                 _ = res.method.map(f: { data in
@@ -64,11 +62,11 @@ class InsightsTests: XCTestCase {
             }
         }
         
-        let insightsRegister = Insights(credentials: Credentials(appId: "dummyAppId",
-                                                                 apiKey: "dummyApiKey"),
+        let insightsRegister = Insights(credentials: Credentials(appId: testCredentials.appId,
+                                                                 apiKey: "testKey"),
                                         webService: mockWS,
                                         flushDelay: 1,
-                                        logger: Logger(appId))
+                                        logger: Logger(testCredentials.appId))
      
         
         try? insightsRegister.clickAnalytics.click(userToken: expectedUserToken,
