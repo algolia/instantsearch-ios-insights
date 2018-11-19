@@ -29,7 +29,7 @@ import Foundation
     
     /// Specify the desired API endpoint region
     /// By default API endpoint is routed automatically
-    static var region: Region = .auto
+    public static var region: Region = .auto
     
     /// Register your index with a given appId and apiKey
     ///

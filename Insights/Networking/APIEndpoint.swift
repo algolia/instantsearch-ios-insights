@@ -13,7 +13,7 @@ enum Environment {
     case dev
 }
 
-enum Region {
+@objc public enum Region: Int {
     
     case us
     case de

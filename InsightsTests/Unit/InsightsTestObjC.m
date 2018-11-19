@@ -20,11 +20,8 @@ XCTestExpectation* expectation;
 Insights *stubInsights;
 
 - (void)setUp {
-//    expectation = [self expectationWithDescription:@"waitForCompletion"];
-//    [expectation setExpectedFulfillmentCount:7];
     stubInsights = [MockWebServiceHelper getMockInsightsWithAppId:@"indexName" :^(id res) {
         XCTAssertNotNil(res);
-//        [expectation fulfill];
     }];
 }
 
@@ -33,6 +30,8 @@ Insights *stubInsights;
   Insights* insightsRegister = [Insights registerWithAppId:appId
                                                     apiKey:@"testKey"];
   
+  [Insights setRegion:RegionDe];
+  [Insights setRegion:RegionAuto];
   XCTAssertNotNil(insightsRegister);
   XCTAssertNotNil([Insights sharedWithAppId:appId]);
 }
@@ -51,7 +50,6 @@ Insights *stubInsights;
                                             objectIDs:@[]
                                             positions:@[]
                                                 error:&e];
-//    [self waitForExpectations:@[expectation] timeout:2];
 }
 
 - (void) testClickAnalyticsConversion {
@@ -63,7 +61,6 @@ Insights *stubInsights;
                                                    queryID:@""
                                                  objectIDs:@[]
                                                      error:&e];
-//    [self waitForExpectations:@[expectation] timeout:2];
 }
 
 - (void) testABTestingClick {
@@ -76,7 +73,6 @@ Insights *stubInsights;
                                        objectIDs:@[]
                                        positions:@[]
                                            error:&e];
-//    [self waitForExpectations:@[expectation] timeout:2];
 }
 
 - (void) testABTestingConversion {
@@ -88,7 +84,6 @@ Insights *stubInsights;
                                               queryID:@""
                                             objectIDs:@[]
                                                 error:&e];
-//    [self waitForExpectations:@[expectation] timeout:2];
 }
 
 - (void) testPersonalizationClick {
@@ -100,7 +95,6 @@ Insights *stubInsights;
                                              timestamp:timestamp
                                              objectIDs:@[]
                                                  error:&e];
-//    [self waitForExpectations:@[expectation] timeout:2];
 }
 
 - (void) testPersonalizationView {
@@ -112,7 +106,6 @@ Insights *stubInsights;
                                             timestamp:timestamp
                                             objectIDs:@[]
                                                 error:&e];
-//    [self waitForExpectations:@[expectation] timeout:2];
 }
 
 - (void) testPersonalizationConversion {
@@ -124,7 +117,6 @@ Insights *stubInsights;
                                                   timestamp:timestamp
                                                   objectIDs:@[]
                                                       error:&e];
-//    [self waitForExpectations:@[expectation] timeout:2];
 }
  
 @end
