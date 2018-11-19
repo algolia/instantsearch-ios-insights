@@ -9,18 +9,39 @@
 import Foundation
 
 enum Environment {
-  case prod
-  case dev
+    case prod
+    case dev
+}
+
+enum Region {
+    
+    case us
+    case de
+    case auto
+    
+    var urlSuffix: String {
+        switch self {
+        case .auto:
+            return ""
+            
+        case .us:
+            return ".us"
+            
+        case .de:
+            return ".de"
+        }
+    }
+    
 }
 
 let environment: Environment = {
-  let env: Environment
-  #if DEV
-  env = Environment.dev
-  #else
-  env = Environment.prod
-  #endif
-  return env
+    let env: Environment
+    #if DEV
+    env = Environment.dev
+    #else
+    env = Environment.prod
+    #endif
+    return env
 }()
 
 protocol APIEndpoint {
@@ -44,7 +65,7 @@ extension API: APIEndpoint {
   static let baseURL : URL = {
     switch environment {
     case .prod:
-      return URL(string: "https://insights.algolia.io")!
+      return URL(string: "https://insights\(Insights.region.urlSuffix).algolia.io")!
     case .dev:
       return URL(string: "http://localhost:8080")!
     }
