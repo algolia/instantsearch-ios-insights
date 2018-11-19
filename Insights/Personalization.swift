@@ -25,7 +25,6 @@ import Foundation
     /// - parameter userToken: User identifier
     /// - parameter indexName: Name of the targeted index
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter queryID: Algolia queryID
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
     /// - Throws: An error of type EventConstructionError
     
@@ -48,7 +47,6 @@ import Foundation
     /// - parameter userToken: User identifier
     /// - parameter indexName: Name of the targeted index
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter queryID: Algolia queryID
     /// - parameter filters: An array of filters. Limited to 10 filters.
     /// - Throws: An error of type EventConstructionError
     
@@ -71,7 +69,6 @@ import Foundation
     /// - parameter userToken: User identifier
     /// - parameter indexName: Name of the targeted index
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter queryID: Algolia queryID
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
     /// - Throws: An error of type EventConstructionError
     
@@ -94,7 +91,6 @@ import Foundation
     /// - parameter userToken: User identifier
     /// - parameter indexName: Name of the targeted index
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter queryID: Algolia queryID
     /// - parameter filters: An array of filters. Limited to 10 filters.
     /// - Throws: An error of type EventConstructionError
     
@@ -117,7 +113,6 @@ import Foundation
     /// - parameter userToken: User identifier
     /// - parameter indexName: Name of the targeted index
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter queryID: Algolia queryID
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
     /// - Throws: An error of type EventConstructionError
     
@@ -140,7 +135,6 @@ import Foundation
     /// - parameter userToken: User identifier
     /// - parameter indexName: Name of the targeted index
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter queryID: Algolia queryID
     /// - parameter filters: An array of filters. Limited to 10 filters.
     /// - Throws: An error of type EventConstructionError
     
