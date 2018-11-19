@@ -47,7 +47,7 @@ import Foundation
     }
     
     /// Access an already registered `Insights` without having to pass the `apiKey` and `appId`. If the application was not register before, it will return a nil value.
-    /// If more than one application has been registered, an undetermined instance of `Insights` will be returned.
+    /// - warning: If more than one application has been registered, an undetermined instance of `Insights` will be returned.
     ///
     
     public static var shared: Insights? {
