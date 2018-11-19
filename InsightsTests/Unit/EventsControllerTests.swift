@@ -28,32 +28,32 @@ class EventsControllerTests: XCTestCase {
         
         let queue = DispatchQueue(label: "test queue", qos: .default)
         let credentials = Credentials(appId: appId, apiKey: "APIKEY")
-        let eventsSynchronizer = EventsController(credentials: credentials,
+        let eventsController = EventsController(credentials: credentials,
                                                     webService: mockWS,
                                                     flushDelay: 1000,
                                                     logger: Logger(appId),
                                                     dispatchQueue: queue)
         
-        eventsSynchronizer.isLocalStorageEnabled = false
-        eventsSynchronizer.process(TestEvent.template)
+        eventsController.isLocalStorageEnabled = false
+        eventsController.process(TestEvent.template)
         
         queue.sync {}
-        XCTAssertEqual(eventsSynchronizer.eventsPackages.count, 1)
+        XCTAssertEqual(eventsController.eventsPackages.count, 1)
 
-        eventsSynchronizer.process(TestEvent.template)
+        eventsController.process(TestEvent.template)
         
         queue.sync {}
         
-        XCTAssertEqual(eventsSynchronizer.eventsPackages.count, 1)
-        XCTAssertEqual(eventsSynchronizer.eventsPackages.first?.events.count, 2)
+        XCTAssertEqual(eventsController.eventsPackages.count, 1)
+        XCTAssertEqual(eventsController.eventsPackages.first?.events.count, 2)
         
         let events = [Event](repeating: TestEvent.template, count: 1000)
         
-        events.forEach(eventsSynchronizer.process)
+        events.forEach(eventsController.process)
         
         queue.sync {}
         
-        XCTAssertEqual(eventsSynchronizer.eventsPackages.count, 2)
+        XCTAssertEqual(eventsController.eventsPackages.count, 2)
         
     }
     
@@ -66,17 +66,17 @@ class EventsControllerTests: XCTestCase {
         }
         let queue = DispatchQueue(label: "test queue")
         let credentials = Credentials(appId: appId, apiKey: "APIKEY")
-        let eventsSynchronizer = EventsController(credentials: credentials,
+        let eventsController = EventsController(credentials: credentials,
                                                     webService: mockWS,
                                                     flushDelay: 1000,
                                                     logger: Logger(appId),
                                                     dispatchQueue: queue)
         
-        eventsSynchronizer.isLocalStorageEnabled = false
+        eventsController.isLocalStorageEnabled = false
 
-        eventsSynchronizer.process(TestEvent.template)
+        eventsController.process(TestEvent.template)
         queue.sync {}
-        eventsSynchronizer.flush(eventsSynchronizer.eventsPackages)
+        eventsController.flush(eventsController.eventsPackages)
         
         wait(for: [wsExpectation], timeout: 2)
     }
