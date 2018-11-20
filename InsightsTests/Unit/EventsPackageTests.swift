@@ -122,7 +122,7 @@ class EventsPackageTests: XCTestCase {
             XCTAssertEqual(error.localizedDescription, "Max events count in package is \(EventsPackage.maxEventCountInPackage)")
         }
         
-        wait(for: [exp], timeout: 1)
+        wait(for: [exp], timeout: 5)
         
     }
     

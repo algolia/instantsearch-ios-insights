@@ -49,7 +49,7 @@ class ClickAnalyticsTests: XCTestCase {
                              queryID: expectedQueryID,
                              objectIDsWithPositions: expectedObjectIDsWithPositions)
         
-        wait(for: [exp], timeout: 1)
+        wait(for: [exp], timeout: 5)
         
     }
     
@@ -82,7 +82,7 @@ class ClickAnalyticsTests: XCTestCase {
                                   queryID: expectedQueryID,
                                   objectIDs: expectedObjectIDs)
         
-        wait(for: [exp], timeout: 1)
+        wait(for: [exp], timeout: 5)
     }
 
     

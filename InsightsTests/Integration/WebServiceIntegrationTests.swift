@@ -42,7 +42,7 @@ class WebServiceIntegrationTests: XCTestCase {
             XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
         }
 
-        wait(for: [exp], timeout: 2)
+        wait(for: [exp], timeout: 5)
         
     }
     
@@ -68,7 +68,7 @@ class WebServiceIntegrationTests: XCTestCase {
             XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
         }
         
-        wait(for: [exp], timeout: 2)
+        wait(for: [exp], timeout: 5)
         
     }
     
@@ -94,7 +94,7 @@ class WebServiceIntegrationTests: XCTestCase {
             XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
         }
         
-        wait(for: [exp], timeout: 2)
+        wait(for: [exp], timeout: 5)
 
     }
     
@@ -120,7 +120,7 @@ class WebServiceIntegrationTests: XCTestCase {
             XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
         }
         
-        wait(for: [exp], timeout: 2)
+        wait(for: [exp], timeout: 5)
 
     }
     
@@ -161,7 +161,7 @@ class WebServiceIntegrationTests: XCTestCase {
             XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
         }
         
-        wait(for: [exp], timeout: 2)
+        wait(for: [exp], timeout: 5)
         
     }
     

@@ -50,7 +50,7 @@ class PersonalizationTests: XCTestCase {
                              timestamp: expectedTimestamp,
                              objectIDs: expectedObjectIDs)
         
-        wait(for: [exp], timeout: 1)
+        wait(for: [exp], timeout: 5)
         
     }
     
@@ -85,7 +85,7 @@ class PersonalizationTests: XCTestCase {
                              timestamp: expectedTimestamp,
                                filters: expectedFilters)
         
-        wait(for: [exp], timeout: 1)
+        wait(for: [exp], timeout: 5)
 
         
     }
@@ -121,7 +121,7 @@ class PersonalizationTests: XCTestCase {
                               timestamp: expectedTimestamp,
                               objectIDs: expectedObjectIDs)
         
-        wait(for: [exp], timeout: 1)
+        wait(for: [exp], timeout: 5)
 
         
     }
@@ -157,7 +157,7 @@ class PersonalizationTests: XCTestCase {
                               timestamp: expectedTimestamp,
                                 filters: expectedFilters)
         
-        wait(for: [exp], timeout: 1)
+        wait(for: [exp], timeout: 5)
 
         
     }
@@ -193,7 +193,7 @@ class PersonalizationTests: XCTestCase {
                                    timestamp: expectedTimestamp,
                                    objectIDs: expectedObjectIDs)
         
-        wait(for: [exp], timeout: 1)
+        wait(for: [exp], timeout: 5)
 
         
     }
@@ -229,7 +229,7 @@ class PersonalizationTests: XCTestCase {
                                    timestamp: expectedTimestamp,
                                      filters: expectedFilters)
         
-        wait(for: [exp], timeout: 1)
+        wait(for: [exp], timeout: 5)
 
         
     }

@@ -78,7 +78,7 @@ class EventsControllerTests: XCTestCase {
         queue.sync {}
         eventsController.flush(eventsController.eventsPackages)
         
-        wait(for: [wsExpectation], timeout: 2)
+        wait(for: [wsExpectation], timeout: 5)
     }
     
 }

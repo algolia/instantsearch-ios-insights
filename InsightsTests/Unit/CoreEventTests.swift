@@ -135,7 +135,7 @@ class CoreEventTests: XCTestCase {
             XCTAssertEqual(error.localizedDescription, "Max objects IDs count in event is \(CoreEvent.maxObjectIDsCount)")
         }
         
-        wait(for: [exp], timeout: 1)
+        wait(for: [exp], timeout: 5)
         
     }
     
@@ -157,7 +157,7 @@ class CoreEventTests: XCTestCase {
             XCTAssertEqual(error.localizedDescription, "Max filters count in event is \(CoreEvent.maxFiltersCount)")
         }
         
-        wait(for: [exp], timeout: 1)
+        wait(for: [exp], timeout: 5)
 
         
     }
