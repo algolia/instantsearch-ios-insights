@@ -11,5 +11,6 @@ import Foundation
 protocol AnalyticsUsecase {
     
     var eventProcessor: EventProcessor { get }
+    var logger: Logger { get }
     
 }

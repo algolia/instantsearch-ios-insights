@@ -15,9 +15,11 @@ import Foundation
 @objcMembers public class Personalization: NSObject, AnalyticsUsecase {
     
     var eventProcessor: EventProcessor
+    var logger: Logger
     
-    init(eventProcessor: EventProcessor) {
+    init(eventProcessor: EventProcessor, logger: Logger) {
         self.eventProcessor = eventProcessor
+        self.logger = logger
     }
     
     /// Track a view
@@ -26,20 +28,25 @@ import Foundation
     /// - parameter indexName: Name of the targeted index
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
-    /// - Throws: An error of type EventConstructionError
     
     public func view(eventName: String,
                      indexName: String,
                      userToken: String,
                      timestamp: TimeInterval = Date().timeIntervalSince1970,
-                     objectIDs: [String]) throws {
-        let event = try View(name: eventName,
-                             indexName: indexName,
-                             userToken: userToken,
-                             timestamp: timestamp,
-                             queryID: .none,
-                             objectIDsOrFilters: .objectIDs(objectIDs))
-        eventProcessor.process(event)
+                     objectIDs: [String]) {
+        do {
+            
+            let event = try View(name: eventName,
+                                 indexName: indexName,
+                                 userToken: userToken,
+                                 timestamp: timestamp,
+                                 queryID: .none,
+                                 objectIDsOrFilters: .objectIDs(objectIDs))
+            eventProcessor.process(event)
+        
+        } catch let error {
+            logger.debug(message: error.localizedDescription)
+        }
     }
     
     /// Track a view
@@ -48,20 +55,25 @@ import Foundation
     /// - parameter indexName: Name of the targeted index
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter filters: An array of filters. Limited to 10 filters.
-    /// - Throws: An error of type EventConstructionError
     
     public func view(eventName: String,
                      indexName: String,
                      userToken: String,
                      timestamp: TimeInterval = Date().timeIntervalSince1970,
-                     filters: [String]) throws {
-        let event = try View(name: eventName,
-                             indexName: indexName,
-                             userToken: userToken,
-                             timestamp: timestamp,
-                             queryID: .none,
-                             objectIDsOrFilters: .filters(filters))
-        eventProcessor.process(event)
+                     filters: [String]) {
+        do {
+
+            let event = try View(name: eventName,
+                                 indexName: indexName,
+                                 userToken: userToken,
+                                 timestamp: timestamp,
+                                 queryID: .none,
+                                 objectIDsOrFilters: .filters(filters))
+            eventProcessor.process(event)
+
+        } catch let error {
+            logger.debug(message: error.localizedDescription)
+        }
     }
     
     /// Track a click
@@ -70,20 +82,26 @@ import Foundation
     /// - parameter indexName: Name of the targeted index
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
-    /// - Throws: An error of type EventConstructionError
     
     public func click(eventName: String,
                       indexName: String,
                       userToken: String,
                       timestamp: TimeInterval = Date().timeIntervalSince1970,
-                      objectIDs: [String]) throws {
-        let event = try Click(name: eventName,
-                              indexName: indexName,
-                              userToken: userToken,
-                              timestamp: timestamp,
-                              objectIDsOrFilters: .objectIDs(objectIDs),
-                              positions: .none)
-        eventProcessor.process(event)
+                      objectIDs: [String]) {
+        do {
+            
+            let event = try Click(name: eventName,
+                                  indexName: indexName,
+                                  userToken: userToken,
+                                  timestamp: timestamp,
+                                  objectIDsOrFilters: .objectIDs(objectIDs),
+                                  positions: .none)
+            eventProcessor.process(event)
+            
+        } catch let error {
+            logger.debug(message: error.localizedDescription)
+        }
+
     }
     
     /// Track a click
@@ -92,20 +110,26 @@ import Foundation
     /// - parameter indexName: Name of the targeted index
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter filters: An array of filters. Limited to 10 filters.
-    /// - Throws: An error of type EventConstructionError
     
     public func click(eventName: String,
                       indexName: String,
                       userToken: String,
                       timestamp: TimeInterval = Date().timeIntervalSince1970,
-                      filters: [String]) throws {
-        let event = try Click(name: eventName,
-                              indexName: indexName,
-                              userToken: userToken,
-                              timestamp: timestamp,
-                              objectIDsOrFilters: .filters(filters),
-                              positions: .none)
-        eventProcessor.process(event)
+                      filters: [String]) {
+        do {
+            
+            let event = try Click(name: eventName,
+                                  indexName: indexName,
+                                  userToken: userToken,
+                                  timestamp: timestamp,
+                                  objectIDsOrFilters: .filters(filters),
+                                  positions: .none)
+            eventProcessor.process(event)
+
+        } catch let error {
+            logger.debug(message: error.localizedDescription)
+        }
+        
     }
     
     /// Track a conversion
@@ -114,20 +138,25 @@ import Foundation
     /// - parameter indexName: Name of the targeted index
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
-    /// - Throws: An error of type EventConstructionError
     
     public func conversion(eventName: String,
                            indexName: String,
                            userToken: String,
                     	timestamp: TimeInterval,
-                        objectIDs: [String]) throws {
-        let event = try Conversion(name: eventName,
-                                   indexName: indexName,
-                                   userToken: userToken,
-                                   timestamp: timestamp,
-                                   queryID: .none,
-                                   objectIDsOrFilters: .objectIDs(objectIDs))
-        eventProcessor.process(event)
+                        objectIDs: [String]) {
+        do {
+            
+            let event = try Conversion(name: eventName,
+                                       indexName: indexName,
+                                       userToken: userToken,
+                                       timestamp: timestamp,
+                                       queryID: .none,
+                                       objectIDsOrFilters: .objectIDs(objectIDs))
+            eventProcessor.process(event)
+
+        } catch let error {
+            logger.debug(message: error.localizedDescription)
+        }
     }
     
     /// Track a conversion
@@ -136,20 +165,25 @@ import Foundation
     /// - parameter indexName: Name of the targeted index
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter filters: An array of filters. Limited to 10 filters.
-    /// - Throws: An error of type EventConstructionError
     
     public func conversion(eventName: String,
                            indexName: String,
                            userToken: String,
                            timestamp: TimeInterval,
-                           filters: [String]) throws {
-        let event = try Conversion(name: eventName,
-                                   indexName: indexName,
-                                   userToken: userToken,
-                                   timestamp: timestamp,
-                                   queryID: .none,
-                                   objectIDsOrFilters: .filters(filters))
-        eventProcessor.process(event)
+                           filters: [String]) {
+        do {
+            
+            let event = try Conversion(name: eventName,
+                                       indexName: indexName,
+                                       userToken: userToken,
+                                       timestamp: timestamp,
+                                       queryID: .none,
+                                       objectIDsOrFilters: .filters(filters))
+            eventProcessor.process(event)
+            
+        } catch let error {
+            logger.debug(message: error.localizedDescription)
+        }
     }
 
 }

@@ -12,10 +12,11 @@ import XCTest
 class ClickAnalyticsTests: XCTestCase {
     
     let eventProcessor = TestEventProcessor()
+    let logger = Logger("test app id")
     var clickAnalytics: ClickAnalytics!
     
     override func setUp() {
-        clickAnalytics = ClickAnalytics(eventProcessor: eventProcessor)
+        clickAnalytics = ClickAnalytics(eventProcessor: eventProcessor, logger: logger)
     }
     
     func testClick() {
@@ -42,11 +43,11 @@ class ClickAnalyticsTests: XCTestCase {
             XCTAssertEqual(click.positions, expectedObjectIDsWithPositions.map { $0.1 })
         }
         
-        try! clickAnalytics.click(userToken: expectedUserToken,
-                                  indexName: expectedIndexName,
-                                  timestamp: expectedTimestamp,
-                                  queryID: expectedQueryID,
-                                  objectIDsWithPositions: expectedObjectIDsWithPositions)
+        clickAnalytics.click(userToken: expectedUserToken,
+                             indexName: expectedIndexName,
+                             timestamp: expectedTimestamp,
+                             queryID: expectedQueryID,
+                             objectIDsWithPositions: expectedObjectIDsWithPositions)
         
         wait(for: [exp], timeout: 1)
         
@@ -75,11 +76,11 @@ class ClickAnalyticsTests: XCTestCase {
             XCTAssertEqual(conversion.objectIDsOrFilters, .objectIDs(expectedObjectIDs))
         }
         
-        try! clickAnalytics.conversion(userToken: expectedUserToken,
-                                       indexName: expectedIndexName,
-                                       timestamp: expectedTimestamp,
-                                       queryID: expectedQueryID,
-                                       objectIDs: expectedObjectIDs)
+        clickAnalytics.conversion(userToken: expectedUserToken,
+                                  indexName: expectedIndexName,
+                                  timestamp: expectedTimestamp,
+                                  queryID: expectedQueryID,
+                                  objectIDs: expectedObjectIDs)
         
         wait(for: [exp], timeout: 1)
     }

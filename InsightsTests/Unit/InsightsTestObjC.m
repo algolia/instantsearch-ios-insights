@@ -34,6 +34,34 @@ Insights *stubInsights;
   [Insights setRegion:RegionAuto];
   XCTAssertNotNil(insightsRegister);
   XCTAssertNotNil([Insights sharedWithAppId:appId]);
+    
+    
+    [[[Insights shared] clickAnalytics] clickWithUserToken:@"user token"
+                                                 indexName:@"my index"
+                                                 timestamp:[[NSDate new] timeIntervalSince1970]
+                                                   queryID:@"q123"
+                                                 objectIDs:@[@"obj1", @"obj2"]
+                                                 positions:@[@1, @2]];
+    
+    [[[Insights shared] abTesting] conversionWithUserToken:@"user token"
+                                                 indexName:@"my index"
+                                                 timestamp:[[NSDate new] timeIntervalSince1970]
+                                                   queryID:@"q123"
+                                                 objectIDs:@[@"obj1", @"obj2"]];
+    
+    [[[Insights shared] personalization] viewWithEventName:@"View event"
+                                                 indexName:@"my index"
+                                                 userToken:@"user token"
+                                                 timestamp:[[NSDate new] timeIntervalSince1970]
+                                                   filters:@[@"brand:apple"]];
+    
+    [[[Insights sharedWithAppId:@"app id"] clickAnalytics] clickWithUserToken:@"user token"
+                                                                    indexName:@"my index"
+                                                                    timestamp:[[NSDate new] timeIntervalSince1970]
+                                                                      queryID:@"q123"
+                                                                    objectIDs:@[@"obj1", @"obj2"]
+                                                                    positions:@[@1, @2]];
+
 }
 
 - (void)testInitShouldFail {
@@ -41,82 +69,68 @@ Insights *stubInsights;
 }
 
 - (void) testClickAnalyticsClick {
-    NSError * e;
     NSTimeInterval timestamp = NSDate.new.timeIntervalSince1970;
     [[stubInsights clickAnalytics] clickWithUserToken:@""
                                             indexName:@""
                                             timestamp:timestamp
                                               queryID:@""
                                             objectIDs:@[]
-                                            positions:@[]
-                                                error:&e];
+                                            positions:@[]];
 }
 
 - (void) testClickAnalyticsConversion {
-    NSError * e;
     NSTimeInterval timestamp = NSDate.new.timeIntervalSince1970;
     [[stubInsights clickAnalytics] conversionWithUserToken:@""
                                                  indexName:@""
                                                  timestamp:timestamp
                                                    queryID:@""
-                                                 objectIDs:@[]
-                                                     error:&e];
+                                                 objectIDs:@[]];
 }
 
 - (void) testABTestingClick {
-    NSError * e;
     NSTimeInterval timestamp = NSDate.new.timeIntervalSince1970;
     [[stubInsights abTesting] clickWithUserToken:@""
                                        indexName:@""
                                        timestamp:timestamp
                                          queryID:@""
                                        objectIDs:@[]
-                                       positions:@[]
-                                           error:&e];
+                                       positions:@[]];
 }
 
 - (void) testABTestingConversion {
-    NSError * e;
     NSTimeInterval timestamp = NSDate.new.timeIntervalSince1970;
     [[stubInsights abTesting] conversionWithUserToken:@""
                                             indexName:@""
                                             timestamp:timestamp
                                               queryID:@""
-                                            objectIDs:@[]
-                                                error:&e];
+                                            objectIDs:@[]];
 }
 
 - (void) testPersonalizationClick {
-    NSError * e;
     NSTimeInterval timestamp = NSDate.new.timeIntervalSince1970;
     [[stubInsights personalization] clickWithEventName:@""
                                              indexName:@""
                                              userToken:@""
                                              timestamp:timestamp
-                                             objectIDs:@[]
-                                                 error:&e];
+                                             objectIDs:@[]];
 }
 
 - (void) testPersonalizationView {
-    NSError * e;
     NSTimeInterval timestamp = NSDate.new.timeIntervalSince1970;
     [[stubInsights personalization] viewWithEventName:@""
                                             indexName:@""
                                             userToken:@""
                                             timestamp:timestamp
-                                            objectIDs:@[]
-                                                error:&e];
+                                            objectIDs:@[]];
 }
 
 - (void) testPersonalizationConversion {
-    NSError * e;
     NSTimeInterval timestamp = NSDate.new.timeIntervalSince1970;
     [[stubInsights personalization] conversionWithEventName:@""
                                                   indexName:@""
                                                   userToken:@""
                                                   timestamp:timestamp
-                                                  objectIDs:@[]
-                                                      error:&e];
+                                                  objectIDs:@[]];
 }
  
 @end

@@ -12,10 +12,11 @@ import XCTest
 class PersonalizationTests: XCTestCase {
     
     let eventProcessor = TestEventProcessor()
+    let logger = Logger("test app id")
     var personalization: Personalization!
     
     override func setUp() {
-        personalization = Personalization(eventProcessor: eventProcessor)
+        personalization = Personalization(eventProcessor: eventProcessor, logger: logger)
     }
     
     func testViewEventWithObjects() {
@@ -43,11 +44,11 @@ class PersonalizationTests: XCTestCase {
 
         }
 
-        try! personalization.view(eventName: expectedEventName,
-                                  indexName: expectedIndexName,
-                                  userToken: expectedUserToken,
-                                  timestamp: expectedTimestamp,
-                                  objectIDs: expectedObjectIDs)
+        personalization.view(eventName: expectedEventName,
+                             indexName: expectedIndexName,
+                             userToken: expectedUserToken,
+                             timestamp: expectedTimestamp,
+                             objectIDs: expectedObjectIDs)
         
         wait(for: [exp], timeout: 1)
         
@@ -78,11 +79,11 @@ class PersonalizationTests: XCTestCase {
             
         }
         
-        try! personalization.view(eventName: expectedEventName,
-                                  indexName: expectedIndexName,
-                                  userToken: expectedUserToken,
-                                  timestamp: expectedTimestamp,
-                                  filters: expectedFilters)
+        personalization.view(eventName: expectedEventName,
+                             indexName: expectedIndexName,
+                             userToken: expectedUserToken,
+                             timestamp: expectedTimestamp,
+                               filters: expectedFilters)
         
         wait(for: [exp], timeout: 1)
 
@@ -114,11 +115,11 @@ class PersonalizationTests: XCTestCase {
             
         }
         
-        try! personalization.click(eventName: expectedEventName,
-                                   indexName: expectedIndexName,
-                                   userToken: expectedUserToken,
-                                   timestamp: expectedTimestamp,
-                                   objectIDs: expectedObjectIDs)
+        personalization.click(eventName: expectedEventName,
+                              indexName: expectedIndexName,
+                              userToken: expectedUserToken,
+                              timestamp: expectedTimestamp,
+                              objectIDs: expectedObjectIDs)
         
         wait(for: [exp], timeout: 1)
 
@@ -150,11 +151,11 @@ class PersonalizationTests: XCTestCase {
             
         }
         
-        try! personalization.click(eventName: expectedEventName,
-                                   indexName: expectedIndexName,
-                                   userToken: expectedUserToken,
-                                   timestamp: expectedTimestamp,
-                                   filters: expectedFilters)
+        personalization.click(eventName: expectedEventName,
+                              indexName: expectedIndexName,
+                              userToken: expectedUserToken,
+                              timestamp: expectedTimestamp,
+                                filters: expectedFilters)
         
         wait(for: [exp], timeout: 1)
 
@@ -186,11 +187,11 @@ class PersonalizationTests: XCTestCase {
             
         }
         
-        try! personalization.conversion(eventName: expectedEventName,
-                                        indexName: expectedIndexName,
-                                        userToken: expectedUserToken,
-                                        timestamp: expectedTimestamp,
-                                        objectIDs: expectedObjectIDs)
+        personalization.conversion(eventName: expectedEventName,
+                                   indexName: expectedIndexName,
+                                   userToken: expectedUserToken,
+                                   timestamp: expectedTimestamp,
+                                   objectIDs: expectedObjectIDs)
         
         wait(for: [exp], timeout: 1)
 
@@ -222,11 +223,11 @@ class PersonalizationTests: XCTestCase {
             
         }
         
-        try! personalization.conversion(eventName: expectedEventName,
-                                        indexName: expectedIndexName,
-                                        userToken: expectedUserToken,
-                                        timestamp: expectedTimestamp,
-                                        filters: expectedFilters)
+        personalization.conversion(eventName: expectedEventName,
+                                   indexName: expectedIndexName,
+                                   userToken: expectedUserToken,
+                                   timestamp: expectedTimestamp,
+                                     filters: expectedFilters)
         
         wait(for: [exp], timeout: 1)
 

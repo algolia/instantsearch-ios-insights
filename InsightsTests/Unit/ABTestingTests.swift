@@ -13,9 +13,10 @@ class ABTestingTests: XCTestCase {
     
     var abTesting: ABTesting!
     let eventProcessor = TestEventProcessor()
+    let logger = Logger("test app")
     
     override func setUp() {
-        abTesting = ABTesting(eventProcessor: eventProcessor)
+        abTesting = ABTesting(eventProcessor: eventProcessor,logger: logger)
     }
     
     func testClick() {
@@ -42,11 +43,11 @@ class ABTestingTests: XCTestCase {
             XCTAssertEqual(click.positions, expectedObjectIDsWithPositions.map { $0.1 })
         }
         
-        try! abTesting.click(userToken: expectedUserToken,
-                             indexName: expectedIndexName,
-                             timestamp: expectedTimestamp,
-                             queryID: expectedQueryID,
-                             objectIDsWithPositions: expectedObjectIDsWithPositions)
+        abTesting.click(userToken: expectedUserToken,
+                        indexName: expectedIndexName,
+                        timestamp: expectedTimestamp,
+                          queryID: expectedQueryID,
+           objectIDsWithPositions: expectedObjectIDsWithPositions)
         
         wait(for: [exp], timeout: 1)
         
@@ -75,11 +76,11 @@ class ABTestingTests: XCTestCase {
             XCTAssertEqual(conversion.objectIDsOrFilters, .objectIDs(expectedObjectIDs))
         }
         
-        try! abTesting.conversion(userToken: expectedUserToken,
-                                  indexName: expectedIndexName,
-                                  timestamp: expectedTimestamp,
-                                  queryID: expectedQueryID,
-                                  objectIDs: expectedObjectIDs)
+        abTesting.conversion(userToken: expectedUserToken,
+                             indexName: expectedIndexName,
+                             timestamp: expectedTimestamp,
+                               queryID: expectedQueryID,
+                             objectIDs: expectedObjectIDs)
         
         wait(for: [exp], timeout: 1)
     }

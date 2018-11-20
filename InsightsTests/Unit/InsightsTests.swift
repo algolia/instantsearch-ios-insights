@@ -69,10 +69,31 @@ class InsightsTests: XCTestCase {
                                         logger: Logger(testCredentials.appId))
      
         
-        try? insightsRegister.clickAnalytics.click(userToken: expectedUserToken,
-                                                   indexName: expectedIndexName,
-                                                   queryID: expectedQueryID,
-                                                   objectIDsWithPositions: expectedObjectIDsWithPositions)
+        insightsRegister.clickAnalytics.click(userToken: expectedUserToken,
+                                              indexName: expectedIndexName,
+                                                queryID: expectedQueryID,
+                                 objectIDsWithPositions: expectedObjectIDsWithPositions)
+        
+        Insights.shared?.clickAnalytics.click(userToken: "user token",
+                                              indexName: "my index",
+                                                queryID: "q123",
+                                 objectIDsWithPositions: [("obj1", 1), ("obj2", 2)])
+        
+        Insights.shared?.abTesting.conversion(userToken: "user token",
+                                              indexName: "my index",
+                                                queryID: "q123",
+                                              objectIDs: ["obj1", "obj2"])
+        
+        Insights.shared?.personalization.view(eventName: "View event",
+                                              indexName: "my index",
+                                              userToken: "user token",
+                                                filters: ["brand:apple"])
+
+        
+        Insights.shared(appId: "app id")?.clickAnalytics.click(userToken: "user token",
+                                                                    indexName: "my index",
+                                                                    queryID: "q123",
+                                                                    objectIDsWithPositions: [("obj1", 1), ("obj2", 2)])
         
         waitForExpectations(timeout: 2, handler: nil)
     }

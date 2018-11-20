@@ -86,9 +86,9 @@ import Foundation
             flushDelay: flushDelay,
             logger: logger)
         self.eventsController = eventsController
-        self.personalization = Personalization(eventProcessor: eventsController)
-        self.abTesting = ABTesting(eventProcessor: eventsController)
-        self.clickAnalytics = ClickAnalytics(eventProcessor: eventsController)
+        self.personalization = Personalization(eventProcessor: eventsController, logger: logger)
+        self.abTesting = ABTesting(eventProcessor: eventsController, logger: logger)
+        self.clickAnalytics = ClickAnalytics(eventProcessor: eventsController, logger: logger)
         super.init()
     }
     
