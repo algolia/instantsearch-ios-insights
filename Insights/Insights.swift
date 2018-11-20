@@ -38,7 +38,9 @@ import Foundation
     ///
     @discardableResult public static func register(appId: String, apiKey: String) -> Insights {
         let credentials = Credentials(appId: appId, apiKey: apiKey)
-        let logger = Logger(appId)
+        let logger = Logger(appId) { debugMessage in
+            DispatchQueue.main.async { print(debugMessage) }
+        }
         let sessionConfig = Algolia.SessionConfig.default(appId: appId, apiKey: apiKey)
         let webservice = WebService(sessionConfig: sessionConfig,
                                     logger: logger)
