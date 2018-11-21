@@ -38,6 +38,7 @@ class CoreEventTests: XCTestCase {
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.indexName.rawValue] as? String, expectedIndexName)
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.userToken.rawValue] as? String, expectedUserToken)
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.queryID.rawValue] as? String, expectedQueryID)
+        XCTAssertEqual((eventDictionary[CoreEvent.CodingKeys.timestamp.rawValue] as? TimeInterval).flatMap(Int.init), Int(expectedTimestamp))
         XCTAssertEqual(eventDictionary[ObjectsIDsOrFilters.CodingKeys.filters.rawValue] as? [String], [filter])
         
     }
@@ -75,7 +76,7 @@ class CoreEventTests: XCTestCase {
             XCTAssertEqual(event.indexName, expectedIndexName)
             XCTAssertEqual(event.userToken, expectedUserToken)
             XCTAssertEqual(event.queryID, expectedQueryID)
-            XCTAssertEqual(event.timestamp, expectedTimeStamp)
+            XCTAssertEqual(Int(event.timestamp), Int(expectedTimeStamp))
             XCTAssertEqual(event.objectIDsOrFilters, expectedWrappedFilter)
             
         } catch let error {
