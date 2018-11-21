@@ -8,6 +8,7 @@
 import Foundation
 
 public enum Result<T> {
+    
   case success(T?), fail(Error)
   
   public init(value: T) {
@@ -25,4 +26,5 @@ public enum Result<T> {
   public var error: Error? {
     if case let .fail(err) = self { return err } else { return nil }
   }
+    
 }
