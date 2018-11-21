@@ -81,14 +81,12 @@
 		AF4956392190A91E006B2F0B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956382190A91E006B2F0B /* View.swift */; };
 		AF49563B2190A926006B2F0B /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49563A2190A926006B2F0B /* Conversion.swift */; };
 		AF49563E2190A954006B2F0B /* Syncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49563D2190A954006B2F0B /* Syncable.swift */; };
-		AF49564021919D59006B2F0B /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49563F21919D59006B2F0B /* AnyEncodable.swift */; };
 		AFC30BFF2191C1A300AA72B0 /* EventsPackageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30BFE2191C1A300AA72B0 /* EventsPackageTests.swift */; };
 		AFC30C012191C1AB00AA72B0 /* ClickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C002191C1AB00AA72B0 /* ClickTests.swift */; };
 		AFC30C032191C1B900AA72B0 /* ViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C022191C1B900AA72B0 /* ViewTests.swift */; };
 		AFC30C052191C1C100AA72B0 /* ConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C042191C1C100AA72B0 /* ConversionTests.swift */; };
 		AFC30C072191C24500AA72B0 /* CoreEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C062191C24500AA72B0 /* CoreEventTests.swift */; };
 		AFC30C092191C58F00AA72B0 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C082191C58F00AA72B0 /* Event.swift */; };
-		AFC30C0B2191D0F100AA72B0 /* Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C0A2191D0F100AA72B0 /* Decodable.swift */; };
 		AFC30C0D2191F86600AA72B0 /* ABTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C0C2191F86600AA72B0 /* ABTesting.swift */; };
 		AFC30C0F2191F87000AA72B0 /* ClickAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C0E2191F87000AA72B0 /* ClickAnalytics.swift */; };
 		AFC30C112191F87A00AA72B0 /* Personalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C102191F87A00AA72B0 /* Personalization.swift */; };
@@ -167,14 +165,12 @@
 		AF4956382190A91E006B2F0B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		AF49563A2190A926006B2F0B /* Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversion.swift; sourceTree = "<group>"; };
 		AF49563D2190A954006B2F0B /* Syncable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syncable.swift; sourceTree = "<group>"; };
-		AF49563F21919D59006B2F0B /* AnyEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
 		AFC30BFE2191C1A300AA72B0 /* EventsPackageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPackageTests.swift; sourceTree = "<group>"; };
 		AFC30C002191C1AB00AA72B0 /* ClickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickTests.swift; sourceTree = "<group>"; };
 		AFC30C022191C1B900AA72B0 /* ViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTests.swift; sourceTree = "<group>"; };
 		AFC30C042191C1C100AA72B0 /* ConversionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionTests.swift; sourceTree = "<group>"; };
 		AFC30C062191C24500AA72B0 /* CoreEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreEventTests.swift; sourceTree = "<group>"; };
 		AFC30C082191C58F00AA72B0 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		AFC30C0A2191D0F100AA72B0 /* Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decodable.swift; sourceTree = "<group>"; };
 		AFC30C0C2191F86600AA72B0 /* ABTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABTesting.swift; sourceTree = "<group>"; };
 		AFC30C0E2191F87000AA72B0 /* ClickAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickAnalytics.swift; sourceTree = "<group>"; };
 		AFC30C102191F87A00AA72B0 /* Personalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personalization.swift; sourceTree = "<group>"; };
@@ -334,7 +330,6 @@
 				1DD0A0C820C140B8005FDDDD /* JSONCodingKeys.swift */,
 				1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */,
 				1DD0A0CC20C53B83005FDDDD /* Logger.swift */,
-				AF49563F21919D59006B2F0B /* AnyEncodable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -370,7 +365,6 @@
 			isa = PBXGroup;
 			children = (
 				AF495627218CA1FF006B2F0B /* Encodable.swift */,
-				AFC30C0A2191D0F100AA72B0 /* Decodable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -686,13 +680,11 @@
 				AF49563E2190A954006B2F0B /* Syncable.swift in Sources */,
 				AF495628218CA1FF006B2F0B /* Encodable.swift in Sources */,
 				1DD0A0C620BFF43C005FDDDD /* Result.swift in Sources */,
-				AFC30C0B2191D0F100AA72B0 /* Decodable.swift in Sources */,
 				1D958B0620BEE8F60058230A /* NSMutableURLRequest+Resource.swift in Sources */,
 				1D958B0B20BEE9820058230A /* WebService.swift in Sources */,
 				AF49562A218CA72C006B2F0B /* EventsPackage.swift in Sources */,
 				AF4956352190A90C006B2F0B /* EventType.swift in Sources */,
 				AFC30C112191F87A00AA72B0 /* Personalization.swift in Sources */,
-				AF49564021919D59006B2F0B /* AnyEncodable.swift in Sources */,
 				AFD96DE32199D14600E13993 /* EventConstructionError.swift in Sources */,
 				AFC30C152191F98F00AA72B0 /* EventsController.swift in Sources */,
 				AF49562F2190A8AC006B2F0B /* EventWrapper.swift in Sources */,

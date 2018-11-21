@@ -8,37 +8,9 @@
 
 import Foundation
 
-public struct Conversion: Event {
+struct Conversion: CoreEventContainer {
     
-    internal let coreEvent: CoreEvent
-    
-    public var type: EventType {
-        return coreEvent.type
-    }
-    
-    public var name: String {
-        return coreEvent.name
-    }
-    
-    public var indexName: String {
-        return coreEvent.indexName
-    }
-    
-    public var userToken: String {
-        return coreEvent.userToken
-    }
-    
-    public var timestamp: TimeInterval {
-        return coreEvent.timestamp
-    }
-    
-    public var queryID: String? {
-        return coreEvent.queryID
-    }
-    
-    public var objectIDsOrFilters: ObjectsIDsOrFilters {
-        return coreEvent.objectIDsOrFilters
-    }
+    let coreEvent: CoreEvent
     
     init(name: String,
          indexName: String,
@@ -59,11 +31,11 @@ public struct Conversion: Event {
 
 extension Conversion: Codable {
     
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         coreEvent = try CoreEvent(from: decoder)
     }
     
-    public func encode(to encoder: Encoder) throws {
+    func encode(to encoder: Encoder) throws {
         try coreEvent.encode(to: encoder)
     }
     

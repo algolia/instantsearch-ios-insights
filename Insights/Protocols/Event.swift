@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Event {
+protocol Event {
     
     var type: EventType { get }
     var name: String { get }
@@ -17,5 +17,43 @@ public protocol Event {
     var timestamp: TimeInterval { get }
     var queryID: String? { get }
     var objectIDsOrFilters: ObjectsIDsOrFilters { get }
+    
+}
+
+protocol CoreEventContainer: Event {
+    
+    var coreEvent: CoreEvent { get }
+    
+}
+
+extension CoreEventContainer {
+    
+    var type: EventType {
+        return coreEvent.type
+    }
+    
+    var name: String {
+        return coreEvent.name
+    }
+    
+    var indexName: String {
+        return coreEvent.indexName
+    }
+    
+    var userToken: String {
+        return coreEvent.userToken
+    }
+    
+    var timestamp: TimeInterval {
+        return coreEvent.timestamp
+    }
+    
+    var queryID: String? {
+        return coreEvent.queryID
+    }
+    
+    var objectIDsOrFilters: ObjectsIDsOrFilters {
+        return coreEvent.objectIDsOrFilters
+    }
     
 }
