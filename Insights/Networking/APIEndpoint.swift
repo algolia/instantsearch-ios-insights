@@ -54,7 +54,7 @@ protocol APIEndpoint {
 
 extension APIEndpoint {
   static func url(path: String) -> URL {
-    return URL(string:path, relativeTo:baseAPIURL)!
+    return URL(string: path, relativeTo: baseAPIURL)!
   }
 }
 
@@ -62,7 +62,7 @@ struct API {
 }
 
 extension API: APIEndpoint {
-  static let baseURL : URL = {
+  static let baseURL: URL = {
     switch environment {
     case .prod:
       return URL(string: "https://insights\(Insights.region.urlSuffix).algolia.io")!

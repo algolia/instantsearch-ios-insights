@@ -107,7 +107,7 @@ extension EventsPackage: Syncable {
     
     @discardableResult func sync() -> Resource<Bool, WebserviceError> {
         
-        let errorParse:(Int, Any) -> WebserviceError? = { (code, data) -> WebserviceError? in
+        let errorParse: (Int, Any) -> WebserviceError? = { (code, data) -> WebserviceError? in
             if let data = data as? [String: Any],
                 let message = data["message"] as? String {
                 let error = WebserviceError(code: code, message: message)

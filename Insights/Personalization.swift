@@ -146,8 +146,8 @@ import Foundation
     public func conversion(eventName: String,
                            indexName: String,
                            userToken: String,
-                    	timestamp: TimeInterval,
-                        objectIDs: [String]) {
+                           timestamp: TimeInterval,
+                           objectIDs: [String]) {
         do {
             
             let event = try Conversion(name: eventName,

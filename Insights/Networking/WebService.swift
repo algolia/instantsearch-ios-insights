@@ -21,7 +21,7 @@ class WebService {
     return URLRequest(resource: resource)
   }
   
-  public func load<A, E>(resource: Resource<A, E>, completion: @escaping (Result<A>) -> ()) {
+  public func load<A, E>(resource: Resource<A, E>, completion: @escaping (Result<A>) -> Void) {
     let request = makeRequest(for: resource)
     urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
       if let error  = error {

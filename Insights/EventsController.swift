@@ -60,8 +60,7 @@ class EventsController: EventProcessor {
         let eventsPackage: EventsPackage
         
         if let lastEventsPackage = eventsPackages.last, !lastEventsPackage.isFull {
-            // We are sure that try! will not crash, as where is "not full" check
-            eventsPackage = try! eventsPackages.removeLast().appending(wrappedEvent)
+            eventsPackage = (try? eventsPackages.removeLast().appending(wrappedEvent)) ?? EventsPackage(event: wrappedEvent)
         } else {
             eventsPackage = EventsPackage(event: wrappedEvent)
         }

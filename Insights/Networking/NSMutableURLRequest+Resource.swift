@@ -10,8 +10,10 @@ import Foundation
 
 extension URLRequest {
   init<A, E>(resource: Resource<A, E>) {
-    var requestParams: [URLQueryItem]? = nil
-    var requestBody: Data?  = nil
+    
+    var requestParams: [URLQueryItem]?
+    var requestBody: Data?
+    
     switch resource.method {
     case .get(let params):
       requestParams = params
@@ -31,7 +33,7 @@ extension URLRequest {
     requestComponents.port = resource.url.port
     requestComponents.queryItems = requestParams
     
-    self.init(url:(requestComponents.url)!)
+    self.init(url: (requestComponents.url)!)
     httpMethod = resource.method.method
     httpBody = requestBody
     setValue(resource.contentType, forHTTPHeaderField: "Content-Type")

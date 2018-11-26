@@ -18,10 +18,12 @@ opt_in_rules: # some rules are only opt-in
   # swiftlint rules
 included: # paths to include during linting. `--path` is ignored if present.
   - Sources
+  - Insights
 
 line_length: 300
 file_length: 600
 function_body_length: 50
 type_body_length: 250
+function_parameter_count: 6
 identifier_name:
   min_length: 2

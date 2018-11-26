@@ -10,9 +10,9 @@ import Foundation
 class Logger {
   var enabled = false
   let appId: String
-  let outputHandler: (String) -> ()
+  let outputHandler: (String) -> Void
   
-  init(_ appId: String, _ output:@escaping (String) -> () = dPrint) {
+  init(_ appId: String, _ output: @escaping (String) -> Void = dPrint) {
     self.appId = appId
     self.outputHandler = output
   }
