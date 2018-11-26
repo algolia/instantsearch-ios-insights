@@ -26,33 +26,7 @@ import Foundation
         self.eventProcessor = eventProcessor
         self.logger = logger
     }
-    
-    // Only for Objective-C
-    /// Track a click
-    /// - parameter userToken: User identifier
-    /// - parameter indexName: Name of the targeted index
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter queryID: Algolia queryID
-    /// - parameter objectIDs: An array of related index objectID. Limited to 20 objects.
-    /// - parameter positions: Position of the click in the list of Algolia search results. Positions count must be the same as objectID count.
 
-    @available(swift, obsoleted: 3.1)
-    public func click(userToken: String,
-                      indexName: String,
-                      timestamp: TimeInterval,
-                      queryID: String,
-                      objectIDs: [String],
-                      positions: [Int]) {
-        guard objectIDs.count == positions.count else {
-            let error = EventConstructionError.objectsAndPositionsCountMismatch(objectIDsCount: objectIDs.count, positionsCount: positions.count)
-            logger.debug(message: error.localizedDescription)
-            return
-        }
-        
-        let objectIDsWithPositions = zip(objectIDs, positions).map { $0 }
-        click(userToken: userToken, indexName: indexName, timestamp: timestamp, queryID: queryID, objectIDsWithPositions: objectIDsWithPositions)
-    }
-    
     /// Track a click
     /// - parameter userToken: User identifier
     /// - parameter indexName: Name of the targeted index
@@ -105,6 +79,26 @@ import Foundation
         } catch let error {
             logger.debug(message: error.localizedDescription)
         }
+    }
+    
+    /// Track a click
+    /// - parameter userToken: User identifier
+    /// - parameter indexName: Name of the targeted index
+    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
+    /// - parameter queryID: Algolia queryID
+    /// - parameter objectIDs: An array of related index objectID. Limited to 20 objects.
+    /// - parameter positions: Position of the click in the list of Algolia search results. Positions count must be the same as objectID count.
+    
+    @objc(clickWithUserToken:indexName:timestamp:queryID:objectIDs:positions:)
+    public func z_objc_click(userToken: String, indexName: String, timestamp: TimeInterval, queryID: String, objectIDs: [String], positions: [Int]) {
+        guard objectIDs.count == positions.count else {
+            let error = EventConstructionError.objectsAndPositionsCountMismatch(objectIDsCount: objectIDs.count, positionsCount: positions.count)
+            logger.debug(message: error.localizedDescription)
+            return
+        }
+        
+        let objectIDsWithPositions = zip(objectIDs, positions).map { $0 }
+        click(userToken: userToken, indexName: indexName, timestamp: timestamp, queryID: queryID, objectIDsWithPositions: objectIDsWithPositions)
     }
     
 }
