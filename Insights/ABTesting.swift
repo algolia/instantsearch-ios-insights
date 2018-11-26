@@ -9,7 +9,12 @@
 import Foundation
 
 /**
- A/B Testing allows you to create 2 alternative indices, A and B, each with their own settings, and to put them both live, to see which one performs best. Capture the same user events for both A and B. Measure these captured events against each other, creating scores. Use these scores to determine whether A or B is a better user experience. Adjust your main index accordingly.
+ A/B Testing allows you to create 2 alternative indices, A and B, each with their own settings,
+ and to put them both live, to see which one performs best.
+ Capture the same user events for both A and B.
+ Measure these captured events against each other, creating scores.
+ Use these scores to determine whether A or B is a better user experience.
+ Adjust your main index accordingly.
 */
 
 @objcMembers public class ABTesting: NSObject, AnalyticsUsecase {

@@ -10,7 +10,9 @@ import Foundation
 
 
 /**
-Click Analytics helps you answer the following questions: Does a user, after performing a search, click-through to one or more of your products? and does he or she take a particularly significant action, called a “conversion point”?
+Click Analytics helps you answer the following questions:
+Does a user, after performing a search, click-through to one or more of your products?
+Does he or she take a particularly significant action, called a “conversion point”?
 */
 
 @objcMembers public class ClickAnalytics: NSObject, AnalyticsUsecase {
