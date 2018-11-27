@@ -30,37 +30,37 @@ Insights *stubInsights;
   Insights* insightsRegister = [Insights registerWithAppId:appId
                                                     apiKey:@"testKey"];
   
-  [Insights setRegion:RegionDe];
-  [Insights setRegion:RegionAuto];
+  [Insights setRegion:[Region us]];
+  [Insights setRegion:nil];
   XCTAssertNotNil(insightsRegister);
   XCTAssertNotNil([Insights sharedWithAppId:appId]);
     
     
-    [[[Insights shared] clickAnalytics] clickWithUserToken:@"user token"
-                                                 indexName:@"my index"
-                                                 timestamp:[[NSDate new] timeIntervalSince1970]
-                                                   queryID:@"q123"
-                                                 objectIDs:@[@"obj1", @"obj2"]
-                                                 positions:@[@1, @2]];
-    
-    [[[Insights shared] abTesting] conversionWithUserToken:@"user token"
-                                                 indexName:@"my index"
-                                                 timestamp:[[NSDate new] timeIntervalSince1970]
-                                                   queryID:@"q123"
-                                                 objectIDs:@[@"obj1", @"obj2"]];
-    
-    [[[Insights shared] personalization] viewWithEventName:@"View event"
-                                                 indexName:@"my index"
-                                                 userToken:@"user token"
-                                                 timestamp:[[NSDate new] timeIntervalSince1970]
-                                                   filters:@[@"brand:apple"]];
-    
-    [[[Insights sharedWithAppId:@"app id"] clickAnalytics] clickWithUserToken:@"user token"
-                                                                    indexName:@"my index"
-                                                                    timestamp:[[NSDate new] timeIntervalSince1970]
-                                                                      queryID:@"q123"
-                                                                    objectIDs:@[@"obj1", @"obj2"]
-                                                                    positions:@[@1, @2]];
+    [[[Insights shared] search] clickWithUserToken:@"user token"
+                                         indexName:@"my index"
+                                         timestamp:[[NSDate new] timeIntervalSince1970]
+                                           queryID:@"q123"
+                                         objectIDs:@[@"obj1", @"obj2"]
+                                         positions:@[@1, @2]];
+
+    [[[Insights shared] search] conversionWithUserToken:@"user token"
+                                              indexName:@"my index"
+                                              timestamp:[[NSDate new] timeIntervalSince1970]
+                                                queryID:@"q123"
+                                              objectIDs:@[@"obj1", @"obj2"]];
+
+    [[[Insights shared] visit] viewWithEventName:@"View event"
+                                       indexName:@"my index"
+                                       userToken:@"user token"
+                                       timestamp:[[NSDate new] timeIntervalSince1970]
+                                         filters:@[@"brand:apple"]];
+
+    [[[Insights sharedWithAppId:@"app id"] search] clickWithUserToken:@"user token"
+                                                            indexName:@"my index"
+                                                            timestamp:[[NSDate new] timeIntervalSince1970]
+                                                              queryID:@"q123"
+                                                            objectIDs:@[@"obj1", @"obj2"]
+                                                            positions:@[@1, @2]];
 
 }
 
@@ -68,9 +68,9 @@ Insights *stubInsights;
   XCTAssertNil([Insights sharedWithAppId:@"notRegisteredIndex"]);
 }
 
-- (void) testClickAnalyticsClick {
+- (void) testSearchClick {
     NSTimeInterval timestamp = NSDate.new.timeIntervalSince1970;
-    [[stubInsights clickAnalytics] clickWithUserToken:@""
+    [[stubInsights search] clickWithUserToken:@""
                                             indexName:@""
                                             timestamp:timestamp
                                               queryID:@""
@@ -78,55 +78,36 @@ Insights *stubInsights;
                                             positions:@[]];
 }
 
-- (void) testClickAnalyticsConversion {
+- (void) testSearchConversion {
     NSTimeInterval timestamp = NSDate.new.timeIntervalSince1970;
-    [[stubInsights clickAnalytics] conversionWithUserToken:@""
+    [[stubInsights search] conversionWithUserToken:@""
                                                  indexName:@""
                                                  timestamp:timestamp
                                                    queryID:@""
                                                  objectIDs:@[]];
 }
-
-- (void) testABTestingClick {
+ 
+- (void) testVisitClick {
     NSTimeInterval timestamp = NSDate.new.timeIntervalSince1970;
-    [[stubInsights abTesting] clickWithUserToken:@""
-                                       indexName:@""
-                                       timestamp:timestamp
-                                         queryID:@""
-                                       objectIDs:@[]
-                                       positions:@[]];
-}
-
-- (void) testABTestingConversion {
-    NSTimeInterval timestamp = NSDate.new.timeIntervalSince1970;
-    [[stubInsights abTesting] conversionWithUserToken:@""
-                                            indexName:@""
-                                            timestamp:timestamp
-                                              queryID:@""
-                                            objectIDs:@[]];
-}
-
-- (void) testPersonalizationClick {
-    NSTimeInterval timestamp = NSDate.new.timeIntervalSince1970;
-    [[stubInsights personalization] clickWithEventName:@""
+    [[stubInsights visit] clickWithEventName:@""
                                              indexName:@""
                                              userToken:@""
                                              timestamp:timestamp
                                              objectIDs:@[]];
 }
 
-- (void) testPersonalizationView {
+- (void) testVisitView {
     NSTimeInterval timestamp = NSDate.new.timeIntervalSince1970;
-    [[stubInsights personalization] viewWithEventName:@""
+    [[stubInsights visit] viewWithEventName:@""
                                             indexName:@""
                                             userToken:@""
                                             timestamp:timestamp
                                             objectIDs:@[]];
 }
 
-- (void) testPersonalizationConversion {
+- (void) testVisitConversion {
     NSTimeInterval timestamp = NSDate.new.timeIntervalSince1970;
-    [[stubInsights personalization] conversionWithEventName:@""
+    [[stubInsights visit] conversionWithEventName:@""
                                                   indexName:@""
                                                   userToken:@""
                                                   timestamp:timestamp

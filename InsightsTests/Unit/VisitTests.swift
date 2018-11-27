@@ -1,5 +1,5 @@
 //
-//  PersonalizationTests.swift
+//  VisitTests.swift
 //  InsightsTests
 //
 //  Created by Vladislav Fitc on 07/11/2018.
@@ -9,14 +9,14 @@
 import XCTest
 @testable import InstantSearchInsights
 
-class PersonalizationTests: XCTestCase {
+class VisitTests: XCTestCase {
     
     let eventProcessor = TestEventProcessor()
     let logger = Logger("test app id")
-    var personalization: Personalization!
+    var visit: Visit!
     
     override func setUp() {
-        personalization = Personalization(eventProcessor: eventProcessor, logger: logger)
+        visit = Visit(eventProcessor: eventProcessor, logger: logger)
     }
     
     func testViewEventWithObjects() {
@@ -44,7 +44,7 @@ class PersonalizationTests: XCTestCase {
 
         }
 
-        personalization.view(eventName: expectedEventName,
+        visit.view(eventName: expectedEventName,
                              indexName: expectedIndexName,
                              userToken: expectedUserToken,
                              timestamp: expectedTimestamp,
@@ -79,7 +79,7 @@ class PersonalizationTests: XCTestCase {
             
         }
         
-        personalization.view(eventName: expectedEventName,
+        visit.view(eventName: expectedEventName,
                              indexName: expectedIndexName,
                              userToken: expectedUserToken,
                              timestamp: expectedTimestamp,
@@ -115,7 +115,7 @@ class PersonalizationTests: XCTestCase {
             
         }
         
-        personalization.click(eventName: expectedEventName,
+        visit.click(eventName: expectedEventName,
                               indexName: expectedIndexName,
                               userToken: expectedUserToken,
                               timestamp: expectedTimestamp,
@@ -151,7 +151,7 @@ class PersonalizationTests: XCTestCase {
             
         }
         
-        personalization.click(eventName: expectedEventName,
+        visit.click(eventName: expectedEventName,
                               indexName: expectedIndexName,
                               userToken: expectedUserToken,
                               timestamp: expectedTimestamp,
@@ -187,7 +187,7 @@ class PersonalizationTests: XCTestCase {
             
         }
         
-        personalization.conversion(eventName: expectedEventName,
+        visit.conversion(eventName: expectedEventName,
                                    indexName: expectedIndexName,
                                    userToken: expectedUserToken,
                                    timestamp: expectedTimestamp,
@@ -223,7 +223,7 @@ class PersonalizationTests: XCTestCase {
             
         }
         
-        personalization.conversion(eventName: expectedEventName,
+        visit.conversion(eventName: expectedEventName,
                                    indexName: expectedIndexName,
                                    userToken: expectedUserToken,
                                    timestamp: expectedTimestamp,

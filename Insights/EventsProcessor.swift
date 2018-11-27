@@ -1,5 +1,5 @@
 //
-//  EventsController.swift
+//  EventsProcessor.swift
 //  Insights
 //
 //  Created by Vladislav Fitc on 06/11/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class EventsController: EventProcessor {
+class EventsProcessor: EventProcessable {
     
     typealias Storage = LocalStorage<[EventsPackage]>
     
@@ -99,11 +99,12 @@ class EventsController: EventProcessor {
     private func serialize() {
         guard isLocalStorageEnabled else { return }
         
-        if let file = Storage.filePath(for: localStorageFileName) {
-            Storage.serialize(eventsPackages, file: file)
-        } else {
+        guard let file = Storage.filePath(for: localStorageFileName) else {
             logger.debug(message: "Error creating a file for \(localStorageFileName)")
+            return
         }
+        
+        Storage.serialize(eventsPackages, file: file)
     }
     
     private func deserialize() {
@@ -113,6 +114,7 @@ class EventsController: EventProcessor {
             logger.debug(message: "Error reading a file for \(localStorageFileName)")
             return
         }
+        
         self.eventsPackages = Storage.deserialize(filePath) ?? []
     }
     

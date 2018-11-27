@@ -1,5 +1,5 @@
 //
-//  EventProcessor.swift
+//  AnalyticsUsecase.swift
 //  Insights
 //
 //  Created by Vladislav Fitc on 06/11/2018.
@@ -8,8 +8,9 @@
 
 import Foundation
 
-protocol EventProcessor: class {
+protocol AnalyticsUsecase {
     
-    func process(_ event: Event)
+    var eventProcessor: EventProcessable { get }
+    var logger: Logger { get }
     
 }

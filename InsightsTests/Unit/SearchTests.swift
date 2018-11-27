@@ -1,5 +1,5 @@
 //
-//  ClickAnalyticsTests.swift
+//  SearchTests.swift
 //  InsightsTests
 //
 //  Created by Vladislav Fitc on 07/11/2018.
@@ -9,14 +9,14 @@
 import XCTest
 @testable import InstantSearchInsights
 
-class ClickAnalyticsTests: XCTestCase {
+class SearchTests: XCTestCase {
     
     let eventProcessor = TestEventProcessor()
     let logger = Logger("test app id")
-    var clickAnalytics: ClickAnalytics!
+    var search: Search!
     
     override func setUp() {
-        clickAnalytics = ClickAnalytics(eventProcessor: eventProcessor, logger: logger)
+        search = Search(eventProcessor: eventProcessor, logger: logger)
     }
     
     func testClick() {
@@ -43,7 +43,7 @@ class ClickAnalyticsTests: XCTestCase {
             XCTAssertEqual(click.positions, expectedObjectIDsWithPositions.map { $0.1 })
         }
         
-        clickAnalytics.click(userToken: expectedUserToken,
+        search.click(userToken: expectedUserToken,
                              indexName: expectedIndexName,
                              timestamp: expectedTimestamp,
                              queryID: expectedQueryID,
@@ -76,7 +76,7 @@ class ClickAnalyticsTests: XCTestCase {
             XCTAssertEqual(conversion.objectIDsOrFilters, .objectIDs(expectedObjectIDs))
         }
         
-        clickAnalytics.conversion(userToken: expectedUserToken,
+        search.conversion(userToken: expectedUserToken,
                                   indexName: expectedIndexName,
                                   timestamp: expectedTimestamp,
                                   queryID: expectedQueryID,

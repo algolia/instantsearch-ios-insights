@@ -9,7 +9,7 @@
 import Foundation
 @testable import InstantSearchInsights
 
-class TestEventProcessor: EventProcessor {
+class TestEventProcessor: EventProcessable {
     
     var didProcess: (Event) -> Void = { _ in }
     

@@ -1,8 +1,8 @@
 //
-//  Personalization.swift
+//  Visit.swift
 //  Insights
 //
-//  Created by Vladislav Fitc on 06/11/2018.
+//  Created by Vladislav Fitc on 26/11/2018.
 //  Copyright © 2018 Algolia. All rights reserved.
 //
 
@@ -14,14 +14,14 @@ import Foundation
  by injecting user preferences into the relevance formula.
  Personalization relies on the event capturing mechanism, which allows you
  to track events that will eventually form the basis of every profile.
-*/
+ */
 
-@objcMembers public class Personalization: NSObject, AnalyticsUsecase {
-    
-    var eventProcessor: EventProcessor
+@objcMembers public class Visit: NSObject, AnalyticsUsecase {
+
+    var eventProcessor: EventProcessable
     var logger: Logger
     
-    init(eventProcessor: EventProcessor, logger: Logger) {
+    init(eventProcessor: EventProcessable, logger: Logger) {
         self.eventProcessor = eventProcessor
         self.logger = logger
     }
@@ -47,10 +47,28 @@ import Foundation
                                  queryID: .none,
                                  objectIDsOrFilters: .objectIDs(objectIDs))
             eventProcessor.process(event)
-        
+            
         } catch let error {
             logger.debug(message: error.localizedDescription)
         }
+    }
+    
+    /// Track a view
+    /// - parameter eventName: A user-defined string used to categorize events
+    /// - parameter userToken: User identifier
+    /// - parameter indexName: Name of the targeted index
+    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
+    /// - parameter objectID: Index objectID.
+    
+    public func view(eventName: String,
+                     indexName: String,
+                     userToken: String,
+                     timestamp: TimeInterval = Date().timeIntervalSince1970,
+                     objectID: String) {
+        view(eventName: eventName,
+             indexName: indexName,
+             userToken: userToken,
+             objectIDs: [objectID])
     }
     
     /// Track a view
@@ -66,7 +84,7 @@ import Foundation
                      timestamp: TimeInterval = Date().timeIntervalSince1970,
                      filters: [String]) {
         do {
-
+            
             let event = try View(name: eventName,
                                  indexName: indexName,
                                  userToken: userToken,
@@ -74,7 +92,7 @@ import Foundation
                                  queryID: .none,
                                  objectIDsOrFilters: .filters(filters))
             eventProcessor.process(event)
-
+            
         } catch let error {
             logger.debug(message: error.localizedDescription)
         }
@@ -105,7 +123,26 @@ import Foundation
         } catch let error {
             logger.debug(message: error.localizedDescription)
         }
-
+        
+    }
+    
+    /// Track a click
+    /// - parameter eventName: A user-defined string used to categorize events
+    /// - parameter userToken: User identifier
+    /// - parameter indexName: Name of the targeted index
+    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
+    /// - parameter objectID: Index objectID.
+    
+    public func click(eventName: String,
+                      indexName: String,
+                      userToken: String,
+                      timestamp: TimeInterval = Date().timeIntervalSince1970,
+                      objectID: String) {
+        click(eventName: eventName,
+              indexName: indexName,
+              userToken: userToken,
+              timestamp: timestamp,
+              objectIDs: [objectID])
     }
     
     /// Track a click
@@ -129,7 +166,7 @@ import Foundation
                                   objectIDsOrFilters: .filters(filters),
                                   positions: .none)
             eventProcessor.process(event)
-
+            
         } catch let error {
             logger.debug(message: error.localizedDescription)
         }
@@ -157,10 +194,29 @@ import Foundation
                                        queryID: .none,
                                        objectIDsOrFilters: .objectIDs(objectIDs))
             eventProcessor.process(event)
-
+            
         } catch let error {
             logger.debug(message: error.localizedDescription)
         }
+    }
+    
+    /// Track a conversion
+    /// - parameter eventName: A user-defined string used to categorize events
+    /// - parameter userToken: User identifier
+    /// - parameter indexName: Name of the targeted index
+    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
+    /// - parameter objectID: Index objectID.
+    
+    public func conversion(eventName: String,
+                           indexName: String,
+                           userToken: String,
+                           timestamp: TimeInterval,
+                           objectID: String) {
+        conversion(eventName: eventName,
+                   indexName: indexName,
+                   userToken: userToken,
+                   timestamp: timestamp,
+                   objectIDs: [objectID])
     }
     
     /// Track a conversion
@@ -189,5 +245,5 @@ import Foundation
             logger.debug(message: error.localizedDescription)
         }
     }
-
+    
 }
