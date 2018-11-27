@@ -74,19 +74,10 @@ import Foundation
                       queryID: String,
                       objectID: String,
                       position: Int) {
-        do {
-            
-            let event = try Click(name: "",
-                                  indexName: indexName,
-                                  userToken: userToken,
-                                  timestamp: timestamp,
-                                  queryID: queryID,
-                                  objectIDsWithPositions: [(objectID, position)])
-            eventProcessor.process(event)
-            
-        } catch let error {
-            logger.debug(message: error.localizedDescription)
-        }
+        click(userToken: userToken,
+              indexName: indexName,
+              queryID: queryID,
+              objectIDsWithPositions: [(objectID, position)])
     }
     
     /// Track a conversion
@@ -128,19 +119,10 @@ import Foundation
                            timestamp: TimeInterval = Date().timeIntervalSince1970,
                            queryID: String,
                            objectID: String) {
-        do {
-            
-            let event = try Conversion(name: "",
-                                       indexName: indexName,
-                                       userToken: userToken,
-                                       timestamp: timestamp,
-                                       queryID: queryID,
-                                       objectIDsOrFilters: .objectIDs([objectID]))
-            eventProcessor.process(event)
-            
-        } catch let error {
-            logger.debug(message: error.localizedDescription)
-        }
+        conversion(userToken: userToken,
+                   indexName: indexName,
+                   queryID: queryID,
+                   objectIDs: [objectID])
     }
     
     /// Track a click

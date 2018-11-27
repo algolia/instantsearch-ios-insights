@@ -28,6 +28,7 @@ class SearchTests: XCTestCase {
         let expectedObjectIDsWithPositions = [("o1", 1), ("o2", 2)]
         
         let exp = expectation(description: "Wait for event processor callback")
+        exp.expectedFulfillmentCount = 2
         
         eventProcessor.didProcess = { e in
             exp.fulfill()
@@ -37,17 +38,34 @@ class SearchTests: XCTestCase {
             }
             XCTAssertEqual(click.indexName, expectedIndexName)
             XCTAssertEqual(click.userToken, expectedUserToken)
-            XCTAssertEqual(click.timestamp, expectedTimestamp)
+            XCTAssertEqual(click.timestamp, expectedTimestamp, accuracy: 0.001)
             XCTAssertEqual(click.queryID, expectedQueryID)
-            XCTAssertEqual(click.objectIDsOrFilters, .objectIDs(expectedObjectIDsWithPositions.map { $0.0 }))
-            XCTAssertEqual(click.positions, expectedObjectIDsWithPositions.map { $0.1 })
+            switch click.objectIDsOrFilters {
+            case .objectIDs(let objectIDs) where objectIDs.count == 1:
+                XCTAssertEqual(objectIDs.first, expectedObjectIDsWithPositions.first?.0)
+                XCTAssertEqual(click.positions?.first, expectedObjectIDsWithPositions.first?.1)
+                
+            case .objectIDs(let objectIDs):
+                XCTAssertEqual(objectIDs, expectedObjectIDsWithPositions.map { $0.0 })
+                XCTAssertEqual(click.positions, expectedObjectIDsWithPositions.map { $0.1 })
+                
+            default:
+                XCTFail("Unexpected filter value")
+            }
+
         }
         
         search.click(userToken: expectedUserToken,
-                             indexName: expectedIndexName,
-                             timestamp: expectedTimestamp,
-                             queryID: expectedQueryID,
-                             objectIDsWithPositions: expectedObjectIDsWithPositions)
+                     indexName: expectedIndexName,
+                     timestamp: expectedTimestamp,
+                     queryID: expectedQueryID,
+                     objectIDsWithPositions: expectedObjectIDsWithPositions)
+        
+        search.click(userToken: expectedUserToken,
+                     indexName: expectedIndexName,
+                     queryID: expectedQueryID,
+                     objectID: expectedObjectIDsWithPositions.first!.0,
+                     position: expectedObjectIDsWithPositions.first!.1)
         
         wait(for: [exp], timeout: 5)
         
@@ -62,6 +80,7 @@ class SearchTests: XCTestCase {
         let expectedObjectIDs = ["o1", "o2"]
         
         let exp = expectation(description: "Wait for event processor callback")
+        exp.expectedFulfillmentCount = 2
         
         eventProcessor.didProcess = { e in
             exp.fulfill()
@@ -71,16 +90,30 @@ class SearchTests: XCTestCase {
             }
             XCTAssertEqual(conversion.indexName, expectedIndexName)
             XCTAssertEqual(conversion.userToken, expectedUserToken)
-            XCTAssertEqual(conversion.timestamp, expectedTimestamp)
+            XCTAssertEqual(conversion.timestamp, expectedTimestamp, accuracy: 0.001)
             XCTAssertEqual(conversion.queryID, expectedQueryID)
-            XCTAssertEqual(conversion.objectIDsOrFilters, .objectIDs(expectedObjectIDs))
+            switch conversion.objectIDsOrFilters {
+            case .objectIDs(let objectIDs) where objectIDs.count == 1:
+                XCTAssertEqual(objectIDs.first, expectedObjectIDs.first)
+                
+            case .objectIDs(let objectIDs):
+                XCTAssertEqual(objectIDs, expectedObjectIDs)
+                
+            default:
+                XCTFail("Unexpected filter value")
+            }
         }
         
         search.conversion(userToken: expectedUserToken,
-                                  indexName: expectedIndexName,
-                                  timestamp: expectedTimestamp,
-                                  queryID: expectedQueryID,
-                                  objectIDs: expectedObjectIDs)
+                          indexName: expectedIndexName,
+                          timestamp: expectedTimestamp,
+                          queryID: expectedQueryID,
+                          objectIDs: expectedObjectIDs)
+        
+        search.conversion(userToken: expectedUserToken,
+                          indexName: expectedIndexName,
+                          queryID: expectedQueryID,
+                          objectID: expectedObjectIDs.first!)
         
         wait(for: [exp], timeout: 5)
     }

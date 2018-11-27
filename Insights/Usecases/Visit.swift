@@ -68,6 +68,7 @@ import Foundation
         view(eventName: eventName,
              indexName: indexName,
              userToken: userToken,
+             timestamp: timestamp,
              objectIDs: [objectID])
     }
     
