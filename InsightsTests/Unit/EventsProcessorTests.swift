@@ -122,7 +122,7 @@ class EventsProcessorTests: XCTestCase {
         let exp = expectation(description: "expectation for ws response")
         
         let mockWS = MockWebServiceHelper.getMockWebService(appId: appId) { _ in
-            wsExpectation.fulfill()
+            exp.fulfill()
         }
         let queue = DispatchQueue(label: "test queue")
         let credentials = Credentials(appId: appId, apiKey: "APIKEY")
