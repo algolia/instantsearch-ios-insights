@@ -90,6 +90,8 @@ import Foundation
         return insightsMap[appId]
     }
     
+    /// Defines if console debug logging enabled. Default value is `false`.
+
     public var loggingEnabled: Bool = false {
         didSet {
             logger.enabled = loggingEnabled
