@@ -51,6 +51,29 @@ struct EventsPackage {
     
 }
 
+extension EventsPackage: Collection {
+    
+    typealias Index = Array<EventWrapper>.Index
+    typealias Element = Array<EventWrapper>.Element
+
+    var startIndex: Index {
+        return events.startIndex
+    }
+    
+    var endIndex: Index {
+        return events.endIndex
+    }
+    
+    func index(after i: Index) -> Index {
+        return events.index(after: i)
+    }
+    
+    subscript(index: Index) -> Element {
+        get { return events[index] }
+    }
+    
+}
+
 extension EventsPackage {
     
     enum Error: Swift.Error {
