@@ -30,13 +30,23 @@ class InsightsTests: XCTestCase {
     
     func testInitShouldWork() {
         
-        let insightsRegister = Insights.register(appId: testCredentials.appId, apiKey: "testKey")
+        let insightsRegister = Insights.register(appId: testCredentials.appId, apiKey: testCredentials.apiKey)
         XCTAssertNotNil(insightsRegister)
         
         let insightsShared = Insights.shared(appId: testCredentials.appId)
         XCTAssertNotNil(insightsShared)
         
         XCTAssertEqual(insightsRegister, insightsShared, "Getting the Insights instance from register and shared should be the same")
+        
+    }
+    
+    func testOptIntOptOut() {
+        
+        let insightsRegister = Insights.register(appId: testCredentials.appId, apiKey: testCredentials.apiKey)
+        
+        XCTAssertTrue(insightsRegister.eventsProcessor.isActive)
+        insightsRegister.isActive = false
+        XCTAssertFalse(insightsRegister.eventsProcessor.isActive)
         
     }
 

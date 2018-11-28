@@ -13,7 +13,10 @@ class TestEventProcessor: EventProcessable {
     
     var didProcess: (Event) -> Void = { _ in }
     
+    var isActive: Bool = true
+    
     func process(_ event: Event) {
+        guard isActive else { return }
         didProcess(event)
     }
     

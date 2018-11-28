@@ -31,8 +31,21 @@ import Foundation
     /// By default API endpoint is routed automatically
 
     public static var region: Region?
-    
     private static var logger = Logger("Main")
+    
+    /// Defines if event tracking is active. Default value is `true`.
+    /// In case of set to false, all the events for current application will be ignored.
+    public var isActive: Bool {
+        
+        get {
+            return eventsProcessor.isActive
+        }
+        
+        set {
+            eventsProcessor.isActive = newValue
+        }
+        
+    }
     
     /// Register your index with a given appId and apiKey
     ///
@@ -98,8 +111,8 @@ import Foundation
         }
     }
     
-    private let eventsProcessor: EventProcessable
-    private let logger: Logger
+    let eventsProcessor: EventProcessable
+    let logger: Logger
     
     /// Access point for capturing of search-related events
 
@@ -109,20 +122,25 @@ import Foundation
 
     public let visit: Visit
     
-    internal init(credentials: Credentials,
-                  webService: WebService,
-                  flushDelay: TimeInterval,
-                  logger: Logger) {
-        let eventsProcessor = EventsProcessor(
-            credentials: credentials,
-            webService: webService,
-            flushDelay: flushDelay,
-            logger: logger)
+    init(eventsProcessor: EventProcessable,
+         logger: Logger) {
         self.eventsProcessor = eventsProcessor
         self.search = Search(eventProcessor: eventsProcessor, logger: logger)
         self.visit = Visit(eventProcessor: eventsProcessor, logger: logger)
         self.logger = logger
         super.init()
+    }
+    
+    convenience init(credentials: Credentials,
+                     webService: WebService,
+                     flushDelay: TimeInterval,
+                     logger: Logger) {
+        let eventsProcessor = EventsProcessor(
+            credentials: credentials,
+            webService: webService,
+            flushDelay: flushDelay,
+            logger: logger)
+        self.init(eventsProcessor: eventsProcessor, logger: logger)
     }
     
 }

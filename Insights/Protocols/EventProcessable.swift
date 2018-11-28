@@ -10,6 +10,7 @@ import Foundation
 
 protocol EventProcessable: class {
     
+    var isActive: Bool { get set }
     func process(_ event: Event)
     
 }

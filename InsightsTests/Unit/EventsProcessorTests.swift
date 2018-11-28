@@ -21,6 +21,60 @@ class EventsProcessorTests: XCTestCase {
         }
     }
     
+    func testOptOut() {
+        
+        let exp = expectation(description: "ws call")
+        exp.isInverted = true
+        
+        let mockWS = MockWebServiceHelper.getMockWebService(appId: appId) { _ in
+            exp.fulfill()
+        }
+        
+        let queue = DispatchQueue(label: "test queue", qos: .default)
+        let credentials = Credentials(appId: appId, apiKey: "APIKEY")
+        let eventsProcessor = EventsProcessor(credentials: credentials,
+                                              webService: mockWS,
+                                              flushDelay: 1000,
+                                              logger: Logger(appId),
+                                              dispatchQueue: queue)
+        
+        // Expectation must no be fullfilled as eventsProcessor is deactivated
+        
+        eventsProcessor.isActive = false
+        eventsProcessor.process(TestEvent.template)
+        queue.sync {}
+        XCTAssertTrue(eventsProcessor.eventsPackages.isEmpty)
+        
+        wait(for: [exp], timeout: 2)
+
+    }
+    
+    func testOptOutOptIn() {
+        
+        let exp = expectation(description: "ws call")
+        
+        let mockWS = MockWebServiceHelper.getMockWebService(appId: appId) { _ in
+            exp.fulfill()
+        }
+        
+        let queue = DispatchQueue(label: "test queue", qos: .default)
+        let credentials = Credentials(appId: appId, apiKey: "APIKEY")
+        let eventsProcessor = EventsProcessor(credentials: credentials,
+                                              webService: mockWS,
+                                              flushDelay: 1000,
+                                              logger: Logger(appId),
+                                              dispatchQueue: queue)
+        
+        eventsProcessor.isActive = false
+        eventsProcessor.isActive = true
+        eventsProcessor.process(TestEvent.template)
+        queue.sync {}
+        XCTAssertFalse(eventsProcessor.eventsPackages.isEmpty)
+        eventsProcessor.flushEventsPackages()
+        wait(for: [exp], timeout: 2)
+
+    }
+    
     
     func testPackageAssembly() {
         

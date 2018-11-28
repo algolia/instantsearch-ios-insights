@@ -23,6 +23,7 @@ class EventsProcessor: EventProcessable {
             }
         }
     }
+    var isActive: Bool = true
     private let dispatchQueue: DispatchQueue
     private let localStorageFileName: String
     private weak var flushTimer: Timer?
@@ -55,6 +56,11 @@ class EventsProcessor: EventProcessable {
     }
     
     func process(_ event: Event) {
+        guard isActive else {
+            logger.debug(message: "Event tracking is desactivated. This event will be ignored. You can reactivate tracking by setting `Insights.shared(appId: \(credentials.appId))`.isActive = true`")
+            return
+        }
+        
         dispatchQueue.async { [weak self] in
             self?.syncProcess(event)
         }
