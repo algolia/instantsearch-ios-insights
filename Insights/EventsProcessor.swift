@@ -81,7 +81,7 @@ class EventsProcessor: EventProcessable {
     
     private func sync(_ eventsPackage: EventsPackage) {
         logger.debug(message: "Syncing \(eventsPackage)")
-        webservice.sync(event: eventsPackage) { [weak self] err in
+        webservice.sync(eventsPackage) { [weak self] err in
             
             // If there is no error or the error is from the Analytics we should remove it.
             // In case of a WebserviceError the package was wronlgy constructed

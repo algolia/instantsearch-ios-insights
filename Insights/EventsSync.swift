@@ -9,12 +9,12 @@
 import Foundation
 
 extension WebService {
-  public func sync(event: Syncable, completionHandler: @escaping (Error?) -> Void) {
-    load(resource: event.sync(),
+  public func sync(_ item: Syncable, completionHandler: @escaping (Error?) -> Void) {
+    load(resource: item.sync(),
          completion: { [weak self] result in
           switch result {
           case .success:
-            self?.logger.debug(message: "Sync succeded for \(event)")
+            self?.logger.debug(message: "Sync succeded for \(item)")
             completionHandler(nil)
             
           case .fail(let err):

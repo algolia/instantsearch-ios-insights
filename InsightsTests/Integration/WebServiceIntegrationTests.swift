@@ -37,7 +37,7 @@ class WebServiceIntegrationTests: XCTestCase {
         
         let eventsPackage = EventsPackage(event: EventWrapper.click(event))
         
-        webService.sync(event: eventsPackage) { error in
+        webService.sync(eventsPackage) { error in
             XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
             exp.fulfill()
         }
@@ -63,7 +63,7 @@ class WebServiceIntegrationTests: XCTestCase {
         
         let eventsPackage = EventsPackage(event: EventWrapper.click(event))
         
-        webService.sync(event: eventsPackage) { error in
+        webService.sync(eventsPackage) { error in
             XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
             exp.fulfill()
         }
@@ -89,7 +89,7 @@ class WebServiceIntegrationTests: XCTestCase {
         
         let eventsPackage = EventsPackage(event: EventWrapper.view(event))
         
-        webService.sync(event: eventsPackage) { error in
+        webService.sync(eventsPackage) { error in
             XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
             exp.fulfill()
         }
@@ -115,7 +115,7 @@ class WebServiceIntegrationTests: XCTestCase {
         
         let eventsPackage = EventsPackage(event: EventWrapper.conversion(event))
         
-        webService.sync(event: eventsPackage) { error in
+        webService.sync(eventsPackage) { error in
             XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
             exp.fulfill()
         }
@@ -156,7 +156,7 @@ class WebServiceIntegrationTests: XCTestCase {
 
         let eventsPackage = try! EventsPackage(events: [.conversion(conversion), .view(view), .click(click)])
         
-        webService.sync(event: eventsPackage) { error in
+        webService.sync(eventsPackage) { error in
             XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
             exp.fulfill()
         }
