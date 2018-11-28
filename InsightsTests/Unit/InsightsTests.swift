@@ -52,7 +52,7 @@ class InsightsTests: XCTestCase {
 
     func testEventIsSentCorrectly() {
         
-        let expectation = self.expectation(description: "Wait for nothing")
+        let exp = self.expectation(description: "Wait for nothing")
         let expectedIndexName = "test index name"
         let expectedUserToken = "test user token"
         let expectedQueryID = "6de2f7eaa537fa93d8f8f05b927953b1"
@@ -71,7 +71,7 @@ class InsightsTests: XCTestCase {
                         XCTFail("Unable to construct EventsPackage with provided JSON")
                     }
                 })
-                expectation.fulfill()
+                exp.fulfill()
             } else {
                 XCTFail("Unable to cast resource")
             }
@@ -110,7 +110,7 @@ class InsightsTests: XCTestCase {
                                                        queryID: "q123",
                                                        objectIDsWithPositions: [("obj1", 1), ("obj2", 2)])
         
-        waitForExpectations(timeout: 2, handler: nil)
+        wait(for: [exp], timeout: 5)
     }
     
     func testGlobalAppUserTokenPropagation() {
@@ -138,7 +138,7 @@ class InsightsTests: XCTestCase {
                               objectID: expectedObjectIDsWithPositions.first!.0,
                               position: expectedObjectIDsWithPositions.first!.1)
         
-        wait(for: [exp], timeout: 1)
+        wait(for: [exp], timeout: 5)
         
     }
     
@@ -168,7 +168,7 @@ class InsightsTests: XCTestCase {
                               objectID: expectedObjectIDsWithPositions.first!.0,
                               position: expectedObjectIDsWithPositions.first!.1)
         
-        wait(for: [exp], timeout: 1)
+        wait(for: [exp], timeout: 5)
 
     }
     

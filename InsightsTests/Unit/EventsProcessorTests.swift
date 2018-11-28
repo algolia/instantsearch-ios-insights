@@ -45,7 +45,7 @@ class EventsProcessorTests: XCTestCase {
         queue.sync {}
         XCTAssertTrue(eventsProcessor.eventsPackages.isEmpty)
         
-        wait(for: [exp], timeout: 2)
+        wait(for: [exp], timeout: 5)
 
     }
     
@@ -71,7 +71,7 @@ class EventsProcessorTests: XCTestCase {
         queue.sync {}
         XCTAssertFalse(eventsProcessor.eventsPackages.isEmpty)
         eventsProcessor.flushEventsPackages()
-        wait(for: [exp], timeout: 2)
+        wait(for: [exp], timeout: 5)
 
     }
     
@@ -119,7 +119,7 @@ class EventsProcessorTests: XCTestCase {
     
     func testSync() {
         
-        let wsExpectation = expectation(description: "expectation for ws response")
+        let exp = expectation(description: "expectation for ws response")
         
         let mockWS = MockWebServiceHelper.getMockWebService(appId: appId) { _ in
             wsExpectation.fulfill()
@@ -138,7 +138,7 @@ class EventsProcessorTests: XCTestCase {
         queue.sync {}
         eventsProcessor.flushEventsPackages()
         
-        wait(for: [wsExpectation], timeout: 5)
+        wait(for: [exp], timeout: 5)
     }
     
 }
