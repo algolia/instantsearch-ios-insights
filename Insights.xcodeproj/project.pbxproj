@@ -46,6 +46,9 @@
 		AF56CF3821AF074E00B5EABB /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E821AC63970063EBC5 /* Search.swift */; };
 		AF56CF3921AF074F00B5EABB /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E821AC63970063EBC5 /* Search.swift */; };
 		AF56CF3A21AF075000B5EABB /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E821AC63970063EBC5 /* Search.swift */; };
+		AF56CF3B21AF0D6300B5EABB /* Visit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E621AC63910063EBC5 /* Visit.swift */; };
+		AF56CF3C21AF0D6400B5EABB /* Visit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E621AC63910063EBC5 /* Visit.swift */; };
+		AF56CF3D21AF0D6500B5EABB /* Visit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E621AC63910063EBC5 /* Visit.swift */; };
 		AF70F4E421AC622A0063EBC5 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E321AC622A0063EBC5 /* Region.swift */; };
 		AF70F4E721AC63910063EBC5 /* Visit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E621AC63910063EBC5 /* Visit.swift */; };
 		AF70F4E921AC63970063EBC5 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E821AC63970063EBC5 /* Search.swift */; };
@@ -864,6 +867,7 @@
 				AFA8C24921A5AC13003F87F8 /* Logger.swift in Sources */,
 				AFA8C24821A5AC13003F87F8 /* LocalStorage.swift in Sources */,
 				AFA8C24C21A5AC13003F87F8 /* NSMutableURLRequest+Resource.swift in Sources */,
+				AF56CF3B21AF0D6300B5EABB /* Visit.swift in Sources */,
 				AFA8C24121A5AC13003F87F8 /* ObjectIDsOrFilters.swift in Sources */,
 				AFA8C24D21A5AC13003F87F8 /* Resource.swift in Sources */,
 				AFA8C24F21A5AC13003F87F8 /* Result.swift in Sources */,
@@ -922,6 +926,7 @@
 				AFA8C26C21A5B214003F87F8 /* WebService.swift in Sources */,
 				AFA8C26D21A5B214003F87F8 /* Result.swift in Sources */,
 				AFA8C26E21A5B214003F87F8 /* Insights.swift in Sources */,
+				AF56CF3C21AF0D6400B5EABB /* Visit.swift in Sources */,
 				AFA8C26F21A5B214003F87F8 /* Credentials.swift in Sources */,
 				AFA8C27021A5B214003F87F8 /* EventsProcessor.swift in Sources */,
 				AFA8C27121A5B214003F87F8 /* EventProcessable.swift in Sources */,
@@ -980,6 +985,7 @@
 				AFA8C28A21A5B230003F87F8 /* WebService.swift in Sources */,
 				AFA8C28B21A5B230003F87F8 /* Result.swift in Sources */,
 				AFA8C28C21A5B230003F87F8 /* Insights.swift in Sources */,
+				AF56CF3D21AF0D6500B5EABB /* Visit.swift in Sources */,
 				AFA8C28D21A5B230003F87F8 /* Credentials.swift in Sources */,
 				AFA8C28E21A5B230003F87F8 /* EventsProcessor.swift in Sources */,
 				AFA8C28F21A5B230003F87F8 /* EventProcessable.swift in Sources */,
