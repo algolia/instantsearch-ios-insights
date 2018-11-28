@@ -8,13 +8,8 @@
 
 import Foundation
 
-/**
- Personalization feature introduces user-based relevance,
- an additional layer on top of Algolia’s relevance strategy
- by injecting user preferences into the relevance formula.
- Personalization relies on the event capturing mechanism, which allows you
- to track events that will eventually form the basis of every profile.
- */
+/// Provides convenient functions for tracking events which can be used for search personalization.
+///
 
 @objcMembers public class Visit: NSObject, AnalyticsUsecase {
 

@@ -8,20 +8,8 @@
 
 import Foundation
 
-/**
- Click Analytics helps you answer the following questions:
- Does a user, after performing a search, click-through to one or more of your products?
- Does he or she take a particularly significant action, called a “conversion point”?
- */
-
-/**
- A/B Testing allows you to create 2 alternative indices, A and B, each with their own settings,
- and to put them both live, to see which one performs best.
- Capture the same user events for both A and B.
- Measure these captured events against each other, creating scores.
- Use these scores to determine whether A or B is a better user experience.
- Adjust your main index accordingly.
- */
+/// Provides convenient functions for tracking search-related events
+///
 
 @objcMembers public class Search: NSObject, AnalyticsUsecase {
     
@@ -38,7 +26,7 @@ import Foundation
     /// - parameter indexName: Name of the targeted index
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter queryID: Algolia queryID
-    /// - parameter objectIDsWithPositions: An array of related index objectID and position of the click in the list of Algolia search results. Limited to 20 objects.
+    /// - parameter objectIDsWithPositions: An array of related index objectID and position of the click in the list of Algolia search results. - Warning: Limited to 20 objects.
     
     public func click(userToken: String,
                       indexName: String,

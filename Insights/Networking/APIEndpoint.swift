@@ -13,13 +13,6 @@ enum Environment {
     case dev
 }
 
-/*
- search
- visit
- api for one objectID, position
- */
-// optout
-
 let environment: Environment = {
     let env: Environment
     #if DEV
