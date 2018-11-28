@@ -69,6 +69,7 @@ import Foundation
             
         default:
             logger.debug(message: "Multiple applications registered. Please use `shared(appId: String)` function to specify the applicaton.")
+            return nil
         }
         
         insightsMap.first?.value.search.click(userToken: "user101",

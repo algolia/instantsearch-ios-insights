@@ -22,6 +22,10 @@ class InsightsTests: XCTestCase {
         let insightsRegister = Insights.shared(appId: "test")
         XCTAssertNil(insightsRegister)
         
+        Insights.register(appId: "app1", apiKey: "key1")
+        Insights.register(appId: "app2", apiKey: "key2")
+        
+        XCTAssertNil(Insights.shared)
     }
     
     func testInitShouldWork() {
