@@ -15,20 +15,24 @@ import Foundation
     
     var eventProcessor: EventProcessable
     var logger: Logger
-    
-    init(eventProcessor: EventProcessable, logger: Logger) {
+    var userToken: String?
+ 
+    init(eventProcessor: EventProcessable,
+         logger: Logger,
+         userToken: String? = .none) {
         self.eventProcessor = eventProcessor
         self.logger = logger
+        self.userToken = userToken
     }
     
     /// Track a click
-    /// - parameter userToken: User identifier
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter indexName: Name of the targeted index
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter queryID: Algolia queryID
     /// - parameter objectIDsWithPositions: An array of related index objectID and position of the click in the list of Algolia search results. - Warning: Limited to 20 objects.
     
-    public func click(userToken: String,
+    public func click(userToken: String? = .none,
                       indexName: String,
                       timestamp: TimeInterval = Date().timeIntervalSince1970,
                       queryID: String,
@@ -37,7 +41,7 @@ import Foundation
             
             let event = try Click(name: "",
                                   indexName: indexName,
-                                  userToken: userToken,
+                                  userToken: effectiveUserToken(withEventUserToken: userToken),
                                   timestamp: timestamp,
                                   queryID: queryID,
                                   objectIDsWithPositions: objectIDsWithPositions)
@@ -49,33 +53,33 @@ import Foundation
     }
     
     /// Track a click
-    /// - parameter userToken: User identifier
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter indexName: Name of the targeted index
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter queryID: Algolia queryID
     /// - parameter objectID: Index objectID
     /// - parameter position: Position of the click in the list of Algolia search results
     
-    public func click(userToken: String,
+    public func click(userToken: String? = .none,
                       indexName: String,
                       timestamp: TimeInterval = Date().timeIntervalSince1970,
                       queryID: String,
                       objectID: String,
                       position: Int) {
-        click(userToken: userToken,
+        click(userToken: effectiveUserToken(withEventUserToken: userToken),
               indexName: indexName,
               queryID: queryID,
               objectIDsWithPositions: [(objectID, position)])
     }
     
     /// Track a conversion
-    /// - parameter userToken: User identifier
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter indexName: Name of the targeted index
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter queryID: Algolia queryID
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
     
-    public func conversion(userToken: String,
+    public func conversion(userToken: String? = .none,
                            indexName: String,
                            timestamp: TimeInterval = Date().timeIntervalSince1970,
                            queryID: String,
@@ -84,7 +88,7 @@ import Foundation
             
             let event = try Conversion(name: "",
                                        indexName: indexName,
-                                       userToken: userToken,
+                                       userToken: effectiveUserToken(withEventUserToken: userToken),
                                        timestamp: timestamp,
                                        queryID: queryID,
                                        objectIDsOrFilters: .objectIDs(objectIDs))
@@ -96,25 +100,25 @@ import Foundation
     }
     
     /// Track a conversion
-    /// - parameter userToken: User identifier
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter indexName: Name of the targeted index
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter queryID: Algolia queryID
     /// - parameter objectID: Index objectID
     
-    public func conversion(userToken: String,
+    public func conversion(userToken: String? = .none,
                            indexName: String,
                            timestamp: TimeInterval = Date().timeIntervalSince1970,
                            queryID: String,
                            objectID: String) {
-        conversion(userToken: userToken,
+        conversion(userToken: effectiveUserToken(withEventUserToken: userToken),
                    indexName: indexName,
                    queryID: queryID,
                    objectIDs: [objectID])
     }
     
     /// Track a click
-    /// - parameter userToken: User identifier
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter indexName: Name of the targeted index
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter queryID: Algolia queryID

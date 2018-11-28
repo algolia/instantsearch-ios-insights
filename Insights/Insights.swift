@@ -33,8 +33,27 @@ import Foundation
     public static var region: Region?
     private static var logger = Logger("Main")
     
+    /// Global application user token
+    /// Generated while the first app launch and than stored persistently
+    /// Used as a default user token if no user token provided for event or application
+    
+    public static var userToken: String {
+        
+        let key = "com.algolia.InstantSearch.Insights.UserToken"
+        
+        if let existingToken = UserDefaults.standard.string(forKey: key) {
+            return existingToken
+        } else {
+            let generatedToken = UUID().uuidString
+            UserDefaults.standard.set(generatedToken, forKey: key)
+            return generatedToken
+        }
+        
+    }
+    
     /// Defines if event tracking is active. Default value is `true`.
     /// In case of set to false, all the events for current application will be ignored.
+    
     public var isActive: Bool {
         
         get {
@@ -46,13 +65,16 @@ import Foundation
         }
         
     }
-    
+        
     /// Register your index with a given appId and apiKey
     ///
     /// - parameter  appId: The given app id for which you want to track the events
     /// - parameter  apiKey: The API Key for your `appId`
+    /// - parameter  userToken: User token used by default for all the application events, if custom user token is not provided while calling event capturing function
 
-    @discardableResult public static func register(appId: String, apiKey: String) -> Insights {
+    @discardableResult public static func register(appId: String,
+                                                   apiKey: String,
+                                                   userToken: String? = .none) -> Insights {
         let credentials = Credentials(appId: appId, apiKey: apiKey)
         let logger = Logger(appId) { debugMessage in
             DispatchQueue.main.async { print(debugMessage) }
@@ -123,10 +145,11 @@ import Foundation
     public let visit: Visit
     
     init(eventsProcessor: EventProcessable,
+         userToken: String? = .none,
          logger: Logger) {
         self.eventsProcessor = eventsProcessor
-        self.search = Search(eventProcessor: eventsProcessor, logger: logger)
-        self.visit = Visit(eventProcessor: eventsProcessor, logger: logger)
+        self.search = Search(eventProcessor: eventsProcessor, logger: logger, userToken: userToken)
+        self.visit = Visit(eventProcessor: eventsProcessor, logger: logger, userToken: userToken)
         self.logger = logger
         super.init()
     }
@@ -134,13 +157,14 @@ import Foundation
     convenience init(credentials: Credentials,
                      webService: WebService,
                      flushDelay: TimeInterval,
+                     userToken: String? = .none,
                      logger: Logger) {
         let eventsProcessor = EventsProcessor(
             credentials: credentials,
             webService: webService,
             flushDelay: flushDelay,
             logger: logger)
-        self.init(eventsProcessor: eventsProcessor, logger: logger)
+        self.init(eventsProcessor: eventsProcessor, userToken: userToken, logger: logger)
     }
     
 }

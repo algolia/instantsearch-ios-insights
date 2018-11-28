@@ -51,6 +51,7 @@ class InsightsTests: XCTestCase {
     }
 
     func testEventIsSentCorrectly() {
+        
         let expectation = self.expectation(description: "Wait for nothing")
         let expectedIndexName = "test index name"
         let expectedUserToken = "test user token"
@@ -110,6 +111,65 @@ class InsightsTests: XCTestCase {
                                                        objectIDsWithPositions: [("obj1", 1), ("obj2", 2)])
         
         waitForExpectations(timeout: 2, handler: nil)
+    }
+    
+    func testGlobalAppUserTokenPropagation() {
+        
+        let exp = expectation(description: "process event expectation")
+        
+        let expectedIndexName = "test index name"
+        let expectedQueryID = "6de2f7eaa537fa93d8f8f05b927953b1"
+        let expectedObjectIDsWithPositions = [("o1", 1)]
+
+        
+        let eventProcessor = TestEventProcessor()
+        
+        eventProcessor.didProcess = { event in
+            XCTAssertEqual(Insights.userToken, event.userToken)
+            exp.fulfill()
+        }
+        
+        let logger = Logger(testCredentials.appId)
+        
+        let insights = Insights(eventsProcessor: eventProcessor, logger: logger)
+        
+        insights.search.click(indexName: expectedIndexName,
+                              queryID: expectedQueryID,
+                              objectID: expectedObjectIDsWithPositions.first!.0,
+                              position: expectedObjectIDsWithPositions.first!.1)
+        
+        wait(for: [exp], timeout: 1)
+        
+    }
+    
+    func testPerAppUserTokenPropagation() {
+        
+        let exp = expectation(description: "process event expectation")
+        
+        let expectedIndexName = "test index name"
+        let expectedUserToken = "test user token"
+        let expectedQueryID = "6de2f7eaa537fa93d8f8f05b927953b1"
+        let expectedObjectIDsWithPositions = [("o1", 1)]
+        
+        
+        let eventProcessor = TestEventProcessor()
+        
+        eventProcessor.didProcess = { event in
+            XCTAssertEqual(expectedUserToken, event.userToken)
+            exp.fulfill()
+        }
+        
+        let logger = Logger(testCredentials.appId)
+        
+        let insights = Insights(eventsProcessor: eventProcessor, userToken: expectedUserToken, logger: logger)
+        
+        insights.search.click(indexName: expectedIndexName,
+                              queryID: expectedQueryID,
+                              objectID: expectedObjectIDsWithPositions.first!.0,
+                              position: expectedObjectIDsWithPositions.first!.1)
+        
+        wait(for: [exp], timeout: 1)
+
     }
     
 }

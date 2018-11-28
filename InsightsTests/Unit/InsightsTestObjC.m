@@ -28,7 +28,8 @@ Insights *stubInsights;
 - (void)testInitShouldWork {
   NSString* appId = @"testApp";
   Insights* insightsRegister = [Insights registerWithAppId:appId
-                                                    apiKey:@"testKey"];
+                                                    apiKey:@"testKey"
+                                                 userToken:@"user token"];
   
   [Insights setRegion:[Region us]];
   [Insights setRegion:nil];
