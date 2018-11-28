@@ -40,6 +40,12 @@
 		AF4956392190A91E006B2F0B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956382190A91E006B2F0B /* View.swift */; };
 		AF49563B2190A926006B2F0B /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49563A2190A926006B2F0B /* Conversion.swift */; };
 		AF49563E2190A954006B2F0B /* Syncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49563D2190A954006B2F0B /* Syncable.swift */; };
+		AF56CF3521AF074200B5EABB /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E321AC622A0063EBC5 /* Region.swift */; };
+		AF56CF3621AF074300B5EABB /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E321AC622A0063EBC5 /* Region.swift */; };
+		AF56CF3721AF074400B5EABB /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E321AC622A0063EBC5 /* Region.swift */; };
+		AF56CF3821AF074E00B5EABB /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E821AC63970063EBC5 /* Search.swift */; };
+		AF56CF3921AF074F00B5EABB /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E821AC63970063EBC5 /* Search.swift */; };
+		AF56CF3A21AF075000B5EABB /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E821AC63970063EBC5 /* Search.swift */; };
 		AF70F4E421AC622A0063EBC5 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E321AC622A0063EBC5 /* Region.swift */; };
 		AF70F4E721AC63910063EBC5 /* Visit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E621AC63910063EBC5 /* Visit.swift */; };
 		AF70F4E921AC63970063EBC5 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E821AC63970063EBC5 /* Search.swift */; };
@@ -846,6 +852,8 @@
 				AFA8C23C21A5AC13003F87F8 /* Event.swift in Sources */,
 				AFA8C25321A5AC13003F87F8 /* EventProcessable.swift in Sources */,
 				AFA8C25821A5AC13003F87F8 /* EventsSync.swift in Sources */,
+				AF56CF3521AF074200B5EABB /* Region.swift in Sources */,
+				AF56CF3821AF074E00B5EABB /* Search.swift in Sources */,
 				AFA8C23E21A5AC13003F87F8 /* EventConstructionError.swift in Sources */,
 				AFA8C25221A5AC13003F87F8 /* EventsProcessor.swift in Sources */,
 				AFA8C23D21A5AC13003F87F8 /* EventsPackage.swift in Sources */,
@@ -902,6 +910,8 @@
 				AFA8C26221A5B214003F87F8 /* Click.swift in Sources */,
 				AFA8C26321A5B214003F87F8 /* View.swift in Sources */,
 				AFA8C26421A5B214003F87F8 /* Conversion.swift in Sources */,
+				AF56CF3621AF074300B5EABB /* Region.swift in Sources */,
+				AF56CF3921AF074F00B5EABB /* Search.swift in Sources */,
 				AFA8C26521A5B214003F87F8 /* Encodable.swift in Sources */,
 				AFA8C26621A5B214003F87F8 /* LocalStorage.swift in Sources */,
 				AFA8C26721A5B214003F87F8 /* Logger.swift in Sources */,
@@ -958,6 +968,8 @@
 				AFA8C28021A5B22F003F87F8 /* Click.swift in Sources */,
 				AFA8C28121A5B22F003F87F8 /* View.swift in Sources */,
 				AFA8C28221A5B22F003F87F8 /* Conversion.swift in Sources */,
+				AF56CF3721AF074400B5EABB /* Region.swift in Sources */,
+				AF56CF3A21AF075000B5EABB /* Search.swift in Sources */,
 				AFA8C28321A5B22F003F87F8 /* Encodable.swift in Sources */,
 				AFA8C28421A5B22F003F87F8 /* LocalStorage.swift in Sources */,
 				AFA8C28521A5B22F003F87F8 /* Logger.swift in Sources */,
