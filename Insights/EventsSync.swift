@@ -11,8 +11,8 @@ import Foundation
 extension WebService {
   public func sync(event: Syncable, completionHandler: @escaping (Error?) -> Void) {
     load(resource: event.sync(),
-         completion: {[weak self] (res) in
-          switch res {
+         completion: { [weak self] result in
+          switch result {
           case .success:
             self?.logger.debug(message: "Sync succeded for \(event)")
             completionHandler(nil)

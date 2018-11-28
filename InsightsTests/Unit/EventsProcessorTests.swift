@@ -29,10 +29,10 @@ class EventsProcessorTests: XCTestCase {
         let queue = DispatchQueue(label: "test queue", qos: .default)
         let credentials = Credentials(appId: appId, apiKey: "APIKEY")
         let eventsProcessor = EventsProcessor(credentials: credentials,
-                                               webService: mockWS,
-                                               flushDelay: 1000,
-                                                   logger: Logger(appId),
-                                            dispatchQueue: queue)
+                                              webService: mockWS,
+                                              flushDelay: 1000,
+                                              logger: Logger(appId),
+                                              dispatchQueue: queue)
         
         eventsProcessor.isLocalStorageEnabled = false
         eventsProcessor.process(TestEvent.template)
@@ -47,13 +47,19 @@ class EventsProcessorTests: XCTestCase {
         XCTAssertEqual(eventsProcessor.eventsPackages.count, 1)
         XCTAssertEqual(eventsProcessor.eventsPackages.first?.events.count, 2)
         
-        let events = [Event](repeating: TestEvent.template, count: 1000)
+        print(eventsProcessor.eventsPackages)
+        
+        let events = [Event](repeating: TestEvent.template, count: EventsPackage.maxEventCountInPackage)
         
         events.forEach(eventsProcessor.process)
         
         queue.sync {}
         
+        print(eventsProcessor.eventsPackages)
+        
         XCTAssertEqual(eventsProcessor.eventsPackages.count, 2)
+        XCTAssertEqual(eventsProcessor.eventsPackages.first?.count, EventsPackage.maxEventCountInPackage)
+        XCTAssertEqual(eventsProcessor.eventsPackages.last?.count, 2)
         
     }
     
@@ -67,16 +73,16 @@ class EventsProcessorTests: XCTestCase {
         let queue = DispatchQueue(label: "test queue")
         let credentials = Credentials(appId: appId, apiKey: "APIKEY")
         let eventsProcessor = EventsProcessor(credentials: credentials,
-                                               webService: mockWS,
-                                               flushDelay: 1000,
-                                                   logger: Logger(appId),
-                                            dispatchQueue: queue)
+                                              webService: mockWS,
+                                              flushDelay: 1000,
+                                              logger: Logger(appId),
+                                              dispatchQueue: queue)
         
         eventsProcessor.isLocalStorageEnabled = false
 
         eventsProcessor.process(TestEvent.template)
         queue.sync {}
-        eventsProcessor.flush(eventsProcessor.eventsPackages)
+        eventsProcessor.flushEventsPackages()
         
         wait(for: [wsExpectation], timeout: 5)
     }

@@ -346,8 +346,8 @@
 				1D4531C5209C870C00B26CF9 /* InstantSearchInsights.h */,
 				1D958AF120BD71ED0058230A /* Insights.swift */,
 				AFC30C142191F98F00AA72B0 /* EventsProcessor.swift */,
-				1D4531C6209C870C00B26CF9 /* Info.plist */,
 				1D958B0C20BEECD40058230A /* EventsSync.swift */,
+				1D4531C6209C870C00B26CF9 /* Info.plist */,
 			);
 			path = Insights;
 			sourceTree = "<group>";
