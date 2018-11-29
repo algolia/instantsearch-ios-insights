@@ -64,7 +64,7 @@ extension Click: Codable {
     func encode(to encoder: Encoder) throws {
         try coreEvent.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(positions, forKey: .positions)
+        try container.encodeIfPresent(positions, forKey: .positions)
     }
 
 }
