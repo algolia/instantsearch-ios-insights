@@ -25,15 +25,15 @@ let environment: Environment = {
 
 protocol APIEndpoint {
     /// server baseURL
-    static var baseURL: URL {get}
+    static func baseURL(forRegion region: Region?) -> URL
     /// for api calls
-    static var baseAPIURL: URL {get}
-    static func url(path: String) -> URL
+    static func baseAPIURL(forRegion region: Region?) -> URL
+    static func url(path: String, region: Region?) -> URL
 }
 
 extension APIEndpoint {
-    static func url(path: String) -> URL {
-        return URL(string: path, relativeTo: baseAPIURL)!
+    static func url(path: String, region: Region?) -> URL {
+        return URL(string: path, relativeTo: baseAPIURL(forRegion: region))!
     }
 }
 
@@ -41,14 +41,24 @@ struct API {
 }
 
 extension API: APIEndpoint {
-    static let baseURL: URL = {
+    
+    static func baseURL(forRegion region: Region?) -> URL {
         switch environment {
         case .prod:
-            return URL(string: "https://insights\(Insights.region?.urlSuffix ?? "").algolia.io")!
+            let suffix = effectiveRegionSuffix(forCustomRegion: region)
+            return URL(string: "https://insights\(suffix).algolia.io")!
+            
         case .dev:
             return URL(string: "http://localhost:8080")!
         }
-    }()
-    static let baseAPIURL: URL = { return URL(string: "/1/events/", relativeTo: baseURL)!
-    }()
+    }
+    
+    static func baseAPIURL(forRegion region: Region?) -> URL {
+        return URL(string: "/1/events/", relativeTo: baseURL(forRegion: region))!
+    }
+    
+    private static func effectiveRegionSuffix(forCustomRegion customRegion: Region?) -> String {
+        return customRegion?.urlSuffix ?? Insights.region?.urlSuffix ?? ""
+    }
+    
 }

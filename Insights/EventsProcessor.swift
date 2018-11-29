@@ -24,12 +24,14 @@ class EventsProcessor: EventProcessable {
         }
     }
     var isActive: Bool = true
+    private let region: Region?
     private let dispatchQueue: DispatchQueue
     private let localStorageFileName: String
     private weak var flushTimer: Timer?
     
     init(credentials: Credentials,
          webService: WebService,
+         region: Region?,
          flushDelay: TimeInterval,
          logger: Logger,
          dispatchQueue: DispatchQueue = .init(label: "insights.events", qos: .background)) {
@@ -37,6 +39,7 @@ class EventsProcessor: EventProcessable {
         self.credentials = credentials
         self.logger = logger
         self.webservice = webService
+        self.region = region
         self.dispatchQueue = dispatchQueue
         self.localStorageFileName = "\(credentials.appId).events"
         let flushTimer = Timer.scheduledTimer(timeInterval: flushDelay,
@@ -71,9 +74,9 @@ class EventsProcessor: EventProcessable {
         let eventsPackage: EventsPackage
         
         if let lastEventsPackage = eventsPackages.last, !lastEventsPackage.isFull {
-            eventsPackage = (try? eventsPackages.removeLast().appending(wrappedEvent)) ?? EventsPackage(event: wrappedEvent)
+            eventsPackage = (try? eventsPackages.removeLast().appending(wrappedEvent)) ?? EventsPackage(event: wrappedEvent, region: region)
         } else {
-            eventsPackage = EventsPackage(event: wrappedEvent)
+            eventsPackage = EventsPackage(event: wrappedEvent, region: region)
         }
         
         eventsPackages.append(eventsPackage)

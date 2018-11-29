@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objcMembers public class Region: NSObject, RawRepresentable {
+@objcMembers public class Region: NSObject, RawRepresentable, Codable {
     
     public typealias RawValue = String
     

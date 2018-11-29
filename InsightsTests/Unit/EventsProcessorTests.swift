@@ -34,6 +34,7 @@ class EventsProcessorTests: XCTestCase {
         let credentials = Credentials(appId: appId, apiKey: "APIKEY")
         let eventsProcessor = EventsProcessor(credentials: credentials,
                                               webService: mockWS,
+                                              region: .none,
                                               flushDelay: 1000,
                                               logger: Logger(appId),
                                               dispatchQueue: queue)
@@ -61,6 +62,7 @@ class EventsProcessorTests: XCTestCase {
         let credentials = Credentials(appId: appId, apiKey: "APIKEY")
         let eventsProcessor = EventsProcessor(credentials: credentials,
                                               webService: mockWS,
+                                              region: .none,
                                               flushDelay: 1000,
                                               logger: Logger(appId),
                                               dispatchQueue: queue)
@@ -84,6 +86,7 @@ class EventsProcessorTests: XCTestCase {
         let credentials = Credentials(appId: appId, apiKey: "APIKEY")
         let eventsProcessor = EventsProcessor(credentials: credentials,
                                               webService: mockWS,
+                                              region: .none,
                                               flushDelay: 1000,
                                               logger: Logger(appId),
                                               dispatchQueue: queue)
@@ -128,6 +131,7 @@ class EventsProcessorTests: XCTestCase {
         let credentials = Credentials(appId: appId, apiKey: "APIKEY")
         let eventsProcessor = EventsProcessor(credentials: credentials,
                                               webService: mockWS,
+                                              region: .none,
                                               flushDelay: 1000,
                                               logger: Logger(appId),
                                               dispatchQueue: queue)

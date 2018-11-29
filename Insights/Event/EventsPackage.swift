@@ -11,31 +11,35 @@ import Foundation
 struct EventsPackage {
     
     static let maxEventCountInPackage = 1000
-    static let empty = EventsPackage()
+    static let empty = EventsPackage(region: .none)
     
     let id: String
     let events: [EventWrapper]
+    let region: Region?
     
     var isFull: Bool {
         return events.count == EventsPackage.maxEventCountInPackage
     }
     
-    init(event: EventWrapper) {
+    init(event: EventWrapper, region: Region? = .none) {
         self.id = UUID().uuidString
         self.events = [event]
+        self.region = region
     }
     
-    init() {
+    init(region: Region? = .none) {
         self.id = UUID().uuidString
         self.events = []
+        self.region = region
     }
     
-    init(events: [EventWrapper]) throws {
+    init(events: [EventWrapper], region: Region? = .none) throws {
         guard events.count <= EventsPackage.maxEventCountInPackage else {
             throw Error.packageOverflow
         }
         self.id = UUID().uuidString
         self.events = events
+        self.region = region
     }
     
     func appending(_ event: EventWrapper) throws -> EventsPackage {
@@ -46,7 +50,7 @@ struct EventsPackage {
         guard events.count + self.events.count <= EventsPackage.maxEventCountInPackage else {
             throw Error.packageOverflow
         }
-        return try EventsPackage(events: self.events + events)
+        return try EventsPackage(events: self.events + events, region: region)
     }
     
 }
@@ -98,18 +102,21 @@ extension EventsPackage: Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case events
+        case region
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
         self.events = try container.decode([EventWrapper].self, forKey: .events)
+        self.region = try container.decodeIfPresent(Region.self, forKey: .region)
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(events, forKey: .events)
+        try container.encodeIfPresent(region?.rawValue, forKey: .region)
     }
     
 }
@@ -140,8 +147,8 @@ extension EventsPackage: Syncable {
         }
         
         let serializedSelf = Dictionary(self)!
-
-        return Resource<Bool, WebserviceError>(url: API.baseAPIURL,
+        let url = API.baseAPIURL(forRegion: region)
+        return Resource<Bool, WebserviceError>(url: url,
                                                method: .post([], serializedSelf as AnyObject),
                                                allowEmptyResponse: true,
                                                errorParseJSON: errorParse)

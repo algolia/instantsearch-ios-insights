@@ -146,10 +146,15 @@ import Foundation
     
     init(eventsProcessor: EventProcessable,
          userToken: String? = .none,
+         region: Region? = .none,
          logger: Logger) {
         self.eventsProcessor = eventsProcessor
-        self.search = Search(eventProcessor: eventsProcessor, logger: logger, userToken: userToken)
-        self.visit = Visit(eventProcessor: eventsProcessor, logger: logger, userToken: userToken)
+        self.search = Search(eventProcessor: eventsProcessor,
+                             logger: logger,
+                             userToken: userToken)
+        self.visit = Visit(eventProcessor: eventsProcessor,
+                           logger: logger,
+                           userToken: userToken)
         self.logger = logger
         super.init()
     }
@@ -157,14 +162,18 @@ import Foundation
     convenience init(credentials: Credentials,
                      webService: WebService,
                      flushDelay: TimeInterval,
+                     region: Region? = .none,
                      userToken: String? = .none,
                      logger: Logger) {
         let eventsProcessor = EventsProcessor(
             credentials: credentials,
             webService: webService,
+            region: region,
             flushDelay: flushDelay,
             logger: logger)
-        self.init(eventsProcessor: eventsProcessor, userToken: userToken, logger: logger)
+        self.init(eventsProcessor: eventsProcessor,
+                  userToken: userToken,
+                  logger: logger)
     }
     
 }
