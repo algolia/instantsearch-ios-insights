@@ -10,21 +10,41 @@ import XCTest
 @testable import InstantSearchInsights
 
 class WebServiceIntegrationTests: XCTestCase {
-
-    let appId = "932LAAGOT3"
-    let apiKey = "6a187532e8e703464da52c20555c37cf"
-    let indexName = "ios@algolia.com#atis-prod"
+    
+    lazy var appId: String = {
+        guard let appId = Bundle(for: type(of: self)).object(forInfoDictionaryKey: "ALGOLIA_APPLICATION_ID") as? String, !appId.isEmpty else {
+            XCTFail("Missing test api key")
+            return ""
+        }
+        return appId
+    }()
+    
+    lazy var apiKey: String = {
+        guard let apiKey = Bundle(for: type(of: self)).object(forInfoDictionaryKey: "ALGOLIA_API_KEY") as? String, !apiKey.isEmpty else {
+            XCTFail("Missing test api key")
+            return ""
+        }
+        return apiKey
+    }()
+    
+    lazy var indexName: String = {
+        guard let indexName = Bundle(for: type(of: self)).object(forInfoDictionaryKey: "ALGOLIA_INDEX_NAME") as? String, !indexName.isEmpty else {
+            XCTFail("Missing test index name")
+            return ""
+        }
+        return indexName
+    }()
+    
     let userToken = "123"
     let timestamp = Date().millisecondsSince1970
     let queryID = "6de2f7eaa537fa93d8f8f05b927953b1"
     let objectIDs = ["61992275", "62300547"]
     let filters = ["brand:HarperCollins"]
     
-    func testClickEvent() {
-        
+    func testClickEvent() {        
         let exp = expectation(description: "ws response")
         
-        let sessionConfig =  Algolia.SessionConfig.default(appId: appId, apiKey: apiKey)
+        let sessionConfig = Algolia.SessionConfig.default(appId: appId, apiKey: apiKey)
         let logger = Logger(appId)
         let webService = WebService(sessionConfig: sessionConfig, logger: logger)
         
@@ -50,7 +70,7 @@ class WebServiceIntegrationTests: XCTestCase {
         
         let exp = expectation(description: "ws response")
         
-        let sessionConfig =  Algolia.SessionConfig.default(appId: appId, apiKey: apiKey)
+        let sessionConfig = Algolia.SessionConfig.default(appId: appId, apiKey: apiKey)
         let logger = Logger(appId)
         let webService = WebService(sessionConfig: sessionConfig, logger: logger)
         

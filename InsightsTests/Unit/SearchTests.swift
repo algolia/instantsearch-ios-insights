@@ -63,6 +63,7 @@ class SearchTests: XCTestCase {
         
         search.click(userToken: expectedUserToken,
                      indexName: expectedIndexName,
+                     timestamp: expectedTimestamp,
                      queryID: expectedQueryID,
                      objectID: expectedObjectIDsWithPositions.first!.0,
                      position: expectedObjectIDsWithPositions.first!.1)
@@ -112,6 +113,7 @@ class SearchTests: XCTestCase {
         
         search.conversion(userToken: expectedUserToken,
                           indexName: expectedIndexName,
+                          timestamp: expectedTimestamp,
                           queryID: expectedQueryID,
                           objectID: expectedObjectIDs.first!)
         

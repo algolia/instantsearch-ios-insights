@@ -63,6 +63,7 @@ class VisitTests: XCTestCase {
         visit.view(eventName: expectedEventName,
                    indexName: expectedIndexName,
                    userToken: expectedUserToken,
+                   timestamp: expectedTimestamp,
                    objectID: expectedObjectIDs.first!)
         
         wait(for: [exp], timeout: 5)
@@ -147,6 +148,7 @@ class VisitTests: XCTestCase {
         visit.click(eventName: expectedEventName,
                     indexName: expectedIndexName,
                     userToken: expectedUserToken,
+                    timestamp: expectedTimestamp,
                     objectID: expectedObjectIDs.first!)
         
         wait(for: [exp], timeout: 5)
