@@ -15,7 +15,7 @@ class WebServiceIntegrationTests: XCTestCase {
     let apiKey = "6a187532e8e703464da52c20555c37cf"
     let indexName = "ios@algolia.com#atis-prod"
     let userToken = "123"
-    let timestamp = Date().timeIntervalSince1970
+    let timestamp = Date().millisecondsSince1970
     let queryID = "6de2f7eaa537fa93d8f8f05b927953b1"
     let objectIDs = ["61992275", "62300547"]
     let filters = ["brand:HarperCollins"]

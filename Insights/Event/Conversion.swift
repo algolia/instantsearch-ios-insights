@@ -15,7 +15,7 @@ struct Conversion: CoreEventContainer {
     init(name: String,
          indexName: String,
          userToken: String,
-         timestamp: TimeInterval,
+         timestamp: Int64,
          queryID: String?,
          objectIDsOrFilters: ObjectsIDsOrFilters) throws {
         coreEvent = try CoreEvent(type: .conversion,

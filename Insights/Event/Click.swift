@@ -16,7 +16,7 @@ struct Click: CoreEventContainer {
     init(name: String,
          indexName: String,
          userToken: String,
-         timestamp: TimeInterval,
+         timestamp: Int64,
          queryID: String,
          objectIDsWithPositions: [(String, Int)]) throws {
         
@@ -34,7 +34,7 @@ struct Click: CoreEventContainer {
     init(name: String,
          indexName: String,
          userToken: String,
-         timestamp: TimeInterval,
+         timestamp: Int64,
          objectIDsOrFilters: ObjectsIDsOrFilters,
          positions: [Int]?) throws {
         coreEvent = try CoreEvent(type: .click,

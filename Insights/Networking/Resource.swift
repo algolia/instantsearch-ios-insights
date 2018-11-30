@@ -18,6 +18,43 @@ struct Resource<A, E> where E: Error {
     let aditionalHeaders: [String: String]
 }
 
+extension Resource: CustomDebugStringConvertible {
+    
+    var debugDescription: String {
+        let parametersDescription: String
+        let bodyDescription: String
+        switch method {
+        case .delete(let items),
+             .get(let items),
+             .post(let items, _),
+             .put(let items, _):
+            parametersDescription = items
+                .map { "\($0.name): \(String(describing: $0.value))" }
+                .reduce("") { (res, str) -> String in
+                    return "\(res), \(str)"
+                }
+        }
+        
+        switch method {
+        case .post(_, let body), .put(_, let body):
+            guard let jsonObject = try? JSONSerialization.jsonObject(with: body, options: []) else {
+                fallthrough
+            }
+            bodyDescription = String(describing: jsonObject)
+        default:
+            bodyDescription = "nil"
+        }
+        
+        return """
+        url: \(url.absoluteString)
+        method: \(method.method)
+        parameters: [\(parametersDescription)]
+        body: \(bodyDescription)
+        """
+    }
+    
+}
+
 extension Resource {
     
     init(url: URL,

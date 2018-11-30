@@ -24,7 +24,7 @@ class VisitTests: XCTestCase {
         let expectedIndexName = "index name"
         let expectedEventName = "event name"
         let expectedUserToken = "user token"
-        let expectedTimestamp = Date().timeIntervalSince1970
+        let expectedTimestamp = Date().millisecondsSince1970
         let expectedObjectIDs = ["o1", "o2"]
         
         let exp = expectation(description: "Wait for event processor callback")
@@ -39,7 +39,7 @@ class VisitTests: XCTestCase {
             XCTAssertEqual(view.indexName, expectedIndexName)
             XCTAssertEqual(view.name, expectedEventName)
             XCTAssertEqual(view.userToken, expectedUserToken)
-            XCTAssertEqual(view.timestamp, expectedTimestamp, accuracy: 0.1)
+            XCTAssertEqual(view.timestamp, expectedTimestamp)
             XCTAssertNil(view.queryID)
             switch view.objectIDsOrFilters {
             case .objectIDs(let objectIDs) where objectIDs.count == 1:
@@ -74,7 +74,7 @@ class VisitTests: XCTestCase {
         let expectedIndexName = "index name"
         let expectedEventName = "event name"
         let expectedUserToken = "user token"
-        let expectedTimestamp = Date().timeIntervalSince1970
+        let expectedTimestamp = Date().millisecondsSince1970
         let expectedFilters = ["brand:apple", "color:red"]
         
         let exp = expectation(description: "Wait for event processor callback")
@@ -88,7 +88,7 @@ class VisitTests: XCTestCase {
             XCTAssertEqual(view.indexName, expectedIndexName)
             XCTAssertEqual(view.name, expectedEventName)
             XCTAssertEqual(view.userToken, expectedUserToken)
-            XCTAssertEqual(view.timestamp, expectedTimestamp, accuracy: 0.1)
+            XCTAssertEqual(view.timestamp, expectedTimestamp)
             XCTAssertNil(view.queryID)
             XCTAssertEqual(view.objectIDsOrFilters, .filters(expectedFilters))
             
@@ -110,7 +110,7 @@ class VisitTests: XCTestCase {
         let expectedIndexName = "index name"
         let expectedEventName = "event name"
         let expectedUserToken = "user token"
-        let expectedTimestamp = Date().timeIntervalSince1970
+        let expectedTimestamp = Date().millisecondsSince1970
         let expectedObjectIDs = ["o1", "o2"]
         
         let exp = expectation(description: "Wait for event processor callback")
@@ -125,7 +125,7 @@ class VisitTests: XCTestCase {
             XCTAssertEqual(click.indexName, expectedIndexName)
             XCTAssertEqual(click.name, expectedEventName)
             XCTAssertEqual(click.userToken, expectedUserToken)
-            XCTAssertEqual(click.timestamp, expectedTimestamp, accuracy: 0.1)
+            XCTAssertEqual(click.timestamp, expectedTimestamp)
             XCTAssertNil(click.queryID)
             switch click.objectIDsOrFilters {
             case .objectIDs(let objectIDs) where objectIDs.count == 1:
@@ -159,7 +159,7 @@ class VisitTests: XCTestCase {
         let expectedIndexName = "index name"
         let expectedEventName = "event name"
         let expectedUserToken = "user token"
-        let expectedTimestamp = Date().timeIntervalSince1970
+        let expectedTimestamp = Date().millisecondsSince1970
         let expectedFilters = ["brand:apple", "color:red"]
         
         let exp = expectation(description: "Wait for event processor callback")
@@ -173,7 +173,7 @@ class VisitTests: XCTestCase {
             XCTAssertEqual(click.indexName, expectedIndexName)
             XCTAssertEqual(click.name, expectedEventName)
             XCTAssertEqual(click.userToken, expectedUserToken)
-            XCTAssertEqual(click.timestamp, expectedTimestamp, accuracy: 0.1)
+            XCTAssertEqual(click.timestamp, expectedTimestamp)
             XCTAssertNil(click.queryID)
             XCTAssertEqual(click.objectIDsOrFilters, .filters(expectedFilters))
             
@@ -195,7 +195,7 @@ class VisitTests: XCTestCase {
         let expectedIndexName = "index name"
         let expectedEventName = "event name"
         let expectedUserToken = "user token"
-        let expectedTimestamp = Date().timeIntervalSince1970
+        let expectedTimestamp = Date().millisecondsSince1970
         let expectedObjectIDs = ["o1", "o2"]
         
         let exp = expectation(description: "Wait for event processor callback")
@@ -210,7 +210,7 @@ class VisitTests: XCTestCase {
             XCTAssertEqual(conversion.indexName, expectedIndexName)
             XCTAssertEqual(conversion.name, expectedEventName)
             XCTAssertEqual(conversion.userToken, expectedUserToken)
-            XCTAssertEqual(conversion.timestamp, expectedTimestamp, accuracy: 0.1)
+            XCTAssertEqual(conversion.timestamp, expectedTimestamp)
             XCTAssertNil(conversion.queryID)
             switch conversion.objectIDsOrFilters {
             case .objectIDs(let objectIDs) where objectIDs.count == 1:
@@ -244,7 +244,7 @@ class VisitTests: XCTestCase {
         let expectedIndexName = "index name"
         let expectedEventName = "event name"
         let expectedUserToken = "user token"
-        let expectedTimestamp = Date().timeIntervalSince1970
+        let expectedTimestamp = Date().millisecondsSince1970
         let expectedFilters = ["brand:apple", "color:red"]
 
         let exp = expectation(description: "Wait for event processor callback")
@@ -258,17 +258,17 @@ class VisitTests: XCTestCase {
             XCTAssertEqual(conversion.indexName, expectedIndexName)
             XCTAssertEqual(conversion.name, expectedEventName)
             XCTAssertEqual(conversion.userToken, expectedUserToken)
-            XCTAssertEqual(conversion.timestamp, expectedTimestamp, accuracy: 0.1)
+            XCTAssertEqual(conversion.timestamp, expectedTimestamp)
             XCTAssertNil(conversion.queryID)
             XCTAssertEqual(conversion.objectIDsOrFilters, .filters(expectedFilters))
             
         }
         
         visit.conversion(eventName: expectedEventName,
-                                   indexName: expectedIndexName,
-                                   userToken: expectedUserToken,
-                                   timestamp: expectedTimestamp,
-                                     filters: expectedFilters)
+                         indexName: expectedIndexName,
+                         userToken: expectedUserToken,
+                         timestamp: expectedTimestamp,
+                         filters: expectedFilters)
         
         wait(for: [exp], timeout: 5)
 

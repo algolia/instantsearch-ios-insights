@@ -16,7 +16,7 @@ class EventsPackageTests: XCTestCase {
         let expectedIndexName = "test index"
         let expectedUserToken = "test token"
         let expectedQueryID = "test query id"
-        let expectedTimeStamp = Date().timeIntervalSince1970
+        let expectedTimeStamp = Date().millisecondsSince1970
         let expectedFilter =  "brand:apple"
         
         let event1 = try! Conversion(name: "test conversion event", indexName: expectedIndexName, userToken: expectedUserToken, timestamp: expectedTimeStamp, queryID: expectedQueryID, objectIDsOrFilters: .filters([expectedFilter]))
@@ -42,7 +42,7 @@ class EventsPackageTests: XCTestCase {
         let expectedIndexName = "test index"
         let expectedUserToken = "test token"
         let expectedQueryID = "test query id"
-        let expectedTimeStamp = Date().timeIntervalSince1970
+        let expectedTimeStamp = Date().millisecondsSince1970
         let expectedFilter = "brand:apple"
         
         let eventDictionary1: [String: Any] = [

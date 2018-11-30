@@ -27,7 +27,7 @@ internal struct CoreEvent: Event, Equatable {
     let name: String
     let indexName: String
     let userToken: String
-    let timestamp: TimeInterval
+    let timestamp: Int64
     let queryID: String?
     let objectIDsOrFilters: ObjectsIDsOrFilters
     
@@ -35,7 +35,7 @@ internal struct CoreEvent: Event, Equatable {
          name: String,
          indexName: String,
          userToken: String,
-         timestamp: TimeInterval,
+         timestamp: Int64,
          queryID: String?,
          objectIDsOrFilters: ObjectsIDsOrFilters) throws {
         
@@ -79,7 +79,7 @@ extension CoreEvent: Codable {
         self.name = try container.decode(String.self, forKey: .name)
         self.indexName = try container.decode(String.self, forKey: .indexName)
         self.userToken = try container.decode(String.self, forKey: .userToken)
-        self.timestamp = try container.decode(TimeInterval.self, forKey: .timestamp)
+        self.timestamp = try container.decode(Int64.self, forKey: .timestamp)
         self.queryID = try container.decodeIfPresent(String.self, forKey: .queryID)
         self.objectIDsOrFilters = try ObjectsIDsOrFilters(from: decoder)
     }
@@ -90,7 +90,7 @@ extension CoreEvent: Codable {
         try container.encode(name, forKey: .name)
         try container.encode(indexName, forKey: .indexName)
         try container.encode(userToken, forKey: .userToken)
-        try container.encode(Int(timestamp), forKey: .timestamp)
+        try container.encode(timestamp, forKey: .timestamp)
         try container.encodeIfPresent(queryID, forKey: .queryID)
         try objectIDsOrFilters.encode(to: encoder)
     }

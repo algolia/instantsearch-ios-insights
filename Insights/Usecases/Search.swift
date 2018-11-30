@@ -34,7 +34,7 @@ import Foundation
     
     public func click(userToken: String? = .none,
                       indexName: String,
-                      timestamp: TimeInterval = Date().timeIntervalSince1970,
+                      timestamp: Int64 = Date().millisecondsSince1970,
                       queryID: String,
                       objectIDsWithPositions: [(String, Int)]) {
         do {
@@ -62,7 +62,7 @@ import Foundation
     
     public func click(userToken: String? = .none,
                       indexName: String,
-                      timestamp: TimeInterval = Date().timeIntervalSince1970,
+                      timestamp: Int64 = Date().millisecondsSince1970,
                       queryID: String,
                       objectID: String,
                       position: Int) {
@@ -81,7 +81,7 @@ import Foundation
     
     public func conversion(userToken: String? = .none,
                            indexName: String,
-                           timestamp: TimeInterval = Date().timeIntervalSince1970,
+                           timestamp: Int64 = Date().millisecondsSince1970,
                            queryID: String,
                            objectIDs: [String]) {
         do {
@@ -108,7 +108,7 @@ import Foundation
     
     public func conversion(userToken: String? = .none,
                            indexName: String,
-                           timestamp: TimeInterval = Date().timeIntervalSince1970,
+                           timestamp: Int64 = Date().millisecondsSince1970,
                            queryID: String,
                            objectID: String) {
         conversion(userToken: effectiveUserToken(withEventUserToken: userToken),
@@ -128,7 +128,7 @@ import Foundation
     @objc(clickWithUserToken:indexName:timestamp:queryID:objectIDs:positions:)
     public func z_objc_click(userToken: String,
                              indexName: String,
-                             timestamp: TimeInterval,
+                             timestamp: Int64,
                              queryID: String,
                              objectIDs: [String],
                              positions: [Int]) {
@@ -139,7 +139,11 @@ import Foundation
         }
         
         let objectIDsWithPositions = zip(objectIDs, positions).map { $0 }
-        click(userToken: userToken, indexName: indexName, timestamp: timestamp, queryID: queryID, objectIDsWithPositions: objectIDsWithPositions)
+        click(userToken: userToken,
+              indexName: indexName,
+              timestamp: timestamp,
+              queryID: queryID,
+              objectIDsWithPositions: objectIDsWithPositions)
     }
         
 }

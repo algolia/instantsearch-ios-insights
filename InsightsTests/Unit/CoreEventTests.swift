@@ -17,7 +17,7 @@ class CoreEventTests: XCTestCase {
         let expectedName = "test event name"
         let expectedIndexName = "test index name"
         let expectedUserToken = "test user token"
-        let expectedTimestamp = Date().timeIntervalSince1970
+        let expectedTimestamp = Date().millisecondsSince1970
         let expectedQueryID = "test query id"
         let filter = "category:toys"
         let expectedWrappedFilter = ObjectsIDsOrFilters.filters([filter])
@@ -50,7 +50,7 @@ class CoreEventTests: XCTestCase {
         let expectedIndexName = "Test index name"
         let expectedUserToken = "Test user token"
         let expectedQueryID = "Test query id"
-        let expectedTimeStamp = Date().timeIntervalSince1970
+        let expectedTimeStamp = Date().millisecondsSince1970
         let expectedFilter = "brand:apple"
         let expectedWrappedFilter = ObjectsIDsOrFilters.filters([expectedFilter])
         
@@ -91,7 +91,7 @@ class CoreEventTests: XCTestCase {
         let expectedName = "test event name"
         let expectedIndexName = "test index name"
         let expectedUserToken = "test user token"
-        let expectedTimestamp = Date().timeIntervalSince1970
+        let expectedTimestamp = Date().millisecondsSince1970
         let expectedQueryID = "test query id"
         let expectedObjectIDs = ["o1", "o2"]
         
@@ -171,7 +171,7 @@ struct TestEvent: Event {
     let name: String
     let indexName: String
     let userToken: String
-    let timestamp: TimeInterval
+    let timestamp: Int64
     let queryID: String?
     let objectIDsOrFilters: ObjectsIDsOrFilters
     
@@ -179,7 +179,7 @@ struct TestEvent: Event {
                                     name: "test name",
                                     indexName: "test index",
                                     userToken: "test user token",
-                                    timestamp: Date().timeIntervalSince1970,
+                                    timestamp: Date().millisecondsSince1970,
                                     queryID: "test query id",
                                     objectIDsOrFilters: .objectIDs(["o1", "o2"]))
     

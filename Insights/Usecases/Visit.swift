@@ -35,7 +35,7 @@ import Foundation
     public func view(eventName: String,
                      indexName: String,
                      userToken: String? = .none,
-                     timestamp: TimeInterval = Date().timeIntervalSince1970,
+                     timestamp: Int64 = Date().millisecondsSince1970,
                      objectIDs: [String]) {
         do {
             
@@ -62,7 +62,7 @@ import Foundation
     public func view(eventName: String,
                      indexName: String,
                      userToken: String? = .none,
-                     timestamp: TimeInterval = Date().timeIntervalSince1970,
+                     timestamp: Int64 = Date().millisecondsSince1970,
                      objectID: String) {
         view(eventName: eventName,
              indexName: indexName,
@@ -81,7 +81,7 @@ import Foundation
     public func view(eventName: String,
                      indexName: String,
                      userToken: String? = .none,
-                     timestamp: TimeInterval = Date().timeIntervalSince1970,
+                     timestamp: Int64 = Date().millisecondsSince1970,
                      filters: [String]) {
         do {
             
@@ -108,7 +108,7 @@ import Foundation
     public func click(eventName: String,
                       indexName: String,
                       userToken: String? = .none,
-                      timestamp: TimeInterval = Date().timeIntervalSince1970,
+                      timestamp: Int64 = Date().millisecondsSince1970,
                       objectIDs: [String]) {
         do {
             
@@ -136,7 +136,7 @@ import Foundation
     public func click(eventName: String,
                       indexName: String,
                       userToken: String? = .none,
-                      timestamp: TimeInterval = Date().timeIntervalSince1970,
+                      timestamp: Int64 = Date().millisecondsSince1970,
                       objectID: String) {
         click(eventName: eventName,
               indexName: indexName,
@@ -155,7 +155,7 @@ import Foundation
     public func click(eventName: String,
                       indexName: String,
                       userToken: String? = .none,
-                      timestamp: TimeInterval = Date().timeIntervalSince1970,
+                      timestamp: Int64 = Date().millisecondsSince1970,
                       filters: [String]) {
         do {
             
@@ -183,7 +183,7 @@ import Foundation
     public func conversion(eventName: String,
                            indexName: String,
                            userToken: String? = .none,
-                           timestamp: TimeInterval,
+                           timestamp: Int64 = Date().millisecondsSince1970,
                            objectIDs: [String]) {
         do {
             
@@ -210,7 +210,7 @@ import Foundation
     public func conversion(eventName: String,
                            indexName: String,
                            userToken: String? = .none,
-                           timestamp: TimeInterval,
+                           timestamp: Int64 = Date().millisecondsSince1970,
                            objectID: String) {
         conversion(eventName: eventName,
                    indexName: indexName,
@@ -229,7 +229,7 @@ import Foundation
     public func conversion(eventName: String,
                            indexName: String,
                            userToken: String? = .none,
-                           timestamp: TimeInterval,
+                           timestamp: Int64 = Date().millisecondsSince1970,
                            filters: [String]) {
         do {
             

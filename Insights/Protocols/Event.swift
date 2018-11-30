@@ -14,7 +14,7 @@ protocol Event {
     var name: String { get }
     var indexName: String { get }
     var userToken: String { get }
-    var timestamp: TimeInterval { get }
+    var timestamp: Int64 { get }
     var queryID: String? { get }
     var objectIDsOrFilters: ObjectsIDsOrFilters { get }
     
@@ -44,7 +44,7 @@ extension CoreEventContainer {
         return coreEvent.userToken
     }
     
-    var timestamp: TimeInterval {
+    var timestamp: Int64 {
         return coreEvent.timestamp
     }
     

@@ -18,7 +18,7 @@ class ViewTests: XCTestCase {
         let expectedIndexName = "test index"
         let expectedUserToken = "test token"
         let expectedQueryID = "test query id"
-        let expectedTimeStamp = Date().timeIntervalSince1970
+        let expectedTimeStamp = Date().millisecondsSince1970
         let expectedFilter =  "brand:apple"
         
         let event = try! View(name: expectedEventName,
@@ -47,7 +47,7 @@ class ViewTests: XCTestCase {
         let expectedIndexName = "test index"
         let expectedUserToken = "test token"
         let expectedQueryID = "test query id"
-        let expectedTimeStamp = Date().timeIntervalSince1970
+        let expectedTimeStamp = Date().millisecondsSince1970
         let expectedFilter =  "brand:apple"
         
         let eventDictionary: [String: Any] = [

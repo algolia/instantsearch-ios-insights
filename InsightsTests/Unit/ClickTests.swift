@@ -18,7 +18,7 @@ class ClickTests: XCTestCase {
         let expectedIndexName = "test index"
         let expectedUserToken = "test token"
         let expectedQueryID = "test query id"
-        let expectedTimeStamp = Date().timeIntervalSince1970
+        let expectedTimeStamp = Date().millisecondsSince1970
         let expectedObjectIDsWithPositions = [("o1", 1), ("o2", 2)]
         let expectedFilter = "brand:apple"
 
@@ -66,7 +66,7 @@ class ClickTests: XCTestCase {
         let expectedIndexName = "test index"
         let expectedUserToken = "test token"
         let expectedQueryID = "test query id"
-        let expectedTimeStamp = Date().timeIntervalSince1970
+        let expectedTimeStamp = Date().millisecondsSince1970
         let expectedFilter =  "brand:apple"
         let expectedWrappedFilter = ObjectsIDsOrFilters.filters([expectedFilter])
         

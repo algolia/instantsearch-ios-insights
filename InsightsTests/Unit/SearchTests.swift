@@ -23,7 +23,7 @@ class SearchTests: XCTestCase {
         
         let expectedIndexName = "index name"
         let expectedUserToken = "user token"
-        let expectedTimestamp = Date().timeIntervalSince1970
+        let expectedTimestamp = Date().millisecondsSince1970
         let expectedQueryID = "query id"
         let expectedObjectIDsWithPositions = [("o1", 1), ("o2", 2)]
         
@@ -38,7 +38,7 @@ class SearchTests: XCTestCase {
             }
             XCTAssertEqual(click.indexName, expectedIndexName)
             XCTAssertEqual(click.userToken, expectedUserToken)
-            XCTAssertEqual(click.timestamp, expectedTimestamp, accuracy: 0.001)
+            XCTAssertEqual(click.timestamp, expectedTimestamp)
             XCTAssertEqual(click.queryID, expectedQueryID)
             switch click.objectIDsOrFilters {
             case .objectIDs(let objectIDs) where objectIDs.count == 1:
@@ -75,7 +75,7 @@ class SearchTests: XCTestCase {
         
         let expectedIndexName = "index name"
         let expectedUserToken = "user token"
-        let expectedTimestamp = Date().timeIntervalSince1970
+        let expectedTimestamp = Date().millisecondsSince1970
         let expectedQueryID = "query id"
         let expectedObjectIDs = ["o1", "o2"]
         
@@ -90,7 +90,7 @@ class SearchTests: XCTestCase {
             }
             XCTAssertEqual(conversion.indexName, expectedIndexName)
             XCTAssertEqual(conversion.userToken, expectedUserToken)
-            XCTAssertEqual(conversion.timestamp, expectedTimestamp, accuracy: 0.001)
+            XCTAssertEqual(conversion.timestamp, expectedTimestamp)
             XCTAssertEqual(conversion.queryID, expectedQueryID)
             switch conversion.objectIDsOrFilters {
             case .objectIDs(let objectIDs) where objectIDs.count == 1:
