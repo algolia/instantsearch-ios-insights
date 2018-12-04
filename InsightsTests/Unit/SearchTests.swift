@@ -9,6 +9,10 @@
 import XCTest
 @testable import InstantSearchInsights
 
+func XCTAssertInt64Equal(_ a: Int64, _ b: Int64, marginMS: Int64 = 50) {
+    XCTAssertTrue(abs(a - b) < marginMS, "\(a) \(b)")
+}
+
 class SearchTests: XCTestCase {
     
     let eventProcessor = TestEventProcessor()
@@ -38,7 +42,8 @@ class SearchTests: XCTestCase {
             }
             XCTAssertEqual(click.indexName, expectedIndexName)
             XCTAssertEqual(click.userToken, expectedUserToken)
-            XCTAssertEqual(click.timestamp, expectedTimestamp)
+            XCTAssertInt64Equal(click.timestamp, expectedTimestamp)
+//            XCTAssertEqual(click.timestamp, expectedTimestamp)
             XCTAssertEqual(click.queryID, expectedQueryID)
             switch click.objectIDsOrFilters {
             case .objectIDs(let objectIDs) where objectIDs.count == 1:
@@ -76,7 +81,7 @@ class SearchTests: XCTestCase {
         
         let expectedIndexName = "index name"
         let expectedUserToken = "user token"
-        let expectedTimestamp = Date().millisecondsSince1970
+        let expectedTimestamp: Int64 = Date().millisecondsSince1970
         let expectedQueryID = "query id"
         let expectedObjectIDs = ["o1", "o2"]
         
@@ -91,7 +96,7 @@ class SearchTests: XCTestCase {
             }
             XCTAssertEqual(conversion.indexName, expectedIndexName)
             XCTAssertEqual(conversion.userToken, expectedUserToken)
-            XCTAssertEqual(conversion.timestamp, expectedTimestamp)
+            XCTAssertInt64Equal(conversion.timestamp, expectedTimestamp)
             XCTAssertEqual(conversion.queryID, expectedQueryID)
             switch conversion.objectIDsOrFilters {
             case .objectIDs(let objectIDs) where objectIDs.count == 1:

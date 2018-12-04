@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>ALGOLIA_APPLICATION_ID</key>
-	<string>AAA</string>
-	<key>ALGOLIA_API_KEY</key>
-	<string>BBB</string>
-	<key>ALGOLIA_INDEX_NAME</key>
-	<string>CCC</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

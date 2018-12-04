@@ -43,9 +43,9 @@ class WebService {
                     }
                 } else {
                     if resource.allowEmptyResponse {
-                        completion(Result<A>.success(nil))
+                        DispatchQueue.main.async { completion(Result<A>.success(nil)) }
                     } else {
-                        completion(Result<A>.fail(WebserviceError(code: -1, message: "Fail to parse")))
+                        DispatchQueue.main.async { completion(Result<A>.fail(WebserviceError(code: -1, message: "Fail to parse"))) }
                     }
                 }
             } else {

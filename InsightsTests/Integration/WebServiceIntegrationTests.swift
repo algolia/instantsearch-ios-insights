@@ -9,10 +9,15 @@
 import XCTest
 @testable import InstantSearchInsights
 
+/*
+ Correct environment variables ALGOLIA_APPLICATION_ID, ALGOLIA_API_KEY and ALGOLIA_INDEX_NAME must be defined
+ to make this test succeed
+*/
+
 class WebServiceIntegrationTests: XCTestCase {
     
     lazy var appId: String = {
-        guard let appId = Bundle(for: type(of: self)).object(forInfoDictionaryKey: "ALGOLIA_APPLICATION_ID") as? String, !appId.isEmpty else {
+        guard let appId = ProcessInfo.processInfo.environment["ALGOLIA_APPLICATION_ID"], !appId.isEmpty else {
             XCTFail("Missing test api key")
             return ""
         }
@@ -20,7 +25,7 @@ class WebServiceIntegrationTests: XCTestCase {
     }()
     
     lazy var apiKey: String = {
-        guard let apiKey = Bundle(for: type(of: self)).object(forInfoDictionaryKey: "ALGOLIA_API_KEY") as? String, !apiKey.isEmpty else {
+        guard let apiKey = ProcessInfo.processInfo.environment["ALGOLIA_API_KEY"], !apiKey.isEmpty else {
             XCTFail("Missing test api key")
             return ""
         }
@@ -28,7 +33,7 @@ class WebServiceIntegrationTests: XCTestCase {
     }()
     
     lazy var indexName: String = {
-        guard let indexName = Bundle(for: type(of: self)).object(forInfoDictionaryKey: "ALGOLIA_INDEX_NAME") as? String, !indexName.isEmpty else {
+        guard let indexName = ProcessInfo.processInfo.environment["ALGOLIA_INDEX_NAME"], !indexName.isEmpty else {
             XCTFail("Missing test index name")
             return ""
         }
@@ -41,9 +46,11 @@ class WebServiceIntegrationTests: XCTestCase {
     let objectIDs = ["61992275", "62300547"]
     let filters = ["brand:HarperCollins"]
     
-    func testClickEvent() {        
-        let exp = expectation(description: "ws response")
+    func testClickEvent() {
         
+        let exp = expectation(description: "ws response")
+        var completionCallCount = 0
+
         let sessionConfig = Algolia.SessionConfig.default(appId: appId, apiKey: apiKey)
         let logger = Logger(appId)
         let webService = WebService(sessionConfig: sessionConfig, logger: logger)
@@ -58,6 +65,8 @@ class WebServiceIntegrationTests: XCTestCase {
         let eventsPackage = EventsPackage(event: EventWrapper.click(event))
         
         webService.sync(eventsPackage) { error in
+            completionCallCount = completionCallCount + 1
+            XCTAssertEqual(completionCallCount, 1, "Completion must be called once")
             XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
             exp.fulfill()
         }
@@ -69,7 +78,8 @@ class WebServiceIntegrationTests: XCTestCase {
     func testClickEventWithPositions() {
         
         let exp = expectation(description: "ws response")
-        
+        var completionCallCount = 0
+
         let sessionConfig = Algolia.SessionConfig.default(appId: appId, apiKey: apiKey)
         let logger = Logger(appId)
         let webService = WebService(sessionConfig: sessionConfig, logger: logger)
@@ -84,6 +94,8 @@ class WebServiceIntegrationTests: XCTestCase {
         let eventsPackage = EventsPackage(event: EventWrapper.click(event))
         
         webService.sync(eventsPackage) { error in
+            completionCallCount = completionCallCount + 1
+            XCTAssertEqual(completionCallCount, 1, "Completion must be called once")
             XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
             exp.fulfill()
         }
@@ -95,7 +107,8 @@ class WebServiceIntegrationTests: XCTestCase {
     func testViewEvent() {
         
         let exp = expectation(description: "ws response")
-        
+        var completionCallCount = 0
+
         let sessionConfig = Algolia.SessionConfig.default(appId: appId, apiKey: apiKey)
         let logger = Logger(appId)
         let webService = WebService(sessionConfig: sessionConfig, logger: logger)
@@ -110,6 +123,8 @@ class WebServiceIntegrationTests: XCTestCase {
         let eventsPackage = EventsPackage(event: EventWrapper.view(event))
         
         webService.sync(eventsPackage) { error in
+            completionCallCount = completionCallCount + 1
+            XCTAssertEqual(completionCallCount, 1, "Completion must be called once")
             XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
             exp.fulfill()
         }
@@ -121,7 +136,8 @@ class WebServiceIntegrationTests: XCTestCase {
     func testConversionEvent() {
         
         let exp = expectation(description: "ws response")
-        
+        var completionCallCount = 0
+
         let sessionConfig = Algolia.SessionConfig.default(appId: appId, apiKey: apiKey)
         let logger = Logger(appId)
         let webService = WebService(sessionConfig: sessionConfig, logger: logger)
@@ -136,6 +152,8 @@ class WebServiceIntegrationTests: XCTestCase {
         let eventsPackage = EventsPackage(event: EventWrapper.conversion(event))
         
         webService.sync(eventsPackage) { error in
+            completionCallCount = completionCallCount + 1
+            XCTAssertEqual(completionCallCount, 1, "Completion must be called once")
             XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
             exp.fulfill()
         }
@@ -147,6 +165,7 @@ class WebServiceIntegrationTests: XCTestCase {
     func testEventsPackage() {
         
         let exp = expectation(description: "ws response")
+        var completionCallCount = 0
         
         let sessionConfig = Algolia.SessionConfig.default(appId: appId, apiKey: apiKey)
         let logger = Logger(appId)
@@ -177,6 +196,8 @@ class WebServiceIntegrationTests: XCTestCase {
         let eventsPackage = try! EventsPackage(events: [.conversion(conversion), .view(view), .click(click)])
         
         webService.sync(eventsPackage) { error in
+            completionCallCount = completionCallCount + 1
+            XCTAssertEqual(completionCallCount, 1, "Completion must be called once")
             XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
             exp.fulfill()
         }
