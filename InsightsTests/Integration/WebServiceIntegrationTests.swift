@@ -16,16 +16,26 @@ import XCTest
 
 class WebServiceIntegrationTests: XCTestCase {
     
+    private func envVar(forKey key: String) -> String? {
+        if let value = Bundle(for: type(of: self)).object(forInfoDictionaryKey: key) as? String, !value.isEmpty {
+            return value
+        } else if let value = ProcessInfo.processInfo.environment[key], !value.isEmpty {
+            return value
+        } else {
+            return nil
+        }
+    }
+    
     lazy var appId: String = {
-        guard let appId = ProcessInfo.processInfo.environment["ALGOLIA_APPLICATION_ID"], !appId.isEmpty else {
-            XCTFail("Missing test api key")
+        guard let appId = envVar(forKey: "ALGOLIA_APPLICATION_ID") else {
+            XCTFail("Missing test app id")
             return ""
         }
         return appId
     }()
     
     lazy var apiKey: String = {
-        guard let apiKey = ProcessInfo.processInfo.environment["ALGOLIA_API_KEY"], !apiKey.isEmpty else {
+        guard let apiKey = envVar(forKey: "ALGOLIA_API_KEY") else {
             XCTFail("Missing test api key")
             return ""
         }
@@ -33,7 +43,7 @@ class WebServiceIntegrationTests: XCTestCase {
     }()
     
     lazy var indexName: String = {
-        guard let indexName = ProcessInfo.processInfo.environment["ALGOLIA_INDEX_NAME"], !indexName.isEmpty else {
+        guard let indexName = envVar(forKey: "ALGOLIA_INDEX_NAME") else {
             XCTFail("Missing test index name")
             return ""
         }
