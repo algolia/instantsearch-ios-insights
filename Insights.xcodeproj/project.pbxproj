@@ -51,6 +51,9 @@
 		AF56CF3D21AF0D6500B5EABB /* Visit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E621AC63910063EBC5 /* Visit.swift */; };
 		AF56CF3F21B04F0200B5EABB /* APIEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF56CF3E21B04F0200B5EABB /* APIEndpointTests.swift */; };
 		AF56CF4121B1454F00B5EABB /* Date+Milliseconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF56CF4021B1454F00B5EABB /* Date+Milliseconds.swift */; };
+		AF624A4B21B6B31000C81957 /* Date+Milliseconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF56CF4021B1454F00B5EABB /* Date+Milliseconds.swift */; };
+		AF624A4C21B6B31100C81957 /* Date+Milliseconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF56CF4021B1454F00B5EABB /* Date+Milliseconds.swift */; };
+		AF624A4D21B6B31100C81957 /* Date+Milliseconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF56CF4021B1454F00B5EABB /* Date+Milliseconds.swift */; };
 		AF70F4E421AC622A0063EBC5 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E321AC622A0063EBC5 /* Region.swift */; };
 		AF70F4E721AC63910063EBC5 /* Visit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E621AC63910063EBC5 /* Visit.swift */; };
 		AF70F4E921AC63970063EBC5 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E821AC63970063EBC5 /* Search.swift */; };
@@ -879,6 +882,7 @@
 				AFA8C24121A5AC13003F87F8 /* ObjectIDsOrFilters.swift in Sources */,
 				AFA8C24D21A5AC13003F87F8 /* Resource.swift in Sources */,
 				AFA8C24F21A5AC13003F87F8 /* Result.swift in Sources */,
+				AF624A4B21B6B31000C81957 /* Date+Milliseconds.swift in Sources */,
 				AFA8C23B21A5AC13003F87F8 /* Syncable.swift in Sources */,
 				AFA8C24421A5AC13003F87F8 /* View.swift in Sources */,
 				AFA8C24E21A5AC13003F87F8 /* WebService.swift in Sources */,
@@ -938,6 +942,7 @@
 				AFA8C26F21A5B214003F87F8 /* Credentials.swift in Sources */,
 				AFA8C27021A5B214003F87F8 /* EventsProcessor.swift in Sources */,
 				AFA8C27121A5B214003F87F8 /* EventProcessable.swift in Sources */,
+				AF624A4C21B6B31100C81957 /* Date+Milliseconds.swift in Sources */,
 				AFA8C27221A5B214003F87F8 /* AnalyticsUsecase.swift in Sources */,
 				AFA8C27621A5B214003F87F8 /* EventsSync.swift in Sources */,
 				AFA8C27721A5B214003F87F8 /* Config.swift in Sources */,
@@ -997,6 +1002,7 @@
 				AFA8C28D21A5B230003F87F8 /* Credentials.swift in Sources */,
 				AFA8C28E21A5B230003F87F8 /* EventsProcessor.swift in Sources */,
 				AFA8C28F21A5B230003F87F8 /* EventProcessable.swift in Sources */,
+				AF624A4D21B6B31100C81957 /* Date+Milliseconds.swift in Sources */,
 				AFA8C29021A5B230003F87F8 /* AnalyticsUsecase.swift in Sources */,
 				AFA8C29421A5B230003F87F8 /* EventsSync.swift in Sources */,
 				AFA8C29521A5B230003F87F8 /* Config.swift in Sources */,
