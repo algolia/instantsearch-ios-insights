@@ -9,17 +9,19 @@
 import XCTest
 @testable import InstantSearchInsights
 
-/*
- Correct environment variables ALGOLIA_APPLICATION_ID, ALGOLIA_API_KEY and ALGOLIA_INDEX_NAME must be defined
- to make this test succeed
+/**
+ Correct environment variables
+ - ALGOLIA_APPLICATION_ID
+ - ALGOLIA_API_KEY
+ - ALGOLIA_INDEX_NAME
+ 
+ must be defined to make this test succeed
 */
 
 class WebServiceIntegrationTests: XCTestCase {
     
     private func envVar(forKey key: String) -> String? {
         if let value = Bundle(for: type(of: self)).object(forInfoDictionaryKey: key) as? String, !value.isEmpty {
-            return value
-        } else if let value = ProcessInfo.processInfo.environment[key], !value.isEmpty {
             return value
         } else {
             return nil
