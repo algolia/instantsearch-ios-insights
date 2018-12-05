@@ -28,7 +28,6 @@ class VisitTests: XCTestCase {
         let expectedObjectIDs = ["o1", "o2"]
         
         let exp = expectation(description: "Wait for event processor callback")
-        exp.expectedFulfillmentCount = 2
 
         eventProcessor.didProcess = { e in
             exp.fulfill()
@@ -41,17 +40,7 @@ class VisitTests: XCTestCase {
             XCTAssertEqual(view.userToken, expectedUserToken)
             XCTAssertEqual(view.timestamp, expectedTimestamp)
             XCTAssertNil(view.queryID)
-            switch view.objectIDsOrFilters {
-            case .objectIDs(let objectIDs) where objectIDs.count == 1:
-                XCTAssertEqual(objectIDs.first!, expectedObjectIDs.first!)
-                
-            case .objectIDs(let objectIDs):
-                XCTAssertEqual(objectIDs, expectedObjectIDs)
-                
-            default:
-                XCTFail("Unexpected filters value")
-            }
-
+            XCTAssertEqual(view.objectIDsOrFilters, .objectIDs(expectedObjectIDs))
         }
 
         visit.view(eventName: expectedEventName,
@@ -59,12 +48,6 @@ class VisitTests: XCTestCase {
                    userToken: expectedUserToken,
                    timestamp: expectedTimestamp,
                    objectIDs: expectedObjectIDs)
-        
-        visit.view(eventName: expectedEventName,
-                   indexName: expectedIndexName,
-                   userToken: expectedUserToken,
-                   timestamp: expectedTimestamp,
-                   objectID: expectedObjectIDs.first!)
         
         wait(for: [exp], timeout: 5)
         
@@ -115,7 +98,6 @@ class VisitTests: XCTestCase {
         let expectedObjectIDs = ["o1", "o2"]
         
         let exp = expectation(description: "Wait for event processor callback")
-        exp.expectedFulfillmentCount = 2
         
         eventProcessor.didProcess = { e in
             exp.fulfill()
@@ -128,14 +110,7 @@ class VisitTests: XCTestCase {
             XCTAssertEqual(click.userToken, expectedUserToken)
             XCTAssertEqual(click.timestamp, expectedTimestamp)
             XCTAssertNil(click.queryID)
-            switch click.objectIDsOrFilters {
-            case .objectIDs(let objectIDs) where objectIDs.count == 1:
-                XCTAssertEqual(objectIDs.first, expectedObjectIDs.first)
-            case .objectIDs(let objectIDs):
-                XCTAssertEqual(objectIDs, expectedObjectIDs)
-            default:
-                XCTFail("Unexpected filters value")
-            }
+            XCTAssertEqual(click.objectIDsOrFilters, .objectIDs(expectedObjectIDs))
             
         }
         
@@ -144,12 +119,6 @@ class VisitTests: XCTestCase {
                               userToken: expectedUserToken,
                               timestamp: expectedTimestamp,
                               objectIDs: expectedObjectIDs)
-        
-        visit.click(eventName: expectedEventName,
-                    indexName: expectedIndexName,
-                    userToken: expectedUserToken,
-                    timestamp: expectedTimestamp,
-                    objectID: expectedObjectIDs.first!)
         
         wait(for: [exp], timeout: 5)
 
@@ -201,7 +170,6 @@ class VisitTests: XCTestCase {
         let expectedObjectIDs = ["o1", "o2"]
         
         let exp = expectation(description: "Wait for event processor callback")
-        exp.expectedFulfillmentCount = 2
         
         eventProcessor.didProcess = { e in
             exp.fulfill()
@@ -214,14 +182,7 @@ class VisitTests: XCTestCase {
             XCTAssertEqual(conversion.userToken, expectedUserToken)
             XCTAssertEqual(conversion.timestamp, expectedTimestamp)
             XCTAssertNil(conversion.queryID)
-            switch conversion.objectIDsOrFilters {
-            case .objectIDs(let objectIDs) where objectIDs.count == 1:
-                XCTAssertEqual(objectIDs.first, expectedObjectIDs.first)
-            case .objectIDs(let objectIDs):
-                XCTAssertEqual(objectIDs, expectedObjectIDs)
-            default:
-                XCTFail("Unexpected filters value")
-            }
+            XCTAssertEqual(conversion.objectIDsOrFilters, .objectIDs(expectedObjectIDs))
 
         }
         
@@ -230,12 +191,6 @@ class VisitTests: XCTestCase {
                                    userToken: expectedUserToken,
                                    timestamp: expectedTimestamp,
                                    objectIDs: expectedObjectIDs)
-        
-        visit.conversion(eventName: expectedEventName,
-                         indexName: expectedIndexName,
-                         userToken: expectedUserToken,
-                         timestamp: expectedTimestamp,
-                         objectID: expectedObjectIDs.first!)
         
         wait(for: [exp], timeout: 5)
         

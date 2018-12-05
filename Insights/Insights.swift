@@ -107,11 +107,11 @@ import Foundation
             return nil
         }
         
-        insightsMap.first?.value.search.click(userToken: "user101",
-                                              indexName: "myAwesomeIndex",
-                                              queryID: "6de2f7eaa537fa93d8f8f05b927953b1",
-                                              objectID: "54675051",
-                                              position: 1)
+        insightsMap.first?.value.clickAfterSearch(withQueryID: "6de2f7eaa537fa93d8f8f05b927953b1",
+                                                  userToken: "user101",
+                                                  indexName: "myAwesomeIndex",
+                                                  objectID: "54675051",
+                                                  position: 1)
         
         return insightsMap.first?.value
     }
@@ -138,21 +138,21 @@ import Foundation
     
     /// Access point for capturing of search-related events
 
-    public let search: Search
+    let searchRelatedEventTracker: SearchRelatedEventTrackable
     
     /// Access point for capturing of personalisation events
 
-    public let visit: Visit
+    let customEventTracker: CustomEventTrackable
     
     init(eventsProcessor: EventProcessable,
          userToken: String? = .none,
          region: Region? = .none,
          logger: Logger) {
         self.eventsProcessor = eventsProcessor
-        self.search = Search(eventProcessor: eventsProcessor,
+        self.searchRelatedEventTracker = Search(eventProcessor: eventsProcessor,
                              logger: logger,
                              userToken: userToken)
-        self.visit = Visit(eventProcessor: eventsProcessor,
+        self.customEventTracker = Visit(eventProcessor: eventsProcessor,
                            logger: logger,
                            userToken: userToken)
         self.logger = logger
@@ -174,6 +174,285 @@ import Foundation
         self.init(eventsProcessor: eventsProcessor,
                   userToken: userToken,
                   logger: logger)
+    }
+    
+}
+
+extension Insights {
+    
+    /// Track a click
+    /// - parameter queryID: Algolia queryID
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter indexName: Name of the targeted index
+    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
+    /// - parameter objectIDsWithPositions: An array of related index objectID and position of the click in the list of Algolia search results. - Warning: Limited to 20 objects.
+    
+    public func clickAfterSearch(withQueryID queryID: String,
+                                 userToken: String? = .none,
+                                 indexName: String,
+                                 timestamp: Int64 = Date().millisecondsSince1970,
+                                 objectIDsWithPositions: [(String, Int)]) {
+        searchRelatedEventTracker.click(queryID: queryID,
+                     userToken: userToken,
+                     indexName: indexName,
+                     timestamp: timestamp,
+                     objectIDsWithPositions: objectIDsWithPositions)
+    }
+    
+    /// Track a click
+    /// - parameter queryID: Algolia queryID
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter indexName: Name of the targeted index
+    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
+    /// - parameter objectID: Index objectID
+    /// - parameter position: Position of the click in the list of Algolia search results
+    
+    public func clickAfterSearch(withQueryID queryID: String,
+                                 userToken: String? = .none,
+                                 indexName: String,
+                                 timestamp: Int64 = Date().millisecondsSince1970,
+                                 objectID: String,
+                                 position: Int) {
+        searchRelatedEventTracker.click(queryID: queryID,
+                     userToken: userToken,
+                     indexName: indexName,
+                     timestamp: timestamp,
+                     objectIDsWithPositions: [(objectID, position)])
+    }
+    
+    /// Track a conversion
+    /// - parameter queryID: Algolia queryID
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter indexName: Name of the targeted index
+    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
+    /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
+    
+    public func conversionAfterSearch(withQueryID queryID: String,
+                                      userToken: String? = .none,
+                                      indexName: String,
+                                      timestamp: Int64 = Date().millisecondsSince1970,
+                                      objectIDs: [String]) {
+        searchRelatedEventTracker.conversion(queryID: queryID,
+                          userToken: userToken,
+                          indexName: indexName,
+                          timestamp: timestamp,
+                          objectIDs: objectIDs)
+    }
+    
+    /// Track a conversion
+    /// - parameter queryID: Algolia queryID
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter indexName: Name of the targeted index
+    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
+    /// - parameter objectID: Index objectID
+    
+    public func conversionAfterSearch(withQueryID queryID: String,
+                                      userToken: String? = .none,
+                                      indexName: String,
+                                      timestamp: Int64 = Date().millisecondsSince1970,
+                                      objectID: String) {
+        searchRelatedEventTracker.conversion(queryID: queryID,
+                          userToken: userToken,
+                          indexName: indexName,
+                          timestamp: timestamp,
+                          objectIDs: [objectID])
+    }
+    
+    /// Track a click
+    /// - parameter queryID: Algolia queryID
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter indexName: Name of the targeted index
+    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
+    /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
+    /// - parameter positions: Position of the click in the list of Algolia search results. Positions count must be the same as objectID count.
+    @objc(clickAfterSearchWithQueryID:userToken:indexName:timestamp:objectIDs:positions:)
+    public func z_objc_click(queryID: String,
+                             userToken: String,
+                             indexName: String,
+                             timestamp: Int64,
+                             objectIDs: [String],
+                             positions: [Int]) {
+        searchRelatedEventTracker.click(queryID: queryID,
+                                        userToken: userToken,
+                                        indexName: indexName,
+                                        timestamp: timestamp,
+                                        objectIDs: objectIDs,
+                                        positions: positions)
+    }
+    
+}
+
+extension Insights {
+    
+    /// Track a view
+    /// - parameter eventName: A user-defined string used to categorize events
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter indexName: Name of the targeted index
+    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
+    /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
+    
+    public func view(eventName: String,
+                     indexName: String,
+                     userToken: String? = .none,
+                     timestamp: Int64 = Date().millisecondsSince1970,
+                     objectIDs: [String]) {
+        customEventTracker.view(eventName: eventName,
+                   indexName: indexName,
+                   userToken: userToken,
+                   timestamp: timestamp,
+                   objectIDs: objectIDs)
+    }
+    
+    /// Track a view
+    /// - parameter eventName: A user-defined string used to categorize events
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter indexName: Name of the targeted index
+    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
+    /// - parameter objectID: Index objectID.
+    
+    public func view(eventName: String,
+                     indexName: String,
+                     userToken: String? = .none,
+                     timestamp: Int64 = Date().millisecondsSince1970,
+                     objectID: String) {
+        customEventTracker.view(eventName: eventName,
+                   indexName: indexName,
+                   userToken: userToken,
+                   timestamp: timestamp,
+                   objectIDs: [objectID])
+    }
+    
+    /// Track a view
+    /// - parameter eventName: A user-defined string used to categorize events
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter indexName: Name of the targeted index
+    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
+    /// - parameter filters: An array of filters. Limited to 10 filters.
+    
+    public func view(eventName: String,
+                     indexName: String,
+                     userToken: String? = .none,
+                     timestamp: Int64 = Date().millisecondsSince1970,
+                     filters: [String]) {
+        customEventTracker.view(eventName: eventName,
+                   indexName: indexName,
+                   userToken: userToken,
+                   timestamp: timestamp,
+                   filters: filters)
+    }
+    
+    /// Track a click
+    /// - parameter eventName: A user-defined string used to categorize events
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter indexName: Name of the targeted index
+    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
+    /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
+    
+    public func click(eventName: String,
+                      indexName: String,
+                      userToken: String? = .none,
+                      timestamp: Int64 = Date().millisecondsSince1970,
+                      objectIDs: [String]) {
+        customEventTracker.click(eventName: eventName,
+                    indexName: indexName,
+                    userToken: userToken,
+                    timestamp: timestamp,
+                    objectIDs: objectIDs)
+    }
+    
+    /// Track a click
+    /// - parameter eventName: A user-defined string used to categorize events
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter indexName: Name of the targeted index
+    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
+    /// - parameter objectID: Index objectID.
+    
+    public func click(eventName: String,
+                      indexName: String,
+                      userToken: String? = .none,
+                      timestamp: Int64 = Date().millisecondsSince1970,
+                      objectID: String) {
+        customEventTracker.click(eventName: eventName,
+                    indexName: indexName,
+                    userToken: userToken,
+                    timestamp: timestamp,
+                    objectIDs: [objectID])
+    }
+    
+    /// Track a click
+    /// - parameter eventName: A user-defined string used to categorize events
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter indexName: Name of the targeted index
+    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
+    /// - parameter filters: An array of filters. Limited to 10 filters.
+    
+    public func click(eventName: String,
+                      indexName: String,
+                      userToken: String? = .none,
+                      timestamp: Int64 = Date().millisecondsSince1970,
+                      filters: [String]) {
+        customEventTracker.click(eventName: eventName,
+                    indexName: indexName,
+                    userToken: userToken,
+                    timestamp: timestamp,
+                    filters: filters)
+    }
+    
+    /// Track a conversion
+    /// - parameter eventName: A user-defined string used to categorize events
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter indexName: Name of the targeted index
+    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
+    /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
+    
+    public func conversion(eventName: String,
+                           indexName: String,
+                           userToken: String? = .none,
+                           timestamp: Int64 = Date().millisecondsSince1970,
+                           objectIDs: [String]) {
+        customEventTracker.conversion(eventName: eventName,
+                         indexName: indexName,
+                         userToken: userToken,
+                         timestamp: timestamp,
+                         objectIDs: objectIDs)
+    }
+    
+    /// Track a conversion
+    /// - parameter eventName: A user-defined string used to categorize events
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter indexName: Name of the targeted index
+    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
+    /// - parameter objectID: Index objectID.
+    
+    public func conversion(eventName: String,
+                           indexName: String,
+                           userToken: String? = .none,
+                           timestamp: Int64 = Date().millisecondsSince1970,
+                           objectID: String) {
+        customEventTracker.conversion(eventName: eventName,
+                         indexName: indexName,
+                         userToken: userToken,
+                         timestamp: timestamp,
+                         objectIDs: [objectID])
+    }
+    
+    /// Track a conversion
+    /// - parameter eventName: A user-defined string used to categorize events
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter indexName: Name of the targeted index
+    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
+    /// - parameter filters: An array of filters. Limited to 10 filters.
+    
+    public func conversion(eventName: String,
+                           indexName: String,
+                           userToken: String? = .none,
+                           timestamp: Int64 = Date().millisecondsSince1970,
+                           filters: [String]) {
+        customEventTracker.conversion(eventName: eventName,
+                         indexName: indexName,
+                         userToken: userToken,
+                         timestamp: timestamp,
+                         filters: filters)
     }
     
 }

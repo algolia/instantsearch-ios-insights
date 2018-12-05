@@ -11,8 +11,8 @@ import Foundation
 /// Provides convenient functions for tracking events which can be used for search personalization.
 ///
 
-@objcMembers public class Visit: NSObject, AnalyticsUsecase {
-
+class Visit: NSObject, AnalyticsUsecase, CustomEventTrackable {
+    
     var eventProcessor: EventProcessable
     var logger: Logger
     var userToken: String?
@@ -25,18 +25,11 @@ import Foundation
         self.userToken = userToken
     }
     
-    /// Track a view
-    /// - parameter eventName: A user-defined string used to categorize events
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter indexName: Name of the targeted index
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
-    
-    public func view(eventName: String,
-                     indexName: String,
-                     userToken: String? = .none,
-                     timestamp: Int64 = Date().millisecondsSince1970,
-                     objectIDs: [String]) {
+    func view(eventName: String,
+              indexName: String,
+              userToken: String? = .none,
+              timestamp: Int64 = Date().millisecondsSince1970,
+              objectIDs: [String]) {
         do {
             
             let event = try View(name: eventName,
@@ -52,37 +45,11 @@ import Foundation
         }
     }
     
-    /// Track a view
-    /// - parameter eventName: A user-defined string used to categorize events
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter indexName: Name of the targeted index
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter objectID: Index objectID.
-    
-    public func view(eventName: String,
-                     indexName: String,
-                     userToken: String? = .none,
-                     timestamp: Int64 = Date().millisecondsSince1970,
-                     objectID: String) {
-        view(eventName: eventName,
-             indexName: indexName,
-             userToken: effectiveUserToken(withEventUserToken: userToken),
-             timestamp: timestamp,
-             objectIDs: [objectID])
-    }
-    
-    /// Track a view
-    /// - parameter eventName: A user-defined string used to categorize events
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter indexName: Name of the targeted index
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter filters: An array of filters. Limited to 10 filters.
-    
-    public func view(eventName: String,
-                     indexName: String,
-                     userToken: String? = .none,
-                     timestamp: Int64 = Date().millisecondsSince1970,
-                     filters: [String]) {
+    func view(eventName: String,
+              indexName: String,
+              userToken: String? = .none,
+              timestamp: Int64 = Date().millisecondsSince1970,
+              filters: [String]) {
         do {
             
             let event = try View(name: eventName,
@@ -98,18 +65,11 @@ import Foundation
         }
     }
     
-    /// Track a click
-    /// - parameter eventName: A user-defined string used to categorize events
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter indexName: Name of the targeted index
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
-    
-    public func click(eventName: String,
-                      indexName: String,
-                      userToken: String? = .none,
-                      timestamp: Int64 = Date().millisecondsSince1970,
-                      objectIDs: [String]) {
+    func click(eventName: String,
+               indexName: String,
+               userToken: String? = .none,
+               timestamp: Int64 = Date().millisecondsSince1970,
+               objectIDs: [String]) {
         do {
             
             let event = try Click(name: eventName,
@@ -126,37 +86,11 @@ import Foundation
         
     }
     
-    /// Track a click
-    /// - parameter eventName: A user-defined string used to categorize events
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter indexName: Name of the targeted index
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter objectID: Index objectID.
-    
-    public func click(eventName: String,
-                      indexName: String,
-                      userToken: String? = .none,
-                      timestamp: Int64 = Date().millisecondsSince1970,
-                      objectID: String) {
-        click(eventName: eventName,
-              indexName: indexName,
-              userToken: effectiveUserToken(withEventUserToken: userToken),
-              timestamp: timestamp,
-              objectIDs: [objectID])
-    }
-    
-    /// Track a click
-    /// - parameter eventName: A user-defined string used to categorize events
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter indexName: Name of the targeted index
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter filters: An array of filters. Limited to 10 filters.
-    
-    public func click(eventName: String,
-                      indexName: String,
-                      userToken: String? = .none,
-                      timestamp: Int64 = Date().millisecondsSince1970,
-                      filters: [String]) {
+    func click(eventName: String,
+               indexName: String,
+               userToken: String? = .none,
+               timestamp: Int64 = Date().millisecondsSince1970,
+               filters: [String]) {
         do {
             
             let event = try Click(name: eventName,
@@ -173,18 +107,11 @@ import Foundation
         
     }
     
-    /// Track a conversion
-    /// - parameter eventName: A user-defined string used to categorize events
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter indexName: Name of the targeted index
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
-    
-    public func conversion(eventName: String,
-                           indexName: String,
-                           userToken: String? = .none,
-                           timestamp: Int64 = Date().millisecondsSince1970,
-                           objectIDs: [String]) {
+    func conversion(eventName: String,
+                    indexName: String,
+                    userToken: String? = .none,
+                    timestamp: Int64 = Date().millisecondsSince1970,
+                    objectIDs: [String]) {
         do {
             
             let event = try Conversion(name: eventName,
@@ -200,37 +127,11 @@ import Foundation
         }
     }
     
-    /// Track a conversion
-    /// - parameter eventName: A user-defined string used to categorize events
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter indexName: Name of the targeted index
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter objectID: Index objectID.
-    
-    public func conversion(eventName: String,
-                           indexName: String,
-                           userToken: String? = .none,
-                           timestamp: Int64 = Date().millisecondsSince1970,
-                           objectID: String) {
-        conversion(eventName: eventName,
-                   indexName: indexName,
-                   userToken: effectiveUserToken(withEventUserToken: userToken),
-                   timestamp: timestamp,
-                   objectIDs: [objectID])
-    }
-    
-    /// Track a conversion
-    /// - parameter eventName: A user-defined string used to categorize events
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter indexName: Name of the targeted index
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter filters: An array of filters. Limited to 10 filters.
-    
-    public func conversion(eventName: String,
-                           indexName: String,
-                           userToken: String? = .none,
-                           timestamp: Int64 = Date().millisecondsSince1970,
-                           filters: [String]) {
+    func conversion(eventName: String,
+                    indexName: String,
+                    userToken: String? = .none,
+                    timestamp: Int64 = Date().millisecondsSince1970,
+                    filters: [String]) {
         do {
             
             let event = try Conversion(name: eventName,

@@ -10,12 +10,12 @@ import XCTest
 @testable import InstantSearchInsights
 
 /**
- Correct environment variables
+ Appropriate environment variables
  - ALGOLIA_APPLICATION_ID
  - ALGOLIA_API_KEY
  - ALGOLIA_INDEX_NAME
  
- must be defined to make this test succeed
+ must be defined in Xcode scheme to accomplish these tests
 */
 
 class WebServiceIntegrationTests: XCTestCase {

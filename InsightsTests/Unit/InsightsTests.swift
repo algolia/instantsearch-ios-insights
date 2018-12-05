@@ -83,32 +83,31 @@ class InsightsTests: XCTestCase {
                                         flushDelay: 1,
                                         logger: Logger(testCredentials.appId))
      
+        insightsRegister.clickAfterSearch(withQueryID: expectedQueryID,
+                                          userToken: expectedUserToken,
+                                          indexName: expectedIndexName,
+                                          objectIDsWithPositions: expectedObjectIDsWithPositions)
         
-        insightsRegister.search.click(userToken: expectedUserToken,
-                                      indexName: expectedIndexName,
-                                      queryID: expectedQueryID,
-                                      objectIDsWithPositions: expectedObjectIDsWithPositions)
+        Insights.shared?.clickAfterSearch(withQueryID: "q123",
+                                          userToken: "user token",
+                                          indexName: "my index",
+                                          objectIDsWithPositions: [("obj1", 1), ("obj2", 2)])
         
-        Insights.shared?.search.click(userToken: "user token",
-                                      indexName: "my index",
-                                      queryID: "q123",
-                                      objectIDsWithPositions: [("obj1", 1), ("obj2", 2)])
+        Insights.shared?.conversionAfterSearch(withQueryID: "q123",
+                                               userToken: "user token",
+                                               indexName: "my index",
+                                               objectIDs: ["obj1", "obj2"])
         
-        Insights.shared?.search.conversion(userToken: "user token",
-                                           indexName: "my index",
-                                           queryID: "q123",
-                                           objectIDs: ["obj1", "obj2"])
+        Insights.shared?.view(eventName: "View event",
+                              indexName: "my index",
+                              userToken: "user token",
+                              filters: ["brand:apple"])
         
-        Insights.shared?.visit.view(eventName: "View event",
-                                    indexName: "my index",
-                                    userToken: "user token",
-                                    filters: ["brand:apple"])
-
         
-        Insights.shared(appId: "app id")?.search.click(userToken: "user token",
-                                                       indexName: "my index",
-                                                       queryID: "q123",
-                                                       objectIDsWithPositions: [("obj1", 1), ("obj2", 2)])
+        Insights.shared(appId: "app id")?.clickAfterSearch(withQueryID: "q123",
+                                                           userToken: "user token",
+                                                           indexName: "my index",
+                                                           objectIDsWithPositions: [("obj1", 1), ("obj2", 2)])
         
         wait(for: [exp], timeout: 5)
     }
@@ -133,10 +132,10 @@ class InsightsTests: XCTestCase {
         
         let insights = Insights(eventsProcessor: eventProcessor, logger: logger)
         
-        insights.search.click(indexName: expectedIndexName,
-                              queryID: expectedQueryID,
-                              objectID: expectedObjectIDsWithPositions.first!.0,
-                              position: expectedObjectIDsWithPositions.first!.1)
+        insights.clickAfterSearch(withQueryID: expectedQueryID,
+                                  indexName: expectedIndexName,
+                                  objectID: expectedObjectIDsWithPositions.first!.0,
+                                  position: expectedObjectIDsWithPositions.first!.1)
         
         wait(for: [exp], timeout: 5)
         
@@ -163,10 +162,10 @@ class InsightsTests: XCTestCase {
         
         let insights = Insights(eventsProcessor: eventProcessor, userToken: expectedUserToken, logger: logger)
         
-        insights.search.click(indexName: expectedIndexName,
-                              queryID: expectedQueryID,
-                              objectID: expectedObjectIDsWithPositions.first!.0,
-                              position: expectedObjectIDsWithPositions.first!.1)
+        insights.clickAfterSearch(withQueryID: expectedQueryID,
+                                  indexName: expectedIndexName,
+                                  objectID: expectedObjectIDsWithPositions.first!.0,
+                                  position: expectedObjectIDsWithPositions.first!.1)
         
         wait(for: [exp], timeout: 5)
 

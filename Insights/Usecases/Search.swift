@@ -11,12 +11,12 @@ import Foundation
 /// Provides convenient functions for tracking search-related events
 ///
 
-@objcMembers public class Search: NSObject, AnalyticsUsecase {
+class Search: NSObject, AnalyticsUsecase, SearchRelatedEventTrackable {
     
     var eventProcessor: EventProcessable
     var logger: Logger
     var userToken: String?
- 
+    
     init(eventProcessor: EventProcessable,
          logger: Logger,
          userToken: String? = .none) {
@@ -25,18 +25,11 @@ import Foundation
         self.userToken = userToken
     }
     
-    /// Track a click
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter indexName: Name of the targeted index
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter queryID: Algolia queryID
-    /// - parameter objectIDsWithPositions: An array of related index objectID and position of the click in the list of Algolia search results. - Warning: Limited to 20 objects.
-    
-    public func click(userToken: String? = .none,
-                      indexName: String,
-                      timestamp: Int64 = Date().millisecondsSince1970,
-                      queryID: String,
-                      objectIDsWithPositions: [(String, Int)]) {
+    func click(queryID: String,
+               userToken: String? = .none,
+               indexName: String,
+               timestamp: Int64 = Date().millisecondsSince1970,
+               objectIDsWithPositions: [(String, Int)]) {
         do {
             
             let event = try Click(name: "",
@@ -52,38 +45,31 @@ import Foundation
         }
     }
     
-    /// Track a click
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter indexName: Name of the targeted index
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter queryID: Algolia queryID
-    /// - parameter objectID: Index objectID
-    /// - parameter position: Position of the click in the list of Algolia search results
-    
-    public func click(userToken: String? = .none,
-                      indexName: String,
-                      timestamp: Int64 = Date().millisecondsSince1970,
-                      queryID: String,
-                      objectID: String,
-                      position: Int) {
-        click(userToken: effectiveUserToken(withEventUserToken: userToken),
+    func click(queryID: String,
+               userToken: String? = .none,
+               indexName: String,
+               timestamp: Int64 = Date().millisecondsSince1970,
+               objectIDs: [String],
+               positions: [Int]) {
+        guard objectIDs.count == positions.count else {
+            let error = EventConstructionError.objectsAndPositionsCountMismatch(objectIDsCount: objectIDs.count, positionsCount: positions.count)
+            logger.debug(message: error.localizedDescription)
+            return
+        }
+        
+        let objectIDsWithPositions = zip(objectIDs, positions).map { $0 }
+        click(queryID: queryID,
+              userToken: userToken,
               indexName: indexName,
-              queryID: queryID,
-              objectIDsWithPositions: [(objectID, position)])
+              timestamp: timestamp,
+              objectIDsWithPositions: objectIDsWithPositions)
     }
     
-    /// Track a conversion
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter indexName: Name of the targeted index
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter queryID: Algolia queryID
-    /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
-    
-    public func conversion(userToken: String? = .none,
-                           indexName: String,
-                           timestamp: Int64 = Date().millisecondsSince1970,
-                           queryID: String,
-                           objectIDs: [String]) {
+    func conversion(queryID: String,
+                    userToken: String? = .none,
+                    indexName: String,
+                    timestamp: Int64 = Date().millisecondsSince1970,
+                    objectIDs: [String]) {
         do {
             
             let event = try Conversion(name: "",
@@ -99,51 +85,4 @@ import Foundation
         }
     }
     
-    /// Track a conversion
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter indexName: Name of the targeted index
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter queryID: Algolia queryID
-    /// - parameter objectID: Index objectID
-    
-    public func conversion(userToken: String? = .none,
-                           indexName: String,
-                           timestamp: Int64 = Date().millisecondsSince1970,
-                           queryID: String,
-                           objectID: String) {
-        conversion(userToken: effectiveUserToken(withEventUserToken: userToken),
-                   indexName: indexName,
-                   queryID: queryID,
-                   objectIDs: [objectID])
-    }
-    
-    /// Track a click
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter indexName: Name of the targeted index
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
-    /// - parameter queryID: Algolia queryID
-    /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
-    /// - parameter positions: Position of the click in the list of Algolia search results. Positions count must be the same as objectID count.
-    
-    @objc(clickWithUserToken:indexName:timestamp:queryID:objectIDs:positions:)
-    public func z_objc_click(userToken: String,
-                             indexName: String,
-                             timestamp: Int64,
-                             queryID: String,
-                             objectIDs: [String],
-                             positions: [Int]) {
-        guard objectIDs.count == positions.count else {
-            let error = EventConstructionError.objectsAndPositionsCountMismatch(objectIDsCount: objectIDs.count, positionsCount: positions.count)
-            logger.debug(message: error.localizedDescription)
-            return
-        }
-        
-        let objectIDsWithPositions = zip(objectIDs, positions).map { $0 }
-        click(userToken: userToken,
-              indexName: indexName,
-              timestamp: timestamp,
-              queryID: queryID,
-              objectIDsWithPositions: objectIDsWithPositions)
-    }
-        
 }
