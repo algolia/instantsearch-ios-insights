@@ -23,6 +23,8 @@ class WebServiceIntegrationTests: XCTestCase {
     private func envVar(forKey key: String) -> String? {
         if let value = Bundle(for: type(of: self)).object(forInfoDictionaryKey: key) as? String, !value.isEmpty {
             return value
+        } else if let value = ProcessInfo.processInfo.environment[key], !value.isEmpty {
+            return value
         } else {
             return nil
         }
