@@ -81,7 +81,7 @@ class InsightsTests: XCTestCase {
         let indexName = "index name"
         let eventName = "event name"
         let userToken = "user token"
-        let timestamp = Date().millisecondsSince1970
+        let timestamp = Date().timeIntervalSince1970
         let queryID = "query id"
         let objectIDs = ["o1", "o2"]
         let positions = [1, 2]
@@ -140,7 +140,7 @@ class InsightsTests: XCTestCase {
             XCTAssertEqual(expected.queryID, queryID)
             XCTAssertEqual(expected.userToken, userToken)
             XCTAssertEqual(expected.indexName, indexName)
-            XCTAssertEqual(expected.timestamp, timeStamp)
+            XCTAssertEqual(expected.timestamp, TimeInterval(timeStamp/1000), accuracy: 1)
             if objectIDsWithPositions.count > 1 {
                 XCTAssertEqual(expected.objectIDsWithPositions.map { $0.0 }, objectIDsWithPositions.map { $0.0 })
                 XCTAssertEqual(expected.objectIDsWithPositions.map { $0.1 }, objectIDsWithPositions.map { $0.1 })
@@ -176,7 +176,7 @@ class InsightsTests: XCTestCase {
             XCTAssertEqual(expected.queryID, queryID)
             XCTAssertEqual(expected.userToken, userToken)
             XCTAssertEqual(expected.indexName, indexName)
-            XCTAssertEqual(expected.timestamp, timeStamp)
+            XCTAssertEqual(expected.timestamp, TimeInterval(timeStamp/1000), accuracy: 1)
             if objectIDs.count > 1 {
                 XCTAssertEqual(expected.objectIDs, objectIDs)
             } else {
@@ -210,7 +210,7 @@ class InsightsTests: XCTestCase {
             XCTAssertEqual(expected.eventName, eventName)
             XCTAssertEqual(expected.userToken, userToken)
             XCTAssertEqual(expected.indexName, indexName)
-            XCTAssertEqual(expected.timestamp, timeStamp)
+            XCTAssertEqual(expected.timestamp, TimeInterval(timeStamp/1000), accuracy: 1)
             if objectIDs.count > 1 {
                 XCTAssertEqual(expected.objectIDs, objectIDs)
             } else {
@@ -243,7 +243,7 @@ class InsightsTests: XCTestCase {
             XCTAssertEqual(expected.eventName, eventName)
             XCTAssertEqual(expected.userToken, userToken)
             XCTAssertEqual(expected.indexName, indexName)
-            XCTAssertEqual(expected.timestamp, timeStamp)
+            XCTAssertEqual(expected.timestamp, TimeInterval(timeStamp/1000), accuracy: 1)
             XCTAssertEqual(expected.filters, filters)
         }
         
@@ -267,7 +267,7 @@ class InsightsTests: XCTestCase {
             XCTAssertEqual(expected.eventName, eventName)
             XCTAssertEqual(expected.userToken, userToken)
             XCTAssertEqual(expected.indexName, indexName)
-            XCTAssertEqual(expected.timestamp, timeStamp)
+            XCTAssertEqual(expected.timestamp, TimeInterval(timeStamp/1000), accuracy: 1)
             if objectIDs.count > 1 {
                 XCTAssertEqual(expected.objectIDs, objectIDs)
             } else {
@@ -299,7 +299,7 @@ class InsightsTests: XCTestCase {
             XCTAssertEqual(expected.eventName, eventName)
             XCTAssertEqual(expected.userToken, userToken)
             XCTAssertEqual(expected.indexName, indexName)
-            XCTAssertEqual(expected.timestamp, timeStamp)
+            XCTAssertEqual(expected.timestamp, TimeInterval(timeStamp/1000), accuracy: 1)
             XCTAssertEqual(expected.filters, filters)
         }
 
@@ -323,7 +323,7 @@ class InsightsTests: XCTestCase {
             XCTAssertEqual(expected.eventName, eventName)
             XCTAssertEqual(expected.userToken, userToken)
             XCTAssertEqual(expected.indexName, indexName)
-            XCTAssertEqual(expected.timestamp, timeStamp)
+            XCTAssertEqual(expected.timestamp, TimeInterval(timeStamp/1000), accuracy: 1)
             if objectIDs.count > 1 {
                 XCTAssertEqual(expected.objectIDs, objectIDs)
             } else {
@@ -355,7 +355,7 @@ class InsightsTests: XCTestCase {
             XCTAssertEqual(expected.eventName, eventName)
             XCTAssertEqual(expected.userToken, userToken)
             XCTAssertEqual(expected.indexName, indexName)
-            XCTAssertEqual(expected.timestamp, timeStamp)
+            XCTAssertEqual(expected.timestamp, TimeInterval(timeStamp/1000), accuracy: 1)
             XCTAssertEqual(expected.filters, filters)
         }
         

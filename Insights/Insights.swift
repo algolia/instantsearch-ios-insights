@@ -202,12 +202,12 @@ extension Insights {
     public func clickAfterSearch(withQueryID queryID: String,
                                  indexName: String,
                                  userToken: String? = .none,
-                                 timestamp: Int64 = Date().millisecondsSince1970,
+                                 timestamp: TimeInterval = Date().timeIntervalSince1970,
                                  objectIDsWithPositions: [(String, Int)]) {
         searchEventTracker.click(queryID: queryID,
                                         indexName: indexName,
                                         userToken: userToken,
-                                        timestamp: timestamp,
+                                        timestamp: timestamp.milliseconds,
                                         objectIDsWithPositions: objectIDsWithPositions)
     }
     
@@ -222,13 +222,13 @@ extension Insights {
     public func clickAfterSearch(withQueryID queryID: String,
                                  indexName: String,
                                  userToken: String? = .none,
-                                 timestamp: Int64 = Date().millisecondsSince1970,
+                                 timestamp: TimeInterval = Date().timeIntervalSince1970,
                                  objectID: String,
                                  position: Int) {
         searchEventTracker.click(queryID: queryID,
                                         indexName: indexName,
                                         userToken: userToken,
-                                        timestamp: timestamp,
+                                        timestamp: timestamp.milliseconds,
                                         objectIDsWithPositions: [(objectID, position)])
     }
     
@@ -242,12 +242,12 @@ extension Insights {
     public func conversionAfterSearch(withQueryID queryID: String,
                                       indexName: String,
                                       userToken: String? = .none,
-                                      timestamp: Int64 = Date().millisecondsSince1970,
+                                      timestamp: TimeInterval = Date().timeIntervalSince1970,
                                       objectIDs: [String]) {
         searchEventTracker.conversion(queryID: queryID,
                                              indexName: indexName,
                                              userToken: userToken,
-                                             timestamp: timestamp,
+                                             timestamp: timestamp.milliseconds,
                                              objectIDs: objectIDs)
     }
     
@@ -261,12 +261,12 @@ extension Insights {
     public func conversionAfterSearch(withQueryID queryID: String,
                                       indexName: String,
                                       userToken: String? = .none,
-                                      timestamp: Int64 = Date().millisecondsSince1970,
+                                      timestamp: TimeInterval = Date().timeIntervalSince1970,
                                       objectID: String) {
         searchEventTracker.conversion(queryID: queryID,
                                              indexName: indexName,
                                              userToken: userToken,
-                                             timestamp: timestamp,
+                                             timestamp: timestamp.milliseconds,
                                              objectIDs: [objectID])
     }
     
@@ -282,13 +282,13 @@ extension Insights {
     public func z_objc_click(queryID: String,
                              indexName: String,
                              userToken: String,
-                             timestamp: Int64,
+                             timestamp: TimeInterval,
                              objectIDs: [String],
                              positions: [Int]) {
         searchEventTracker.click(queryID: queryID,
                                  indexName: indexName,
                                  userToken: userToken,
-                                 timestamp: timestamp,
+                                 timestamp: timestamp.milliseconds,
                                  objectIDs: objectIDs,
                                  positions: positions)
     }
@@ -309,12 +309,12 @@ extension Insights {
     public func view(eventName: String,
                      indexName: String,
                      userToken: String? = .none,
-                     timestamp: Int64 = Date().millisecondsSince1970,
+                     timestamp: TimeInterval = Date().timeIntervalSince1970,
                      objectIDs: [String]) {
         customEventTracker.view(eventName: eventName,
                    indexName: indexName,
                    userToken: userToken,
-                   timestamp: timestamp,
+                   timestamp: timestamp.milliseconds,
                    objectIDs: objectIDs)
     }
     
@@ -328,12 +328,12 @@ extension Insights {
     public func view(eventName: String,
                      indexName: String,
                      userToken: String? = .none,
-                     timestamp: Int64 = Date().millisecondsSince1970,
+                     timestamp: TimeInterval = Date().timeIntervalSince1970,
                      objectID: String) {
         customEventTracker.view(eventName: eventName,
                    indexName: indexName,
                    userToken: userToken,
-                   timestamp: timestamp,
+                   timestamp: timestamp.milliseconds,
                    objectIDs: [objectID])
     }
     
@@ -347,12 +347,12 @@ extension Insights {
     public func view(eventName: String,
                      indexName: String,
                      userToken: String? = .none,
-                     timestamp: Int64 = Date().millisecondsSince1970,
+                     timestamp: TimeInterval = Date().timeIntervalSince1970,
                      filters: [String]) {
         customEventTracker.view(eventName: eventName,
                    indexName: indexName,
                    userToken: userToken,
-                   timestamp: timestamp,
+                   timestamp: timestamp.milliseconds,
                    filters: filters)
     }
     
@@ -366,12 +366,12 @@ extension Insights {
     public func click(eventName: String,
                       indexName: String,
                       userToken: String? = .none,
-                      timestamp: Int64 = Date().millisecondsSince1970,
+                      timestamp: TimeInterval = Date().timeIntervalSince1970,
                       objectIDs: [String]) {
         customEventTracker.click(eventName: eventName,
                     indexName: indexName,
                     userToken: userToken,
-                    timestamp: timestamp,
+                    timestamp: timestamp.milliseconds,
                     objectIDs: objectIDs)
     }
     
@@ -385,12 +385,12 @@ extension Insights {
     public func click(eventName: String,
                       indexName: String,
                       userToken: String? = .none,
-                      timestamp: Int64 = Date().millisecondsSince1970,
+                      timestamp: TimeInterval = Date().timeIntervalSince1970,
                       objectID: String) {
         customEventTracker.click(eventName: eventName,
                     indexName: indexName,
                     userToken: userToken,
-                    timestamp: timestamp,
+                    timestamp: timestamp.milliseconds,
                     objectIDs: [objectID])
     }
     
@@ -404,12 +404,12 @@ extension Insights {
     public func click(eventName: String,
                       indexName: String,
                       userToken: String? = .none,
-                      timestamp: Int64 = Date().millisecondsSince1970,
+                      timestamp: TimeInterval = Date().timeIntervalSince1970,
                       filters: [String]) {
         customEventTracker.click(eventName: eventName,
                     indexName: indexName,
                     userToken: userToken,
-                    timestamp: timestamp,
+                    timestamp: timestamp.milliseconds,
                     filters: filters)
     }
     
@@ -423,12 +423,12 @@ extension Insights {
     public func conversion(eventName: String,
                            indexName: String,
                            userToken: String? = .none,
-                           timestamp: Int64 = Date().millisecondsSince1970,
+                           timestamp: TimeInterval = Date().timeIntervalSince1970,
                            objectIDs: [String]) {
         customEventTracker.conversion(eventName: eventName,
                          indexName: indexName,
                          userToken: userToken,
-                         timestamp: timestamp,
+                         timestamp: timestamp.milliseconds,
                          objectIDs: objectIDs)
     }
     
@@ -442,12 +442,12 @@ extension Insights {
     public func conversion(eventName: String,
                            indexName: String,
                            userToken: String? = .none,
-                           timestamp: Int64 = Date().millisecondsSince1970,
+                           timestamp: TimeInterval = Date().timeIntervalSince1970,
                            objectID: String) {
         customEventTracker.conversion(eventName: eventName,
                          indexName: indexName,
                          userToken: userToken,
-                         timestamp: timestamp,
+                         timestamp: timestamp.milliseconds,
                          objectIDs: [objectID])
     }
     
@@ -461,12 +461,12 @@ extension Insights {
     public func conversion(eventName: String,
                            indexName: String,
                            userToken: String? = .none,
-                           timestamp: Int64 = Date().millisecondsSince1970,
+                           timestamp: TimeInterval = Date().timeIntervalSince1970,
                            filters: [String]) {
         customEventTracker.conversion(eventName: eventName,
                          indexName: indexName,
                          userToken: userToken,
-                         timestamp: timestamp,
+                         timestamp: timestamp.milliseconds,
                          filters: filters)
     }
     
