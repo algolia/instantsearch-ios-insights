@@ -11,7 +11,7 @@ import Foundation
 /// Provides convenient functions for tracking search-related events
 ///
 
-class Search: NSObject, AnalyticsUsecase, SearchRelatedEventTrackable {
+class Search: NSObject, AnalyticsUsecase, SearchEventTrackable {
     
     var eventProcessor: EventProcessable
     var logger: Logger
@@ -26,8 +26,8 @@ class Search: NSObject, AnalyticsUsecase, SearchRelatedEventTrackable {
     }
     
     func click(queryID: String,
-               userToken: String? = .none,
                indexName: String,
+               userToken: String? = .none,
                timestamp: Int64 = Date().millisecondsSince1970,
                objectIDsWithPositions: [(String, Int)]) {
         do {
@@ -46,8 +46,8 @@ class Search: NSObject, AnalyticsUsecase, SearchRelatedEventTrackable {
     }
     
     func click(queryID: String,
-               userToken: String? = .none,
                indexName: String,
+               userToken: String? = .none,
                timestamp: Int64 = Date().millisecondsSince1970,
                objectIDs: [String],
                positions: [Int]) {
@@ -59,15 +59,15 @@ class Search: NSObject, AnalyticsUsecase, SearchRelatedEventTrackable {
         
         let objectIDsWithPositions = zip(objectIDs, positions).map { $0 }
         click(queryID: queryID,
-              userToken: userToken,
               indexName: indexName,
+              userToken: userToken,
               timestamp: timestamp,
               objectIDsWithPositions: objectIDsWithPositions)
     }
     
     func conversion(queryID: String,
-                    userToken: String? = .none,
                     indexName: String,
+                    userToken: String? = .none,
                     timestamp: Int64 = Date().millisecondsSince1970,
                     objectIDs: [String]) {
         do {

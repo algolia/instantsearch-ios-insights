@@ -1,5 +1,5 @@
 //
-//  SearchRelatedEventTrackable.swift
+//  SearchEventTrackable.swift
 //  Insights
 //
 //  Created by Vladislav Fitc on 05/12/2018.
@@ -8,22 +8,24 @@
 
 import Foundation
 
-protocol SearchRelatedEventTrackable {
+protocol SearchEventTrackable {
     
-    func click(queryID: String, userToken: String?,
+    func click(queryID: String,
                indexName: String,
+               userToken: String?,
                timestamp: Int64,
                objectIDsWithPositions: [(String, Int)])
     
-    func click(queryID: String, userToken: String?,
+    func click(queryID: String,
                indexName: String,
+               userToken: String?,
                timestamp: Int64,
                objectIDs: [String],
                positions: [Int])
     
     func conversion(queryID: String,
-                    userToken: String?,
                     indexName: String,
+                    userToken: String?,
                     timestamp: Int64,
                     objectIDs: [String])
     

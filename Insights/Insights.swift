@@ -138,25 +138,35 @@ import Foundation
     
     /// Access point for capturing of search-related events
 
-    let searchRelatedEventTracker: SearchRelatedEventTrackable
+    let searchEventTracker: SearchEventTrackable
     
     /// Access point for capturing of personalisation events
 
     let customEventTracker: CustomEventTrackable
     
     init(eventsProcessor: EventProcessable,
-         userToken: String? = .none,
-         region: Region? = .none,
+         searchEventTracker: SearchEventTrackable,
+         customEventTracker: CustomEventTrackable,
          logger: Logger) {
         self.eventsProcessor = eventsProcessor
-        self.searchRelatedEventTracker = Search(eventProcessor: eventsProcessor,
-                             logger: logger,
-                             userToken: userToken)
-        self.customEventTracker = Visit(eventProcessor: eventsProcessor,
-                           logger: logger,
-                           userToken: userToken)
+        self.searchEventTracker = searchEventTracker
+        self.customEventTracker = customEventTracker
         self.logger = logger
-        super.init()
+    }
+    
+    convenience init(eventsProcessor: EventProcessable,
+                     userToken: String? = .none,
+                     logger: Logger) {
+        let search = Search(eventProcessor: eventsProcessor,
+                                    logger: logger,
+                                 userToken: userToken)
+        let visit = Visit(eventProcessor: eventsProcessor,
+                                  logger: logger,
+                               userToken: userToken)
+        self.init(eventsProcessor: eventsProcessor,
+                  searchEventTracker: search,
+                  customEventTracker: visit,
+                  logger: logger)
     }
     
     convenience init(credentials: Credentials,
@@ -178,6 +188,8 @@ import Foundation
     
 }
 
+// MARK: - Tracking events tighten to search
+
 extension Insights {
     
     /// Track a click
@@ -192,11 +204,11 @@ extension Insights {
                                  indexName: String,
                                  timestamp: Int64 = Date().millisecondsSince1970,
                                  objectIDsWithPositions: [(String, Int)]) {
-        searchRelatedEventTracker.click(queryID: queryID,
-                     userToken: userToken,
-                     indexName: indexName,
-                     timestamp: timestamp,
-                     objectIDsWithPositions: objectIDsWithPositions)
+        searchEventTracker.click(queryID: queryID,
+                                        indexName: indexName,
+                                        userToken: userToken,
+                                        timestamp: timestamp,
+                                        objectIDsWithPositions: objectIDsWithPositions)
     }
     
     /// Track a click
@@ -213,11 +225,11 @@ extension Insights {
                                  timestamp: Int64 = Date().millisecondsSince1970,
                                  objectID: String,
                                  position: Int) {
-        searchRelatedEventTracker.click(queryID: queryID,
-                     userToken: userToken,
-                     indexName: indexName,
-                     timestamp: timestamp,
-                     objectIDsWithPositions: [(objectID, position)])
+        searchEventTracker.click(queryID: queryID,
+                                        indexName: indexName,
+                                        userToken: userToken,
+                                        timestamp: timestamp,
+                                        objectIDsWithPositions: [(objectID, position)])
     }
     
     /// Track a conversion
@@ -232,11 +244,11 @@ extension Insights {
                                       indexName: String,
                                       timestamp: Int64 = Date().millisecondsSince1970,
                                       objectIDs: [String]) {
-        searchRelatedEventTracker.conversion(queryID: queryID,
-                          userToken: userToken,
-                          indexName: indexName,
-                          timestamp: timestamp,
-                          objectIDs: objectIDs)
+        searchEventTracker.conversion(queryID: queryID,
+                                             indexName: indexName,
+                                             userToken: userToken,
+                                             timestamp: timestamp,
+                                             objectIDs: objectIDs)
     }
     
     /// Track a conversion
@@ -251,11 +263,11 @@ extension Insights {
                                       indexName: String,
                                       timestamp: Int64 = Date().millisecondsSince1970,
                                       objectID: String) {
-        searchRelatedEventTracker.conversion(queryID: queryID,
-                          userToken: userToken,
-                          indexName: indexName,
-                          timestamp: timestamp,
-                          objectIDs: [objectID])
+        searchEventTracker.conversion(queryID: queryID,
+                                             indexName: indexName,
+                                             userToken: userToken,
+                                             timestamp: timestamp,
+                                             objectIDs: [objectID])
     }
     
     /// Track a click
@@ -272,15 +284,17 @@ extension Insights {
                              timestamp: Int64,
                              objectIDs: [String],
                              positions: [Int]) {
-        searchRelatedEventTracker.click(queryID: queryID,
-                                        userToken: userToken,
+        searchEventTracker.click(queryID: queryID,
                                         indexName: indexName,
+                                        userToken: userToken,
                                         timestamp: timestamp,
                                         objectIDs: objectIDs,
                                         positions: positions)
     }
     
 }
+
+// MARK: - Tracking events non-tighten to search
 
 extension Insights {
     

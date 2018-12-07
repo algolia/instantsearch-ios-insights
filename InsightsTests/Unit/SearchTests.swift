@@ -48,8 +48,8 @@ class SearchTests: XCTestCase {
         }
         
         search.click(queryID: expectedQueryID,
-                     userToken: expectedUserToken,
                      indexName: expectedIndexName,
+                     userToken: expectedUserToken,
                      timestamp: expectedTimestamp,
                      objectIDsWithPositions: expectedObjectIDsWithPositions)
         
@@ -81,8 +81,8 @@ class SearchTests: XCTestCase {
         }
         
         search.conversion(queryID: expectedQueryID,
-                          userToken: expectedUserToken,
                           indexName: expectedIndexName,
+                          userToken: expectedUserToken,
                           timestamp: expectedTimestamp,
                           objectIDs: expectedObjectIDs)
         
