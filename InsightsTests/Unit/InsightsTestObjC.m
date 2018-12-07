@@ -37,15 +37,15 @@ Insights *stubInsights;
     XCTAssertNotNil([Insights sharedWithAppId:appId]);
     
     [[Insights shared] clickAfterSearchWithQueryID:@"q123"
-                                         userToken:@"user token"
                                          indexName:@"my index"
+                                         userToken:@"user token"
                                          timestamp:[[NSDate new] timeIntervalSince1970]
                                          objectIDs:@[@"obj1", @"obj2"]
                                          positions:@[@1, @2]];
     
     [[Insights shared] conversionAfterSearchWithQueryID:@"q123"
-                                              userToken:@"user token"
                                               indexName:@"my index"
+                                              userToken:@"user token"
                                               timestamp:[[NSDate new] timeIntervalSince1970]
                                               objectIDs:@[@"obj1", @"obj2"]];
     
@@ -56,8 +56,8 @@ Insights *stubInsights;
                                  filters:@[@"brand:apple"]];
     
     [[Insights sharedWithAppId:@"app id"] clickAfterSearchWithQueryID:@"q123"
-                                                            userToken:@"user token"
                                                             indexName:@"my index"
+                                                            userToken:@"user token"
                                                             timestamp:[[NSDate new] timeIntervalSince1970]
                                                             objectIDs:@[@"obj1", @"obj2"]
                                                             positions:@[@1, @2]];
@@ -71,20 +71,20 @@ Insights *stubInsights;
 - (void) testSearchClick {
     NSTimeInterval timestamp = NSDate.new.timeIntervalSince1970;
     [stubInsights clickAfterSearchWithQueryID:@""
-                         userToken:@""
-                         indexName:@""
-                         timestamp:timestamp
-                         objectIDs:@[]
-                         positions:@[]];
+                                    indexName:@""
+                                    userToken:@""
+                                    timestamp:timestamp
+                                    objectIDs:@[]
+                                    positions:@[]];
 }
 
 - (void) testSearchConversion {
     NSTimeInterval timestamp = NSDate.new.timeIntervalSince1970;
     [stubInsights conversionAfterSearchWithQueryID:@""
-                              userToken:@""
-                              indexName:@""
-                              timestamp:timestamp
-                              objectIDs:@[]];
+                                         indexName:@""
+                                         userToken:@""
+                                         timestamp:timestamp
+                                         objectIDs:@[]];
 }
 
 - (void) testVisitClick {

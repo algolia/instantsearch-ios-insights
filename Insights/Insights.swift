@@ -108,8 +108,8 @@ import Foundation
         }
         
         insightsMap.first?.value.clickAfterSearch(withQueryID: "6de2f7eaa537fa93d8f8f05b927953b1",
-                                                  userToken: "user101",
                                                   indexName: "myAwesomeIndex",
+                                                  userToken: "user101",
                                                   objectID: "54675051",
                                                   position: 1)
         
@@ -194,14 +194,14 @@ extension Insights {
     
     /// Track a click
     /// - parameter queryID: Algolia queryID
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter indexName: Name of the targeted index
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectIDsWithPositions: An array of related index objectID and position of the click in the list of Algolia search results. - Warning: Limited to 20 objects.
     
     public func clickAfterSearch(withQueryID queryID: String,
-                                 userToken: String? = .none,
                                  indexName: String,
+                                 userToken: String? = .none,
                                  timestamp: Int64 = Date().millisecondsSince1970,
                                  objectIDsWithPositions: [(String, Int)]) {
         searchEventTracker.click(queryID: queryID,
@@ -213,15 +213,15 @@ extension Insights {
     
     /// Track a click
     /// - parameter queryID: Algolia queryID
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter indexName: Name of the targeted index
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectID: Index objectID
     /// - parameter position: Position of the click in the list of Algolia search results
     
     public func clickAfterSearch(withQueryID queryID: String,
-                                 userToken: String? = .none,
                                  indexName: String,
+                                 userToken: String? = .none,
                                  timestamp: Int64 = Date().millisecondsSince1970,
                                  objectID: String,
                                  position: Int) {
@@ -234,14 +234,14 @@ extension Insights {
     
     /// Track a conversion
     /// - parameter queryID: Algolia queryID
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter indexName: Name of the targeted index
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
     
     public func conversionAfterSearch(withQueryID queryID: String,
-                                      userToken: String? = .none,
                                       indexName: String,
+                                      userToken: String? = .none,
                                       timestamp: Int64 = Date().millisecondsSince1970,
                                       objectIDs: [String]) {
         searchEventTracker.conversion(queryID: queryID,
@@ -253,14 +253,14 @@ extension Insights {
     
     /// Track a conversion
     /// - parameter queryID: Algolia queryID
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter indexName: Name of the targeted index
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectID: Index objectID
     
     public func conversionAfterSearch(withQueryID queryID: String,
-                                      userToken: String? = .none,
                                       indexName: String,
+                                      userToken: String? = .none,
                                       timestamp: Int64 = Date().millisecondsSince1970,
                                       objectID: String) {
         searchEventTracker.conversion(queryID: queryID,
@@ -272,24 +272,25 @@ extension Insights {
     
     /// Track a click
     /// - parameter queryID: Algolia queryID
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter indexName: Name of the targeted index
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
     /// - parameter positions: Position of the click in the list of Algolia search results. Positions count must be the same as objectID count.
-    @objc(clickAfterSearchWithQueryID:userToken:indexName:timestamp:objectIDs:positions:)
+    
+    @objc(clickAfterSearchWithQueryID:indexName:userToken:timestamp:objectIDs:positions:)
     public func z_objc_click(queryID: String,
-                             userToken: String,
                              indexName: String,
+                             userToken: String,
                              timestamp: Int64,
                              objectIDs: [String],
                              positions: [Int]) {
         searchEventTracker.click(queryID: queryID,
-                                        indexName: indexName,
-                                        userToken: userToken,
-                                        timestamp: timestamp,
-                                        objectIDs: objectIDs,
-                                        positions: positions)
+                                 indexName: indexName,
+                                 userToken: userToken,
+                                 timestamp: timestamp,
+                                 objectIDs: objectIDs,
+                                 positions: positions)
     }
     
 }
@@ -300,8 +301,8 @@ extension Insights {
     
     /// Track a view
     /// - parameter eventName: A user-defined string used to categorize events
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter indexName: Name of the targeted index
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
     
@@ -319,8 +320,8 @@ extension Insights {
     
     /// Track a view
     /// - parameter eventName: A user-defined string used to categorize events
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter indexName: Name of the targeted index
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectID: Index objectID.
     
@@ -338,8 +339,8 @@ extension Insights {
     
     /// Track a view
     /// - parameter eventName: A user-defined string used to categorize events
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter indexName: Name of the targeted index
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter filters: An array of filters. Limited to 10 filters.
     
@@ -357,8 +358,8 @@ extension Insights {
     
     /// Track a click
     /// - parameter eventName: A user-defined string used to categorize events
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter indexName: Name of the targeted index
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
     
@@ -376,8 +377,8 @@ extension Insights {
     
     /// Track a click
     /// - parameter eventName: A user-defined string used to categorize events
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter indexName: Name of the targeted index
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectID: Index objectID.
     
@@ -395,8 +396,8 @@ extension Insights {
     
     /// Track a click
     /// - parameter eventName: A user-defined string used to categorize events
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter indexName: Name of the targeted index
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter filters: An array of filters. Limited to 10 filters.
     
@@ -414,8 +415,8 @@ extension Insights {
     
     /// Track a conversion
     /// - parameter eventName: A user-defined string used to categorize events
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter indexName: Name of the targeted index
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
     
@@ -433,8 +434,8 @@ extension Insights {
     
     /// Track a conversion
     /// - parameter eventName: A user-defined string used to categorize events
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter indexName: Name of the targeted index
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectID: Index objectID.
     
@@ -452,8 +453,8 @@ extension Insights {
     
     /// Track a conversion
     /// - parameter eventName: A user-defined string used to categorize events
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter indexName: Name of the targeted index
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter filters: An array of filters. Limited to 10 filters.
     

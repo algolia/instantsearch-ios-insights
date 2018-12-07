@@ -151,15 +151,15 @@ class InsightsTests: XCTestCase {
         }
         
         testInsights.clickAfterSearch(withQueryID: expected.queryID,
-                                      userToken: expected.userToken,
                                       indexName: expected.indexName,
+                                      userToken: expected.userToken,
                                       timestamp: expected.timestamp,
                                       objectID: expected.objectIDs.first!,
                                       position: expected.positions.first!)
         
         testInsights.clickAfterSearch(withQueryID: expected.queryID,
-                                      userToken: expected.userToken,
                                       indexName: expected.indexName,
+                                      userToken: expected.userToken,
                                       timestamp: expected.timestamp,
                                       objectIDsWithPositions: expected.objectIDsWithPositions)
         
@@ -185,14 +185,14 @@ class InsightsTests: XCTestCase {
         }
         
         testInsights.conversionAfterSearch(withQueryID: expected.queryID,
-                                           userToken: expected.userToken,
                                            indexName: expected.indexName,
+                                           userToken: expected.userToken,
                                            timestamp: expected.timestamp,
                                            objectIDs: expected.objectIDs)
         
         testInsights.conversionAfterSearch(withQueryID: expected.queryID,
-                                           userToken: expected.userToken,
                                            indexName: expected.indexName,
+                                           userToken: expected.userToken,
                                            timestamp: expected.timestamp,
                                            objectID: expected.objectIDs.first!)
         
@@ -399,8 +399,8 @@ class InsightsTests: XCTestCase {
                                         logger: Logger(testCredentials.appId))
      
         insightsRegister.clickAfterSearch(withQueryID: expected.queryID,
-                                          userToken: expected.userToken,
                                           indexName: expected.indexName,
+                                          userToken: expected.userToken,
                                           objectIDsWithPositions: expected.objectIDsWithPositions)
         
         wait(for: [exp], timeout: 5)
