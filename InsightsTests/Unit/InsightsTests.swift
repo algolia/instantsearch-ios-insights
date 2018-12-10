@@ -152,16 +152,16 @@ class InsightsTests: XCTestCase {
         
         testInsights.clickAfterSearch(withQueryID: expected.queryID,
                                       indexName: expected.indexName,
-                                      userToken: expected.userToken,
-                                      timestamp: expected.timestamp,
                                       objectID: expected.objectIDs.first!,
-                                      position: expected.positions.first!)
+                                      position: expected.positions.first!,
+                                      userToken: expected.userToken,
+                                      timestamp: expected.timestamp)
         
         testInsights.clickAfterSearch(withQueryID: expected.queryID,
                                       indexName: expected.indexName,
+                                      objectIDsWithPositions: expected.objectIDsWithPositions,
                                       userToken: expected.userToken,
-                                      timestamp: expected.timestamp,
-                                      objectIDsWithPositions: expected.objectIDsWithPositions)
+                                      timestamp: expected.timestamp)
         
         wait(for: [exp], timeout: 5)
     }
@@ -186,15 +186,15 @@ class InsightsTests: XCTestCase {
         
         testInsights.conversionAfterSearch(withQueryID: expected.queryID,
                                            indexName: expected.indexName,
+                                           objectIDs: expected.objectIDs,
                                            userToken: expected.userToken,
-                                           timestamp: expected.timestamp,
-                                           objectIDs: expected.objectIDs)
+                                           timestamp: expected.timestamp)
         
         testInsights.conversionAfterSearch(withQueryID: expected.queryID,
                                            indexName: expected.indexName,
+                                           objectID: expected.objectIDs.first!,
                                            userToken: expected.userToken,
-                                           timestamp: expected.timestamp,
-                                           objectID: expected.objectIDs.first!)
+                                           timestamp: expected.timestamp)
         
         wait(for: [exp], timeout: 5)
 
@@ -220,15 +220,15 @@ class InsightsTests: XCTestCase {
         
         testInsights.click(eventName: expected.eventName,
                            indexName: expected.indexName,
+                           objectIDs: expected.objectIDs,
                            userToken: expected.userToken,
-                           timestamp: expected.timestamp,
-                           objectIDs: expected.objectIDs)
+                           timestamp: expected.timestamp)
         
         testInsights.click(eventName: expected.eventName,
                            indexName: expected.indexName,
+                           objectID: expected.objectIDs.first!,
                            userToken: expected.userToken,
-                           timestamp: expected.timestamp,
-                           objectID: expected.objectIDs.first!)
+                           timestamp: expected.timestamp)
         
         wait(for: [exp], timeout: 5)
 
@@ -249,9 +249,9 @@ class InsightsTests: XCTestCase {
         
         testInsights.click(eventName: expected.eventName,
                            indexName: expected.indexName,
+                           filters: expected.filters,
                            userToken: expected.userToken,
-                           timestamp: expected.timestamp,
-                           filters: expected.filters)
+                           timestamp: expected.timestamp)
         
         wait(for: [exp], timeout: 5)
         
@@ -277,15 +277,15 @@ class InsightsTests: XCTestCase {
         
         testInsights.conversion(eventName: expected.eventName,
                                 indexName: expected.indexName,
+                                objectIDs: expected.objectIDs,
                                 userToken: expected.userToken,
-                                timestamp: expected.timestamp,
-                                objectIDs: expected.objectIDs)
+                                timestamp: expected.timestamp)
         
         testInsights.conversion(eventName: expected.eventName,
                                 indexName: expected.indexName,
+                                objectID: expected.objectIDs.first!,
                                 userToken: expected.userToken,
-                                timestamp: expected.timestamp,
-                                objectID: expected.objectIDs.first!)
+                                timestamp: expected.timestamp)
         
         wait(for: [exp], timeout: 5)
     }
@@ -306,9 +306,9 @@ class InsightsTests: XCTestCase {
         
         testInsights.conversion(eventName: expected.eventName,
                                 indexName: expected.indexName,
+                                filters: expected.filters,
                                 userToken: expected.userToken,
-                                timestamp: expected.timestamp,
-                                filters: expected.filters)
+                                timestamp: expected.timestamp)
         
         wait(for: [exp], timeout: 5)
     }
@@ -333,15 +333,15 @@ class InsightsTests: XCTestCase {
         
         testInsights.view(eventName: expected.eventName,
                           indexName: expected.indexName,
+                          objectIDs: expected.objectIDs,
                           userToken: expected.userToken,
-                          timestamp: expected.timestamp,
-                          objectIDs: expected.objectIDs)
+                          timestamp: expected.timestamp)
         
         testInsights.view(eventName: expected.eventName,
                           indexName: expected.indexName,
+                          objectID: expected.objectIDs.first!,
                           userToken: expected.userToken,
-                          timestamp: expected.timestamp,
-                          objectID: expected.objectIDs.first!)
+                          timestamp: expected.timestamp)
         
         wait(for: [exp], timeout: 5)
     }
@@ -361,9 +361,9 @@ class InsightsTests: XCTestCase {
         
         testInsights.view(eventName: expected.eventName,
                           indexName: expected.indexName,
+                          filters: expected.filters,
                           userToken: expected.userToken,
-                          timestamp: expected.timestamp,
-                          filters: expected.filters)
+                          timestamp: expected.timestamp)
         
         wait(for: [exp], timeout: 5)
     }
@@ -400,8 +400,8 @@ class InsightsTests: XCTestCase {
      
         insightsRegister.clickAfterSearch(withQueryID: expected.queryID,
                                           indexName: expected.indexName,
-                                          userToken: expected.userToken,
-                                          objectIDsWithPositions: expected.objectIDsWithPositions)
+                                          objectIDsWithPositions: expected.objectIDsWithPositions,
+                                          userToken: expected.userToken)
         
         wait(for: [exp], timeout: 5)
     }

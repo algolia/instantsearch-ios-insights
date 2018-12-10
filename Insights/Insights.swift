@@ -109,9 +109,9 @@ import Foundation
         
         insightsMap.first?.value.clickAfterSearch(withQueryID: "6de2f7eaa537fa93d8f8f05b927953b1",
                                                   indexName: "myAwesomeIndex",
-                                                  userToken: "user101",
                                                   objectID: "54675051",
-                                                  position: 1)
+                                                  position: 1,
+                                                  userToken: "user101")
         
         return insightsMap.first?.value
     }
@@ -195,15 +195,15 @@ extension Insights {
     /// Track a click
     /// - parameter queryID: Algolia queryID
     /// - parameter indexName: Name of the targeted index
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectIDsWithPositions: An array of related index objectID and position of the click in the list of Algolia search results. - Warning: Limited to 20 objects.
-    
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter timestamp: Time of the event expressed in seconds since the unix epoch
+
     public func clickAfterSearch(withQueryID queryID: String,
                                  indexName: String,
+                                 objectIDsWithPositions: [(String, Int)],
                                  userToken: String? = .none,
-                                 timestamp: TimeInterval = Date().timeIntervalSince1970,
-                                 objectIDsWithPositions: [(String, Int)]) {
+                                 timestamp: TimeInterval = Date().timeIntervalSince1970) {
         searchEventTracker.click(queryID: queryID,
                                         indexName: indexName,
                                         userToken: userToken,
@@ -214,17 +214,17 @@ extension Insights {
     /// Track a click
     /// - parameter queryID: Algolia queryID
     /// - parameter indexName: Name of the targeted index
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectID: Index objectID
     /// - parameter position: Position of the click in the list of Algolia search results
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter timestamp: Time of the event expressed in seconds since the unix epoch
     
     public func clickAfterSearch(withQueryID queryID: String,
                                  indexName: String,
-                                 userToken: String? = .none,
-                                 timestamp: TimeInterval = Date().timeIntervalSince1970,
                                  objectID: String,
-                                 position: Int) {
+                                 position: Int,
+                                 userToken: String? = .none,
+                                 timestamp: TimeInterval = Date().timeIntervalSince1970) {
         searchEventTracker.click(queryID: queryID,
                                         indexName: indexName,
                                         userToken: userToken,
@@ -235,15 +235,15 @@ extension Insights {
     /// Track a conversion
     /// - parameter queryID: Algolia queryID
     /// - parameter indexName: Name of the targeted index
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter timestamp: Time of the event expressed in seconds since the unix epoch
     
     public func conversionAfterSearch(withQueryID queryID: String,
                                       indexName: String,
+                                      objectIDs: [String],
                                       userToken: String? = .none,
-                                      timestamp: TimeInterval = Date().timeIntervalSince1970,
-                                      objectIDs: [String]) {
+                                      timestamp: TimeInterval = Date().timeIntervalSince1970) {
         searchEventTracker.conversion(queryID: queryID,
                                              indexName: indexName,
                                              userToken: userToken,
@@ -254,15 +254,15 @@ extension Insights {
     /// Track a conversion
     /// - parameter queryID: Algolia queryID
     /// - parameter indexName: Name of the targeted index
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectID: Index objectID
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter timestamp: Time of the event expressed in seconds since the unix epoch
     
     public func conversionAfterSearch(withQueryID queryID: String,
                                       indexName: String,
+                                      objectID: String,
                                       userToken: String? = .none,
-                                      timestamp: TimeInterval = Date().timeIntervalSince1970,
-                                      objectID: String) {
+                                      timestamp: TimeInterval = Date().timeIntervalSince1970) {
         searchEventTracker.conversion(queryID: queryID,
                                              indexName: indexName,
                                              userToken: userToken,
@@ -273,18 +273,18 @@ extension Insights {
     /// Track a click
     /// - parameter queryID: Algolia queryID
     /// - parameter indexName: Name of the targeted index
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
     /// - parameter positions: Position of the click in the list of Algolia search results. Positions count must be the same as objectID count.
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter timestamp: Time of the event expressed in seconds since the unix epoch
     
-    @objc(clickAfterSearchWithQueryID:indexName:userToken:timestamp:objectIDs:positions:)
+    @objc(clickAfterSearchWithQueryID:indexName:objectIDs:positions:userToken:timestamp:)
     public func z_objc_click(queryID: String,
                              indexName: String,
-                             userToken: String,
-                             timestamp: TimeInterval,
                              objectIDs: [String],
-                             positions: [Int]) {
+                             positions: [Int],
+                             userToken: String,
+                             timestamp: TimeInterval) {
         searchEventTracker.click(queryID: queryID,
                                  indexName: indexName,
                                  userToken: userToken,
@@ -302,15 +302,15 @@ extension Insights {
     /// Track a view
     /// - parameter eventName: A user-defined string used to categorize events
     /// - parameter indexName: Name of the targeted index
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter timestamp: Time of the event expressed in seconds since the unix epoch
     
     public func view(eventName: String,
                      indexName: String,
+                     objectIDs: [String],
                      userToken: String? = .none,
-                     timestamp: TimeInterval = Date().timeIntervalSince1970,
-                     objectIDs: [String]) {
+                     timestamp: TimeInterval = Date().timeIntervalSince1970) {
         customEventTracker.view(eventName: eventName,
                    indexName: indexName,
                    userToken: userToken,
@@ -321,15 +321,15 @@ extension Insights {
     /// Track a view
     /// - parameter eventName: A user-defined string used to categorize events
     /// - parameter indexName: Name of the targeted index
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectID: Index objectID.
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter timestamp: Time of the event expressed in seconds since the unix epoch
     
     public func view(eventName: String,
                      indexName: String,
+                     objectID: String,
                      userToken: String? = .none,
-                     timestamp: TimeInterval = Date().timeIntervalSince1970,
-                     objectID: String) {
+                     timestamp: TimeInterval = Date().timeIntervalSince1970) {
         customEventTracker.view(eventName: eventName,
                    indexName: indexName,
                    userToken: userToken,
@@ -340,15 +340,15 @@ extension Insights {
     /// Track a view
     /// - parameter eventName: A user-defined string used to categorize events
     /// - parameter indexName: Name of the targeted index
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter filters: An array of filters. Limited to 10 filters.
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter timestamp: Time of the event expressed in seconds since the unix epoch
     
     public func view(eventName: String,
                      indexName: String,
+                     filters: [String],
                      userToken: String? = .none,
-                     timestamp: TimeInterval = Date().timeIntervalSince1970,
-                     filters: [String]) {
+                     timestamp: TimeInterval = Date().timeIntervalSince1970) {
         customEventTracker.view(eventName: eventName,
                    indexName: indexName,
                    userToken: userToken,
@@ -359,15 +359,15 @@ extension Insights {
     /// Track a click
     /// - parameter eventName: A user-defined string used to categorize events
     /// - parameter indexName: Name of the targeted index
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter timestamp: Time of the event expressed in seconds since the unix epoch
     
     public func click(eventName: String,
                       indexName: String,
+                      objectIDs: [String],
                       userToken: String? = .none,
-                      timestamp: TimeInterval = Date().timeIntervalSince1970,
-                      objectIDs: [String]) {
+                      timestamp: TimeInterval = Date().timeIntervalSince1970) {
         customEventTracker.click(eventName: eventName,
                     indexName: indexName,
                     userToken: userToken,
@@ -378,15 +378,15 @@ extension Insights {
     /// Track a click
     /// - parameter eventName: A user-defined string used to categorize events
     /// - parameter indexName: Name of the targeted index
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectID: Index objectID.
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter timestamp: Time of the event expressed in seconds since the unix epoch
     
     public func click(eventName: String,
                       indexName: String,
+                      objectID: String,
                       userToken: String? = .none,
-                      timestamp: TimeInterval = Date().timeIntervalSince1970,
-                      objectID: String) {
+                      timestamp: TimeInterval = Date().timeIntervalSince1970) {
         customEventTracker.click(eventName: eventName,
                     indexName: indexName,
                     userToken: userToken,
@@ -397,15 +397,15 @@ extension Insights {
     /// Track a click
     /// - parameter eventName: A user-defined string used to categorize events
     /// - parameter indexName: Name of the targeted index
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter filters: An array of filters. Limited to 10 filters.
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter timestamp: Time of the event expressed in seconds since the unix epoch
     
     public func click(eventName: String,
                       indexName: String,
+                      filters: [String],
                       userToken: String? = .none,
-                      timestamp: TimeInterval = Date().timeIntervalSince1970,
-                      filters: [String]) {
+                      timestamp: TimeInterval = Date().timeIntervalSince1970) {
         customEventTracker.click(eventName: eventName,
                     indexName: indexName,
                     userToken: userToken,
@@ -416,15 +416,15 @@ extension Insights {
     /// Track a conversion
     /// - parameter eventName: A user-defined string used to categorize events
     /// - parameter indexName: Name of the targeted index
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter timestamp: Time of the event expressed in seconds since the unix epoch
     
     public func conversion(eventName: String,
                            indexName: String,
+                           objectIDs: [String],
                            userToken: String? = .none,
-                           timestamp: TimeInterval = Date().timeIntervalSince1970,
-                           objectIDs: [String]) {
+                           timestamp: TimeInterval = Date().timeIntervalSince1970) {
         customEventTracker.conversion(eventName: eventName,
                          indexName: indexName,
                          userToken: userToken,
@@ -435,15 +435,15 @@ extension Insights {
     /// Track a conversion
     /// - parameter eventName: A user-defined string used to categorize events
     /// - parameter indexName: Name of the targeted index
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter objectID: Index objectID.
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter timestamp: Time of the event expressed in seconds since the unix epoch
     
     public func conversion(eventName: String,
                            indexName: String,
+                           objectID: String,
                            userToken: String? = .none,
-                           timestamp: TimeInterval = Date().timeIntervalSince1970,
-                           objectID: String) {
+                           timestamp: TimeInterval = Date().timeIntervalSince1970) {
         customEventTracker.conversion(eventName: eventName,
                          indexName: indexName,
                          userToken: userToken,
@@ -454,15 +454,15 @@ extension Insights {
     /// Track a conversion
     /// - parameter eventName: A user-defined string used to categorize events
     /// - parameter indexName: Name of the targeted index
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter timestamp: Time of the event expressed in ms since the unix epoch
     /// - parameter filters: An array of filters. Limited to 10 filters.
+    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
+    /// - parameter timestamp: Time of the event expressed in seconds since the unix epoch
     
     public func conversion(eventName: String,
                            indexName: String,
+                           filters: [String],
                            userToken: String? = .none,
-                           timestamp: TimeInterval = Date().timeIntervalSince1970,
-                           filters: [String]) {
+                           timestamp: TimeInterval = Date().timeIntervalSince1970) {
         customEventTracker.conversion(eventName: eventName,
                          indexName: indexName,
                          userToken: userToken,
