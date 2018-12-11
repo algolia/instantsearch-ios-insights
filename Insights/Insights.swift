@@ -270,29 +270,6 @@ extension Insights {
                                              objectIDs: [objectID])
     }
     
-    /// Track a click
-    /// - parameter queryID: Algolia queryID
-    /// - parameter indexName: Name of the targeted index
-    /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
-    /// - parameter positions: Position of the click in the list of Algolia search results. Positions count must be the same as objectID count.
-    /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
-    /// - parameter timestamp: Time of the event expressed in seconds since the unix epoch
-    
-    @objc(clickAfterSearchWithQueryID:indexName:objectIDs:positions:userToken:timestamp:)
-    public func z_objc_click(queryID: String,
-                             indexName: String,
-                             objectIDs: [String],
-                             positions: [Int],
-                             userToken: String,
-                             timestamp: TimeInterval) {
-        searchEventTracker.click(queryID: queryID,
-                                 indexName: indexName,
-                                 userToken: userToken,
-                                 timestamp: timestamp.milliseconds,
-                                 objectIDs: objectIDs,
-                                 positions: positions)
-    }
-    
 }
 
 // MARK: - Tracking events non-tighten to search

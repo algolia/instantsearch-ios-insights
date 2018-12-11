@@ -76,6 +76,20 @@ Insights *stubInsights;
                                     positions:@[]
                                     userToken:@""
                                     timestamp:timestamp];
+    
+    [stubInsights clickAfterSearchWithQueryID:@""
+                                    indexName:@""
+                                    objectIDs:@[]
+                                    positions:@[]
+                                    userToken:nil];
+    
+    [stubInsights clickAfterSearchWithQueryID:@""
+                                    indexName:@""
+                                     objectID:@""
+                                     position:1
+                                    userToken:nil];
+
+    
 }
 
 - (void) testSearchConversion {
@@ -85,15 +99,42 @@ Insights *stubInsights;
                                          objectIDs:@[]
                                          userToken:@""
                                          timestamp:timestamp];
+    
+    [stubInsights conversionAfterSearchWithQueryID:@""
+                                         indexName:@""
+                                         objectIDs:@[]
+                                         userToken:nil];
+    
+    [stubInsights conversionAfterSearchWithQueryID:@""
+                                         indexName:@""
+                                         objectID:@""
+                                         userToken:nil];
+
 }
 
 - (void) testVisitClick {
     NSTimeInterval timestamp = NSDate.new.timeIntervalSince1970;
     [stubInsights clickWithEventName:@""
-                           indexName:@"" 
+                           indexName:@""
                            objectIDs:@[]
                            userToken:@""
                            timestamp:timestamp];
+    
+    [stubInsights clickWithEventName:@""
+                           indexName:@""
+                           objectIDs:@[]
+                           userToken:nil];
+    
+    [stubInsights clickWithEventName:@""
+                           indexName:@""
+                            objectID:@""
+                           userToken:nil];
+    
+    [stubInsights clickWithEventName:@""
+                           indexName:@""
+                             filters:@[]
+                           userToken:nil];
+
 }
 
 - (void) testVisitView {
@@ -103,6 +144,21 @@ Insights *stubInsights;
                           objectIDs:@[]
                           userToken:@""
                           timestamp:timestamp];
+    
+    [stubInsights viewWithEventName:@""
+                          indexName:@""
+                          objectIDs:@[]
+                          userToken:nil];
+    
+    [stubInsights viewWithEventName:@""
+                          indexName:@""
+                           objectID:@""
+                          userToken:nil];
+    
+    [stubInsights viewWithEventName:@""
+                          indexName:@""
+                            filters:@[]
+                          userToken:nil];
 }
 
 - (void) testVisitConversion {
@@ -112,6 +168,21 @@ Insights *stubInsights;
                                 objectIDs:@[]
                                 userToken:@""
                                 timestamp:timestamp];
+    
+    [stubInsights conversionWithEventName:@""
+                                indexName:@""
+                                objectIDs:@[]
+                                userToken:nil];
+
+    [stubInsights conversionWithEventName:@""
+                                indexName:@""
+                                objectID:@""
+                                userToken:nil];
+    
+    [stubInsights conversionWithEventName:@""
+                                indexName:@""
+                                  filters:@[]
+                                userToken:nil];
 }
  
 @end

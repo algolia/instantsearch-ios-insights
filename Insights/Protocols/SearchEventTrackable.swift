@@ -15,14 +15,7 @@ protocol SearchEventTrackable {
                userToken: String?,
                timestamp: Int64,
                objectIDsWithPositions: [(String, Int)])
-    
-    func click(queryID: String,
-               indexName: String,
-               userToken: String?,
-               timestamp: Int64,
-               objectIDs: [String],
-               positions: [Int])
-    
+        
     func conversion(queryID: String,
                     indexName: String,
                     userToken: String?,

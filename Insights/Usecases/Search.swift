@@ -44,27 +44,7 @@ class Search: NSObject, AnalyticsUsecase, SearchEventTrackable {
             logger.debug(message: error.localizedDescription)
         }
     }
-    
-    func click(queryID: String,
-               indexName: String,
-               userToken: String? = .none,
-               timestamp: Int64 = Date().millisecondsSince1970,
-               objectIDs: [String],
-               positions: [Int]) {
-        guard objectIDs.count == positions.count else {
-            let error = EventConstructionError.objectsAndPositionsCountMismatch(objectIDsCount: objectIDs.count, positionsCount: positions.count)
-            logger.debug(message: error.localizedDescription)
-            return
-        }
         
-        let objectIDsWithPositions = zip(objectIDs, positions).map { $0 }
-        click(queryID: queryID,
-              indexName: indexName,
-              userToken: userToken,
-              timestamp: timestamp,
-              objectIDsWithPositions: objectIDsWithPositions)
-    }
-    
     func conversion(queryID: String,
                     indexName: String,
                     userToken: String? = .none,
