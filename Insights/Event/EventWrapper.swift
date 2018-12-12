@@ -73,7 +73,15 @@ internal enum EventWrapper: Codable {
 extension EventWrapper: CustomStringConvertible {
     
     var description: String {
-        return String(describing: Dictionary(self)!)
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        do {
+            let data = try encoder.encode(self)
+            let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
+            return String(describing: jsonObject)
+        } catch _ {
+            return "[encoding error]"
+        }
     }
     
 }
