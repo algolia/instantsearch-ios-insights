@@ -44,8 +44,8 @@ Insights.register(appId: "testApp", apiKey: "testKey", userToken: "testToken")
 ```objc
 // ObjC
 [Insights registerWithAppId:@"testApp"
-					           apiKey:@"testKey"
-				          userToken:@"testToken"];
+                     apiKey:@"testKey"
+                  userToken:@"testToken"];
 ```
 
 ### Sending metrics
@@ -55,9 +55,9 @@ Once that you registered your **Application ID** and the **API Key** you can eas
 ```swift
 // Swift
 Insights.shared?.clickAfterSearch(withQueryID: "query id",
-                                    indexName: "index name",
-                                    objectID: "object id",
-                                    position: 1)
+                                  indexName: "index name",
+                                  objectID: "object id",
+                                  position: 1)
 
 Insights.shared?.conversionAfterSearch(withQueryID: "query id",
                                        indexName: "index name",
@@ -74,16 +74,16 @@ Insights.shared?.view(eventName: "view event",
 [[Insights shared] clickAfterSearchWithQueryID:@"q123" 
                                      indexName:@"my index"
                                      userToken:@"custom user token"
-                          	         timestamp:[[NSDate new] timeIntervalSince1970]
+                                     timestamp:[[NSDate new] timeIntervalSince1970]
                                      objectIDs:@[@"obj1", @"obj2"]
                                      positions:@[@1, @2]];
 
 [[Insights shared] conversionAfterSearchWithQueryID:@"q123" 
-                                  	  indexName:@"my index"
-									                    userToken:@"custom user token"
-                                 	    timestamp:[[NSDate new] timeIntervalSince1970]
-                                        queryID:@"q123"
-                                 		  objectIDs:@[@"obj1", @"obj2"]];
+                                          indexName:@"my index"
+                                          userToken:@"custom user token"
+                                          timestamp:[[NSDate new] timeIntervalSince1970]
+                                            queryID:@"q123"
+                                          objectIDs:@[@"obj1", @"obj2"]];
 
 [[Insights shared] viewWithEventName:@"view event"
                            indexName:@"my index"
