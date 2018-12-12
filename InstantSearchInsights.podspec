@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
     s.social_media_url = 'https://twitter.com/algolia'
     s.ios.deployment_target = '8.0'
     s.requires_arc = true
-    s.swift_version = '4.0'
+    s.swift_version = '4.2'
 
         # Build settings
     # --------------
