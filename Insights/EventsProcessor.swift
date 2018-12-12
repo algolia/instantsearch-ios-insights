@@ -54,8 +54,12 @@ class EventsProcessor: EventProcessable {
     }
     
     @objc func flushEventsPackages() {
-        logger.debug(message: "Flushing pending packages")
-        eventsPackages.forEach(sync)
+        if eventsPackages.isEmpty {
+            logger.debug(message: "No pending event packages")
+        } else {
+            logger.debug(message: "Flushing pending event packages")
+            eventsPackages.forEach(sync)
+        }
     }
     
     func process(_ event: Event) {

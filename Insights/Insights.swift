@@ -107,13 +107,8 @@ import Foundation
             return nil
         }
         
-        insightsMap.first?.value.clickAfterSearch(withQueryID: "6de2f7eaa537fa93d8f8f05b927953b1",
-                                                  indexName: "myAwesomeIndex",
-                                                  objectID: "54675051",
-                                                  position: 1,
-                                                  userToken: "user101")
-        
         return insightsMap.first?.value
+        
     }
     
     /// Access an already registered `Insights` via its `appId`.

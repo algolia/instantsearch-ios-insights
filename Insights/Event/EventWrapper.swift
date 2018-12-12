@@ -69,3 +69,11 @@ internal enum EventWrapper: Codable {
     }
 
 }
+
+extension EventWrapper: CustomStringConvertible {
+    
+    var description: String {
+        return String(describing: Dictionary(self)!)
+    }
+    
+}
