@@ -23,8 +23,8 @@ and is usable from both **Swift** and **Objective-C**.
 ## Install
 
 1. Add a dependency on InstantSearchInsights:
-   - CocoaPods: add `pod 'InstantSearchInsights', '~> 2.0'` to your `Podfile`.
-   - Carthage: add `github "algolia/instantsearch-ios-insights"` to your `Cartfile`.
+- CocoaPods: add `pod 'InstantSearchInsights', '~> 2.0'` to your `Podfile`.
+- Carthage: add `github "algolia/instantsearch-ios-insights"` to your `Cartfile`.
 
 2. Add `import InstantSearchInsights` to your source files.
 
@@ -37,15 +37,15 @@ You can find them on [your Algolia account](https://www.algolia.com/api-keys).
 Also, for the purpose of personalisation an application **User Token** can be specified via the correspponding optional parameter. In case of non-specified user token an automatically-generated application-wide user token will be used.
 
 ```swift
-	// Swift
-	Insights.register(appId: "testApp", apiKey: "testKey", userToken: "testToken")
+// Swift
+Insights.register(appId: "testApp", apiKey: "testKey", userToken: "testToken")
 ```
 
 ```objc
-	// ObjC
-	[Insights registerWithAppId:@"testApp"
-						 apiKey:@"testKey"
-					  userToken:@"testToken"];
+// ObjC
+[Insights registerWithAppId:@"testApp"
+					           apiKey:@"testKey"
+				          userToken:@"testToken"];
 ```
 
 ### Sending metrics
@@ -53,43 +53,43 @@ Also, for the purpose of personalisation an application **User Token** can be sp
 Once that you registered your **Application ID** and the **API Key** you can easily start sending metrics. 
 
 ```swift
-	// Swift
-	Insights.shared?.clickAfterSearch(withQueryID: "query id",
-                                      indexName: "index name",
-                                      objectID: "object id",
-                                      position: 1)
+// Swift
+Insights.shared?.clickAfterSearch(withQueryID: "query id",
+                                    indexName: "index name",
+                                    objectID: "object id",
+                                    position: 1)
 
-    Insights.shared?.conversionAfterSearch(withQueryID: "query id",
-                                           indexName: "index name",
-                                           objectIDs: ["object 1", "object 2"])
+Insights.shared?.conversionAfterSearch(withQueryID: "query id",
+                                       indexName: "index name",
+                                       objectIDs: ["object 1", "object 2"])
 
-    Insights.shared?.view(eventName: "view event",
-                          indexName: "index name",
-                          filters: ["brand:apple"])
+Insights.shared?.view(eventName: "view event",
+                      indexName: "index name",
+                      filters: ["brand:apple"])
 
 ```
 
 ```objc
-	// ObjC	
-	[[Insights shared] clickAfterSearchWithQueryID:@"q123" 
-                                         indexName:@"my index"
-                                         userToken:@"custom user token"
-                              	         timestamp:[[NSDate new] timeIntervalSince1970]
-                                         objectIDs:@[@"obj1", @"obj2"]
-                                         positions:@[@1, @2]];
-	
-	[[Insights shared] conversionAfterSearchWithQueryID:@"q123" 
-		                                  	  indexName:@"my index"
-											  userToken:@"custom user token"
-                                     	      timestamp:[[NSDate new] timeIntervalSince1970]
-                                                queryID:@"q123"
-                                     		  objectIDs:@[@"obj1", @"obj2"]];
+// ObjC	
+[[Insights shared] clickAfterSearchWithQueryID:@"q123" 
+                                     indexName:@"my index"
+                                     userToken:@"custom user token"
+                          	         timestamp:[[NSDate new] timeIntervalSince1970]
+                                     objectIDs:@[@"obj1", @"obj2"]
+                                     positions:@[@1, @2]];
 
-    [[Insights shared] viewWithEventName:@"view event"
-                               indexName:@"my index"
-                               userToken:@"custom user token"
-                               timestamp:[[NSDate new] timeIntervalSince1970]
-                                 filters:@[@"brand:apple"]];
+[[Insights shared] conversionAfterSearchWithQueryID:@"q123" 
+                                  	  indexName:@"my index"
+									                    userToken:@"custom user token"
+                                 	    timestamp:[[NSDate new] timeIntervalSince1970]
+                                        queryID:@"q123"
+                                 		  objectIDs:@[@"obj1", @"obj2"]];
+
+[[Insights shared] viewWithEventName:@"view event"
+                           indexName:@"my index"
+                           userToken:@"custom user token"
+                           timestamp:[[NSDate new] timeIntervalSince1970]
+                             filters:@[@"brand:apple"]];
 ```
 
 ### Logging and debuging
@@ -97,8 +97,8 @@ Once that you registered your **Application ID** and the **API Key** you can eas
 In case you want to check if the metric was sent correctly, you need to enable the logging first
 
 ```swift
-	// Swift
-	Insights.shared(index: "indexName")?.loggingEnabled = true
+// Swift
+Insights.shared(index: "indexName")?.loggingEnabled = true
 ```
 
 After you enabled it, you can check the output for success messages or errors
