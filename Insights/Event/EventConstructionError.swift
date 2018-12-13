@@ -9,6 +9,7 @@
 import Foundation
 
 enum EventConstructionError: Error {
+    case emptyEventName
     case objectIDsCountOverflow
     case filtersCountOverflow
     case objectsAndPositionsCountMismatch(objectIDsCount: Int, positionsCount: Int)
@@ -18,6 +19,9 @@ extension EventConstructionError: LocalizedError {
     
     var errorDescription: String? {
         switch self {
+        case .emptyEventName:
+            return "Event name cannot be empty"
+        
         case .filtersCountOverflow:
             return "Max filters count in event is \(CoreEvent.maxFiltersCount)"
             

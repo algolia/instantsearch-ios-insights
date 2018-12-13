@@ -32,7 +32,7 @@ class EventsProcessorTests: XCTestCase {
         
         let queue = DispatchQueue(label: "test queue", qos: .default)
         let credentials = Credentials(appId: appId, apiKey: "APIKEY")
-        let eventsProcessor = EventsProcessor(credentials: credentials,
+        let eventsProcessor = EventProcessor(credentials: credentials,
                                               webService: mockWS,
                                               region: .none,
                                               flushDelay: 1000,
@@ -60,7 +60,7 @@ class EventsProcessorTests: XCTestCase {
         
         let queue = DispatchQueue(label: "test queue", qos: .default)
         let credentials = Credentials(appId: appId, apiKey: "APIKEY")
-        let eventsProcessor = EventsProcessor(credentials: credentials,
+        let eventsProcessor = EventProcessor(credentials: credentials,
                                               webService: mockWS,
                                               region: .none,
                                               flushDelay: 1000,
@@ -84,7 +84,7 @@ class EventsProcessorTests: XCTestCase {
         
         let queue = DispatchQueue(label: "test queue", qos: .default)
         let credentials = Credentials(appId: appId, apiKey: "APIKEY")
-        let eventsProcessor = EventsProcessor(credentials: credentials,
+        let eventsProcessor = EventProcessor(credentials: credentials,
                                               webService: mockWS,
                                               region: .none,
                                               flushDelay: 1000,
@@ -129,7 +129,7 @@ class EventsProcessorTests: XCTestCase {
         }
         let queue = DispatchQueue(label: "test queue")
         let credentials = Credentials(appId: appId, apiKey: "APIKEY")
-        let eventsProcessor = EventsProcessor(credentials: credentials,
+        let eventsProcessor = EventProcessor(credentials: credentials,
                                               webService: mockWS,
                                               region: .none,
                                               flushDelay: 1000,

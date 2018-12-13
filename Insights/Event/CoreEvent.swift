@@ -39,6 +39,10 @@ internal struct CoreEvent: Event, Equatable {
          queryID: String?,
          objectIDsOrFilters: ObjectsIDsOrFilters) throws {
         
+        guard !name.isEmpty else {
+            throw EventConstructionError.emptyEventName
+        }
+        
         switch objectIDsOrFilters {
         case .filters(let filters) where filters.count > CoreEvent.maxFiltersCount:
             throw EventConstructionError.filtersCountOverflow

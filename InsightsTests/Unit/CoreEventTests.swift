@@ -116,12 +116,28 @@ class CoreEventTests: XCTestCase {
         
     }
     
+    func testEmptyEventName() {
+        let exp = expectation(description: "error callback expectation")
+        XCTAssertThrowsError(try CoreEvent(type: .click, name: "", indexName: "", userToken: "", timestamp: 0, queryID: .none, objectIDsOrFilters: .objectIDs([])), "constructor must throw an error due to empty event name") { error in
+            exp.fulfill()
+            switch error {
+            case EventConstructionError.emptyEventName:
+                break
+            default:
+                XCTFail("Unexpected error thrown")
+            }
+            
+            XCTAssertEqual(error.localizedDescription, "Event name cannot be empty")
+        }
+        wait(for: [exp], timeout: 5)
+    }
+    
     func testObjectsOverflow() {
         
         let exp = expectation(description: "error callback expectation")
         let objectIDs = [String](repeating: "o", count: CoreEvent.maxObjectIDsCount + 1)
         
-        XCTAssertThrowsError(try CoreEvent(type: .click, name: "", indexName: "", userToken: "", timestamp: 0, queryID: .none, objectIDsOrFilters: .objectIDs(objectIDs))
+        XCTAssertThrowsError(try CoreEvent(type: .click, name: "correct event name", indexName: "", userToken: "", timestamp: 0, queryID: .none, objectIDsOrFilters: .objectIDs(objectIDs))
         , "constructor must throw an error due to objects IDs overflow") { error in
             exp.fulfill()
             
@@ -145,7 +161,7 @@ class CoreEventTests: XCTestCase {
         let exp = expectation(description: "error callback expectation")
         let filters = [String](repeating: "brand:apple", count: CoreEvent.maxFiltersCount + 1)
         
-        XCTAssertThrowsError(try CoreEvent(type: .click, name: "", indexName: "", userToken: "", timestamp: 0, queryID: .none, objectIDsOrFilters: .filters(filters))
+        XCTAssertThrowsError(try CoreEvent(type: .click, name: "correct event name", indexName: "", userToken: "", timestamp: 0, queryID: .none, objectIDsOrFilters: .filters(filters))
         , "constructor must throw an error due to filters count overflow") { error in
             exp.fulfill()
             switch error {

@@ -1,5 +1,5 @@
 //
-//  CustomEventTrackable.swift
+//  EventTrackable.swift
 //  Insights
 //
 //  Created by Vladislav Fitc on 05/12/2018.
@@ -8,42 +8,49 @@
 
 import Foundation
 
-protocol CustomEventTrackable {
+protocol EventTrackable {
     
     func view(eventName: String,
               indexName: String,
               userToken: String?,
-              timestamp: Int64,
               objectIDs: [String])
     
     func view(eventName: String,
               indexName: String,
               userToken: String?,
-              timestamp: Int64,
               filters: [String])
     
     func click(eventName: String,
                indexName: String,
                userToken: String?,
-               timestamp: Int64,
                objectIDs: [String])
     
     func click(eventName: String,
                indexName: String,
                userToken: String?,
-               timestamp: Int64,
+               objectIDs: [String],
+               positions: [Int],
+               queryID: String)
+    
+    func click(eventName: String,
+               indexName: String,
+               userToken: String?,
                filters: [String])
     
     func conversion(eventName: String,
                     indexName: String,
                     userToken: String?,
-                    timestamp: Int64,
                     objectIDs: [String])
     
     func conversion(eventName: String,
                     indexName: String,
                     userToken: String?,
-                    timestamp: Int64,
+                    objectIDs: [String],
+                    queryID: String)
+    
+    func conversion(eventName: String,
+                    indexName: String,
+                    userToken: String?,
                     filters: [String])
     
 }

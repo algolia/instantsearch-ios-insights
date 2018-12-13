@@ -8,73 +8,59 @@
 import XCTest
 @testable import InstantSearchInsights
 
-class TestSearchEventTracker: SearchEventTrackable {
+class TestEventTracker: EventTrackable {
     
-    var didClick: ((String, String, String?, Int64, [(String, Int)]) -> Void)?
-    var didConvert: ((String, String, String?, Int64, [String]) -> Void)?
+    var didViewObjects: ((String, String, String?, [String]) -> Void)?
+    var didViewFilters: ((String, String, String?, [String]) -> Void)?
+    var didClickObjects: ((String, String, String?, [String]) -> Void)?
+    var didClickObjectsAfterSearch: ((String, String, String?, [String], [Int], String) -> Void)?
+    var didClickFilters: ((String, String, String?, [String]) -> Void)?
+    var didConvertObjects: ((String, String, String?, [String]) -> Void)?
+    var didConvertObjectsAfterSearch: ((String, String, String?, [String], String) -> Void)?
+    var didConvertFilters: ((String, String, String?, [String]) -> Void)?
     
-    func click(queryID: String, indexName: String, userToken: String?, timestamp: Int64, objectIDs: [String], positions: [Int]) {
-        let objectIDsWithPositions = zip(objectIDs, positions).map { ($0, $1) }
-        didClick?(queryID, indexName, userToken, timestamp, objectIDsWithPositions)
+    func view(eventName: String, indexName: String, userToken: String?, objectIDs: [String]) {
+        didViewObjects?(eventName, indexName, userToken, objectIDs)
     }
     
-    func click(queryID: String, indexName: String, userToken: String?, timestamp: Int64, objectIDsWithPositions: [(String, Int)]) {
-        didClick?(queryID, indexName, userToken, timestamp, objectIDsWithPositions)
+    func view(eventName: String, indexName: String, userToken: String?, filters: [String]) {
+        didViewFilters?(eventName, indexName, userToken, filters)
     }
     
-    func conversion(queryID: String, indexName: String, userToken: String?, timestamp: Int64, objectIDs: [String]) {
-        didConvert?(queryID, indexName, userToken, timestamp, objectIDs)
+    func click(eventName: String, indexName: String, userToken: String?, objectIDs: [String]) {
+        didClickObjects?(eventName, indexName, userToken, objectIDs)
     }
     
-}
+    func click(eventName: String, indexName: String, userToken: String?, objectIDs: [String], positions: [Int], queryID: String) {
+        didClickObjectsAfterSearch?(eventName, indexName, userToken, objectIDs, positions, queryID)
+    }
+    
+    func click(eventName: String, indexName: String, userToken: String?, filters: [String]) {
+        didClickFilters?(eventName, indexName, userToken, filters)
+    }
+    
+    func conversion(eventName: String, indexName: String, userToken: String?, objectIDs: [String]) {
+        didConvertObjects?(eventName, indexName, userToken, objectIDs)
+    }
+    
+    func conversion(eventName: String, indexName: String, userToken: String?, objectIDs: [String], queryID: String) {
+        didConvertObjectsAfterSearch?(eventName, indexName, userToken, objectIDs, queryID)
+    }
+    
+    func conversion(eventName: String, indexName: String, userToken: String?, filters: [String]) {
+        didConvertFilters?(eventName, indexName, userToken, filters)
+    }
 
-class TestCustomEventTracker: CustomEventTrackable {
-    
-    var didClickObjects: ((String, String, String?, Int64, [String]) -> Void)?
-    var didClickFilters: ((String, String, String?, Int64, [String]) -> Void)?
-    var didConvertObjects: ((String, String, String?, Int64, [String]) -> Void)?
-    var didConvertFilters: ((String, String, String?, Int64, [String]) -> Void)?
-    var didViewObjects: ((String, String, String?, Int64, [String]) -> Void)?
-    var didViewFilters: ((String, String, String?, Int64, [String]) -> Void)?
-
-    func click(eventName: String, indexName: String, userToken: String?, timestamp: Int64, filters: [String]) {
-        didClickFilters?(eventName, indexName, userToken, timestamp, filters)
-    }
-    
-    func click(eventName: String, indexName: String, userToken: String?, timestamp: Int64, objectIDs: [String]) {
-        didClickObjects?(eventName, indexName, userToken, timestamp, objectIDs)
-    }
-    
-    func conversion(eventName: String, indexName: String, userToken: String?, timestamp: Int64, filters: [String]) {
-        didConvertFilters?(eventName, indexName, userToken, timestamp, filters)
-    }
-    
-    func conversion(eventName: String, indexName: String, userToken: String?, timestamp: Int64, objectIDs: [String]) {
-        didConvertObjects?(eventName, indexName, userToken, timestamp, objectIDs)
-    }
-    
-    func view(eventName: String, indexName: String, userToken: String?, timestamp: Int64, filters: [String]) {
-        didViewFilters?(eventName, indexName, userToken, timestamp, filters)
-    }
-    
-    func view(eventName: String, indexName: String, userToken: String?, timestamp: Int64, objectIDs: [String]) {
-        didViewObjects?(eventName, indexName, userToken, timestamp, objectIDs)
-    }
-    
 }
 
 class InsightsTests: XCTestCase {
     
     let testCredentials = Credentials(appId: "test app id", apiKey: "test key")
-    let searchEventTracker = TestSearchEventTracker()
-    let customEventTracker = TestCustomEventTracker()
+    let testEventTracker = TestEventTracker()
     let testEventProcessor = TestEventProcessor()
     let testLogger = Logger("test app id")
     lazy var testInsights: Insights = {
-        return Insights(eventsProcessor: testEventProcessor,
-                        searchEventTracker: searchEventTracker,
-                        customEventTracker: customEventTracker,
-                        logger: testLogger)
+        return Insights(eventProcessor: testEventProcessor, eventTracker: testEventTracker, logger: testLogger)
     }()
     
     struct Expected {
@@ -88,7 +74,7 @@ class InsightsTests: XCTestCase {
         var objectIDsWithPositions: [(String, Int)] {
             return zip(objectIDs, positions).map { ($0, $1) }
         }
-        let filters = ["f1", "f2"]
+        let filters = ["brand:apple", "color:red"]
     
     }
     
@@ -124,44 +110,51 @@ class InsightsTests: XCTestCase {
         
         let insightsRegister = Insights.register(appId: testCredentials.appId, apiKey: testCredentials.apiKey)
         
-        XCTAssertTrue(insightsRegister.eventsProcessor.isActive)
+        XCTAssertTrue(insightsRegister.eventProcessor.isActive)
         insightsRegister.isActive = false
-        XCTAssertFalse(insightsRegister.eventsProcessor.isActive)
+        XCTAssertFalse(insightsRegister.eventProcessor.isActive)
         
     }
     
     func testClickInSearch() {
         let exp = expectation(description: "callback expectation")
-        exp.expectedFulfillmentCount = 2
+        exp.expectedFulfillmentCount = 3
         let expected = Expected()
         
-        searchEventTracker.didClick = { queryID, indexName, userToken, timeStamp, objectIDsWithPositions in
+        testEventTracker.didClickObjectsAfterSearch = { eventName, indexName, userToken, objectIDs, positions, queryID in
             exp.fulfill()
             XCTAssertEqual(expected.queryID, queryID)
             XCTAssertEqual(expected.userToken, userToken)
             XCTAssertEqual(expected.indexName, indexName)
-            XCTAssertEqual(expected.timestamp, TimeInterval(timeStamp/1000), accuracy: 1)
-            if objectIDsWithPositions.count > 1 {
-                XCTAssertEqual(expected.objectIDsWithPositions.map { $0.0 }, objectIDsWithPositions.map { $0.0 })
-                XCTAssertEqual(expected.objectIDsWithPositions.map { $0.1 }, objectIDsWithPositions.map { $0.1 })
+            XCTAssertEqual(objectIDs.count, positions.count)
+            if objectIDs.count > 1 {
+                XCTAssertEqual(expected.objectIDs, objectIDs)
+                XCTAssertEqual(expected.positions, positions)
             } else {
-                XCTAssertEqual(expected.objectIDsWithPositions.first?.0, objectIDsWithPositions.first?.0)
-                XCTAssertEqual(expected.objectIDsWithPositions.first?.1, objectIDsWithPositions.first?.1)
+                XCTAssertEqual(expected.objectIDs.first, objectIDs.first)
+                XCTAssertEqual(expected.positions.first, positions.first)
             }
         }
         
-        testInsights.clickAfterSearch(withQueryID: expected.queryID,
+        testInsights.clickAfterSearch(eventName: expected.eventName,
+                                      indexName: expected.indexName,
+                                      objectIDsWithPositions: expected.objectIDsWithPositions,
+                                      queryID: expected.queryID,
+                                      userToken: expected.userToken)
+        
+        testInsights.clickAfterSearch(eventName: expected.eventName,
+                                      indexName: expected.indexName,
+                                      objectIDs: expected.objectIDs,
+                                      positions: expected.positions,
+                                      queryID: expected.queryID,
+                                      userToken: expected.userToken)
+        
+        testInsights.clickAfterSearch(eventName: expected.eventName,
                                       indexName: expected.indexName,
                                       objectID: expected.objectIDs.first!,
                                       position: expected.positions.first!,
-                                      userToken: expected.userToken,
-                                      timestamp: expected.timestamp)
-        
-        testInsights.clickAfterSearch(withQueryID: expected.queryID,
-                                      indexName: expected.indexName,
-                                      objectIDsWithPositions: expected.objectIDsWithPositions,
-                                      userToken: expected.userToken,
-                                      timestamp: expected.timestamp)
+                                      queryID: expected.queryID,
+                                      userToken: expected.userToken)
         
         wait(for: [exp], timeout: 5)
     }
@@ -171,30 +164,30 @@ class InsightsTests: XCTestCase {
         exp.expectedFulfillmentCount = 2
         let expected = Expected()
         
-        searchEventTracker.didConvert = { queryID, indexName, userToken, timeStamp, objectIDs in
+        testEventTracker.didConvertObjectsAfterSearch = { eventName, indexName, userToken, objectIDs, queryID in
             exp.fulfill()
             XCTAssertEqual(expected.queryID, queryID)
             XCTAssertEqual(expected.userToken, userToken)
             XCTAssertEqual(expected.indexName, indexName)
-            XCTAssertEqual(expected.timestamp, TimeInterval(timeStamp/1000), accuracy: 1)
             if objectIDs.count > 1 {
                 XCTAssertEqual(expected.objectIDs, objectIDs)
             } else {
                 XCTAssertEqual(expected.objectIDs.first, objectIDs.first)
             }
+
         }
         
-        testInsights.conversionAfterSearch(withQueryID: expected.queryID,
+        testInsights.conversionAfterSearch(eventName: expected.eventName,
                                            indexName: expected.indexName,
                                            objectIDs: expected.objectIDs,
-                                           userToken: expected.userToken,
-                                           timestamp: expected.timestamp)
+                                           queryID: expected.queryID,
+                                           userToken: expected.userToken)
         
-        testInsights.conversionAfterSearch(withQueryID: expected.queryID,
+        testInsights.conversionAfterSearch(eventName: expected.eventName,
                                            indexName: expected.indexName,
                                            objectID: expected.objectIDs.first!,
-                                           userToken: expected.userToken,
-                                           timestamp: expected.timestamp)
+                                           queryID: expected.queryID,
+                                           userToken: expected.userToken)
         
         wait(for: [exp], timeout: 5)
 
@@ -205,30 +198,29 @@ class InsightsTests: XCTestCase {
         exp.expectedFulfillmentCount = 2
         let expected = Expected()
         
-        customEventTracker.didClickObjects = { eventName, indexName, userToken, timeStamp, objectIDs in
+        testEventTracker.didClickObjects = { eventName, indexName, userToken, objectIDs in
+            
             exp.fulfill()
             XCTAssertEqual(expected.eventName, eventName)
             XCTAssertEqual(expected.userToken, userToken)
             XCTAssertEqual(expected.indexName, indexName)
-            XCTAssertEqual(expected.timestamp, TimeInterval(timeStamp/1000), accuracy: 1)
             if objectIDs.count > 1 {
                 XCTAssertEqual(expected.objectIDs, objectIDs)
             } else {
                 XCTAssertEqual(expected.objectIDs.first, objectIDs.first)
             }
+            
         }
         
         testInsights.click(eventName: expected.eventName,
                            indexName: expected.indexName,
                            objectIDs: expected.objectIDs,
-                           userToken: expected.userToken,
-                           timestamp: expected.timestamp)
+                           userToken: expected.userToken)
         
         testInsights.click(eventName: expected.eventName,
                            indexName: expected.indexName,
                            objectID: expected.objectIDs.first!,
-                           userToken: expected.userToken,
-                           timestamp: expected.timestamp)
+                           userToken: expected.userToken)
         
         wait(for: [exp], timeout: 5)
 
@@ -238,20 +230,18 @@ class InsightsTests: XCTestCase {
         let exp = expectation(description: "callback expectation")
         let expected = Expected()
         
-        customEventTracker.didClickFilters = { eventName, indexName, userToken, timeStamp, filters in
+        testEventTracker.didClickFilters = { eventName, indexName, userToken, filters in
             exp.fulfill()
             XCTAssertEqual(expected.eventName, eventName)
             XCTAssertEqual(expected.userToken, userToken)
             XCTAssertEqual(expected.indexName, indexName)
-            XCTAssertEqual(expected.timestamp, TimeInterval(timeStamp/1000), accuracy: 1)
             XCTAssertEqual(expected.filters, filters)
         }
         
         testInsights.click(eventName: expected.eventName,
                            indexName: expected.indexName,
                            filters: expected.filters,
-                           userToken: expected.userToken,
-                           timestamp: expected.timestamp)
+                           userToken: expected.userToken)
         
         wait(for: [exp], timeout: 5)
         
@@ -262,12 +252,11 @@ class InsightsTests: XCTestCase {
         exp.expectedFulfillmentCount = 2
         let expected = Expected()
         
-        customEventTracker.didConvertObjects = { eventName, indexName, userToken, timeStamp, objectIDs in
+        testEventTracker.didConvertObjects = { eventName, indexName, userToken, objectIDs in
             exp.fulfill()
             XCTAssertEqual(expected.eventName, eventName)
             XCTAssertEqual(expected.userToken, userToken)
             XCTAssertEqual(expected.indexName, indexName)
-            XCTAssertEqual(expected.timestamp, TimeInterval(timeStamp/1000), accuracy: 1)
             if objectIDs.count > 1 {
                 XCTAssertEqual(expected.objectIDs, objectIDs)
             } else {
@@ -278,14 +267,12 @@ class InsightsTests: XCTestCase {
         testInsights.conversion(eventName: expected.eventName,
                                 indexName: expected.indexName,
                                 objectIDs: expected.objectIDs,
-                                userToken: expected.userToken,
-                                timestamp: expected.timestamp)
+                                userToken: expected.userToken)
         
         testInsights.conversion(eventName: expected.eventName,
                                 indexName: expected.indexName,
                                 objectID: expected.objectIDs.first!,
-                                userToken: expected.userToken,
-                                timestamp: expected.timestamp)
+                                userToken: expected.userToken)
         
         wait(for: [exp], timeout: 5)
     }
@@ -294,12 +281,11 @@ class InsightsTests: XCTestCase {
         let exp = expectation(description: "callback expectation")
         let expected = Expected()
         
-        customEventTracker.didConvertFilters = { eventName, indexName, userToken, timeStamp, filters in
+        testEventTracker.didConvertFilters = { eventName, indexName, userToken, filters in
             exp.fulfill()
             XCTAssertEqual(expected.eventName, eventName)
             XCTAssertEqual(expected.userToken, userToken)
             XCTAssertEqual(expected.indexName, indexName)
-            XCTAssertEqual(expected.timestamp, TimeInterval(timeStamp/1000), accuracy: 1)
             XCTAssertEqual(expected.filters, filters)
         }
 
@@ -307,8 +293,7 @@ class InsightsTests: XCTestCase {
         testInsights.conversion(eventName: expected.eventName,
                                 indexName: expected.indexName,
                                 filters: expected.filters,
-                                userToken: expected.userToken,
-                                timestamp: expected.timestamp)
+                                userToken: expected.userToken)
         
         wait(for: [exp], timeout: 5)
     }
@@ -318,12 +303,11 @@ class InsightsTests: XCTestCase {
         exp.expectedFulfillmentCount = 2
         let expected = Expected()
         
-        customEventTracker.didViewObjects = { eventName, indexName, userToken, timeStamp, objectIDs in
+        testEventTracker.didViewObjects = { eventName, indexName, userToken, objectIDs in
             exp.fulfill()
             XCTAssertEqual(expected.eventName, eventName)
             XCTAssertEqual(expected.userToken, userToken)
             XCTAssertEqual(expected.indexName, indexName)
-            XCTAssertEqual(expected.timestamp, TimeInterval(timeStamp/1000), accuracy: 1)
             if objectIDs.count > 1 {
                 XCTAssertEqual(expected.objectIDs, objectIDs)
             } else {
@@ -334,14 +318,12 @@ class InsightsTests: XCTestCase {
         testInsights.view(eventName: expected.eventName,
                           indexName: expected.indexName,
                           objectIDs: expected.objectIDs,
-                          userToken: expected.userToken,
-                          timestamp: expected.timestamp)
+                          userToken: expected.userToken)
         
         testInsights.view(eventName: expected.eventName,
                           indexName: expected.indexName,
                           objectID: expected.objectIDs.first!,
-                          userToken: expected.userToken,
-                          timestamp: expected.timestamp)
+                          userToken: expected.userToken)
         
         wait(for: [exp], timeout: 5)
     }
@@ -350,20 +332,18 @@ class InsightsTests: XCTestCase {
         let exp = expectation(description: "callback expectation")
         let expected = Expected()
         
-        customEventTracker.didViewFilters = { eventName, indexName, userToken, timeStamp, filters in
+        testEventTracker.didViewFilters = { eventName, indexName, userToken, filters in
             exp.fulfill()
             XCTAssertEqual(expected.eventName, eventName)
             XCTAssertEqual(expected.userToken, userToken)
             XCTAssertEqual(expected.indexName, indexName)
-            XCTAssertEqual(expected.timestamp, TimeInterval(timeStamp/1000), accuracy: 1)
             XCTAssertEqual(expected.filters, filters)
         }
         
         testInsights.view(eventName: expected.eventName,
                           indexName: expected.indexName,
                           filters: expected.filters,
-                          userToken: expected.userToken,
-                          timestamp: expected.timestamp)
+                          userToken: expected.userToken)
         
         wait(for: [exp], timeout: 5)
     }
@@ -392,29 +372,25 @@ class InsightsTests: XCTestCase {
             }
         }
         
-        let insightsRegister = Insights(credentials: Credentials(appId: testCredentials.appId,
-                                                                 apiKey: testCredentials.apiKey),
-                                        webService: mockWS,
-                                        flushDelay: 1,
-                                        logger: Logger(testCredentials.appId))
-     
-        insightsRegister.clickAfterSearch(withQueryID: expected.queryID,
-                                          indexName: expected.indexName,
-                                          objectIDsWithPositions: expected.objectIDsWithPositions,
-                                          userToken: expected.userToken)
+        let insights = Insights(credentials: Credentials(appId: testCredentials.appId,
+                                                         apiKey: testCredentials.apiKey),
+                                webService: mockWS,
+                                flushDelay: 1,
+                                logger: Logger(testCredentials.appId))
         
+        insights.clickAfterSearch(eventName: expected.eventName,
+                                  indexName: expected.indexName,
+                                  objectIDsWithPositions: expected.objectIDsWithPositions,
+                                  queryID: expected.queryID)
+     
         wait(for: [exp], timeout: 5)
     }
     
     func testGlobalAppUserTokenPropagation() {
         
         let exp = expectation(description: "process event expectation")
-        
-        let expectedIndexName = "test index name"
-        let expectedQueryID = "6de2f7eaa537fa93d8f8f05b927953b1"
-        let expectedObjectIDsWithPositions = [("o1", 1)]
+        let expected = Expected()
 
-        
         let eventProcessor = TestEventProcessor()
         
         eventProcessor.didProcess = { event in
@@ -426,10 +402,10 @@ class InsightsTests: XCTestCase {
         
         let insights = Insights(eventsProcessor: eventProcessor, logger: logger)
         
-        insights.clickAfterSearch(withQueryID: expectedQueryID,
-                                  indexName: expectedIndexName,
-                                  objectID: expectedObjectIDsWithPositions.first!.0,
-                                  position: expectedObjectIDsWithPositions.first!.1)
+        insights.clickAfterSearch(eventName: expected.eventName,
+                                  indexName: expected.indexName,
+                                  objectIDsWithPositions: expected.objectIDsWithPositions,
+                                  queryID: expected.queryID)
         
         wait(for: [exp], timeout: 5)
         
@@ -439,27 +415,23 @@ class InsightsTests: XCTestCase {
         
         let exp = expectation(description: "process event expectation")
         
-        let expectedIndexName = "test index name"
-        let expectedUserToken = "test user token"
-        let expectedQueryID = "6de2f7eaa537fa93d8f8f05b927953b1"
-        let expectedObjectIDsWithPositions = [("o1", 1)]
-        
+        let expected = Expected()
         
         let eventProcessor = TestEventProcessor()
         
         eventProcessor.didProcess = { event in
-            XCTAssertEqual(expectedUserToken, event.userToken)
+            XCTAssertEqual("global token", event.userToken)
             exp.fulfill()
         }
         
         let logger = Logger(testCredentials.appId)
         
-        let insights = Insights(eventsProcessor: eventProcessor, userToken: expectedUserToken, logger: logger)
+        let insights = Insights(eventsProcessor: eventProcessor, userToken: "global token", logger: logger)
         
-        insights.clickAfterSearch(withQueryID: expectedQueryID,
-                                  indexName: expectedIndexName,
-                                  objectID: expectedObjectIDsWithPositions.first!.0,
-                                  position: expectedObjectIDsWithPositions.first!.1)
+        insights.clickAfterSearch(eventName: expected.eventName,
+                                  indexName: expected.indexName,
+                                  objectIDsWithPositions: expected.objectIDsWithPositions,
+                                  queryID: expected.queryID)
         
         wait(for: [exp], timeout: 5)
 

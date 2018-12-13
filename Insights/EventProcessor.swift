@@ -1,5 +1,5 @@
 //
-//  EventsProcessor.swift
+//  EventProcessor.swift
 //  Insights
 //
 //  Created by Vladislav Fitc on 06/11/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class EventsProcessor: EventProcessable {
+class EventProcessor: EventProcessable {
     
     typealias Storage = LocalStorage<[EventsPackage]>
     

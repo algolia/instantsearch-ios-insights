@@ -1,5 +1,5 @@
 //
-//  Visit.swift
+//  EventTracker.swift
 //  Insights
 //
 //  Created by Vladislav Fitc on 26/11/2018.
@@ -11,7 +11,7 @@ import Foundation
 /// Provides convenient functions for tracking events which can be used for search personalization.
 ///
 
-class Visit: NSObject, AnalyticsUsecase, CustomEventTrackable {
+class EventTracker: NSObject, AnalyticsUsecase, EventTrackable {
     
     var eventProcessor: EventProcessable
     var logger: Logger
@@ -28,18 +28,15 @@ class Visit: NSObject, AnalyticsUsecase, CustomEventTrackable {
     func view(eventName: String,
               indexName: String,
               userToken: String? = .none,
-              timestamp: Int64 = Date().millisecondsSince1970,
               objectIDs: [String]) {
         do {
-            
             let event = try View(name: eventName,
                                  indexName: indexName,
                                  userToken: effectiveUserToken(withEventUserToken: userToken),
-                                 timestamp: timestamp,
+                                 timestamp: Date().millisecondsSince1970,
                                  queryID: .none,
                                  objectIDsOrFilters: .objectIDs(objectIDs))
             eventProcessor.process(event)
-            
         } catch let error {
             logger.debug(message: error.localizedDescription)
         }
@@ -48,18 +45,38 @@ class Visit: NSObject, AnalyticsUsecase, CustomEventTrackable {
     func view(eventName: String,
               indexName: String,
               userToken: String? = .none,
-              timestamp: Int64 = Date().millisecondsSince1970,
               filters: [String]) {
         do {
-            
             let event = try View(name: eventName,
                                  indexName: indexName,
                                  userToken: effectiveUserToken(withEventUserToken: userToken),
-                                 timestamp: timestamp,
+                                 timestamp: Date().millisecondsSince1970,
                                  queryID: .none,
                                  objectIDsOrFilters: .filters(filters))
             eventProcessor.process(event)
-            
+        } catch let error {
+            logger.debug(message: error.localizedDescription)
+        }
+    }
+    
+    func click(eventName: String,
+               indexName: String,
+               userToken: String?,
+               objectIDs: [String],
+               positions: [Int],
+               queryID: String) {
+        do {
+            guard objectIDs.count == positions.count else {
+                throw EventConstructionError.objectsAndPositionsCountMismatch(objectIDsCount: objectIDs.count, positionsCount: positions.count)
+            }
+            let objectIDsWithPositions = zip(objectIDs, positions).map { $0 }
+            let event = try Click(name: eventName,
+                                  indexName: indexName,
+                                  userToken: effectiveUserToken(withEventUserToken: userToken),
+                                  timestamp: Date().millisecondsSince1970,
+                                  queryID: queryID,
+                                  objectIDsWithPositions: objectIDsWithPositions)
+            eventProcessor.process(event)
         } catch let error {
             logger.debug(message: error.localizedDescription)
         }
@@ -68,18 +85,15 @@ class Visit: NSObject, AnalyticsUsecase, CustomEventTrackable {
     func click(eventName: String,
                indexName: String,
                userToken: String? = .none,
-               timestamp: Int64 = Date().millisecondsSince1970,
                objectIDs: [String]) {
         do {
-            
             let event = try Click(name: eventName,
                                   indexName: indexName,
                                   userToken: effectiveUserToken(withEventUserToken: userToken),
-                                  timestamp: timestamp,
+                                  timestamp: Date().millisecondsSince1970,
                                   objectIDsOrFilters: .objectIDs(objectIDs),
                                   positions: .none)
             eventProcessor.process(event)
-            
         } catch let error {
             logger.debug(message: error.localizedDescription)
         }
@@ -89,18 +103,15 @@ class Visit: NSObject, AnalyticsUsecase, CustomEventTrackable {
     func click(eventName: String,
                indexName: String,
                userToken: String? = .none,
-               timestamp: Int64 = Date().millisecondsSince1970,
                filters: [String]) {
         do {
-            
             let event = try Click(name: eventName,
                                   indexName: indexName,
                                   userToken: effectiveUserToken(withEventUserToken: userToken),
-                                  timestamp: timestamp,
+                                  timestamp: Date().millisecondsSince1970,
                                   objectIDsOrFilters: .filters(filters),
                                   positions: .none)
             eventProcessor.process(event)
-            
         } catch let error {
             logger.debug(message: error.localizedDescription)
         }
@@ -110,18 +121,15 @@ class Visit: NSObject, AnalyticsUsecase, CustomEventTrackable {
     func conversion(eventName: String,
                     indexName: String,
                     userToken: String? = .none,
-                    timestamp: Int64 = Date().millisecondsSince1970,
                     objectIDs: [String]) {
         do {
-            
             let event = try Conversion(name: eventName,
                                        indexName: indexName,
                                        userToken: effectiveUserToken(withEventUserToken: userToken),
-                                       timestamp: timestamp,
+                                       timestamp: Date().millisecondsSince1970,
                                        queryID: .none,
                                        objectIDsOrFilters: .objectIDs(objectIDs))
             eventProcessor.process(event)
-            
         } catch let error {
             logger.debug(message: error.localizedDescription)
         }
@@ -130,21 +138,38 @@ class Visit: NSObject, AnalyticsUsecase, CustomEventTrackable {
     func conversion(eventName: String,
                     indexName: String,
                     userToken: String? = .none,
-                    timestamp: Int64 = Date().millisecondsSince1970,
                     filters: [String]) {
         do {
-            
             let event = try Conversion(name: eventName,
                                        indexName: indexName,
                                        userToken: effectiveUserToken(withEventUserToken: userToken),
-                                       timestamp: timestamp,
+                                       timestamp: Date().millisecondsSince1970,
                                        queryID: .none,
                                        objectIDsOrFilters: .filters(filters))
             eventProcessor.process(event)
-            
         } catch let error {
             logger.debug(message: error.localizedDescription)
         }
     }
     
+    func conversion(eventName: String,
+                    indexName: String,
+                    userToken: String?,
+                    objectIDs: [String],
+                    queryID: String) {
+        
+        do {
+            let event = try Conversion(name: eventName,
+                                       indexName: indexName,
+                                       userToken: effectiveUserToken(withEventUserToken: userToken),
+                                       timestamp: Date().millisecondsSince1970,
+                                       queryID: queryID,
+                                       objectIDsOrFilters: .objectIDs(objectIDs))
+            eventProcessor.process(event)
+        } catch let error {
+            logger.debug(message: error.localizedDescription)
+        }
+        
+    }
+
 }
