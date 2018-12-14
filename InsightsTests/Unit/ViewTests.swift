@@ -21,7 +21,7 @@ class ViewTests: XCTestCase {
         let expectedTimeStamp = Date().millisecondsSince1970
         let expectedFilter =  "brand:apple"
         
-        let event = try! View(name: expectedEventName,
+        let event = try! ViewEvent(name: expectedEventName,
                               indexName: expectedIndexName,
                               userToken: expectedUserToken,
                               timestamp: expectedTimeStamp,
@@ -65,7 +65,7 @@ class ViewTests: XCTestCase {
         let jsonDecoder = JSONDecoder()
         
         do {
-            let event = try jsonDecoder.decode(View.self, from: data)
+            let event = try jsonDecoder.decode(ViewEvent.self, from: data)
             
             XCTAssertEqual(event.type, expectedEventType)
             XCTAssertEqual(event.name, expectedEventName)

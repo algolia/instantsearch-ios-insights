@@ -23,11 +23,23 @@ class EventProcessor: EventProcessable {
             }
         }
     }
-    var isActive: Bool = true
+    var isActive: Bool = true {
+        didSet {
+            switch (isActive, flushTimer) {
+            case (true, .none):
+                flushTimer = setupTimer(flushDelay: flushDelay)
+            case (false, .some):
+                flushTimer?.invalidate()
+            case (true, .some), (false, .none):
+                return
+            }
+        }
+    }
     private let region: Region?
     private let dispatchQueue: DispatchQueue
     private let localStorageFileName: String
     private weak var flushTimer: Timer?
+    private let flushDelay: TimeInterval
     
     init(credentials: Credentials,
          webService: WebService,
@@ -41,15 +53,9 @@ class EventProcessor: EventProcessable {
         self.webservice = webService
         self.region = region
         self.dispatchQueue = dispatchQueue
+        self.flushDelay = flushDelay
         self.localStorageFileName = "\(credentials.appId).events"
-        let flushTimer = Timer.scheduledTimer(timeInterval: flushDelay,
-                                                    target: self,
-                                                  selector: #selector(flushEventsPackages),
-                                                  userInfo: nil,
-                                                   repeats: true)
-        self.flushTimer = flushTimer
-
-        RunLoop.main.add(flushTimer, forMode: .default)
+        self.flushTimer = setupTimer(flushDelay: flushDelay)
         readEventPackagesFromDisk()
     }
     
@@ -57,20 +63,30 @@ class EventProcessor: EventProcessable {
         if eventsPackages.isEmpty {
             logger.debug(message: "No pending event packages")
         } else {
-            logger.debug(message: "Flushing pending event packages")
+            logger.debug(message: "Flushing pending \(eventsPackages.count) event packages")
             eventsPackages.forEach(sync)
         }
     }
     
     func process(_ event: Event) {
         guard isActive else {
-            logger.debug(message: "Event tracking is desactivated. This event will be ignored. You can reactivate tracking by setting `Insights.shared(appId: \(credentials.appId))`.isActive = true`")
+            logger.debug(message: "Event tracking is desactivated. This event will be ignored. You can reactivate tracking by setting `Insights.shared(appId: %appId))`.isActive = true`")
             return
         }
         
         dispatchQueue.async { [weak self] in
             self?.syncProcess(event)
         }
+    }
+    
+    private func setupTimer(flushDelay: TimeInterval) -> Timer {
+        let flushTimer = Timer.scheduledTimer(timeInterval: flushDelay,
+                                              target: self,
+                                              selector: #selector(flushEventsPackages),
+                                              userInfo: nil,
+                                              repeats: true)
+        RunLoop.main.add(flushTimer, forMode: .default)
+        return flushTimer
     }
     
     private func syncProcess(_ event: Event) {
@@ -108,12 +124,12 @@ class EventProcessor: EventProcessable {
     private func storeEventPackagesOnDisk() {
         guard isLocalStorageEnabled else { return }
         
-        guard let file = Storage.filePath(for: localStorageFileName) else {
+        guard let filePath = Storage.filePath(for: localStorageFileName) else {
             logger.debug(message: "Error creating a file for \(localStorageFileName)")
             return
         }
         
-        Storage.serialize(eventsPackages, file: file)
+        Storage.serialize(eventsPackages, file: filePath)
     }
     
     private func readEventPackagesFromDisk() {

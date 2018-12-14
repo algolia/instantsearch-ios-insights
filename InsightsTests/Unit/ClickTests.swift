@@ -22,7 +22,7 @@ class ClickTests: XCTestCase {
         let expectedObjectIDsWithPositions = [("o1", 1), ("o2", 2)]
         let expectedFilter = "brand:apple"
 
-        let event = try! Click(name: expectedEventName,
+        let event = try! ClickEvent(name: expectedEventName,
                                indexName: expectedIndexName,
                                userToken: expectedUserToken,
                                timestamp: expectedTimeStamp,
@@ -40,7 +40,7 @@ class ClickTests: XCTestCase {
         XCTAssertEqual(eventDictionary[ObjectsIDsOrFilters.CodingKeys.objectIDs.rawValue] as? [String], expectedObjectIDsWithPositions.map { $0.0 })
         XCTAssertEqual(eventDictionary[CoreEvent.CodingKeys.positions.rawValue] as? [Int], expectedObjectIDsWithPositions.map { $0.1 })
         
-        let eventWithFilters = try! Click(name: expectedEventName,
+        let eventWithFilters = try! ClickEvent(name: expectedEventName,
                                           indexName: expectedIndexName,
                                           userToken: expectedUserToken,
                                           timestamp: expectedTimeStamp,
@@ -85,7 +85,7 @@ class ClickTests: XCTestCase {
         let jsonDecoder = JSONDecoder()
         
         do {
-            let event = try jsonDecoder.decode(Click.self, from: data)
+            let event = try jsonDecoder.decode(ClickEvent.self, from: data)
             
             XCTAssertEqual(event.type, expectedEventType)
             XCTAssertEqual(event.name, expectedEventName)

@@ -27,7 +27,7 @@ class EventTrackerTests: XCTestCase {
 
         eventProcessor.didProcess = { e in
             exp.fulfill()
-            guard let view = e as? View else {
+            guard let view = e as? ViewEvent else {
                 XCTFail("View event expected")
                 return
             }
@@ -55,7 +55,7 @@ class EventTrackerTests: XCTestCase {
         
         eventProcessor.didProcess = { e in
             exp.fulfill()
-            guard let view = e as? View else {
+            guard let view = e as? ViewEvent else {
                 XCTFail("View event expected")
                 return
             }
@@ -84,7 +84,7 @@ class EventTrackerTests: XCTestCase {
         
         eventProcessor.didProcess = { e in
             exp.fulfill()
-            guard let click = e as? Click else {
+            guard let click = e as? ClickEvent else {
                 XCTFail("Click event expected")
                 return
             }
@@ -113,7 +113,7 @@ class EventTrackerTests: XCTestCase {
         
         eventProcessor.didProcess = { e in
             exp.fulfill()
-            guard let click = e as? Click else {
+            guard let click = e as? ClickEvent else {
                 XCTFail("Click event expected")
                 return
             }
@@ -142,7 +142,7 @@ class EventTrackerTests: XCTestCase {
         
         eventProcessor.didProcess = { e in
             exp.fulfill()
-            guard let conversion = e as? Conversion else {
+            guard let conversion = e as? ConversionEvent else {
                 XCTFail("Conversion event expected")
                 return
             }
@@ -170,7 +170,7 @@ class EventTrackerTests: XCTestCase {
         
         eventProcessor.didProcess = { e in
             exp.fulfill()
-            guard let conversion = e as? Conversion else {
+            guard let conversion = e as? ConversionEvent else {
                 XCTFail("Conversion event expected")
                 return
             }

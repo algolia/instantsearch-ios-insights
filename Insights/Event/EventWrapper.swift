@@ -10,19 +10,19 @@ import Foundation
 
 internal enum EventWrapper: Codable {
     
-    case click(Click)
-    case view(View)
-    case conversion(Conversion)
+    case click(ClickEvent)
+    case view(ViewEvent)
+    case conversion(ConversionEvent)
     case custom(Event)
     
     init(_ event: Event) {
         
         switch event {
-        case let click as Click:
+        case let click as ClickEvent:
             self = .click(click)
-        case let view as View:
+        case let view as ViewEvent:
             self = .view(view)
-        case let conversion as Conversion:
+        case let conversion as ConversionEvent:
             self = .conversion(conversion)
         default:
             self = .custom(event)
@@ -40,11 +40,11 @@ internal enum EventWrapper: Codable {
         
         switch type {
         case .click:
-            self = .click(try valueContainer.decode(Click.self))
+            self = .click(try valueContainer.decode(ClickEvent.self))
         case .view:
-            self = .view(try valueContainer.decode(View.self))
+            self = .view(try valueContainer.decode(ViewEvent.self))
         case .conversion:
-            self = .conversion(try valueContainer.decode(Conversion.self))
+            self = .conversion(try valueContainer.decode(ConversionEvent.self))
         default:
             self = .custom(try valueContainer.decode(CoreEvent.self))
         }

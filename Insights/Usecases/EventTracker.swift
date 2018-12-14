@@ -30,12 +30,12 @@ class EventTracker: NSObject, AnalyticsUsecase, EventTrackable {
               userToken: String? = .none,
               objectIDs: [String]) {
         do {
-            let event = try View(name: eventName,
-                                 indexName: indexName,
-                                 userToken: effectiveUserToken(withEventUserToken: userToken),
-                                 timestamp: Date().millisecondsSince1970,
-                                 queryID: .none,
-                                 objectIDsOrFilters: .objectIDs(objectIDs))
+            let event = try ViewEvent(name: eventName,
+                                      indexName: indexName,
+                                      userToken: effectiveUserToken(withEventUserToken: userToken),
+                                      timestamp: Date().millisecondsSince1970,
+                                      queryID: .none,
+                                      objectIDsOrFilters: .objectIDs(objectIDs))
             eventProcessor.process(event)
         } catch let error {
             logger.debug(message: error.localizedDescription)
@@ -47,12 +47,12 @@ class EventTracker: NSObject, AnalyticsUsecase, EventTrackable {
               userToken: String? = .none,
               filters: [String]) {
         do {
-            let event = try View(name: eventName,
-                                 indexName: indexName,
-                                 userToken: effectiveUserToken(withEventUserToken: userToken),
-                                 timestamp: Date().millisecondsSince1970,
-                                 queryID: .none,
-                                 objectIDsOrFilters: .filters(filters))
+            let event = try ViewEvent(name: eventName,
+                                      indexName: indexName,
+                                      userToken: effectiveUserToken(withEventUserToken: userToken),
+                                      timestamp: Date().millisecondsSince1970,
+                                      queryID: .none,
+                                      objectIDsOrFilters: .filters(filters))
             eventProcessor.process(event)
         } catch let error {
             logger.debug(message: error.localizedDescription)
@@ -70,12 +70,12 @@ class EventTracker: NSObject, AnalyticsUsecase, EventTrackable {
                 throw EventConstructionError.objectsAndPositionsCountMismatch(objectIDsCount: objectIDs.count, positionsCount: positions.count)
             }
             let objectIDsWithPositions = zip(objectIDs, positions).map { $0 }
-            let event = try Click(name: eventName,
-                                  indexName: indexName,
-                                  userToken: effectiveUserToken(withEventUserToken: userToken),
-                                  timestamp: Date().millisecondsSince1970,
-                                  queryID: queryID,
-                                  objectIDsWithPositions: objectIDsWithPositions)
+            let event = try ClickEvent(name: eventName,
+                                       indexName: indexName,
+                                       userToken: effectiveUserToken(withEventUserToken: userToken),
+                                       timestamp: Date().millisecondsSince1970,
+                                       queryID: queryID,
+                                       objectIDsWithPositions: objectIDsWithPositions)
             eventProcessor.process(event)
         } catch let error {
             logger.debug(message: error.localizedDescription)
@@ -87,12 +87,12 @@ class EventTracker: NSObject, AnalyticsUsecase, EventTrackable {
                userToken: String? = .none,
                objectIDs: [String]) {
         do {
-            let event = try Click(name: eventName,
-                                  indexName: indexName,
-                                  userToken: effectiveUserToken(withEventUserToken: userToken),
-                                  timestamp: Date().millisecondsSince1970,
-                                  objectIDsOrFilters: .objectIDs(objectIDs),
-                                  positions: .none)
+            let event = try ClickEvent(name: eventName,
+                                       indexName: indexName,
+                                       userToken: effectiveUserToken(withEventUserToken: userToken),
+                                       timestamp: Date().millisecondsSince1970,
+                                       objectIDsOrFilters: .objectIDs(objectIDs),
+                                       positions: .none)
             eventProcessor.process(event)
         } catch let error {
             logger.debug(message: error.localizedDescription)
@@ -105,12 +105,12 @@ class EventTracker: NSObject, AnalyticsUsecase, EventTrackable {
                userToken: String? = .none,
                filters: [String]) {
         do {
-            let event = try Click(name: eventName,
-                                  indexName: indexName,
-                                  userToken: effectiveUserToken(withEventUserToken: userToken),
-                                  timestamp: Date().millisecondsSince1970,
-                                  objectIDsOrFilters: .filters(filters),
-                                  positions: .none)
+            let event = try ClickEvent(name: eventName,
+                                       indexName: indexName,
+                                       userToken: effectiveUserToken(withEventUserToken: userToken),
+                                       timestamp: Date().millisecondsSince1970,
+                                       objectIDsOrFilters: .filters(filters),
+                                       positions: .none)
             eventProcessor.process(event)
         } catch let error {
             logger.debug(message: error.localizedDescription)
@@ -123,12 +123,12 @@ class EventTracker: NSObject, AnalyticsUsecase, EventTrackable {
                     userToken: String? = .none,
                     objectIDs: [String]) {
         do {
-            let event = try Conversion(name: eventName,
-                                       indexName: indexName,
-                                       userToken: effectiveUserToken(withEventUserToken: userToken),
-                                       timestamp: Date().millisecondsSince1970,
-                                       queryID: .none,
-                                       objectIDsOrFilters: .objectIDs(objectIDs))
+            let event = try ConversionEvent(name: eventName,
+                                            indexName: indexName,
+                                            userToken: effectiveUserToken(withEventUserToken: userToken),
+                                            timestamp: Date().millisecondsSince1970,
+                                            queryID: .none,
+                                            objectIDsOrFilters: .objectIDs(objectIDs))
             eventProcessor.process(event)
         } catch let error {
             logger.debug(message: error.localizedDescription)
@@ -140,12 +140,12 @@ class EventTracker: NSObject, AnalyticsUsecase, EventTrackable {
                     userToken: String? = .none,
                     filters: [String]) {
         do {
-            let event = try Conversion(name: eventName,
-                                       indexName: indexName,
-                                       userToken: effectiveUserToken(withEventUserToken: userToken),
-                                       timestamp: Date().millisecondsSince1970,
-                                       queryID: .none,
-                                       objectIDsOrFilters: .filters(filters))
+            let event = try ConversionEvent(name: eventName,
+                                            indexName: indexName,
+                                            userToken: effectiveUserToken(withEventUserToken: userToken),
+                                            timestamp: Date().millisecondsSince1970,
+                                            queryID: .none,
+                                            objectIDsOrFilters: .filters(filters))
             eventProcessor.process(event)
         } catch let error {
             logger.debug(message: error.localizedDescription)
@@ -159,12 +159,12 @@ class EventTracker: NSObject, AnalyticsUsecase, EventTrackable {
                     queryID: String) {
         
         do {
-            let event = try Conversion(name: eventName,
-                                       indexName: indexName,
-                                       userToken: effectiveUserToken(withEventUserToken: userToken),
-                                       timestamp: Date().millisecondsSince1970,
-                                       queryID: queryID,
-                                       objectIDsOrFilters: .objectIDs(objectIDs))
+            let event = try ConversionEvent(name: eventName,
+                                            indexName: indexName,
+                                            userToken: effectiveUserToken(withEventUserToken: userToken),
+                                            timestamp: Date().millisecondsSince1970,
+                                            queryID: queryID,
+                                            objectIDsOrFilters: .objectIDs(objectIDs))
             eventProcessor.process(event)
         } catch let error {
             logger.debug(message: error.localizedDescription)

@@ -19,8 +19,8 @@ class EventsPackageTests: XCTestCase {
         let expectedTimeStamp = Date().millisecondsSince1970
         let expectedFilter =  "brand:apple"
         
-        let event1 = try! Conversion(name: "test conversion event", indexName: expectedIndexName, userToken: expectedUserToken, timestamp: expectedTimeStamp, queryID: expectedQueryID, objectIDsOrFilters: .filters([expectedFilter]))
-        let event2 = try! View(name: "test view event", indexName: expectedIndexName, userToken: expectedUserToken, timestamp: expectedTimeStamp, queryID: expectedQueryID, objectIDsOrFilters: .filters([expectedFilter]))
+        let event1 = try! ConversionEvent(name: "test conversion event", indexName: expectedIndexName, userToken: expectedUserToken, timestamp: expectedTimeStamp, queryID: expectedQueryID, objectIDsOrFilters: .filters([expectedFilter]))
+        let event2 = try! ViewEvent(name: "test view event", indexName: expectedIndexName, userToken: expectedUserToken, timestamp: expectedTimeStamp, queryID: expectedQueryID, objectIDsOrFilters: .filters([expectedFilter]))
         
         do {
             let package = try EventsPackage(events: [.conversion(event1), .view(event2)])

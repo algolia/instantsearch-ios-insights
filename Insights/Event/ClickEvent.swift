@@ -1,5 +1,5 @@
 //
-//  Click.swift
+//  ClickEvent.swift
 //  Insights
 //
 //  Created by Vladislav Fitc on 05/11/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Click: CoreEventContainer {
+struct ClickEvent: CoreEventContainer {
     
     let coreEvent: CoreEvent
     let positions: [Int]?
@@ -49,7 +49,7 @@ struct Click: CoreEventContainer {
     
 }
 
-extension Click: Codable {
+extension ClickEvent: Codable {
     
     enum CodingKeys: String, CodingKey {
         case positions

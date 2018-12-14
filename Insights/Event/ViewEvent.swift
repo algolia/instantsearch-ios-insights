@@ -1,5 +1,5 @@
 //
-//  View.swift
+//  ViewEvent.swift
 //  Insights
 //
 //  Created by Vladislav Fitc on 05/11/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct View: CoreEventContainer {
+struct ViewEvent: CoreEventContainer {
     
     let coreEvent: CoreEvent
     
@@ -29,7 +29,7 @@ struct View: CoreEventContainer {
     
 }
 
-extension View: Codable {
+extension ViewEvent: Codable {
     
     init(from decoder: Decoder) throws {
         coreEvent = try CoreEvent(from: decoder)

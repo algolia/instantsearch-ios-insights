@@ -69,7 +69,7 @@ class WebServiceIntegrationTests: XCTestCase {
         let logger = Logger(appId)
         let webService = WebService(sessionConfig: sessionConfig, logger: logger)
         
-        let event = try! Click(name: "test click",
+        let event = try! ClickEvent(name: "test click",
                                indexName: indexName,
                                userToken: userToken,
                                timestamp: timestamp,
@@ -98,7 +98,7 @@ class WebServiceIntegrationTests: XCTestCase {
         let logger = Logger(appId)
         let webService = WebService(sessionConfig: sessionConfig, logger: logger)
         
-        let event = try! Click(name: "test click",
+        let event = try! ClickEvent(name: "test click",
                                indexName: indexName,
                                userToken: userToken,
                                timestamp: timestamp,
@@ -127,7 +127,7 @@ class WebServiceIntegrationTests: XCTestCase {
         let logger = Logger(appId)
         let webService = WebService(sessionConfig: sessionConfig, logger: logger)
         
-        let event = try! View(name: "test view",
+        let event = try! ViewEvent(name: "test view",
                               indexName: indexName,
                               userToken: userToken,
                               timestamp: timestamp,
@@ -156,7 +156,7 @@ class WebServiceIntegrationTests: XCTestCase {
         let logger = Logger(appId)
         let webService = WebService(sessionConfig: sessionConfig, logger: logger)
         
-        let event = try! Conversion(name: "test conversion",
+        let event = try! ConversionEvent(name: "test conversion",
                                     indexName: indexName,
                                     userToken: userToken,
                                     timestamp: timestamp,
@@ -185,21 +185,21 @@ class WebServiceIntegrationTests: XCTestCase {
         let logger = Logger(appId)
         let webService = WebService(sessionConfig: sessionConfig, logger: logger)
         
-        let conversion = try! Conversion(name: "test conversion",
+        let conversion = try! ConversionEvent(name: "test conversion",
                                          indexName: indexName,
                                          userToken: userToken,
                                          timestamp: timestamp,
                                          queryID: queryID,
                                          objectIDsOrFilters: .objectIDs(objectIDs))
         
-        let view = try! View(name: "test view",
+        let view = try! ViewEvent(name: "test view",
                              indexName: indexName,
                              userToken: userToken,
                              timestamp: timestamp,
                              queryID: queryID,
                              objectIDsOrFilters: .filters(filters))
         
-        let click = try! Click(name: "test click",
+        let click = try! ClickEvent(name: "test click",
                                indexName: indexName,
                                userToken: userToken,
                                timestamp: timestamp,

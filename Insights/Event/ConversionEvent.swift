@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Conversion: CoreEventContainer {
+struct ConversionEvent: CoreEventContainer {
     
     let coreEvent: CoreEvent
     
@@ -29,7 +29,7 @@ struct Conversion: CoreEventContainer {
     
 }
 
-extension Conversion: Codable {
+extension ConversionEvent: Codable {
     
     init(from decoder: Decoder) throws {
         coreEvent = try CoreEvent(from: decoder)

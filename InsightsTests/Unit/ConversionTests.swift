@@ -21,7 +21,7 @@ class ConversionTests: XCTestCase {
         let expectedTimeStamp = Date().millisecondsSince1970
         let expectedFilter =  "brand:apple"
         
-        let event = try! Conversion(name: expectedEventName,
+        let event = try! ConversionEvent(name: expectedEventName,
                                     indexName: expectedIndexName,
                                     userToken: expectedUserToken,
                                     timestamp: expectedTimeStamp,
@@ -65,7 +65,7 @@ class ConversionTests: XCTestCase {
         let jsonDecoder = JSONDecoder()
         
         do {
-            let event = try jsonDecoder.decode(Conversion.self, from: data)
+            let event = try jsonDecoder.decode(ConversionEvent.self, from: data)
             
             XCTAssertEqual(event.type, expectedEventType)
             XCTAssertEqual(event.name, expectedEventName)

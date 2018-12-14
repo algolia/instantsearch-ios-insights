@@ -36,9 +36,9 @@
 		AF4956312190A8B2006B2F0B /* CoreEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956302190A8B2006B2F0B /* CoreEvent.swift */; };
 		AF4956332190A8F5006B2F0B /* ObjectIDsOrFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956322190A8F5006B2F0B /* ObjectIDsOrFilters.swift */; };
 		AF4956352190A90C006B2F0B /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956342190A90C006B2F0B /* EventType.swift */; };
-		AF4956372190A919006B2F0B /* Click.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956362190A919006B2F0B /* Click.swift */; };
-		AF4956392190A91E006B2F0B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956382190A91E006B2F0B /* View.swift */; };
-		AF49563B2190A926006B2F0B /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49563A2190A926006B2F0B /* Conversion.swift */; };
+		AF4956372190A919006B2F0B /* ClickEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956362190A919006B2F0B /* ClickEvent.swift */; };
+		AF4956392190A91E006B2F0B /* ViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956382190A91E006B2F0B /* ViewEvent.swift */; };
+		AF49563B2190A926006B2F0B /* ConversionEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49563A2190A926006B2F0B /* ConversionEvent.swift */; };
 		AF49563E2190A954006B2F0B /* Syncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49563D2190A954006B2F0B /* Syncable.swift */; };
 		AF56CF3521AF074200B5EABB /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E321AC622A0063EBC5 /* Region.swift */; };
 		AF56CF3621AF074300B5EABB /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70F4E321AC622A0063EBC5 /* Region.swift */; };
@@ -65,9 +65,9 @@
 		AFA8C24021A5AC13003F87F8 /* CoreEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956302190A8B2006B2F0B /* CoreEvent.swift */; };
 		AFA8C24121A5AC13003F87F8 /* ObjectIDsOrFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956322190A8F5006B2F0B /* ObjectIDsOrFilters.swift */; };
 		AFA8C24221A5AC13003F87F8 /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956342190A90C006B2F0B /* EventType.swift */; };
-		AFA8C24321A5AC13003F87F8 /* Click.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956362190A919006B2F0B /* Click.swift */; };
-		AFA8C24421A5AC13003F87F8 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956382190A91E006B2F0B /* View.swift */; };
-		AFA8C24521A5AC13003F87F8 /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49563A2190A926006B2F0B /* Conversion.swift */; };
+		AFA8C24321A5AC13003F87F8 /* ClickEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956362190A919006B2F0B /* ClickEvent.swift */; };
+		AFA8C24421A5AC13003F87F8 /* ViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956382190A91E006B2F0B /* ViewEvent.swift */; };
+		AFA8C24521A5AC13003F87F8 /* ConversionEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49563A2190A926006B2F0B /* ConversionEvent.swift */; };
 		AFA8C24621A5AC13003F87F8 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF495627218CA1FF006B2F0B /* Encodable.swift */; };
 		AFA8C24821A5AC13003F87F8 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */; };
 		AFA8C24921A5AC13003F87F8 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CC20C53B83005FDDDD /* Logger.swift */; };
@@ -92,9 +92,9 @@
 		AFA8C25F21A5B214003F87F8 /* CoreEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956302190A8B2006B2F0B /* CoreEvent.swift */; };
 		AFA8C26021A5B214003F87F8 /* ObjectIDsOrFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956322190A8F5006B2F0B /* ObjectIDsOrFilters.swift */; };
 		AFA8C26121A5B214003F87F8 /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956342190A90C006B2F0B /* EventType.swift */; };
-		AFA8C26221A5B214003F87F8 /* Click.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956362190A919006B2F0B /* Click.swift */; };
-		AFA8C26321A5B214003F87F8 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956382190A91E006B2F0B /* View.swift */; };
-		AFA8C26421A5B214003F87F8 /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49563A2190A926006B2F0B /* Conversion.swift */; };
+		AFA8C26221A5B214003F87F8 /* ClickEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956362190A919006B2F0B /* ClickEvent.swift */; };
+		AFA8C26321A5B214003F87F8 /* ViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956382190A91E006B2F0B /* ViewEvent.swift */; };
+		AFA8C26421A5B214003F87F8 /* ConversionEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49563A2190A926006B2F0B /* ConversionEvent.swift */; };
 		AFA8C26521A5B214003F87F8 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF495627218CA1FF006B2F0B /* Encodable.swift */; };
 		AFA8C26621A5B214003F87F8 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */; };
 		AFA8C26721A5B214003F87F8 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CC20C53B83005FDDDD /* Logger.swift */; };
@@ -119,9 +119,9 @@
 		AFA8C27D21A5B22F003F87F8 /* CoreEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956302190A8B2006B2F0B /* CoreEvent.swift */; };
 		AFA8C27E21A5B22F003F87F8 /* ObjectIDsOrFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956322190A8F5006B2F0B /* ObjectIDsOrFilters.swift */; };
 		AFA8C27F21A5B22F003F87F8 /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956342190A90C006B2F0B /* EventType.swift */; };
-		AFA8C28021A5B22F003F87F8 /* Click.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956362190A919006B2F0B /* Click.swift */; };
-		AFA8C28121A5B22F003F87F8 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956382190A91E006B2F0B /* View.swift */; };
-		AFA8C28221A5B22F003F87F8 /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49563A2190A926006B2F0B /* Conversion.swift */; };
+		AFA8C28021A5B22F003F87F8 /* ClickEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956362190A919006B2F0B /* ClickEvent.swift */; };
+		AFA8C28121A5B22F003F87F8 /* ViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4956382190A91E006B2F0B /* ViewEvent.swift */; };
+		AFA8C28221A5B22F003F87F8 /* ConversionEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49563A2190A926006B2F0B /* ConversionEvent.swift */; };
 		AFA8C28321A5B22F003F87F8 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF495627218CA1FF006B2F0B /* Encodable.swift */; };
 		AFA8C28421A5B22F003F87F8 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */; };
 		AFA8C28521A5B22F003F87F8 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CC20C53B83005FDDDD /* Logger.swift */; };
@@ -241,9 +241,9 @@
 		AF4956302190A8B2006B2F0B /* CoreEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreEvent.swift; sourceTree = "<group>"; };
 		AF4956322190A8F5006B2F0B /* ObjectIDsOrFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectIDsOrFilters.swift; sourceTree = "<group>"; };
 		AF4956342190A90C006B2F0B /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
-		AF4956362190A919006B2F0B /* Click.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Click.swift; sourceTree = "<group>"; };
-		AF4956382190A91E006B2F0B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
-		AF49563A2190A926006B2F0B /* Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversion.swift; sourceTree = "<group>"; };
+		AF4956362190A919006B2F0B /* ClickEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickEvent.swift; sourceTree = "<group>"; };
+		AF4956382190A91E006B2F0B /* ViewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEvent.swift; sourceTree = "<group>"; };
+		AF49563A2190A926006B2F0B /* ConversionEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionEvent.swift; sourceTree = "<group>"; };
 		AF49563D2190A954006B2F0B /* Syncable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syncable.swift; sourceTree = "<group>"; };
 		AF56CF3E21B04F0200B5EABB /* APIEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpointTests.swift; sourceTree = "<group>"; };
 		AF56CF4021B1454F00B5EABB /* Date+Milliseconds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Milliseconds.swift"; sourceTree = "<group>"; };
@@ -454,9 +454,9 @@
 				AF4956302190A8B2006B2F0B /* CoreEvent.swift */,
 				AF4956322190A8F5006B2F0B /* ObjectIDsOrFilters.swift */,
 				AF4956342190A90C006B2F0B /* EventType.swift */,
-				AF4956362190A919006B2F0B /* Click.swift */,
-				AF4956382190A91E006B2F0B /* View.swift */,
-				AF49563A2190A926006B2F0B /* Conversion.swift */,
+				AF4956362190A919006B2F0B /* ClickEvent.swift */,
+				AF4956382190A91E006B2F0B /* ViewEvent.swift */,
+				AF49563A2190A926006B2F0B /* ConversionEvent.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -795,10 +795,10 @@
 				AFC30C172191FB6000AA72B0 /* AnalyticsUsecase.swift in Sources */,
 				1D958B0220BEE2BA0058230A /* APIEndpoint.swift in Sources */,
 				AF70F4E421AC622A0063EBC5 /* Region.swift in Sources */,
-				AF49563B2190A926006B2F0B /* Conversion.swift in Sources */,
+				AF49563B2190A926006B2F0B /* ConversionEvent.swift in Sources */,
 				1D77D88120C9722B009EC531 /* Config.swift in Sources */,
 				AF4956312190A8B2006B2F0B /* CoreEvent.swift in Sources */,
-				AF4956372190A919006B2F0B /* Click.swift in Sources */,
+				AF4956372190A919006B2F0B /* ClickEvent.swift in Sources */,
 				AF332822219343250040BE0A /* Credentials.swift in Sources */,
 				AF495628218CA1FF006B2F0B /* Encodable.swift in Sources */,
 				AFC30C092191C58F00AA72B0 /* Event.swift in Sources */,
@@ -821,7 +821,7 @@
 				1DD0A0C620BFF43C005FDDDD /* Result.swift in Sources */,
 				AF56CF4121B1454F00B5EABB /* Date+Milliseconds.swift in Sources */,
 				AF49563E2190A954006B2F0B /* Syncable.swift in Sources */,
-				AF4956392190A91E006B2F0B /* View.swift in Sources */,
+				AF4956392190A91E006B2F0B /* ViewEvent.swift in Sources */,
 				1D958B0B20BEE9820058230A /* WebService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -855,10 +855,10 @@
 			files = (
 				AFA8C25421A5AC13003F87F8 /* AnalyticsUsecase.swift in Sources */,
 				AFA8C24A21A5AC13003F87F8 /* APIEndpoint.swift in Sources */,
-				AFA8C24521A5AC13003F87F8 /* Conversion.swift in Sources */,
+				AFA8C24521A5AC13003F87F8 /* ConversionEvent.swift in Sources */,
 				AFA8C25921A5AC13003F87F8 /* Config.swift in Sources */,
 				AFA8C24021A5AC13003F87F8 /* CoreEvent.swift in Sources */,
-				AFA8C24321A5AC13003F87F8 /* Click.swift in Sources */,
+				AFA8C24321A5AC13003F87F8 /* ClickEvent.swift in Sources */,
 				AFA8C25121A5AC13003F87F8 /* Credentials.swift in Sources */,
 				AFA8C24621A5AC13003F87F8 /* Encodable.swift in Sources */,
 				AFA8C23C21A5AC13003F87F8 /* Event.swift in Sources */,
@@ -882,7 +882,7 @@
 				AFA8C24F21A5AC13003F87F8 /* Result.swift in Sources */,
 				AF624A4B21B6B31000C81957 /* Date+Milliseconds.swift in Sources */,
 				AFA8C23B21A5AC13003F87F8 /* Syncable.swift in Sources */,
-				AFA8C24421A5AC13003F87F8 /* View.swift in Sources */,
+				AFA8C24421A5AC13003F87F8 /* ViewEvent.swift in Sources */,
 				AFA8C24E21A5AC13003F87F8 /* WebService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -920,9 +920,9 @@
 				AFA8C25F21A5B214003F87F8 /* CoreEvent.swift in Sources */,
 				AFA8C26021A5B214003F87F8 /* ObjectIDsOrFilters.swift in Sources */,
 				AFA8C26121A5B214003F87F8 /* EventType.swift in Sources */,
-				AFA8C26221A5B214003F87F8 /* Click.swift in Sources */,
-				AFA8C26321A5B214003F87F8 /* View.swift in Sources */,
-				AFA8C26421A5B214003F87F8 /* Conversion.swift in Sources */,
+				AFA8C26221A5B214003F87F8 /* ClickEvent.swift in Sources */,
+				AFA8C26321A5B214003F87F8 /* ViewEvent.swift in Sources */,
+				AFA8C26421A5B214003F87F8 /* ConversionEvent.swift in Sources */,
 				AF56CF3621AF074300B5EABB /* Region.swift in Sources */,
 				AFA8C26521A5B214003F87F8 /* Encodable.swift in Sources */,
 				AFA8C26621A5B214003F87F8 /* LocalStorage.swift in Sources */,
@@ -979,9 +979,9 @@
 				AFA8C27D21A5B22F003F87F8 /* CoreEvent.swift in Sources */,
 				AFA8C27E21A5B22F003F87F8 /* ObjectIDsOrFilters.swift in Sources */,
 				AFA8C27F21A5B22F003F87F8 /* EventType.swift in Sources */,
-				AFA8C28021A5B22F003F87F8 /* Click.swift in Sources */,
-				AFA8C28121A5B22F003F87F8 /* View.swift in Sources */,
-				AFA8C28221A5B22F003F87F8 /* Conversion.swift in Sources */,
+				AFA8C28021A5B22F003F87F8 /* ClickEvent.swift in Sources */,
+				AFA8C28121A5B22F003F87F8 /* ViewEvent.swift in Sources */,
+				AFA8C28221A5B22F003F87F8 /* ConversionEvent.swift in Sources */,
 				AF56CF3721AF074400B5EABB /* Region.swift in Sources */,
 				AFA8C28321A5B22F003F87F8 /* Encodable.swift in Sources */,
 				AFA8C28421A5B22F003F87F8 /* LocalStorage.swift in Sources */,
