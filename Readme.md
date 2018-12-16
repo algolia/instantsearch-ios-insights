@@ -54,14 +54,16 @@ Once that you registered your **Application ID** and the **API Key** you can eas
 
 ```swift
 // Swift
-Insights.shared?.clickAfterSearch(withQueryID: "query id",
+Insights.shared?.clickAfterSearch(eventName: "click event",
                                   indexName: "index name",
                                   objectID: "object id",
-                                  position: 1)
+                                  position: 1,
+                                  queryID: "query id")
 
-Insights.shared?.conversionAfterSearch(withQueryID: "query id",
+Insights.shared?.conversionAfterSearch(eventName: "conversion event",
                                        indexName: "index name",
-                                       objectIDs: ["object 1", "object 2"])
+                                       objectIDs: ["obj1", "obj2"],
+                                       queryID: "query id")
 
 Insights.shared?.view(eventName: "view event",
                       indexName: "index name",
@@ -71,25 +73,23 @@ Insights.shared?.view(eventName: "view event",
 
 ```objc
 // ObjC	
-[[Insights shared] clickAfterSearchWithQueryID:@"q123" 
-                                     indexName:@"my index"
-                                     userToken:@"custom user token"
-                                     timestamp:[[NSDate new] timeIntervalSince1970]
-                                     objectIDs:@[@"obj1", @"obj2"]
-                                     positions:@[@1, @2]];
+[[Insights shared] clickAfterSearchWithEventName:@"click event"
+                                       indexName:@"index name"
+                                        objectID:@"object id"
+                                        position:1
+                                         queryID:@"query id"
+                                       userToken:nil];
 
-[[Insights shared] conversionAfterSearchWithQueryID:@"q123" 
-                                          indexName:@"my index"
-                                          userToken:@"custom user token"
-                                          timestamp:[[NSDate new] timeIntervalSince1970]
-                                            queryID:@"q123"
-                                          objectIDs:@[@"obj1", @"obj2"]];
+[[Insights shared] conversionAfterSearchWithEventName:@"conversion event"
+                                            indexName:@"index name"
+                                             objectID:@"object id"
+                                              queryID:@"query id"
+                                            userToken:nil];
 
 [[Insights shared] viewWithEventName:@"view event"
-                           indexName:@"my index"
-                           userToken:@"custom user token"
-                           timestamp:[[NSDate new] timeIntervalSince1970]
-                             filters:@[@"brand:apple"]];
+                           indexName:@"index name"
+                             filters:@[@"brand:apple"]
+                           userToken:nil];
 ```
 
 ### Logging and debuging
@@ -98,7 +98,7 @@ In case you want to check if the metric was sent correctly, you need to enable t
 
 ```swift
 // Swift
-Insights.shared(index: "indexName")?.loggingEnabled = true
+Insights.shared(index: "indexName")?.isLoggingEnabled = true
 ```
 
 After you enabled it, you can check the output for success messages or errors
