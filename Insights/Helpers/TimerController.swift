@@ -27,7 +27,7 @@ final class TimerController {
 
     private var timer: Timer?
     
-    init(delay: TimeInterval, action: (() -> Void)? = .none)  {
+    init(delay: TimeInterval, action: (() -> Void)? = .none) {
         self.delay = delay
         self.action = action
     }
@@ -41,6 +41,10 @@ final class TimerController {
                                          repeats: true)
         RunLoop.main.add(timer, forMode: .default)
         self.timer = timer
+    }
+    
+    func fire() {
+        timer?.fire()
     }
     
     func invalidate() {

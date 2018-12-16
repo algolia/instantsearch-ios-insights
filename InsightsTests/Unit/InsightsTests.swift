@@ -350,7 +350,7 @@ class InsightsTests: XCTestCase {
 
     func testEventIsSentCorrectly() {
         
-        let exp = self.expectation(description: "wait mock web service")
+        let exp = self.expectation(description: "mock web service response")
         let expected = Expected()
         
         let mockWS = MockWebServiceHelper.getMockWebService(appId: testCredentials.appId) { resource in

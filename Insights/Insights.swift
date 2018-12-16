@@ -79,9 +79,9 @@ import Foundation
     
     /// Defines if console debug logging enabled. Default value is `false`.
     
-    public var loggingEnabled: Bool = false {
+    public var isLoggingEnabled: Bool = false {
         didSet {
-            logger.enabled = loggingEnabled
+            logger.enabled = isLoggingEnabled
         }
     }
     

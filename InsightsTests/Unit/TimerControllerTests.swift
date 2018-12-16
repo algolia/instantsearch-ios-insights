@@ -18,39 +18,16 @@ class TimerControllerTests: XCTestCase {
         XCTAssertNil(timerController.action)
     }
     
-    func testAction() {
-        let exp = expectation(description: "timer action")
-        let timerController = TimerController(delay: 1)
-        timerController.setup()
-        XCTAssertTrue(timerController.isActive)
-        timerController.action = {
-            exp.fulfill()
-            timerController.invalidate()
-        }
-        wait(for: [exp], timeout: 5)
-    }
-    
     func testInvalidation() {
-        let exp = expectation(description: "timer action")
-        exp.isInverted = true
-        let timerController = TimerController(delay: 1)
-        timerController.action = {
-            exp.fulfill()
-        }
+        let timerController = TimerController(delay: 5)
         timerController.setup()
         XCTAssertTrue(timerController.isActive)
         timerController.invalidate()
         XCTAssertFalse(timerController.isActive)
-        wait(for: [exp], timeout: 5)
     }
     
     func testChangeDelay() {
-        let exp = expectation(description: "timer action")
         let timerController = TimerController(delay: 1)
-        timerController.action = {
-            exp.fulfill()
-            timerController.invalidate()
-        }
         XCTAssertFalse(timerController.isActive)
         timerController.delay = 2
         XCTAssertEqual(timerController.delay, 2)
@@ -59,6 +36,17 @@ class TimerControllerTests: XCTestCase {
         timerController.delay = 3
         XCTAssertEqual(timerController.delay, 3)
         XCTAssertTrue(timerController.isActive)
+    }
+    
+    func testAction() {
+        let exp = expectation(description: "timer action")
+        let timerController = TimerController(delay: 1)
+        XCTAssertFalse(timerController.isActive)
+        timerController.setup()
+        timerController.action = {
+            exp.fulfill()
+        }
+        timerController.fire()
         wait(for: [exp], timeout: 5)
     }
     
