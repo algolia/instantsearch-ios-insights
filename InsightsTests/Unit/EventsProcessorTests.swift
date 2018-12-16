@@ -72,7 +72,7 @@ class EventsProcessorTests: XCTestCase {
         eventsProcessor.process(TestEvent.template)
         queue.sync {}
         XCTAssertFalse(eventsProcessor.eventsPackages.isEmpty)
-        eventsProcessor.flushEventsPackages()
+        eventsProcessor.flush()
         wait(for: [exp], timeout: 5)
 
     }
@@ -140,7 +140,7 @@ class EventsProcessorTests: XCTestCase {
 
         eventsProcessor.process(TestEvent.template)
         queue.sync {}
-        eventsProcessor.flushEventsPackages()
+        eventsProcessor.flush()
         
         wait(for: [exp], timeout: 5)
     }

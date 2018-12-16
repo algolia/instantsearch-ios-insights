@@ -167,6 +167,17 @@
 		AFA8C2B421A5B25F003F87F8 /* MockWebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA0065E20CFB71500A9170F /* MockWebServiceHelper.swift */; };
 		AFA8C2B521A5B25F003F87F8 /* TestEventProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD431E7219329D700A94D5E /* TestEventProcessor.swift */; };
 		AFB9771321C289FA00094E1E /* XCTest+Int64.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB9771221C289FA00094E1E /* XCTest+Int64.swift */; };
+		AFB9771521C6B19E00094E1E /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB9771421C6B19E00094E1E /* TimerController.swift */; };
+		AFB9771621C6B74B00094E1E /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB9771421C6B19E00094E1E /* TimerController.swift */; };
+		AFB9771721C6B74C00094E1E /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB9771421C6B19E00094E1E /* TimerController.swift */; };
+		AFB9771821C6B74D00094E1E /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB9771421C6B19E00094E1E /* TimerController.swift */; };
+		AFB9771A21C7051800094E1E /* TimerControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB9771921C7051800094E1E /* TimerControllerTests.swift */; };
+		AFB9771B21C7057300094E1E /* TimerControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB9771921C7051800094E1E /* TimerControllerTests.swift */; };
+		AFB9771C21C7057400094E1E /* TimerControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB9771921C7051800094E1E /* TimerControllerTests.swift */; };
+		AFB9771E21C709A900094E1E /* Flushable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB9771D21C709A900094E1E /* Flushable.swift */; };
+		AFB9771F21C709D400094E1E /* Flushable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB9771D21C709A900094E1E /* Flushable.swift */; };
+		AFB9772021C709D500094E1E /* Flushable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB9771D21C709A900094E1E /* Flushable.swift */; };
+		AFB9772121C709D600094E1E /* Flushable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB9771D21C709A900094E1E /* Flushable.swift */; };
 		AFC30BFF2191C1A300AA72B0 /* EventsPackageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30BFE2191C1A300AA72B0 /* EventsPackageTests.swift */; };
 		AFC30C012191C1AB00AA72B0 /* ClickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C002191C1AB00AA72B0 /* ClickTests.swift */; };
 		AFC30C032191C1B900AA72B0 /* ViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C022191C1B900AA72B0 /* ViewTests.swift */; };
@@ -251,6 +262,9 @@
 		AF70F4E321AC622A0063EBC5 /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		AF70F4E621AC63910063EBC5 /* EventTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTracker.swift; sourceTree = "<group>"; };
 		AFB9771221C289FA00094E1E /* XCTest+Int64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTest+Int64.swift"; sourceTree = "<group>"; };
+		AFB9771421C6B19E00094E1E /* TimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerController.swift; sourceTree = "<group>"; };
+		AFB9771921C7051800094E1E /* TimerControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerControllerTests.swift; sourceTree = "<group>"; };
+		AFB9771D21C709A900094E1E /* Flushable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flushable.swift; sourceTree = "<group>"; };
 		AFC30BFE2191C1A300AA72B0 /* EventsPackageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPackageTests.swift; sourceTree = "<group>"; };
 		AFC30C002191C1AB00AA72B0 /* ClickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickTests.swift; sourceTree = "<group>"; };
 		AFC30C022191C1B900AA72B0 /* ViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTests.swift; sourceTree = "<group>"; };
@@ -405,6 +419,7 @@
 			children = (
 				1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */,
 				1DD0A0CC20C53B83005FDDDD /* Logger.swift */,
+				AFB9771421C6B19E00094E1E /* TimerController.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -420,6 +435,7 @@
 				AFC30C042191C1C100AA72B0 /* ConversionTests.swift */,
 				AFD431E3219322EF00A94D5E /* EventTrackerTests.swift */,
 				AFD96DE021949CBC00E13993 /* EventsProcessorTests.swift */,
+				AFB9771921C7051800094E1E /* TimerControllerTests.swift */,
 				1D958AF720BD8A6E0058230A /* InsightsTestObjC.m */,
 				AFD96DD8219464EC00E13993 /* ObjectIDsOrFiltersTests.swift */,
 				AF56CF3E21B04F0200B5EABB /* APIEndpointTests.swift */,
@@ -468,6 +484,7 @@
 				AF49563D2190A954006B2F0B /* Syncable.swift */,
 				AFC30C082191C58F00AA72B0 /* Event.swift */,
 				AF624A5321B83F4900C81957 /* EventTrackable.swift */,
+				AFB9771D21C709A900094E1E /* Flushable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -813,12 +830,14 @@
 				1D958AF220BD71ED0058230A /* Insights.swift in Sources */,
 				AF70F4E721AC63910063EBC5 /* EventTracker.swift in Sources */,
 				1DD0A0CD20C53B83005FDDDD /* Logger.swift in Sources */,
+				AFB9771521C6B19E00094E1E /* TimerController.swift in Sources */,
 				1DD0A0CB20C1421E005FDDDD /* LocalStorage.swift in Sources */,
 				1D958B0620BEE8F60058230A /* NSMutableURLRequest+Resource.swift in Sources */,
 				AF4956332190A8F5006B2F0B /* ObjectIDsOrFilters.swift in Sources */,
 				1D958B0820BEE9140058230A /* Resource.swift in Sources */,
 				AF624A5421B83F4900C81957 /* EventTrackable.swift in Sources */,
 				1DD0A0C620BFF43C005FDDDD /* Result.swift in Sources */,
+				AFB9771E21C709A900094E1E /* Flushable.swift in Sources */,
 				AF56CF4121B1454F00B5EABB /* Date+Milliseconds.swift in Sources */,
 				AF49563E2190A954006B2F0B /* Syncable.swift in Sources */,
 				AF4956392190A91E006B2F0B /* ViewEvent.swift in Sources */,
@@ -837,6 +856,7 @@
 				1DA0065F20CFB71500A9170F /* MockWebServiceHelper.swift in Sources */,
 				1D4531D1209C870C00B26CF9 /* InsightsTests.swift in Sources */,
 				AFD96DE121949CBC00E13993 /* EventsProcessorTests.swift in Sources */,
+				AFB9771A21C7051800094E1E /* TimerControllerTests.swift in Sources */,
 				AFC30BFF2191C1A300AA72B0 /* EventsPackageTests.swift in Sources */,
 				AFD96DD9219464EC00E13993 /* ObjectIDsOrFiltersTests.swift in Sources */,
 				AFB9771321C289FA00094E1E /* XCTest+Int64.swift in Sources */,
@@ -881,6 +901,8 @@
 				AF624A5521B83F4900C81957 /* EventTrackable.swift in Sources */,
 				AFA8C24F21A5AC13003F87F8 /* Result.swift in Sources */,
 				AF624A4B21B6B31000C81957 /* Date+Milliseconds.swift in Sources */,
+				AFB9771F21C709D400094E1E /* Flushable.swift in Sources */,
+				AFB9771621C6B74B00094E1E /* TimerController.swift in Sources */,
 				AFA8C23B21A5AC13003F87F8 /* Syncable.swift in Sources */,
 				AFA8C24421A5AC13003F87F8 /* ViewEvent.swift in Sources */,
 				AFA8C24E21A5AC13003F87F8 /* WebService.swift in Sources */,
@@ -895,6 +917,7 @@
 				AFA8C29721A5B24C003F87F8 /* ViewTests.swift in Sources */,
 				AFA8C29821A5B24C003F87F8 /* InsightsTests.swift in Sources */,
 				AFA8C29921A5B24C003F87F8 /* CoreEventTests.swift in Sources */,
+				AFB9771B21C7057300094E1E /* TimerControllerTests.swift in Sources */,
 				AFA8C29A21A5B24C003F87F8 /* EventsPackageTests.swift in Sources */,
 				AFA8C29B21A5B24C003F87F8 /* ClickTests.swift in Sources */,
 				AFA8C29C21A5B24C003F87F8 /* ConversionTests.swift in Sources */,
@@ -940,6 +963,8 @@
 				AF624A5621B83F4900C81957 /* EventTrackable.swift in Sources */,
 				AFA8C27121A5B214003F87F8 /* EventProcessable.swift in Sources */,
 				AF624A4C21B6B31100C81957 /* Date+Milliseconds.swift in Sources */,
+				AFB9772021C709D500094E1E /* Flushable.swift in Sources */,
+				AFB9771721C6B74C00094E1E /* TimerController.swift in Sources */,
 				AFA8C27221A5B214003F87F8 /* AnalyticsUsecase.swift in Sources */,
 				AFA8C27621A5B214003F87F8 /* EventsSync.swift in Sources */,
 				AFA8C27721A5B214003F87F8 /* Config.swift in Sources */,
@@ -954,6 +979,7 @@
 				AFA8C2A721A5B25F003F87F8 /* ViewTests.swift in Sources */,
 				AFA8C2A821A5B25F003F87F8 /* InsightsTests.swift in Sources */,
 				AFA8C2A921A5B25F003F87F8 /* CoreEventTests.swift in Sources */,
+				AFB9771C21C7057400094E1E /* TimerControllerTests.swift in Sources */,
 				AFA8C2AA21A5B25F003F87F8 /* EventsPackageTests.swift in Sources */,
 				AFA8C2AB21A5B25F003F87F8 /* ClickTests.swift in Sources */,
 				AFA8C2AC21A5B25F003F87F8 /* ConversionTests.swift in Sources */,
@@ -999,6 +1025,8 @@
 				AF624A5721B83F4900C81957 /* EventTrackable.swift in Sources */,
 				AFA8C28F21A5B230003F87F8 /* EventProcessable.swift in Sources */,
 				AF624A4D21B6B31100C81957 /* Date+Milliseconds.swift in Sources */,
+				AFB9772121C709D600094E1E /* Flushable.swift in Sources */,
+				AFB9771821C6B74D00094E1E /* TimerController.swift in Sources */,
 				AFA8C29021A5B230003F87F8 /* AnalyticsUsecase.swift in Sources */,
 				AFA8C29421A5B230003F87F8 /* EventsSync.swift in Sources */,
 				AFA8C29521A5B230003F87F8 /* Config.swift in Sources */,

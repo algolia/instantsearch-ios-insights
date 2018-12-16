@@ -29,6 +29,7 @@ struct Algolia {
   }
   
   struct Insights {
-    static let flushDelay: TimeInterval = 30.0
+    // Default flush delay is 15 minutes
+    static let flushDelay: TimeInterval = 60 * 15
   }
 }

@@ -16,6 +16,7 @@ class EventProcessor: EventProcessable {
     var eventsPackages: [EventsPackage]
     let webservice: WebService
     let logger: Logger
+    let timerController: TimerController
     var isLocalStorageEnabled: Bool = true {
         didSet {
             if !isLocalStorageEnabled {
@@ -23,23 +24,23 @@ class EventProcessor: EventProcessable {
             }
         }
     }
+    
     var isActive: Bool = true {
         didSet {
-            switch (isActive, flushTimer) {
-            case (true, .none):
-                flushTimer = setupTimer(flushDelay: flushDelay)
-            case (false, .some):
-                flushTimer?.invalidate()
-            case (true, .some), (false, .none):
+            switch (isActive, timerController.isActive) {
+            case (true, false):
+                timerController.setup()
+            case (false, true):
+                timerController.invalidate()
+            default:
                 return
             }
         }
     }
+    
     private let region: Region?
     private let dispatchQueue: DispatchQueue
     private let localStorageFileName: String
-    private weak var flushTimer: Timer?
-    private let flushDelay: TimeInterval
     
     init(credentials: Credentials,
          webService: WebService,
@@ -53,13 +54,14 @@ class EventProcessor: EventProcessable {
         self.webservice = webService
         self.region = region
         self.dispatchQueue = dispatchQueue
-        self.flushDelay = flushDelay
         self.localStorageFileName = "\(credentials.appId).events"
-        self.flushTimer = setupTimer(flushDelay: flushDelay)
+        self.timerController = TimerController(delay: flushDelay)
         readEventPackagesFromDisk()
+        timerController.action = flushEventsPackages
+        timerController.setup()
     }
     
-    @objc func flushEventsPackages() {
+    func flushEventsPackages() {
         if eventsPackages.isEmpty {
             logger.debug(message: "No pending event packages")
         } else {
@@ -77,16 +79,6 @@ class EventProcessor: EventProcessable {
         dispatchQueue.async { [weak self] in
             self?.syncProcess(event)
         }
-    }
-    
-    private func setupTimer(flushDelay: TimeInterval) -> Timer {
-        let flushTimer = Timer.scheduledTimer(timeInterval: flushDelay,
-                                              target: self,
-                                              selector: #selector(flushEventsPackages),
-                                              userInfo: nil,
-                                              repeats: true)
-        RunLoop.main.add(flushTimer, forMode: .default)
-        return flushTimer
     }
     
     private func syncProcess(_ event: Event) {
@@ -143,8 +135,22 @@ class EventProcessor: EventProcessable {
         self.eventsPackages = Storage.deserialize(filePath) ?? []
     }
     
-    deinit {
-        flushTimer?.invalidate()
+}
+
+extension EventProcessor: Flushable {
+    
+    var flushDelay: TimeInterval {
+        get {
+            return timerController.delay
+        }
+        
+        set {
+            timerController.delay = newValue
+        }
+    }
+    
+    func flush() {
+        flushEventsPackages()
     }
     
 }

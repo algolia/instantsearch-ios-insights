@@ -48,6 +48,17 @@ import Foundation
         
     }
     
+    /// Synchronization delay of tracked events with server. Default value is 30 minutes.
+    
+    public static var flushDelay: TimeInterval = Algolia.Insights.flushDelay {
+        didSet {
+            for (_, insights) in insightsMap {
+                var flushableEventProcessor = insights.eventProcessor as? Flushable
+                flushableEventProcessor?.flushDelay = flushDelay
+            }
+        }
+    }
+    
     private static var insightsMap: [String: Insights] = [:]
     private static var logger = Logger("Main")
     
