@@ -188,7 +188,7 @@ import Foundation
 
 extension Insights {
     
-    /// Track a click
+    /// Track a click related to search
     /// - parameter eventName: A user-defined string used to categorize events
     /// - parameter indexName: Name of the targeted index
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
@@ -196,12 +196,12 @@ extension Insights {
     /// - parameter queryID: Algolia queryID
     /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     
-    public func clickAfterSearch(eventName: String,
-                                 indexName: String,
-                                 objectIDs: [String],
-                                 positions: [Int],
-                                 queryID: String,
-                                 userToken: String? = .none) {
+    public func clickedAfterSearch(eventName: String,
+                                   indexName: String,
+                                   objectIDs: [String],
+                                   positions: [Int],
+                                   queryID: String,
+                                   userToken: String? = .none) {
         eventTracker.click(eventName: eventName,
                            indexName: indexName,
                            userToken: userToken,
@@ -210,27 +210,27 @@ extension Insights {
                            queryID: queryID)
     }
     
-    /// Track a click
+    /// Track a click related to search
     /// - parameter eventName: A user-defined string used to categorize events
     /// - parameter indexName: Name of the targeted index
     /// - parameter objectIDsWithPositions: An array of related index objectID and position of the click in the list of Algolia search results. - Warning: Limited to 20 objects.
     /// - parameter queryID: Algolia queryID
     /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     
-    public func clickAfterSearch(eventName: String,
-                                 indexName: String,
-                                 objectIDsWithPositions: [(String, Int)],
-                                 queryID: String,
-                                 userToken: String? = .none) {
-        clickAfterSearch(eventName: eventName,
-                         indexName: indexName,
-                         objectIDs: objectIDsWithPositions.map { $0.0 },
-                         positions: objectIDsWithPositions.map { $0.1 },
-                         queryID: queryID,
-                         userToken: userToken)
+    public func clickedAfterSearch(eventName: String,
+                                   indexName: String,
+                                   objectIDsWithPositions: [(String, Int)],
+                                   queryID: String,
+                                   userToken: String? = .none) {
+        clickedAfterSearch(eventName: eventName,
+                           indexName: indexName,
+                           objectIDs: objectIDsWithPositions.map { $0.0 },
+                           positions: objectIDsWithPositions.map { $0.1 },
+                           queryID: queryID,
+                           userToken: userToken)
     }
-
-    /// Track a click
+    
+    /// Track a click related to search
     /// - parameter eventName: A user-defined string used to categorize events
     /// - parameter indexName: Name of the targeted index
     /// - parameter objectID: Index objectID
@@ -238,32 +238,32 @@ extension Insights {
     /// - parameter queryID: Algolia queryID
     /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     
-    public func clickAfterSearch(eventName: String,
-                                 indexName: String,
-                                 objectID: String,
-                                 position: Int,
-                                 queryID: String,
-                                 userToken: String? = .none) {
-        clickAfterSearch(eventName: eventName,
-                         indexName: indexName,
-                         objectIDs: [objectID],
-                         positions: [position],
-                         queryID: queryID,
-                         userToken: userToken)
+    public func clickedAfterSearch(eventName: String,
+                                   indexName: String,
+                                   objectID: String,
+                                   position: Int,
+                                   queryID: String,
+                                   userToken: String? = .none) {
+        clickedAfterSearch(eventName: eventName,
+                           indexName: indexName,
+                           objectIDs: [objectID],
+                           positions: [position],
+                           queryID: queryID,
+                           userToken: userToken)
     }
     
-    /// Track a conversion
+    /// Track a conversion related to search
     /// - parameter eventName: A user-defined string used to categorize events
     /// - parameter indexName: Name of the targeted index
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
     /// - parameter queryID: Algolia queryID
     /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     
-    public func conversionAfterSearch(eventName: String,
-                                      indexName: String,
-                                      objectIDs: [String],
-                                      queryID: String,
-                                      userToken: String? = .none) {
+    public func convertedAfterSearch(eventName: String,
+                                     indexName: String,
+                                     objectIDs: [String],
+                                     queryID: String,
+                                     userToken: String? = .none) {
         eventTracker.conversion(eventName: eventName,
                                 indexName: indexName,
                                 userToken: userToken,
@@ -271,18 +271,18 @@ extension Insights {
                                 queryID: queryID)
     }
     
-    /// Track a conversion
+    /// Track a conversion related to search
     /// - parameter eventName: A user-defined string used to categorize events
     /// - parameter indexName: Name of the targeted index
     /// - parameter objectID: Index objectID
     /// - parameter queryID: Algolia queryID
     /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     
-    public func conversionAfterSearch(eventName: String,
-                                      indexName: String,
-                                      objectID: String,
-                                      queryID: String,
-                                      userToken: String? = .none) {
+    public func convertedAfterSearch(eventName: String,
+                                     indexName: String,
+                                     objectID: String,
+                                     queryID: String,
+                                     userToken: String? = .none) {
         eventTracker.conversion(eventName: eventName,
                                 indexName: indexName,
                                 userToken: userToken,
@@ -302,14 +302,14 @@ extension Insights {
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
     /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     
-    public func view(eventName: String,
-                     indexName: String,
-                     objectIDs: [String],
-                     userToken: String? = .none) {
+    public func viewed(eventName: String,
+                       indexName: String,
+                       objectIDs: [String],
+                       userToken: String? = .none) {
         eventTracker.view(eventName: eventName,
-                   indexName: indexName,
-                   userToken: userToken,
-                   objectIDs: objectIDs)
+                          indexName: indexName,
+                          userToken: userToken,
+                          objectIDs: objectIDs)
     }
     
     /// Track a view
@@ -318,14 +318,14 @@ extension Insights {
     /// - parameter objectID: Index objectID.
     /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     
-    public func view(eventName: String,
-                     indexName: String,
-                     objectID: String,
-                     userToken: String? = .none) {
+    public func viewed(eventName: String,
+                       indexName: String,
+                       objectID: String,
+                       userToken: String? = .none) {
         eventTracker.view(eventName: eventName,
-                   indexName: indexName,
-                   userToken: userToken,
-                   objectIDs: [objectID])
+                          indexName: indexName,
+                          userToken: userToken,
+                          objectIDs: [objectID])
     }
     
     /// Track a view
@@ -334,14 +334,14 @@ extension Insights {
     /// - parameter filters: An array of filters. Limited to 10 filters.
     /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     
-    public func view(eventName: String,
-                     indexName: String,
-                     filters: [String],
-                     userToken: String? = .none) {
+    public func viewed(eventName: String,
+                       indexName: String,
+                       filters: [String],
+                       userToken: String? = .none) {
         eventTracker.view(eventName: eventName,
-                   indexName: indexName,
-                   userToken: userToken,
-                   filters: filters)
+                          indexName: indexName,
+                          userToken: userToken,
+                          filters: filters)
     }
     
     /// Track a click
@@ -350,14 +350,14 @@ extension Insights {
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
     /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     
-    public func click(eventName: String,
-                      indexName: String,
-                      objectIDs: [String],
-                      userToken: String? = .none) {
+    public func clicked(eventName: String,
+                        indexName: String,
+                        objectIDs: [String],
+                        userToken: String? = .none) {
         eventTracker.click(eventName: eventName,
-                    indexName: indexName,
-                    userToken: userToken,
-                    objectIDs: objectIDs)
+                           indexName: indexName,
+                           userToken: userToken,
+                           objectIDs: objectIDs)
     }
     
     /// Track a click
@@ -366,14 +366,14 @@ extension Insights {
     /// - parameter objectID: Index objectID.
     /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     
-    public func click(eventName: String,
-                      indexName: String,
-                      objectID: String,
-                      userToken: String? = .none) {
+    public func clicked(eventName: String,
+                        indexName: String,
+                        objectID: String,
+                        userToken: String? = .none) {
         eventTracker.click(eventName: eventName,
-                    indexName: indexName,
-                    userToken: userToken,
-                    objectIDs: [objectID])
+                           indexName: indexName,
+                           userToken: userToken,
+                           objectIDs: [objectID])
     }
     
     /// Track a click
@@ -382,14 +382,14 @@ extension Insights {
     /// - parameter filters: An array of filters. Limited to 10 filters.
     /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     
-    public func click(eventName: String,
-                      indexName: String,
-                      filters: [String],
-                      userToken: String? = .none) {
+    public func clicked(eventName: String,
+                        indexName: String,
+                        filters: [String],
+                        userToken: String? = .none) {
         eventTracker.click(eventName: eventName,
-                    indexName: indexName,
-                    userToken: userToken,
-                    filters: filters)
+                           indexName: indexName,
+                           userToken: userToken,
+                           filters: filters)
     }
     
     /// Track a conversion
@@ -398,14 +398,14 @@ extension Insights {
     /// - parameter objectIDs: An array of index objectID. Limited to 20 objects.
     /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     
-    public func conversion(eventName: String,
-                           indexName: String,
-                           objectIDs: [String],
-                           userToken: String? = .none) {
+    public func converted(eventName: String,
+                          indexName: String,
+                          objectIDs: [String],
+                          userToken: String? = .none) {
         eventTracker.conversion(eventName: eventName,
-                         indexName: indexName,
-                         userToken: userToken,
-                         objectIDs: objectIDs)
+                                indexName: indexName,
+                                userToken: userToken,
+                                objectIDs: objectIDs)
     }
     
     /// Track a conversion
@@ -414,14 +414,14 @@ extension Insights {
     /// - parameter objectID: Index objectID.
     /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     
-    public func conversion(eventName: String,
-                           indexName: String,
-                           objectID: String,
-                           userToken: String? = .none) {
+    public func converted(eventName: String,
+                          indexName: String,
+                          objectID: String,
+                          userToken: String? = .none) {
         eventTracker.conversion(eventName: eventName,
-                         indexName: indexName,
-                         userToken: userToken,
-                         objectIDs: [objectID])
+                                indexName: indexName,
+                                userToken: userToken,
+                                objectIDs: [objectID])
     }
     
     /// Track a conversion
@@ -430,14 +430,14 @@ extension Insights {
     /// - parameter filters: An array of filters. Limited to 10 filters.
     /// - parameter userToken: User identifier. Overrides application's user token if specified. Default value is nil.
     
-    public func conversion(eventName: String,
-                           indexName: String,
-                           filters: [String],
-                           userToken: String? = .none) {
+    public func converted(eventName: String,
+                          indexName: String,
+                          filters: [String],
+                          userToken: String? = .none) {
         eventTracker.conversion(eventName: eventName,
-                         indexName: indexName,
-                         userToken: userToken,
-                         filters: filters)
+                                indexName: indexName,
+                                userToken: userToken,
+                                filters: filters)
     }
     
 }

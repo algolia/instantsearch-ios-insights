@@ -136,20 +136,20 @@ class InsightsTests: XCTestCase {
             }
         }
         
-        testInsights.clickAfterSearch(eventName: expected.eventName,
+        testInsights.clickedAfterSearch(eventName: expected.eventName,
                                       indexName: expected.indexName,
                                       objectIDsWithPositions: expected.objectIDsWithPositions,
                                       queryID: expected.queryID,
                                       userToken: expected.userToken)
         
-        testInsights.clickAfterSearch(eventName: expected.eventName,
+        testInsights.clickedAfterSearch(eventName: expected.eventName,
                                       indexName: expected.indexName,
                                       objectIDs: expected.objectIDs,
                                       positions: expected.positions,
                                       queryID: expected.queryID,
                                       userToken: expected.userToken)
         
-        testInsights.clickAfterSearch(eventName: expected.eventName,
+        testInsights.clickedAfterSearch(eventName: expected.eventName,
                                       indexName: expected.indexName,
                                       objectID: expected.objectIDs.first!,
                                       position: expected.positions.first!,
@@ -177,13 +177,13 @@ class InsightsTests: XCTestCase {
 
         }
         
-        testInsights.conversionAfterSearch(eventName: expected.eventName,
+        testInsights.convertedAfterSearch(eventName: expected.eventName,
                                            indexName: expected.indexName,
                                            objectIDs: expected.objectIDs,
                                            queryID: expected.queryID,
                                            userToken: expected.userToken)
         
-        testInsights.conversionAfterSearch(eventName: expected.eventName,
+        testInsights.convertedAfterSearch(eventName: expected.eventName,
                                            indexName: expected.indexName,
                                            objectID: expected.objectIDs.first!,
                                            queryID: expected.queryID,
@@ -212,12 +212,12 @@ class InsightsTests: XCTestCase {
             
         }
         
-        testInsights.click(eventName: expected.eventName,
+        testInsights.clicked(eventName: expected.eventName,
                            indexName: expected.indexName,
                            objectIDs: expected.objectIDs,
                            userToken: expected.userToken)
         
-        testInsights.click(eventName: expected.eventName,
+        testInsights.clicked(eventName: expected.eventName,
                            indexName: expected.indexName,
                            objectID: expected.objectIDs.first!,
                            userToken: expected.userToken)
@@ -238,7 +238,7 @@ class InsightsTests: XCTestCase {
             XCTAssertEqual(expected.filters, filters)
         }
         
-        testInsights.click(eventName: expected.eventName,
+        testInsights.clicked(eventName: expected.eventName,
                            indexName: expected.indexName,
                            filters: expected.filters,
                            userToken: expected.userToken)
@@ -264,12 +264,12 @@ class InsightsTests: XCTestCase {
             }
         }
         
-        testInsights.conversion(eventName: expected.eventName,
+        testInsights.converted(eventName: expected.eventName,
                                 indexName: expected.indexName,
                                 objectIDs: expected.objectIDs,
                                 userToken: expected.userToken)
         
-        testInsights.conversion(eventName: expected.eventName,
+        testInsights.converted(eventName: expected.eventName,
                                 indexName: expected.indexName,
                                 objectID: expected.objectIDs.first!,
                                 userToken: expected.userToken)
@@ -290,7 +290,7 @@ class InsightsTests: XCTestCase {
         }
 
         
-        testInsights.conversion(eventName: expected.eventName,
+        testInsights.converted(eventName: expected.eventName,
                                 indexName: expected.indexName,
                                 filters: expected.filters,
                                 userToken: expected.userToken)
@@ -315,12 +315,12 @@ class InsightsTests: XCTestCase {
             }
         }
         
-        testInsights.view(eventName: expected.eventName,
+        testInsights.viewed(eventName: expected.eventName,
                           indexName: expected.indexName,
                           objectIDs: expected.objectIDs,
                           userToken: expected.userToken)
         
-        testInsights.view(eventName: expected.eventName,
+        testInsights.viewed(eventName: expected.eventName,
                           indexName: expected.indexName,
                           objectID: expected.objectIDs.first!,
                           userToken: expected.userToken)
@@ -340,7 +340,7 @@ class InsightsTests: XCTestCase {
             XCTAssertEqual(expected.filters, filters)
         }
         
-        testInsights.view(eventName: expected.eventName,
+        testInsights.viewed(eventName: expected.eventName,
                           indexName: expected.indexName,
                           filters: expected.filters,
                           userToken: expected.userToken)
@@ -378,7 +378,7 @@ class InsightsTests: XCTestCase {
                                 flushDelay: 1,
                                 logger: Logger(testCredentials.appId))
         
-        insights.clickAfterSearch(eventName: expected.eventName,
+        insights.clickedAfterSearch(eventName: expected.eventName,
                                   indexName: expected.indexName,
                                   objectIDsWithPositions: expected.objectIDsWithPositions,
                                   queryID: expected.queryID)
@@ -402,7 +402,7 @@ class InsightsTests: XCTestCase {
         
         let insights = Insights(eventsProcessor: eventProcessor, logger: logger)
         
-        insights.clickAfterSearch(eventName: expected.eventName,
+        insights.clickedAfterSearch(eventName: expected.eventName,
                                   indexName: expected.indexName,
                                   objectIDsWithPositions: expected.objectIDsWithPositions,
                                   queryID: expected.queryID)
@@ -428,7 +428,7 @@ class InsightsTests: XCTestCase {
         
         let insights = Insights(eventsProcessor: eventProcessor, userToken: "global token", logger: logger)
         
-        insights.clickAfterSearch(eventName: expected.eventName,
+        insights.clickedAfterSearch(eventName: expected.eventName,
                                   indexName: expected.indexName,
                                   objectIDsWithPositions: expected.objectIDsWithPositions,
                                   queryID: expected.queryID)
