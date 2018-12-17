@@ -105,7 +105,20 @@ After you enabled it, you can check the output for success messages or errors
 
 ```
 // Success
-[Algolia Insights - appName] Sync succeded for Event(event: Insights.API.Event.click, params: ["position": 2, "queryID": 74e382ecaf889f9f2a3df0d4a9742dfb, "eventType": "Click", "objectID": 85725102])
+[Algolia Insights - appName] Sync succeded for EventsPackage(id: "37E9A093-8F86-4049-9937-23E99E4E4B33", events: [{
+    eventName = "search result click";
+    eventType = click;
+    index = "my index";
+    objectIDs =     (
+        1234567
+    );
+    positions =     (
+        3
+    );
+    queryID = 08a76asda34fl30b7d06b7aa19a9e0;
+    timestamp = 1545069313405;
+    userToken = "C1D1322E-8CBF-432F-9875-BE3B5AFDA498";
+}], region: nil)
 
 //Error
 [Algolia Insights - appName] The objectID field is missing (Code: 422)
