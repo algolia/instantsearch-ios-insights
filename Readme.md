@@ -23,7 +23,7 @@ and is usable from both **Swift** and **Objective-C**.
 ## Install
 
 1. Add a dependency on InstantSearchInsights:
-- CocoaPods: add `pod 'InstantSearchInsights', '~> 2.0'` to your `Podfile`.
+- CocoaPods: add `pod 'InstantSearchInsights', '~> 2.0.0-beta'` to your `Podfile`.
 - Carthage: add `github "algolia/instantsearch-ios-insights"` to your `Cartfile`.
 
 2. Add `import InstantSearchInsights` to your source files.
@@ -98,7 +98,7 @@ In case you want to check if the metric was sent correctly, you need to enable t
 
 ```swift
 // Swift
-Insights.shared(index: "indexName")?.isLoggingEnabled = true
+Insights.shared(appId: "appId")?.isLoggingEnabled = true
 ```
 
 After you enabled it, you can check the output for success messages or errors
