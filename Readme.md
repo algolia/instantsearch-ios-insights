@@ -24,7 +24,7 @@ and is usable from both **Swift** and **Objective-C**.
 
 1. Add a dependency on InstantSearchInsights:
 - CocoaPods: add `pod 'InstantSearchInsights', '~> 2.0.0-beta'` to your `Podfile`.
-- Carthage: add `github "algolia/instantsearch-ios-insights"` to your `Cartfile`.
+- Carthage: add `github "algolia/instantsearch-ios-insights" ~> 2.0.0-beta` to your `Cartfile`.
 
 2. Add `import InstantSearchInsights` to your source files.
 
@@ -54,42 +54,42 @@ Once that you registered your **Application ID** and the **API Key** you can eas
 
 ```swift
 // Swift
-Insights.shared?.clickAfterSearch(eventName: "click event",
-                                  indexName: "index name",
-                                  objectID: "object id",
-                                  position: 1,
-                                  queryID: "query id")
+Insights.shared?.clickedAfterSearch(eventName: "click event",
+                                    indexName: "index name",
+                                    objectID: "object id",
+                                    position: 1,
+                                    queryID: "query id")
 
-Insights.shared?.conversionAfterSearch(eventName: "conversion event",
-                                       indexName: "index name",
-                                       objectIDs: ["obj1", "obj2"],
-                                       queryID: "query id")
+Insights.shared?.convertedAfterSearch(eventName: "conversion event",
+                                      indexName: "index name",
+                                      objectIDs: ["obj1", "obj2"],
+                                      queryID: "query id")
 
-Insights.shared?.view(eventName: "view event",
-                      indexName: "index name",
-                      filters: ["brand:apple"])
+Insights.shared?.viewed(eventName: "view event",
+                        indexName: "index name",
+                        filters: ["brand:apple"])
 
 ```
 
 ```objc
 // ObjC	
-[[Insights shared] clickAfterSearchWithEventName:@"click event"
-                                       indexName:@"index name"
-                                        objectID:@"object id"
-                                        position:1
-                                         queryID:@"query id"
-                                       userToken:nil];
+[[Insights shared] clickedAfterSearchWithEventName:@"click event"
+                                         indexName:@"index name"
+                                          objectID:@"object id"
+                                          position:1
+                                           queryID:@"query id"
+                                         userToken:nil];
 
-[[Insights shared] conversionAfterSearchWithEventName:@"conversion event"
-                                            indexName:@"index name"
-                                             objectID:@"object id"
-                                              queryID:@"query id"
-                                            userToken:nil];
+[[Insights shared] convertedAfterSearchWithEventName:@"conversion event"
+                                           indexName:@"index name"
+                                            objectID:@"object id"
+                                             queryID:@"query id"
+                                           userToken:nil];
 
-[[Insights shared] viewWithEventName:@"view event"
-                           indexName:@"index name"
-                             filters:@[@"brand:apple"]
-                           userToken:nil];
+[[Insights shared] viewedWithEventName:@"view event"
+                             indexName:@"index name"
+                               filters:@[@"brand:apple"]
+                             userToken:nil];
 ```
 
 ### Logging and debuging
