@@ -124,6 +124,35 @@ After you enabled it, you can check the output for success messages or errors
 [Algolia Insights - appName] The objectID field is missing (Code: 422)
 ```
 
+### Events flush delay
+
+By default the client transmits tracked events every 30 minutes. You can customize this delay by changing `flushDelay` value (in seconds) as follows:
+
+```swift
+// Swift
+Insights.flushDelay = 60
+```
+
+```objc
+// ObjC
+[Insights setFlushDelay: 60]; 
+```
+
+### Setting API region
+
+By default each analytics API call is geo-routed so that each call targets the closest API. 
+Today the analytics API suports two regions: United States and Germany. You can specify the region your prefer to use as follows: 
+
+```swift
+// Swift
+Insights.region = .de
+```
+
+```objc
+// ObjC
+[Insights setRegion: [Region de]]];
+```
+
 To get a more meaningful search experience, please follow our [Getting Started Guide](https://community.algolia.com/instantsearch-ios/getting-started.html).
 
 ## Getting Help
