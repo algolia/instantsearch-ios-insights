@@ -9,77 +9,56 @@
 import Foundation
 
 enum Environment {
-  case prod
-  case dev
+    case prod
+    case dev
 }
 
 let environment: Environment = {
-  let env: Environment
-  #if DEV
-  env = Environment.dev
-  #else
-  env = Environment.prod
-  #endif
-  return env
+    let env: Environment
+    #if DEV
+    env = Environment.dev
+    #else
+    env = Environment.prod
+    #endif
+    return env
 }()
 
 protocol APIEndpoint {
-  /// server baseURL
-  static var baseURL: URL {get}
-  /// for api calls
-  static var baseAPIURL: URL {get}
-  static func url(path: String) -> URL
+    /// server baseURL
+    static func baseURL(forRegion region: Region?) -> URL
+    /// for api calls
+    static func baseAPIURL(forRegion region: Region?) -> URL
+    static func url(path: String, region: Region?) -> URL
 }
 
 extension APIEndpoint {
-  static func url(path: String) -> URL {
-    return URL(string:path, relativeTo:baseAPIURL)!
-  }
+    static func url(path: String, region: Region?) -> URL {
+        return URL(string: path, relativeTo: baseAPIURL(forRegion: region))!
+    }
 }
 
 struct API {
-  enum Event: Int {
-    case click
-    case view
-    case conversion
-  }
 }
 
 extension API: APIEndpoint {
-  static let baseURL : URL = {
-    switch environment {
-    case .prod:
-      return URL(string: "https://insights.algolia.io")!
-    case .dev:
-      return URL(string: "http://localhost:8080")!
+    
+    static func baseURL(forRegion region: Region?) -> URL {
+        switch environment {
+        case .prod:
+            let suffix = effectiveRegionSuffix(forCustomRegion: region)
+            return URL(string: "https://insights\(suffix).algolia.io")!
+            
+        case .dev:
+            return URL(string: "http://localhost:8080")!
+        }
     }
-  }()
-  static let baseAPIURL: URL = { return URL(string: "/1/searches/", relativeTo: baseURL)!
-  }()
-}
-
-extension APIEndpoint {
-  static func url(route: API.Event) -> URL {
-    switch route {
-    case .click:
-      return url(path: "click")
-    case .view:
-      return url(path: "view")
-    case .conversion:
-      return url(path: "conversion")
+    
+    static func baseAPIURL(forRegion region: Region?) -> URL {
+        return URL(string: "/1/events/", relativeTo: baseURL(forRegion: region))!
     }
-  }
-}
-
-extension API.Event {
-  var description: String {
-    switch self {
-    case .click:
-      return "Click"
-    case .view:
-      return "View"
-    case .conversion:
-      return "Conversion"
+    
+    private static func effectiveRegionSuffix(forCustomRegion customRegion: Region?) -> String {
+        return customRegion?.urlSuffix ?? Insights.region?.urlSuffix ?? ""
     }
-  }
+    
 }

@@ -10,8 +10,9 @@ import Foundation
 @testable import InstantSearchInsights
 
 @objc public class MockWebServiceHelper: NSObject {
-  static public func getMockWebService(indexName: String, _ stub: @escaping (Any) -> ()) -> WebService {
-    let logger = Logger(indexName)
+    
+  static public func getMockWebService(appId: String, _ stub: @escaping (Any) -> ()) -> WebService {
+    let logger = Logger(appId)
     let mockWS = MockWebService(sessionConfig: Algolia.SessionConfig.default(appId: "dummyAppId",
                                                                      apiKey: "dummyApiKey"),
                         logger: logger,
@@ -19,13 +20,13 @@ import Foundation
     return mockWS
   }
   
-  @objc static public func getMockInsights(indexName: String, _ stub: @escaping (Any) -> ()) -> Insights {
+  @objc static public func getMockInsights(appId: String, _ stub: @escaping (Any) -> ()) -> Insights {
     let insightsRegister = Insights(credentials: Credentials(appId: "dummyAppId",
-                                                             apiKey: "dummyApiKey",
-                                                             indexName: indexName),
-                                    webService: getMockWebService(indexName: indexName, stub),
-                                    flushDelay: 10,
-                                    logger: Logger(indexName))
+                                                             apiKey: "dummyApiKey"),
+                                    webService: getMockWebService(appId: appId, stub),
+                                    flushDelay: 1,
+                                    logger: Logger(appId))
     return insightsRegister
   }
+    
 }
