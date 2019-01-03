@@ -7,6 +7,12 @@
 //
 
 import Foundation
+#if canImport(UIKit)
+import UIKit
+#endif
+#if canImport(AppKit)
+import AppKit
+#endif
 
 class EventProcessor: EventProcessable {
     
@@ -59,9 +65,24 @@ class EventProcessor: EventProcessable {
         readEventPackagesFromDisk()
         timerController.action = flushEventsPackages
         timerController.setup()
+        
+        let notificationName: Notification.Name?
+        
+        #if canImport(UIKit)
+        notificationName = UIApplication.willResignActiveNotification
+        #elseif canImport(AppKit)
+        notificationName = NSApplication.willResignActiveNotification
+        #else
+        notificationName = nil
+        #endif
+        
+        if let notificationName = notificationName {
+            NotificationCenter.default.addObserver(self, selector: #selector(flushEventsPackages), name: notificationName, object: .none)
+        }
+
     }
     
-    func flushEventsPackages() {
+    @objc func flushEventsPackages() {
         if eventsPackages.isEmpty {
             logger.debug(message: "No pending event packages")
         } else {

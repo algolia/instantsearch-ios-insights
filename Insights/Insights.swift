@@ -48,7 +48,7 @@ import Foundation
         
     }
     
-    /// Synchronization delay of tracked events with server. Default value is 30 minutes.
+    /// Synchronization delay of tracked events with server. Default value is 30 seconds.
     
     public static var flushDelay: TimeInterval = Algolia.Insights.flushDelay {
         didSet {
