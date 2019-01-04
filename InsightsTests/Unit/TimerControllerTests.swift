@@ -39,7 +39,7 @@ class TimerControllerTests: XCTestCase {
     }
     
     func testAction() {
-        let exp = expectation(description: "timer action")
+        let exp = XCTestExpectation(description: "timer action")
         let timerController = TimerController(delay: 1)
         XCTAssertFalse(timerController.isActive)
         timerController.setup()
@@ -47,7 +47,7 @@ class TimerControllerTests: XCTestCase {
             exp.fulfill()
         }
         timerController.fire()
-        waitForExpectations(timeout: 5, handler: nil)
+        wait(for: [exp], timeout: 5)
     }
     
 }

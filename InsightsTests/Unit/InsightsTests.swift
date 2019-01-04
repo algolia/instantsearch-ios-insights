@@ -349,8 +349,8 @@ class InsightsTests: XCTestCase {
     }
 
     func testEventIsSentCorrectly() {
-        
-        let exp = self.expectation(description: "mock web service response")
+
+        let exp = XCTestExpectation(description: "mock web service response")
         let expected = Expected()
         
         let mockWS = MockWebServiceHelper.getMockWebService(appId: testCredentials.appId) { resource in
@@ -382,8 +382,8 @@ class InsightsTests: XCTestCase {
                                   indexName: expected.indexName,
                                   objectIDsWithPositions: expected.objectIDsWithPositions,
                                   queryID: expected.queryID)
-     
-        waitForExpectations(timeout: 5, handler: nil)
+
+        wait(for: [exp], timeout: 5)
     }
     
     func testGlobalAppUserTokenPropagation() {
