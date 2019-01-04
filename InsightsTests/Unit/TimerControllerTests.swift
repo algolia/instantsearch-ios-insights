@@ -47,7 +47,7 @@ class TimerControllerTests: XCTestCase {
             exp.fulfill()
         }
         timerController.fire()
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
 }

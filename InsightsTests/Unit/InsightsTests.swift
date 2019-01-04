@@ -156,7 +156,7 @@ class InsightsTests: XCTestCase {
                                       queryID: expected.queryID,
                                       userToken: expected.userToken)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testConversionInSearch() {
@@ -189,7 +189,7 @@ class InsightsTests: XCTestCase {
                                            queryID: expected.queryID,
                                            userToken: expected.userToken)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
 
     }
     
@@ -222,7 +222,7 @@ class InsightsTests: XCTestCase {
                            objectID: expected.objectIDs.first!,
                            userToken: expected.userToken)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
 
     }
     
@@ -243,7 +243,7 @@ class InsightsTests: XCTestCase {
                            filters: expected.filters,
                            userToken: expected.userToken)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
         
     }
     
@@ -274,7 +274,7 @@ class InsightsTests: XCTestCase {
                                 objectID: expected.objectIDs.first!,
                                 userToken: expected.userToken)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testConversionWithFilters() {
@@ -295,7 +295,7 @@ class InsightsTests: XCTestCase {
                                 filters: expected.filters,
                                 userToken: expected.userToken)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testViewWithObjects() {
@@ -325,7 +325,7 @@ class InsightsTests: XCTestCase {
                           objectID: expected.objectIDs.first!,
                           userToken: expected.userToken)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testViewWithFilters() {
@@ -345,7 +345,7 @@ class InsightsTests: XCTestCase {
                           filters: expected.filters,
                           userToken: expected.userToken)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
     }
 
     func testEventIsSentCorrectly() {
@@ -383,7 +383,7 @@ class InsightsTests: XCTestCase {
                                   objectIDsWithPositions: expected.objectIDsWithPositions,
                                   queryID: expected.queryID)
      
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testGlobalAppUserTokenPropagation() {
@@ -407,7 +407,7 @@ class InsightsTests: XCTestCase {
                                   objectIDsWithPositions: expected.objectIDsWithPositions,
                                   queryID: expected.queryID)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
         
     }
     
@@ -433,7 +433,7 @@ class InsightsTests: XCTestCase {
                                   objectIDsWithPositions: expected.objectIDsWithPositions,
                                   queryID: expected.queryID)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
 
     }
     

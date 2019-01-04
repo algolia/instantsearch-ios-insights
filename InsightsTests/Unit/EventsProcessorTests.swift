@@ -46,7 +46,7 @@ class EventsProcessorTests: XCTestCase {
         queue.sync {}
         XCTAssertTrue(eventsProcessor.eventsPackages.isEmpty)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
 
     }
     
@@ -73,7 +73,7 @@ class EventsProcessorTests: XCTestCase {
         queue.sync {}
         XCTAssertFalse(eventsProcessor.eventsPackages.isEmpty)
         eventsProcessor.flush()
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
 
     }
     
@@ -142,7 +142,7 @@ class EventsProcessorTests: XCTestCase {
         queue.sync {}
         eventsProcessor.flush()
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
 }
