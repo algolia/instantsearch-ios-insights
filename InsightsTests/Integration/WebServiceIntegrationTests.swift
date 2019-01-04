@@ -16,7 +16,7 @@ import XCTest
  - ALGOLIA_INDEX_NAME
  
  must be defined in Xcode scheme to accomplish these tests
-*/
+ */
 
 class WebServiceIntegrationTests: XCTestCase {
     
@@ -55,7 +55,7 @@ class WebServiceIntegrationTests: XCTestCase {
     }()
     
     let userToken = "123"
-    let timestamp = Date().millisecondsSince1970
+    let timestamp = Date().addingTimeInterval(-5).millisecondsSince1970
     let queryID = "6de2f7eaa537fa93d8f8f05b927953b1"
     let objectIDs = ["61992275", "62300547"]
     let filters = ["brand:HarperCollins"]
@@ -70,19 +70,21 @@ class WebServiceIntegrationTests: XCTestCase {
         let webService = WebService(sessionConfig: sessionConfig, logger: logger)
         
         let event = try! ClickEvent(name: "test click",
-                               indexName: indexName,
-                               userToken: userToken,
-                               timestamp: timestamp,
-                               objectIDsOrFilters: .objectIDs(objectIDs),
-                               positions: .none)
+                                    indexName: indexName,
+                                    userToken: userToken,
+                                    timestamp: timestamp,
+                                    objectIDsOrFilters: .objectIDs(objectIDs),
+                                    positions: .none)
         
         let eventsPackage = EventsPackage(event: EventWrapper.click(event))
         
         webService.sync(eventsPackage) { error in
-            completionCallCount = completionCallCount + 1
-            XCTAssertEqual(completionCallCount, 1, "Completion must be called once")
-            XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
-            exp.fulfill()
+            DispatchQueue.main.async {
+                completionCallCount = completionCallCount + 1
+                XCTAssertEqual(completionCallCount, 1, "Completion must be called once")
+                XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
+                exp.fulfill()
+            }
         }
 
         wait(for: [exp], timeout: 5)
@@ -99,19 +101,21 @@ class WebServiceIntegrationTests: XCTestCase {
         let webService = WebService(sessionConfig: sessionConfig, logger: logger)
         
         let event = try! ClickEvent(name: "test click",
-                               indexName: indexName,
-                               userToken: userToken,
-                               timestamp: timestamp,
-                               queryID: queryID,
-                               objectIDsWithPositions: [(objectIDs.first!, 1)])
+                                    indexName: indexName,
+                                    userToken: userToken,
+                                    timestamp: timestamp,
+                                    queryID: queryID,
+                                    objectIDsWithPositions: [(objectIDs.first!, 1)])
         
         let eventsPackage = EventsPackage(event: EventWrapper.click(event))
         
         webService.sync(eventsPackage) { error in
-            completionCallCount = completionCallCount + 1
-            XCTAssertEqual(completionCallCount, 1, "Completion must be called once")
-            XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
-            exp.fulfill()
+            DispatchQueue.main.async {
+                completionCallCount = completionCallCount + 1
+                XCTAssertEqual(completionCallCount, 1, "Completion must be called once")
+                XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
+                exp.fulfill()
+            }
         }
         
         wait(for: [exp], timeout: 5)
@@ -128,19 +132,21 @@ class WebServiceIntegrationTests: XCTestCase {
         let webService = WebService(sessionConfig: sessionConfig, logger: logger)
         
         let event = try! ViewEvent(name: "test view",
-                              indexName: indexName,
-                              userToken: userToken,
-                              timestamp: timestamp,
-                              queryID: queryID,
-                              objectIDsOrFilters: .filters(filters))
+                                   indexName: indexName,
+                                   userToken: userToken,
+                                   timestamp: timestamp,
+                                   queryID: queryID,
+                                   objectIDsOrFilters: .filters(filters))
         
         let eventsPackage = EventsPackage(event: EventWrapper.view(event))
         
         webService.sync(eventsPackage) { error in
-            completionCallCount = completionCallCount + 1
-            XCTAssertEqual(completionCallCount, 1, "Completion must be called once")
-            XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
-            exp.fulfill()
+            DispatchQueue.main.async {
+                completionCallCount = completionCallCount + 1
+                XCTAssertEqual(completionCallCount, 1, "Completion must be called once")
+                XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
+                exp.fulfill()
+            }
         }
         
         wait(for: [exp], timeout: 5)
@@ -157,19 +163,21 @@ class WebServiceIntegrationTests: XCTestCase {
         let webService = WebService(sessionConfig: sessionConfig, logger: logger)
         
         let event = try! ConversionEvent(name: "test conversion",
-                                    indexName: indexName,
-                                    userToken: userToken,
-                                    timestamp: timestamp,
-                                    queryID: queryID,
-                                    objectIDsOrFilters: .objectIDs(objectIDs))
+                                         indexName: indexName,
+                                         userToken: userToken,
+                                         timestamp: timestamp,
+                                         queryID: queryID,
+                                         objectIDsOrFilters: .objectIDs(objectIDs))
         
         let eventsPackage = EventsPackage(event: EventWrapper.conversion(event))
         
         webService.sync(eventsPackage) { error in
-            completionCallCount = completionCallCount + 1
-            XCTAssertEqual(completionCallCount, 1, "Completion must be called once")
-            XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
-            exp.fulfill()
+            DispatchQueue.main.async {
+                completionCallCount = completionCallCount + 1
+                XCTAssertEqual(completionCallCount, 1, "Completion must be called once")
+                XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
+                exp.fulfill()
+            }
         }
         
         wait(for: [exp], timeout: 5)
@@ -186,34 +194,36 @@ class WebServiceIntegrationTests: XCTestCase {
         let webService = WebService(sessionConfig: sessionConfig, logger: logger)
         
         let conversion = try! ConversionEvent(name: "test conversion",
-                                         indexName: indexName,
-                                         userToken: userToken,
-                                         timestamp: timestamp,
-                                         queryID: queryID,
-                                         objectIDsOrFilters: .objectIDs(objectIDs))
+                                              indexName: indexName,
+                                              userToken: userToken,
+                                              timestamp: timestamp,
+                                              queryID: queryID,
+                                              objectIDsOrFilters: .objectIDs(objectIDs))
         
         let view = try! ViewEvent(name: "test view",
-                             indexName: indexName,
-                             userToken: userToken,
-                             timestamp: timestamp,
-                             queryID: queryID,
-                             objectIDsOrFilters: .filters(filters))
+                                  indexName: indexName,
+                                  userToken: userToken,
+                                  timestamp: timestamp,
+                                  queryID: queryID,
+                                  objectIDsOrFilters: .filters(filters))
         
         let click = try! ClickEvent(name: "test click",
-                               indexName: indexName,
-                               userToken: userToken,
-                               timestamp: timestamp,
-                               queryID: queryID,
-                               objectIDsWithPositions: [(objectIDs.first!, 1)])
+                                    indexName: indexName,
+                                    userToken: userToken,
+                                    timestamp: timestamp,
+                                    queryID: queryID,
+                                    objectIDsWithPositions: [(objectIDs.first!, 1)])
 
 
         let eventsPackage = try! EventsPackage(events: [.conversion(conversion), .view(view), .click(click)])
         
         webService.sync(eventsPackage) { error in
-            completionCallCount = completionCallCount + 1
-            XCTAssertEqual(completionCallCount, 1, "Completion must be called once")
-            XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
-            exp.fulfill()
+            DispatchQueue.main.async {
+                completionCallCount = completionCallCount + 1
+                XCTAssertEqual(completionCallCount, 1, "Completion must be called once")
+                XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
+                exp.fulfill()
+            }
         }
         
         wait(for: [exp], timeout: 5)
