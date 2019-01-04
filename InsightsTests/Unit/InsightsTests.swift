@@ -362,11 +362,11 @@ class InsightsTests: XCTestCase {
                     do {
                         let package = try jsonDecoder.decode(EventsPackage.self, from: data)
                         XCTAssertEqual(package.events.count, 1)
+                        exp.fulfill()
                     } catch _ {
                         XCTFail("Unable to construct EventsPackage with provided JSON")
                     }
                 })
-                exp.fulfill()
             } else {
                 XCTFail("Unable to cast resource")
             }
