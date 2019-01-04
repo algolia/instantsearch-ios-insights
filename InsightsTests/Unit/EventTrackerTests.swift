@@ -43,7 +43,7 @@ class EventTrackerTests: XCTestCase {
                           userToken: expected.userToken,
                           objectIDs: expected.objectIDs)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
         
     }
     
@@ -72,7 +72,7 @@ class EventTrackerTests: XCTestCase {
                           userToken: expected.userToken,
                           filters: expected.filters)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
         
     }
     
@@ -101,7 +101,7 @@ class EventTrackerTests: XCTestCase {
                            userToken: expected.userToken,
                            objectIDs: expected.objectIDs)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
         
     }
     
@@ -130,7 +130,7 @@ class EventTrackerTests: XCTestCase {
                            userToken: expected.userToken,
                            filters: expected.filters)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
         
     }
     
@@ -158,7 +158,7 @@ class EventTrackerTests: XCTestCase {
                                 userToken: expected.userToken,
                                 objectIDs: expected.objectIDs)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
         
     }
     
@@ -187,7 +187,7 @@ class EventTrackerTests: XCTestCase {
                                 userToken: expected.userToken,
                                 filters: expected.filters)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
 
     }
     

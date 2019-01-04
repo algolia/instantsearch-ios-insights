@@ -55,7 +55,7 @@ class WebServiceIntegrationTests: XCTestCase {
     }()
     
     let userToken = "123"
-    let timestamp = Date().millisecondsSince1970
+    let timestamp = Date().addingTimeInterval(-5).millisecondsSince1970
     let queryID = "6de2f7eaa537fa93d8f8f05b927953b1"
     let objectIDs = ["61992275", "62300547"]
     let filters = ["brand:HarperCollins"]
@@ -85,8 +85,7 @@ class WebServiceIntegrationTests: XCTestCase {
             exp.fulfill()
         }
 
-        wait(for: [exp], timeout: 5)
-        
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testClickEventWithPositions() {
@@ -114,8 +113,7 @@ class WebServiceIntegrationTests: XCTestCase {
             exp.fulfill()
         }
         
-        wait(for: [exp], timeout: 5)
-        
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testViewEvent() {
@@ -142,9 +140,8 @@ class WebServiceIntegrationTests: XCTestCase {
             XCTAssertNil(error, "Expected no error, occured: \(String(describing: error))")
             exp.fulfill()
         }
-        
-        wait(for: [exp], timeout: 5)
 
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testConversionEvent() {
@@ -172,7 +169,7 @@ class WebServiceIntegrationTests: XCTestCase {
             exp.fulfill()
         }
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
 
     }
     
@@ -216,7 +213,7 @@ class WebServiceIntegrationTests: XCTestCase {
             exp.fulfill()
         }
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
         
     }
     

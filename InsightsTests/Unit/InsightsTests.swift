@@ -156,7 +156,7 @@ class InsightsTests: XCTestCase {
                                       queryID: expected.queryID,
                                       userToken: expected.userToken)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testConversionInSearch() {
@@ -189,7 +189,7 @@ class InsightsTests: XCTestCase {
                                            queryID: expected.queryID,
                                            userToken: expected.userToken)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
 
     }
     
@@ -222,7 +222,7 @@ class InsightsTests: XCTestCase {
                            objectID: expected.objectIDs.first!,
                            userToken: expected.userToken)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
 
     }
     
@@ -243,7 +243,7 @@ class InsightsTests: XCTestCase {
                            filters: expected.filters,
                            userToken: expected.userToken)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
         
     }
     
@@ -274,7 +274,7 @@ class InsightsTests: XCTestCase {
                                 objectID: expected.objectIDs.first!,
                                 userToken: expected.userToken)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testConversionWithFilters() {
@@ -295,7 +295,7 @@ class InsightsTests: XCTestCase {
                                 filters: expected.filters,
                                 userToken: expected.userToken)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testViewWithObjects() {
@@ -325,7 +325,7 @@ class InsightsTests: XCTestCase {
                           objectID: expected.objectIDs.first!,
                           userToken: expected.userToken)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testViewWithFilters() {
@@ -345,12 +345,12 @@ class InsightsTests: XCTestCase {
                           filters: expected.filters,
                           userToken: expected.userToken)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
     }
 
     func testEventIsSentCorrectly() {
-        
-        let exp = self.expectation(description: "mock web service response")
+
+        let exp = XCTestExpectation(description: "mock web service response")
         let expected = Expected()
         
         let mockWS = MockWebServiceHelper.getMockWebService(appId: testCredentials.appId) { resource in
@@ -362,11 +362,11 @@ class InsightsTests: XCTestCase {
                     do {
                         let package = try jsonDecoder.decode(EventsPackage.self, from: data)
                         XCTAssertEqual(package.events.count, 1)
+                        exp.fulfill()
                     } catch _ {
                         XCTFail("Unable to construct EventsPackage with provided JSON")
                     }
                 })
-                exp.fulfill()
             } else {
                 XCTFail("Unable to cast resource")
             }
@@ -382,7 +382,7 @@ class InsightsTests: XCTestCase {
                                   indexName: expected.indexName,
                                   objectIDsWithPositions: expected.objectIDsWithPositions,
                                   queryID: expected.queryID)
-     
+
         wait(for: [exp], timeout: 5)
     }
     
@@ -407,7 +407,7 @@ class InsightsTests: XCTestCase {
                                   objectIDsWithPositions: expected.objectIDsWithPositions,
                                   queryID: expected.queryID)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
         
     }
     
@@ -433,7 +433,7 @@ class InsightsTests: XCTestCase {
                                   objectIDsWithPositions: expected.objectIDsWithPositions,
                                   queryID: expected.queryID)
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
 
     }
     

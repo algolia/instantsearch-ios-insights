@@ -129,7 +129,7 @@ class CoreEventTests: XCTestCase {
             
             XCTAssertEqual(error.localizedDescription, "Event name cannot be empty")
         }
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testObjectsOverflow() {
@@ -152,7 +152,7 @@ class CoreEventTests: XCTestCase {
             XCTAssertEqual(error.localizedDescription, "Max objects IDs count in event is \(CoreEvent.maxObjectIDsCount)")
         }
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
         
     }
     
@@ -174,7 +174,7 @@ class CoreEventTests: XCTestCase {
             XCTAssertEqual(error.localizedDescription, "Max filters count in event is \(CoreEvent.maxFiltersCount)")
         }
         
-        wait(for: [exp], timeout: 5)
+        waitForExpectations(timeout: 5, handler: nil)
 
         
     }
