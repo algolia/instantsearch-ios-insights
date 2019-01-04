@@ -7,7 +7,7 @@
 //
 
 import Foundation
-#if canImport(UIKit)
+#if os(iOS)
 import UIKit
 #endif
 #if canImport(AppKit)
@@ -68,7 +68,7 @@ class EventProcessor: EventProcessable {
         
         let notificationName: Notification.Name?
         
-        #if canImport(UIKit)
+        #if os(iOS)
         notificationName = UIApplication.willResignActiveNotification
         #elseif canImport(AppKit)
         notificationName = NSApplication.willResignActiveNotification
