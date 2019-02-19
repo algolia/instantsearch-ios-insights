@@ -48,6 +48,18 @@ import Foundation
         
     }
     
+    public var userToken: String? {
+        
+        get {
+            return (eventTracker as? EventTracker)?.userToken
+        }
+        
+        set {
+            (eventTracker as? EventTracker)?.userToken = newValue
+        }
+        
+    }
+    
     /// Synchronization delay of tracked events with server. Default value is 30 seconds.
     
     public static var flushDelay: TimeInterval = Algolia.Insights.flushDelay {
@@ -141,6 +153,7 @@ import Foundation
         let insights = Insights(credentials: credentials,
                                 webService: webservice,
                                 flushDelay: Algolia.Insights.flushDelay,
+                                userToken: userToken,
                                 logger: logger)
         Insights.insightsMap[appId] = insights
         return insights
