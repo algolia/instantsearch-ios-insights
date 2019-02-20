@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
     s.name             = "InstantSearchInsights"
     s.module_name      = 'InstantSearchInsights'
-    s.version          = "2.0.0"
+    s.version          = "2.1.0"
     s.summary          = "A library allowing developers to report metrics related to Algolia search queries"
     s.homepage         = "https://github.com/algolia/instantsearch-ios-insights"
     s.license          = { type: 'MIT', file: 'LICENSE.md' }
