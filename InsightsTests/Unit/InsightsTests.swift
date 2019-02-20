@@ -437,4 +437,43 @@ class InsightsTests: XCTestCase {
 
     }
     
+    func testUserTokenChange() {
+        
+        let userToken = "testUserToken1"
+        
+        let eventProcessor = TestEventProcessor()
+        let logger = Logger(testCredentials.appId)
+
+        let insights = Insights(eventsProcessor: eventProcessor,
+                                userToken: userToken,
+                                logger: logger)
+        
+        XCTAssertEqual(insights.userToken, userToken)
+        
+        let modifiedUserToken = "testUserToken2"
+        
+        insights.userToken = modifiedUserToken
+        
+        XCTAssertEqual(insights.userToken, modifiedUserToken)
+        
+        
+    }
+    
+    func testRegister() {
+        
+        let userToken = "testUserToken1"
+        
+        Insights.register(appId: "myAppID", apiKey: "apiKey", userToken: userToken)
+        
+        XCTAssertEqual(Insights.shared(appId: "myAppID")?.userToken, userToken)
+        
+        let modifiedUserToken = "testUserToken2"
+        
+        Insights.shared(appId: "myAppID")?.userToken = modifiedUserToken
+        
+        XCTAssertEqual(Insights.shared(appId: "myAppID")?.userToken, modifiedUserToken)
+        
+        
+    }
+    
 }
