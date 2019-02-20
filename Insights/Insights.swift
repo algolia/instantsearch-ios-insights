@@ -31,8 +31,9 @@ import Foundation
     public static var region: Region?
     
     /// Global application user token
-    /// Generated while the first app launch and than stored persistently
+    /// Automatically generated while the first app launch and than stored persistently
     /// Used as a default user token if no user token provided for event or application
+    /// - Note: This value is ignored if a custom per-app or per-event user token is provided
     
     public static var userToken: String {
         
@@ -47,6 +48,10 @@ import Foundation
         }
         
     }
+    
+    /// Application-specific user token
+    /// Overrides generated global application user token (see above)
+    /// - Note: This value is ignored if a custom per-event user token provided
     
     public var userToken: String? {
         
