@@ -17,7 +17,7 @@ class UserAgentTests: XCTestCase {
       XCTFail("Unable to fetch the OS info")
       return
     }
-    let ua = "insights-ios (\(packageVersion)); \(osInfo.name) (\(osInfo.version))"
-    XCTAssertEqual(ua, WebService.computeUserAgent())
+    let expectedUserAgent = "insights-ios (\(packageVersion)); \(osInfo.name) (\(osInfo.version))"
+    XCTAssertEqual(expectedUserAgent, WebService.computeUserAgent())
   }
 }

@@ -80,7 +80,7 @@ extension WebService {
     return nil
     #endif
   }
-  
+  // Computing the User Agent. Expected output: insights-ios (2.1.0); iOS (12.1.0)
   internal static func computeUserAgent() -> String {
     var userAgents: [LibraryVersion] = []
     
