@@ -18,7 +18,9 @@ class WebService {
     }
     
     public func makeRequest<A, E>(for resource: Resource<A, E>) -> URLRequest {
-        return URLRequest(resource: resource)
+        var request = URLRequest(resource: resource)
+        request.addValue(WebService.computeUserAgent(), forHTTPHeaderField: "User-Agent")
+        return request
     }
     
     public func load<A, E>(resource: Resource<A, E>, completion: @escaping (Result<A>) -> Void) {
@@ -55,6 +57,51 @@ class WebService {
             }
         }).resume()
     }
+}
+
+// MARK: UserAgent
+typealias LibraryVersion = (name: String, version: String)
+extension WebService {
+  
+  /// The operating system's name.
+  ///
+  /// - returns: The operating system's name, or nil if it could not be determined.
+  ///
+  internal static func osName() -> String? {
+    #if os(iOS)
+    return "iOS"
+    #elseif os(OSX)
+    return "macOS"
+    #elseif os(tvOS)
+    return "tvOS"
+    #elseif os(watchOS)
+    return "watchOS"
+    #else
+    return nil
+    #endif
+  }
+  // Computing the User Agent. Expected output: insights-ios (2.1.0); iOS (12.1.0)
+  internal static func computeUserAgent() -> String {
+    var userAgents: [LibraryVersion] = []
+    
+    let packageVersion = Bundle(for: WebService.self).infoDictionary!["CFBundleShortVersionString"] as! String
+    userAgents.append(LibraryVersion(name: "insights-ios", version: packageVersion))
+    if let osInfo = osInfo() {
+      userAgents.append(osInfo)
+    }
+    return userAgents.map({ "\($0.name) (\($0.version))" }).joined(separator: "; ")
+  }
+  
+  internal static func osInfo() -> LibraryVersion? {
+    if #available(iOS 8.0, OSX 10.0, tvOS 9.0, *) {
+      let osVersion = ProcessInfo.processInfo.operatingSystemVersion
+      let osVersionString = "\(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)"
+      if let osName = WebService.osName() {
+        return LibraryVersion(name: "\(osName)", version: osVersionString)
+      }
+    }
+    return nil
+  }
 }
 
 public protocol APIError: Error {
