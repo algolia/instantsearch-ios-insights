@@ -160,8 +160,11 @@ class EventsPackageTests: XCTestCase {
         switch resource.method {
         case .post([], let body):
             let jsonDecoder = JSONDecoder()
-            let package = try! jsonDecoder.decode(EventsPackage.self, from: body)
-            XCTAssertEqual(package, eventsPackage)
+            let package = try! jsonDecoder.decode([String: Array<EventWrapper>].self, from: body)
+            XCTAssertNotNil(package[EventsPackage.CodingKeys.events.rawValue])
+            let expectedEvents = package[EventsPackage.CodingKeys.events.rawValue]!
+            XCTAssertEqual(expectedEvents.description,
+                           eventsPackage.events.description)
             
         default:
             XCTFail("Unexpected method")
