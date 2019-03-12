@@ -145,8 +145,7 @@ extension EventsPackage: Syncable {
             }
             return nil
         }
-        
-        let serializedSelf = Dictionary(self)!
+        let serializedSelf = [CodingKeys.events.rawValue: Array(encodable:self.events)]
         let url = API.baseAPIURL(forRegion: region)
         return Resource<Bool, WebserviceError>(url: url,
                                                method: .post([], serializedSelf as AnyObject),

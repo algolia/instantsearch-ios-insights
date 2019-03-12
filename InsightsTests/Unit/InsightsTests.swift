@@ -360,8 +360,8 @@ class InsightsTests: XCTestCase {
                     XCTAssertNotNil(data)
                     let jsonDecoder = JSONDecoder()
                     do {
-                        let package = try jsonDecoder.decode(EventsPackage.self, from: data)
-                        XCTAssertEqual(package.events.count, 1)
+                      let package = try jsonDecoder.decode([String: Array<EventWrapper>].self, from: data)
+                      XCTAssertNotNil(package[EventsPackage.CodingKeys.events.rawValue])
                         exp.fulfill()
                     } catch _ {
                         XCTFail("Unable to construct EventsPackage with provided JSON")
