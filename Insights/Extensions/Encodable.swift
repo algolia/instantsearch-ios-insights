@@ -31,7 +31,7 @@ extension Dictionary where Key == String, Value == Any {
 
 extension Array where Element == Any {
     
-    init?<T: Encodable>(_ encodable: T) {
+    init?<T: Encodable>(encodable: T) {
         guard let data = try? JSONEncoder().encode(encodable) else { return nil }
         guard let array = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [Any] else {
             return nil
