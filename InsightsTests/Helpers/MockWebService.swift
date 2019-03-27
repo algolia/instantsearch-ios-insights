@@ -17,7 +17,7 @@ class MockWebService: WebService {
     super.init(sessionConfig: sessionConfig, logger: logger)
   }
   
-  public override func load<A, E>(resource: Resource<A, E>, completion: @escaping (Result<A>) -> ()) {
+  public override func load<A, E>(resource: Resource<A, E>, completion: @escaping (Result<A, E>) -> ()) {
     stub(resource)
   }
   

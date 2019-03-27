@@ -19,7 +19,7 @@ extension WebService {
                 resultDescription = "Sync succeded for \(item)"
                 completionHandler(nil)
                 
-            case .fail(let err):
+            case .failure(let err):
                 resultDescription = (err as? WebserviceError)?.localizedDescription ?? err.localizedDescription
                 completionHandler(err)
             }

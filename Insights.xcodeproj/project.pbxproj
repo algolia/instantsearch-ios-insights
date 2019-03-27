@@ -27,7 +27,6 @@
 		1DA006CA20CFC26000A9170F /* InstantSearchInsights.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DA006C120CFC26000A9170F /* InstantSearchInsights.framework */; };
 		1DA006F720CFC2AF00A9170F /* InstantSearchInsights.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D4531C5209C870C00B26CF9 /* InstantSearchInsights.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1DA006F820CFC2B000A9170F /* InstantSearchInsights.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D4531C5209C870C00B26CF9 /* InstantSearchInsights.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1DD0A0C620BFF43C005FDDDD /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C520BFF43C005FDDDD /* Result.swift */; };
 		1DD0A0CB20C1421E005FDDDD /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */; };
 		1DD0A0CD20C53B83005FDDDD /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0CC20C53B83005FDDDD /* Logger.swift */; };
 		AF332822219343250040BE0A /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF332821219343250040BE0A /* Credentials.swift */; };
@@ -77,7 +76,6 @@
 		AFA8C24C21A5AC13003F87F8 /* NSMutableURLRequest+Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0520BEE8F60058230A /* NSMutableURLRequest+Resource.swift */; };
 		AFA8C24D21A5AC13003F87F8 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0720BEE9140058230A /* Resource.swift */; };
 		AFA8C24E21A5AC13003F87F8 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0A20BEE9820058230A /* WebService.swift */; };
-		AFA8C24F21A5AC13003F87F8 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C520BFF43C005FDDDD /* Result.swift */; };
 		AFA8C25021A5AC13003F87F8 /* Insights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AF120BD71ED0058230A /* Insights.swift */; };
 		AFA8C25121A5AC13003F87F8 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF332821219343250040BE0A /* Credentials.swift */; };
 		AFA8C25221A5AC13003F87F8 /* EventProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C142191F98F00AA72B0 /* EventProcessor.swift */; };
@@ -104,7 +102,6 @@
 		AFA8C26A21A5B214003F87F8 /* NSMutableURLRequest+Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0520BEE8F60058230A /* NSMutableURLRequest+Resource.swift */; };
 		AFA8C26B21A5B214003F87F8 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0720BEE9140058230A /* Resource.swift */; };
 		AFA8C26C21A5B214003F87F8 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0A20BEE9820058230A /* WebService.swift */; };
-		AFA8C26D21A5B214003F87F8 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C520BFF43C005FDDDD /* Result.swift */; };
 		AFA8C26E21A5B214003F87F8 /* Insights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AF120BD71ED0058230A /* Insights.swift */; };
 		AFA8C26F21A5B214003F87F8 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF332821219343250040BE0A /* Credentials.swift */; };
 		AFA8C27021A5B214003F87F8 /* EventProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C142191F98F00AA72B0 /* EventProcessor.swift */; };
@@ -131,7 +128,6 @@
 		AFA8C28821A5B230003F87F8 /* NSMutableURLRequest+Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0520BEE8F60058230A /* NSMutableURLRequest+Resource.swift */; };
 		AFA8C28921A5B230003F87F8 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0720BEE9140058230A /* Resource.swift */; };
 		AFA8C28A21A5B230003F87F8 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958B0A20BEE9820058230A /* WebService.swift */; };
-		AFA8C28B21A5B230003F87F8 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0A0C520BFF43C005FDDDD /* Result.swift */; };
 		AFA8C28C21A5B230003F87F8 /* Insights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D958AF120BD71ED0058230A /* Insights.swift */; };
 		AFA8C28D21A5B230003F87F8 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF332821219343250040BE0A /* Credentials.swift */; };
 		AFA8C28E21A5B230003F87F8 /* EventProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC30C142191F98F00AA72B0 /* EventProcessor.swift */; };
@@ -244,7 +240,6 @@
 		1DA006C120CFC26000A9170F /* InstantSearchInsights.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InstantSearchInsights.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DA006C920CFC26000A9170F /* Insights-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Insights-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DA006DD20CFC28700A9170F /* InstantSearchInsights.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InstantSearchInsights.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1DD0A0C520BFF43C005FDDDD /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		1DD0A0CA20C1421E005FDDDD /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		1DD0A0CC20C53B83005FDDDD /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		AF332821219343250040BE0A /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
@@ -411,7 +406,6 @@
 				1D958B0520BEE8F60058230A /* NSMutableURLRequest+Resource.swift */,
 				1D958B0720BEE9140058230A /* Resource.swift */,
 				1D958B0A20BEE9820058230A /* WebService.swift */,
-				1DD0A0C520BFF43C005FDDDD /* Result.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -839,7 +833,6 @@
 				AF4956332190A8F5006B2F0B /* ObjectIDsOrFilters.swift in Sources */,
 				1D958B0820BEE9140058230A /* Resource.swift in Sources */,
 				AF624A5421B83F4900C81957 /* EventTrackable.swift in Sources */,
-				1DD0A0C620BFF43C005FDDDD /* Result.swift in Sources */,
 				AFB9771E21C709A900094E1E /* Flushable.swift in Sources */,
 				AF56CF4121B1454F00B5EABB /* Date+Milliseconds.swift in Sources */,
 				AF49563E2190A954006B2F0B /* Syncable.swift in Sources */,
@@ -903,7 +896,6 @@
 				AFA8C24121A5AC13003F87F8 /* ObjectIDsOrFilters.swift in Sources */,
 				AFA8C24D21A5AC13003F87F8 /* Resource.swift in Sources */,
 				AF624A5521B83F4900C81957 /* EventTrackable.swift in Sources */,
-				AFA8C24F21A5AC13003F87F8 /* Result.swift in Sources */,
 				AF624A4B21B6B31000C81957 /* Date+Milliseconds.swift in Sources */,
 				AFB9771F21C709D400094E1E /* Flushable.swift in Sources */,
 				AFB9771621C6B74B00094E1E /* TimerController.swift in Sources */,
@@ -959,7 +951,6 @@
 				AFA8C26A21A5B214003F87F8 /* NSMutableURLRequest+Resource.swift in Sources */,
 				AFA8C26B21A5B214003F87F8 /* Resource.swift in Sources */,
 				AFA8C26C21A5B214003F87F8 /* WebService.swift in Sources */,
-				AFA8C26D21A5B214003F87F8 /* Result.swift in Sources */,
 				AFA8C26E21A5B214003F87F8 /* Insights.swift in Sources */,
 				AF56CF3C21AF0D6400B5EABB /* EventTracker.swift in Sources */,
 				AFA8C26F21A5B214003F87F8 /* Credentials.swift in Sources */,
@@ -1021,7 +1012,6 @@
 				AFA8C28821A5B230003F87F8 /* NSMutableURLRequest+Resource.swift in Sources */,
 				AFA8C28921A5B230003F87F8 /* Resource.swift in Sources */,
 				AFA8C28A21A5B230003F87F8 /* WebService.swift in Sources */,
-				AFA8C28B21A5B230003F87F8 /* Result.swift in Sources */,
 				AFA8C28C21A5B230003F87F8 /* Insights.swift in Sources */,
 				AF56CF3D21AF0D6500B5EABB /* EventTracker.swift in Sources */,
 				AFA8C28D21A5B230003F87F8 /* Credentials.swift in Sources */,
