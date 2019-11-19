@@ -23,37 +23,37 @@ class WebService {
         return request
     }
     
-    public func load<A, E>(resource: Resource<A, E>, completion: @escaping (Result<A>) -> Void) {
+    public func load<A, E>(resource: Resource<A, E>, completion: @escaping (Result<A?, Error>) -> Void) {
         let request = makeRequest(for: resource)
         urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
             if let error  = error {
                 DispatchQueue.main.async {
-                    completion(Result<A>.fail(error))
+                    completion(.failure(error))
                 }
                 return
             }
             guard let response = response as? HTTPURLResponse else {
                 DispatchQueue.main.async {(
-                    completion(Result<A>.fail(WebserviceError(code: -1, message: "Unknown response type")))
+                    completion(.failure(WebserviceError(code: -1, message: "Unknown response type")))
                     )}
                 return
             }
             if response.statusCode == 200 || response.statusCode == 201 {
                 if let parsed: A = data.flatMap(resource.parse) {
                     DispatchQueue.main.async {
-                        completion(Result<A>.success(parsed))
+                        completion(.success(parsed))
                     }
                 } else {
                     if resource.allowEmptyResponse {
-                        DispatchQueue.main.async { completion(Result<A>.success(nil)) }
+                        DispatchQueue.main.async { completion(.success(nil)) }
                     } else {
-                        DispatchQueue.main.async { completion(Result<A>.fail(WebserviceError(code: -1, message: "Fail to parse"))) }
+                        DispatchQueue.main.async { completion(.failure(WebserviceError(code: -1, message: "Fail to parse"))) }
                     }
                 }
             } else {
                 let parsedApiError = data.flatMap({resource.errorParse(response.statusCode, $0)}) as? WebserviceError
                 let error = parsedApiError ?? WebserviceError(code: -1, message: "Unknown response type")
-                DispatchQueue.main.async { completion(Result<A>.fail(error)) }
+                DispatchQueue.main.async { completion(.failure(error)) }
             }
         }).resume()
     }

@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
     s.name             = "InstantSearchInsights"
     s.module_name      = 'InstantSearchInsights'
-    s.version          = "2.2.1"
+    s.version          = "2.3.0"
     s.summary          = "A library allowing developers to report metrics related to Algolia search queries"
     s.homepage         = "https://github.com/algolia/instantsearch-ios-insights"
     s.license          = { type: 'MIT', file: 'LICENSE.md' }
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
     s.social_media_url = 'https://twitter.com/algolia'
     s.ios.deployment_target = '8.0'
     s.requires_arc = true
-    s.swift_version = '4.2'
+    s.swift_version = '5.1'
 
         # Build settings
     # --------------

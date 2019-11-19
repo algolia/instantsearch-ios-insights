@@ -126,11 +126,10 @@ extension EventsPackage: Hashable {
     static func == (lhs: EventsPackage, rhs: EventsPackage) -> Bool {
         return lhs.id == rhs.id
     }
-    
-    var hashValue: Int {
-        return id.hashValue
+
+    func hash(into hasher: inout Hasher) {
+      hasher.combine(id)
     }
-    
 }
 
 extension EventsPackage: Syncable {
@@ -145,7 +144,7 @@ extension EventsPackage: Syncable {
             }
             return nil
         }
-        let serializedSelf = [CodingKeys.events.rawValue: Array(encodable:self.events)]
+        let serializedSelf = [CodingKeys.events.rawValue: Array(encodable: self.events)]
         let url = API.baseAPIURL(forRegion: region)
         return Resource<Bool, WebserviceError>(url: url,
                                                method: .post([], serializedSelf as AnyObject),
