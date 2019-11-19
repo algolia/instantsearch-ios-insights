@@ -1270,6 +1270,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.InstantSearch.Insights;
 				PRODUCT_NAME = InstantSearchInsights;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1300,6 +1301,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.algolia.InstantSearch.Insights;
 				PRODUCT_NAME = InstantSearchInsights;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1371,6 +1373,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.algolia.InstantSearch.Insights-macOS";
 				PRODUCT_NAME = InstantSearchInsights;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1403,6 +1406,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.algolia.InstantSearch.Insights-macOS";
 				PRODUCT_NAME = InstantSearchInsights;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1481,6 +1485,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.algolia.InstantSearch.Insights-tvOS";
 				PRODUCT_NAME = InstantSearchInsights;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1512,6 +1517,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.algolia.InstantSearch.Insights-tvOS";
 				PRODUCT_NAME = InstantSearchInsights;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1591,6 +1597,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.algolia.InstantSearch.Insights-watchOS";
 				PRODUCT_NAME = InstantSearchInsights;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1622,6 +1629,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.algolia.InstantSearch.Insights-watchOS";
 				PRODUCT_NAME = InstantSearchInsights;
 				PROVISIONING_PROFILE_SPECIFIER = "";
