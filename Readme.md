@@ -1,3 +1,8 @@
+# Warning: Migrated
+
+InstantSearch Insights has been migrated to the main [InstantSearch repository](https://github.com/algolia/instantsearch-ios). You still can use the Insights part of the InstantSearch separately by following the [provided instructions](https://github.com/algolia/instantsearch-ios#installation). This repository is no longer supported, please create your issues and submit your contributions to the main InstantSearch repository.
+
+
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![SwiftPM Compatible](https://img.shields.io/badge/SwiftPM-Compatible-brightgreen.svg)](https://swift.org/package-manager/)
 [![CocoaPods](https://img.shields.io/cocoapods/v/AlgoliaSearch-Client-Swift.svg)]()
